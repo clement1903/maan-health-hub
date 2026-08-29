@@ -18,12 +18,15 @@ export const dispatchNotifications = createServerFn({ method: "POST" })
   .handler(async ({ context }) => {
     const { supabase, userId } = context;
 
-    const { data: isAdmin, error: roleError } = await supabase.rpc("has_role", {
-      _user_id: userId,
-      _role: "admin",
-    });
+    const { data: adminRow, error: roleError } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", userId)
+      .eq("role", "admin")
+      .maybeSingle();
     if (roleError) throw roleError;
-    if (!isAdmin) throw new Error("Forbidden");
+    if (!adminRow) throw new Error("Forbidden");
+
 
     const { data: pending, error } = await supabase
       .from("notifications")
