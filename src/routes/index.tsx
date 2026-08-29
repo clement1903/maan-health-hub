@@ -213,13 +213,17 @@ function Home() {
                 </span>.
               </h1>
               <div className="mt-9 flex animate-[rise_0.6s_var(--ease)_0.24s_both] flex-wrap items-center gap-4">
-                <a
-                  href="#soins"
-                  className="group inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep hover:shadow-[0_18px_40px_-18px_var(--clay)]"
-                >
-                  Commencer une consultation
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </a>
+                <Magnetic>
+                  <a
+                    href="#soins"
+                    className="group inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep hover:shadow-[0_18px_40px_-18px_var(--clay)]"
+                  >
+                    Commencer une consultation
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </a>
+                </Magnetic>
                 <a
                   href="#parcours"
                   className="font-medium text-foreground underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
