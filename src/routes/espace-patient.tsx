@@ -367,13 +367,7 @@ function QuestionnaireTab({
   );
 }
 
-const trackSteps = [
-  "en_attente_validation",
-  "prescription_validee",
-  "en_preparation",
-  "expedie",
-  "livre",
-];
+const trackSteps = orderSteps.map((s) => s.key) as string[];
 
 function SuiviTab({ orders, events }: { orders: Order[]; events: OrderEvent[] }) {
   if (orders.length === 0) {
