@@ -14,6 +14,141 @@ export type Database = {
   }
   public: {
     Tables: {
+      documents: {
+        Row: {
+          created_at: string
+          id: string
+          issued_at: string
+          issued_by: string | null
+          kind: string
+          order_id: string | null
+          summary: string | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          issued_at?: string
+          issued_by?: string | null
+          kind?: string
+          order_id?: string | null
+          summary?: string | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          issued_at?: string
+          issued_by?: string | null
+          kind?: string
+          order_id?: string | null
+          summary?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "documents_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      follow_ups: {
+        Row: {
+          created_at: string
+          id: string
+          note: string | null
+          order_id: string | null
+          scheduled_for: string
+          status: string
+          topic: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          note?: string | null
+          order_id?: string | null
+          scheduled_for: string
+          status?: string
+          topic?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          note?: string | null
+          order_id?: string | null
+          scheduled_for?: string
+          status?: string
+          topic?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "follow_ups_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      messages: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          order_id: string | null
+          read_at: string | null
+          sender_id: string
+          sender_role: string
+          topic: string
+          user_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          order_id?: string | null
+          read_at?: string | null
+          sender_id: string
+          sender_role: string
+          topic?: string
+          user_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          order_id?: string | null
+          read_at?: string | null
+          sender_id?: string
+          sender_role?: string
+          topic?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       notifications: {
         Row: {
           body: string
@@ -155,6 +290,8 @@ export type Database = {
           email: string | null
           full_name: string | null
           id: string
+          notify_email: boolean
+          notify_sms: boolean
           phone: string | null
           updated_at: string
         }
@@ -163,6 +300,8 @@ export type Database = {
           email?: string | null
           full_name?: string | null
           id: string
+          notify_email?: boolean
+          notify_sms?: boolean
           phone?: string | null
           updated_at?: string
         }
@@ -171,6 +310,8 @@ export type Database = {
           email?: string | null
           full_name?: string | null
           id?: string
+          notify_email?: boolean
+          notify_sms?: boolean
           phone?: string | null
           updated_at?: string
         }
@@ -238,6 +379,15 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      queue_notification: {
+        Args: {
+          _body: string
+          _order_id: string
+          _subject: string
+          _user_id: string
+        }
+        Returns: undefined
       }
     }
     Enums: {

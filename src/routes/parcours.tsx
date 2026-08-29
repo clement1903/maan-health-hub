@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
 import { ParcoursProgress, etapesDetaillees } from "@/components/parcours-progress";
+import { ParcoursVideo } from "@/components/parcours-video";
 import consultationImg from "@/assets/parcours-consultation.jpg";
 import explicationVideo from "@/assets/parcours-explication.mp4.asset.json";
 
@@ -68,6 +70,8 @@ const details = [
 ];
 
 function ParcoursPage() {
+  const [chapitre, setChapitre] = useState(0);
+
   return (
     <div className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
       <SiteHeader />
@@ -86,28 +90,22 @@ function ParcoursPage() {
                 agréé ; si une ordonnance est délivrée, une pharmacie partenaire prépare et expédie
                 le traitement prescrit.
               </p>
+              <p className="mt-4 max-w-[54ch] text-pretty text-sm text-muted">
+                Cliquez sur un chapitre de la vidéo : l'étape correspondante se met en avant
+                ci-dessous.
+              </p>
             </Reveal>
             <Reveal delay={100} className="lg:col-span-5">
-              <div className="relative overflow-hidden rounded-[24px] shadow-[0_50px_120px_-60px_var(--foreground)]">
-                <video
-                  src={explicationVideo.url}
-                  poster={consultationImg}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  aria-label="Vidéo explicative du parcours : questionnaire, décision médicale, préparation en pharmacie, livraison et suivi"
-                  className="aspect-[5/3] w-full object-cover"
-                />
-                <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-background/85 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-clay backdrop-blur-sm">
-                  Le parcours en images
-                </span>
-              </div>
+              <ParcoursVideo
+                src={explicationVideo.url}
+                poster={consultationImg}
+                onChapterChange={setChapitre}
+              />
             </Reveal>
-
           </div>
-          <ParcoursProgress etapes={etapesDetaillees} />
+          <ParcoursProgress etapes={etapesDetaillees} activeIndex={chapitre} />
         </section>
+
 
         <section className="border-y border-border bg-cream">
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 px-6 py-16 sm:grid-cols-3 lg:py-20">
