@@ -125,7 +125,7 @@ export function ParcoursProgress({ etapes }: { etapes: EtapeDetaillee[] }) {
                 {e.n}
               </span>
               <div className="flex flex-wrap items-baseline justify-between gap-3">
-                <h3 className="font-display text-xl font-medium tracking-tight">{e.title}</h3>
+                <h3 className="font-section text-xl font-medium tracking-tight">{e.title}</h3>
                 <span className="rounded-full border border-border px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-clay">
                   {e.duree}
                 </span>

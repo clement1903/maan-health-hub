@@ -295,7 +295,7 @@ function Home() {
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
                   (a) — Nos soins
                 </p>
-                <h2 className="mt-3 text-balance font-display text-3xl font-medium tracking-tight lg:text-4xl">
+                <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
                   Quatre domaines, un même soin.
                 </h2>
               </div>
@@ -312,7 +312,7 @@ function Home() {
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
               (b) — Le parcours
             </p>
-            <h2 className="mt-3 max-w-[24ch] text-balance font-display text-3xl font-medium tracking-tight lg:text-4xl">
+            <h2 className="mt-3 max-w-[24ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
               Trois étapes, sans déplacement.
             </h2>
           </Reveal>
@@ -329,7 +329,7 @@ function Home() {
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
                   (c) — Confiance
                 </p>
-                <h2 className="mt-3 text-balance font-display text-3xl font-medium tracking-tight lg:text-4xl">
+                <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
                   La rigueur d'une vraie consultation.
                 </h2>
                 <p className="mt-4 max-w-[40ch] text-pretty text-muted">
@@ -382,7 +382,7 @@ function Home() {
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
               (f) — Questions
             </p>
-            <h2 className="mt-3 font-display text-3xl font-medium tracking-tight lg:text-4xl">
+            <h2 className="mt-3 font-section text-3xl font-medium tracking-tight lg:text-4xl">
               Avant de commencer
             </h2>
           </Reveal>
@@ -431,7 +431,7 @@ function Home() {
               <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-cream/70">
                 Prêt quand vous l'êtes
               </p>
-              <h2 className="mt-3 max-w-[22ch] text-balance font-display text-4xl font-medium tracking-tight lg:text-5xl">
+              <h2 className="mt-3 max-w-[22ch] text-balance font-section text-4xl font-medium tracking-tight lg:text-5xl">
                 Commencer votre consultation aujourd'hui.
               </h2>
             </div>

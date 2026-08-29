@@ -286,7 +286,7 @@ function QuestionnaireTab({
   return (
     <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-12">
       <section className="lg:col-span-7">
-        <h2 className="font-display text-2xl font-medium tracking-tight">Nouveau questionnaire</h2>
+        <h2 className="font-section text-2xl font-medium tracking-tight">Nouveau questionnaire</h2>
         <p className="mt-2 max-w-[50ch] text-pretty text-sm text-muted">
           Vos réponses sont lues par un médecin agréé. Aucun traitement n'est expédié sans
           prescription validée.
@@ -344,7 +344,7 @@ function QuestionnaireTab({
       </section>
 
       <aside className="lg:col-span-5">
-        <h2 className="font-display text-2xl font-medium tracking-tight">Mes questionnaires</h2>
+        <h2 className="font-section text-2xl font-medium tracking-tight">Mes questionnaires</h2>
         <div className="mt-6 space-y-3">
           {list.length === 0 && (
             <p className="text-sm text-muted">Aucun questionnaire envoyé pour le moment.</p>
@@ -393,7 +393,7 @@ function SuiviTab({ orders, events }: { orders: Order[]; events: OrderEvent[] })
                 <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-clay">
                   {o.reference}
                 </p>
-                <h3 className="mt-1 font-display text-2xl font-medium tracking-tight">
+                <h3 className="mt-1 font-section text-2xl font-medium tracking-tight">
                   {o.treatment}
                 </h3>
               </div>

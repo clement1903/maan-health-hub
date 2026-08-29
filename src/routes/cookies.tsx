@@ -82,7 +82,7 @@ function CookiesPage() {
           </Reveal>
 
           <Reveal delay={80} className="mt-14">
-            <h2 className="font-display text-2xl font-medium tracking-tight">
+            <h2 className="font-section text-2xl font-medium tracking-tight">
               Catégories utilisées
             </h2>
             <div className="mt-6 divide-y divide-border border-y border-border">
@@ -101,7 +101,7 @@ function CookiesPage() {
 
           <Reveal delay={120} className="mt-14 space-y-8">
             <div>
-              <h2 className="font-display text-2xl font-medium tracking-tight">
+              <h2 className="font-section text-2xl font-medium tracking-tight">
                 Aucune publicité à partir de vos données de santé
               </h2>
               <p className="mt-3 text-pretty text-muted">
@@ -116,7 +116,7 @@ function CookiesPage() {
               </p>
             </div>
             <div>
-              <h2 className="font-display text-2xl font-medium tracking-tight">
+              <h2 className="font-section text-2xl font-medium tracking-tight">
                 Retirer votre consentement
               </h2>
               <p className="mt-3 text-pretty text-muted">
@@ -126,7 +126,7 @@ function CookiesPage() {
               </p>
             </div>
             <div>
-              <h2 className="font-display text-2xl font-medium tracking-tight">Durée de validité</h2>
+              <h2 className="font-section text-2xl font-medium tracking-tight">Durée de validité</h2>
               <p className="mt-3 text-pretty text-muted">
                 Votre choix est conservé six mois. Passé ce délai, la bannière réapparaît pour vous
                 permettre de confirmer ou de modifier vos préférences.

@@ -129,7 +129,7 @@ function DomainePage() {
         <section className="bg-cream">
           <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
             <Reveal>
-              <h2 className="font-display text-3xl font-medium tracking-tight lg:text-4xl">
+              <h2 className="font-section text-3xl font-medium tracking-tight lg:text-4xl">
                 Traitements possibles
               </h2>
               <p className="mt-3 max-w-[60ch] text-pretty text-sm text-muted">
@@ -148,7 +148,7 @@ function DomainePage() {
                   <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-clay">
                     {p.molecule}
                   </p>
-                  <h3 className="mt-2 font-display text-xl font-medium tracking-tight">{p.nom}</h3>
+                  <h3 className="mt-2 font-section text-xl font-medium tracking-tight">{p.nom}</h3>
                   <dl className="mt-5 space-y-4 text-sm">
                     <div>
                       <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
@@ -177,7 +177,7 @@ function DomainePage() {
 
         <section className="mx-auto max-w-3xl px-6 py-16 lg:py-24">
           <Reveal>
-            <h2 className="font-display text-3xl font-medium tracking-tight lg:text-4xl">
+            <h2 className="font-section text-3xl font-medium tracking-tight lg:text-4xl">
               Questions fréquentes
             </h2>
           </Reveal>

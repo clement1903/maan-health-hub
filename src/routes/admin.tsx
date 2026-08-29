@@ -268,7 +268,7 @@ function QuestionnairesAdmin({
                 <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-clay">
                   {dom?.tag ?? q.category}
                 </p>
-                <h3 className="mt-1 font-display text-xl font-medium tracking-tight">
+                <h3 className="mt-1 font-section text-xl font-medium tracking-tight">
                   {p?.full_name || p?.email || "Patient"}
                 </h3>
                 <p className="text-sm text-muted">{p?.email}</p>
@@ -351,7 +351,7 @@ function OrdersAdmin({
                 <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-clay">
                   {o.reference}
                 </p>
-                <h3 className="mt-1 font-display text-xl font-medium tracking-tight">
+                <h3 className="mt-1 font-section text-xl font-medium tracking-tight">
                   {o.treatment}
                 </h3>
                 <p className="text-sm text-muted">

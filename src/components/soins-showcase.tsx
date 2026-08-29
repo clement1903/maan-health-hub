@@ -69,7 +69,7 @@ export function SoinsShowcase({ soins }: { soins: Soin[] }) {
           <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-clay">
             {current.n} · Frais de consultation {current.cost}
           </span>
-          <h3 className="mt-4 font-display text-3xl font-medium tracking-tight lg:text-4xl">
+          <h3 className="mt-4 font-section text-3xl font-medium tracking-tight lg:text-4xl">
             {current.title}
           </h3>
           <p className="mt-3 max-w-[42ch] text-pretty text-muted">{current.desc}</p>
