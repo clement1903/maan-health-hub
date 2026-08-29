@@ -380,7 +380,7 @@ function Home() {
         <section id="faq" className="mx-auto max-w-4xl scroll-mt-24 px-6 py-16 lg:py-24">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-              (e) — Questions
+              (f) — Questions
             </p>
             <h2 className="mt-3 font-display text-3xl font-medium tracking-tight lg:text-4xl">
               Avant de commencer
