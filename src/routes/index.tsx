@@ -145,7 +145,7 @@ const faq = [
   },
   {
     q: "Le traitement est-il garanti ?",
-    a: "Non. La prescription dépend de l'avis du médecin selon votre état de santé. Aucun médicament n'est délivré sans ordonnance.",
+    a: "Non. La prescription dépend de l'avis du médecin selon votre état de santé. Aucun médicament n'est délivré ni vendu sans ordonnance.",
   },
 ];
 
