@@ -6,7 +6,7 @@ export type Soin = {
   tag: string;
   title: string;
   desc: string;
-  price: string;
+  cost: string;
   img: string;
   alt: string;
   points: string[];
