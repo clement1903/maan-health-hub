@@ -8,6 +8,12 @@ import { useAuth } from "@/hooks/use-auth";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { cn } from "@/lib/utils";
+import {
+  DocumentsPanel,
+  MessagesPanel,
+  FollowUpPanel,
+  NotificationPreferences,
+} from "@/components/patient-panels";
 import { orderSteps } from "@/lib/order-status";
 
 export const Route = createFileRoute("/espace-patient")({
@@ -124,7 +130,7 @@ function PatientArea() {
 function Dashboard({ email, userId }: { email: string; userId: string }) {
   const navigate = useNavigate();
   const qc = useQueryClient();
-  const [tab, setTab] = useState<"questionnaire" | "suivi">("questionnaire");
+  const [tab, setTab] = useState<"questionnaire" | "suivi" | "documents" | "messages" | "parametres">("questionnaire");
 
   const questionnaires = useQuery({
     queryKey: ["questionnaires", userId],
