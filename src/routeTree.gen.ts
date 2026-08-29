@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as EspacePatientRouteImport } from './routes/espace-patient'
+import { Route as ParcoursRouteImport } from './routes/parcours'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const EspacePatientRoute = EspacePatientRouteImport.update({
   path: '/espace-patient',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ParcoursRoute = ParcoursRouteImport.update({
+  id: '/parcours',
+  path: '/parcours',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/espace-patient': typeof EspacePatientRoute
+  '/parcours': typeof ParcoursRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/espace-patient': typeof EspacePatientRoute
+  '/parcours': typeof ParcoursRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/espace-patient': typeof EspacePatientRoute
+  '/parcours': typeof ParcoursRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/espace-patient'
+  fullPaths: '/' | '/auth' | '/espace-patient' | '/parcours'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/espace-patient'
-  id: '__root__' | '/' | '/auth' | '/espace-patient'
+  to: '/' | '/auth' | '/espace-patient' | '/parcours'
+  id: '__root__' | '/' | '/auth' | '/espace-patient' | '/parcours'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
   EspacePatientRoute: typeof EspacePatientRoute
+  ParcoursRoute: typeof ParcoursRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EspacePatientRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/parcours': {
+      id: '/parcours'
+      path: '/parcours'
+      fullPath: '/parcours'
+      preLoaderRoute: typeof ParcoursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
   EspacePatientRoute: EspacePatientRoute,
+  ParcoursRoute: ParcoursRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
