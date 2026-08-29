@@ -25,9 +25,14 @@ export function SiteFooter() {
             <div className="space-y-3">
               <p className="text-foreground">Soins</p>
               {soins.map((s) => (
-                <p key={s} className="transition-colors hover:text-clay">
-                  {s}
-                </p>
+                <Link
+                  key={s.slug}
+                  to="/soins/$domaine"
+                  params={{ domaine: s.slug }}
+                  className="block transition-colors hover:text-clay"
+                >
+                  {s.label}
+                </Link>
               ))}
             </div>
             <div className="space-y-3">
