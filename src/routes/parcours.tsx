@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
-import { ParcoursStepper, type Etape } from "@/components/parcours-stepper";
+import { ParcoursProgress, etapesDetaillees } from "@/components/parcours-progress";
 import consultationImg from "@/assets/parcours-consultation.jpg";
 
 export const Route = createFileRoute("/parcours")({
@@ -120,9 +120,7 @@ function ParcoursPage() {
               />
             </Reveal>
           </div>
-          <Reveal delay={80}>
-            <ParcoursStepper etapes={etapes} />
-          </Reveal>
+          <ParcoursProgress etapes={etapesDetaillees} />
         </section>
 
         <section className="border-y border-border bg-cream">
