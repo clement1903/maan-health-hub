@@ -53,7 +53,7 @@ const soins: Soin[] = [
     tag: "Sexual",
     title: "Sexual Management",
     desc: "Dysfonction érectile, libido, andropause : un sujet traité sereinement, sans jugement.",
-    price: "Dès 49 €",
+    cost: "dès 49 €",
     img: soinSexual,
     alt: "Flacons d'apothicaire en verre ambré posés dans une lumière chaude",
     points: [
@@ -67,7 +67,7 @@ const soins: Soin[] = [
     tag: "Weight",
     title: "Weight Management",
     desc: "Surpoids, métabolisme, habitudes : un accompagnement médical structuré dans la durée.",
-    price: "Dès 59 €",
+    cost: "dès 59 €",
     img: soinWeight,
     alt: "Fruit mûr posé sur une pierre claire dans une lumière douce",
     points: [
@@ -81,7 +81,7 @@ const soins: Soin[] = [
     tag: "Hair",
     title: "Hair Management",
     desc: "Chute de cheveux, calvitie, cuir chevelu : agir tôt change tout.",
-    price: "Dès 45 €",
+    cost: "dès 45 €",
     img: soinHair,
     alt: "Peigne en bois sur du sable chaud",
     points: [
@@ -95,7 +95,7 @@ const soins: Soin[] = [
     tag: "Skin",
     title: "Skin Management",
     desc: "Acné, peau grasse, rides, taches : une routine validée médicalement.",
-    price: "Dès 42 €",
+    cost: "dès 42 €",
     img: soinSkin,
     alt: "Pot en verre ambré de soin pour la peau dans une lumière de fin de journée",
     points: [
