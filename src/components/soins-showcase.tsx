@@ -67,7 +67,7 @@ export function SoinsShowcase({ soins }: { soins: Soin[] }) {
 
         <div key={current.n} className="animate-[rise_0.55s_var(--ease)_both] bg-background p-8 lg:col-span-6 lg:p-10">
           <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-clay">
-            {current.n} — {current.price}
+            {current.n} · Frais de consultation {current.cost}
           </span>
           <h3 className="mt-4 font-display text-3xl font-medium tracking-tight lg:text-4xl">
             {current.title}
