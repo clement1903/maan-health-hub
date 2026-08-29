@@ -10,14 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ConformiteRouteImport } from './routes/conformite'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as EspacePatientRouteImport } from './routes/espace-patient'
 import { Route as ParcoursRouteImport } from './routes/parcours'
+import { Route as SoinsDomaineRouteImport } from './routes/soins.$domaine'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -30,6 +38,11 @@ const ConformiteRoute = ConformiteRouteImport.update({
   path: '/conformite',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EspacePatientRoute = EspacePatientRouteImport.update({
   id: '/espace-patient',
   path: '/espace-patient',
@@ -40,44 +53,85 @@ const ParcoursRoute = ParcoursRouteImport.update({
   path: '/parcours',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SoinsDomaineRoute = SoinsDomaineRouteImport.update({
+  id: '/soins/$domaine',
+  path: '/soins/$domaine',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/conformite': typeof ConformiteRoute
+  '/cookies': typeof CookiesRoute
   '/espace-patient': typeof EspacePatientRoute
   '/parcours': typeof ParcoursRoute
+  '/soins/$domaine': typeof SoinsDomaineRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/conformite': typeof ConformiteRoute
+  '/cookies': typeof CookiesRoute
   '/espace-patient': typeof EspacePatientRoute
   '/parcours': typeof ParcoursRoute
+  '/soins/$domaine': typeof SoinsDomaineRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/conformite': typeof ConformiteRoute
+  '/cookies': typeof CookiesRoute
   '/espace-patient': typeof EspacePatientRoute
   '/parcours': typeof ParcoursRoute
+  '/soins/$domaine': typeof SoinsDomaineRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/conformite' | '/espace-patient' | '/parcours'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/auth'
+    | '/conformite'
+    | '/cookies'
+    | '/espace-patient'
+    | '/parcours'
+    | '/soins/$domaine'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/conformite' | '/espace-patient' | '/parcours'
+  to:
+    | '/'
+    | '/admin'
+    | '/auth'
+    | '/conformite'
+    | '/cookies'
+    | '/espace-patient'
+    | '/parcours'
+    | '/soins/$domaine'
   id:
-    '__root__' | '/' | '/auth' | '/conformite' | '/espace-patient' | '/parcours'
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/auth'
+    | '/conformite'
+    | '/cookies'
+    | '/espace-patient'
+    | '/parcours'
+    | '/soins/$domaine'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
   ConformiteRoute: typeof ConformiteRoute
+  CookiesRoute: typeof CookiesRoute
   EspacePatientRoute: typeof EspacePatientRoute
   ParcoursRoute: typeof ParcoursRoute
+  SoinsDomaineRoute: typeof SoinsDomaineRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -87,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -103,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConformiteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/espace-patient': {
       id: '/espace-patient'
       path: '/espace-patient'
@@ -117,15 +185,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ParcoursRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/soins/$domaine': {
+      id: '/soins/$domaine'
+      path: '/soins/$domaine'
+      fullPath: '/soins/$domaine'
+      preLoaderRoute: typeof SoinsDomaineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
   ConformiteRoute: ConformiteRoute,
+  CookiesRoute: CookiesRoute,
   EspacePatientRoute: EspacePatientRoute,
   ParcoursRoute: ParcoursRoute,
+  SoinsDomaineRoute: SoinsDomaineRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

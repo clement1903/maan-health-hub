@@ -1,6 +1,13 @@
 import { Link } from "@tanstack/react-router";
 
-const soins = ["Sexual", "Weight", "Hair", "Skin"];
+import { openConsentPreferences } from "@/lib/cookie-consent";
+
+const soins = [
+  { label: "Sexual", slug: "sexuel" },
+  { label: "Weight", slug: "poids" },
+  { label: "Hair", slug: "cheveux" },
+  { label: "Skin", slug: "peau" },
+];
 
 export function SiteFooter() {
   return (
@@ -18,9 +25,14 @@ export function SiteFooter() {
             <div className="space-y-3">
               <p className="text-foreground">Soins</p>
               {soins.map((s) => (
-                <p key={s} className="transition-colors hover:text-clay">
-                  {s}
-                </p>
+                <Link
+                  key={s.slug}
+                  to="/soins/$domaine"
+                  params={{ domaine: s.slug }}
+                  className="block transition-colors hover:text-clay"
+                >
+                  {s.label}
+                </Link>
               ))}
             </div>
             <div className="space-y-3">
@@ -54,6 +66,16 @@ export function SiteFooter() {
               >
                 Expédition
               </Link>
+              <Link to="/cookies" className="block transition-colors hover:text-clay">
+                Politique des cookies
+              </Link>
+              <button
+                type="button"
+                onClick={openConsentPreferences}
+                className="block text-left uppercase tracking-[0.12em] transition-colors hover:text-clay"
+              >
+                Préférences cookies
+              </button>
             </div>
           </div>
         </div>
