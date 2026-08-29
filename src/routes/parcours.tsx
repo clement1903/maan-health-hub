@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
-import { ParcoursStepper, type Etape } from "@/components/parcours-stepper";
+import { ParcoursProgress, etapesDetaillees } from "@/components/parcours-progress";
 import consultationImg from "@/assets/parcours-consultation.jpg";
 
 export const Route = createFileRoute("/parcours")({
@@ -50,29 +50,6 @@ export const Route = createFileRoute("/parcours")({
   component: ParcoursPage,
 });
 
-const etapes: Etape[] = [
-  {
-    n: "1",
-    title: "Questionnaire médical",
-    desc: "Vous décrivez votre situation, vos antécédents et vos traitements en cours.",
-    detail:
-      "Comptez 3 à 5 minutes. Vous pouvez l'interrompre et le reprendre depuis votre espace patient. Les réponses sont enregistrées de façon confidentielle et lues uniquement par l'équipe médicale.",
-  },
-  {
-    n: "2",
-    title: "Validation de la prescription",
-    desc: "Un médecin agréé évalue votre dossier et décide s'il délivre une ordonnance.",
-    detail:
-      "Réponse sous 24 h ouvrées. Le médecin peut demander des précisions, proposer un autre dosage, refuser la demande ou vous orienter vers une consultation physique. La décision apparaît dans votre espace patient.",
-  },
-  {
-    n: "3",
-    title: "Préparation et livraison à domicile",
-    desc: "La pharmacie partenaire prépare puis expédie votre traitement.",
-    detail:
-      "Une fois l'ordonnance validée, la pharmacie partenaire prépare puis expédie le traitement prescrit dans un colis neutre. Suivi transporteur affiché dans votre espace, livraison en 24 à 48 h chez vous ou en point relais.",
-  },
-];
 
 const details = [
   {
@@ -120,9 +97,7 @@ function ParcoursPage() {
               />
             </Reveal>
           </div>
-          <Reveal delay={80}>
-            <ParcoursStepper etapes={etapes} />
-          </Reveal>
+          <ParcoursProgress etapes={etapesDetaillees} />
         </section>
 
         <section className="border-y border-border bg-cream">
