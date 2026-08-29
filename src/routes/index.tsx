@@ -133,19 +133,31 @@ const etapes: Etape[] = [
 const faq = [
   {
     q: "Comment se déroule la consultation ?",
-    a: "Vous remplissez un questionnaire médical, puis un médecin l'analyse. S'il est indiqué, il délivre une ordonnance valide.",
+    a: "Vous remplissez un questionnaire médical, puis un médecin agréé l'analyse. S'il l'estime justifié, il délivre une ordonnance ; sinon il demande des précisions, refuse la demande ou vous oriente vers une consultation physique.",
   },
   {
-    q: "Est-ce vraiment confidentiel ?",
-    a: "Vos données de santé sont chiffrées et ne sont jamais partagées. La livraison arrive dans un colis neutre, sans mention.",
+    q: "Puis-je acheter un médicament sans ordonnance ?",
+    a: "Non. MAAN ne vend aucun médicament en libre accès. Un traitement soumis à prescription ne peut être préparé et expédié qu'après la délivrance d'une ordonnance par un médecin.",
   },
   {
-    q: "Peut-on recevoir l'ordonnance ?",
-    a: "Oui, vous recevez une ordonnance officielle que vous pouvez aussi présenter à votre pharmacie habituelle.",
+    q: "Que se passe-t-il si le médecin refuse de prescrire ?",
+    a: "Vous recevez un motif écrit dans votre espace patient et des orientations adaptées. Les frais de consultation couvrent l'analyse médicale, quelle que soit la décision : un refus est un acte médical, pas un échec de commande.",
   },
   {
-    q: "Le traitement est-il garanti ?",
-    a: "Non. La prescription dépend de l'avis du médecin selon votre état de santé. Aucun médicament n'est délivré ni vendu sans ordonnance.",
+    q: "L'ordonnance m'appartient-elle ?",
+    a: "Oui. Vous recevez une ordonnance officielle, téléchargeable depuis votre espace patient, que vous pouvez présenter à votre pharmacie habituelle plutôt qu'à notre pharmacie partenaire.",
+  },
+  {
+    q: "Qui peut lire mes réponses de santé ?",
+    a: "Uniquement le médecin en charge de votre dossier et, pour la préparation, le pharmacien concerné. Vos réponses sont couvertes par le secret médical.",
+  },
+  {
+    q: "Comment mes données personnelles sont-elles traitées ?",
+    a: "Les données de santé sont chiffrées et hébergées en Europe chez un hébergeur conforme au RGPD. Elles ne sont ni revendues, ni utilisées à des fins publicitaires. Vous pouvez demander leur export ou leur suppression à tout moment depuis votre espace patient.",
+  },
+  {
+    q: "La livraison est-elle vraiment discrète ?",
+    a: "Le colis est neutre : aucune mention du contenu, du domaine de soin ni de la marque. Vous choisissez la livraison à domicile ou en point relais.",
   },
 ];
 
