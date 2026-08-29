@@ -285,10 +285,6 @@ function Home() {
                   Quatre domaines, un même soin.
                 </h2>
               </div>
-              <p className="max-w-[34ch] text-pretty text-sm text-muted">
-                Chaque parcours mène à une ordonnance délivrée par un médecin, jamais à une vente
-                directe de médicament.
-              </p>
             </Reveal>
             <Reveal delay={80}>
               <SoinsShowcase soins={soins} />
