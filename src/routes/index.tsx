@@ -209,8 +209,8 @@ function Home() {
                 <span className="relative inline-block">
                   <span className="relative z-10">Recevez votre traitement à domicile</span>
                   <span className="absolute inset-x-0 bottom-1 z-0 h-3 origin-left animate-[rise_0.8s_var(--ease)_0.5s_both] rounded-sm bg-amber/35" />
-                </span>{" "}
-                s'il vous est prescrit.
+                </span>
+                .
               </h1>
               <div className="mt-9 flex animate-[rise_0.6s_var(--ease)_0.24s_both] flex-wrap items-center gap-4">
                 <a

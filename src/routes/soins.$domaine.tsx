@@ -62,7 +62,7 @@ function DomaineIntrouvable() {
       <SiteHeader />
       <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-24">
         <h1 className="font-display text-4xl font-medium tracking-tight">Domaine introuvable</h1>
-        <p className="mt-4 text-muted">Ce domaine de soin n'existe pas.</p>
+        <p className="mt-4 text-muted">Cette spécialité n'existe pas.</p>
         <div className="mt-8 flex flex-wrap gap-3">
           {domaines.map((d) => (
             <Link
