@@ -66,6 +66,16 @@ export function SiteFooter() {
               >
                 Expédition
               </Link>
+              <Link to="/cookies" className="block transition-colors hover:text-clay">
+                Politique des cookies
+              </Link>
+              <button
+                type="button"
+                onClick={openConsentPreferences}
+                className="block text-left uppercase tracking-[0.12em] transition-colors hover:text-clay"
+              >
+                Préférences cookies
+              </button>
             </div>
           </div>
         </div>
