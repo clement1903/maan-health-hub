@@ -358,7 +358,7 @@ function Home() {
             <div className="max-w-[36ch]">
               <span className="font-display text-2xl font-semibold tracking-tight">MAAN</span>
               <p className="mt-3 text-pretty text-sm text-muted">
-                Télémédecine masculine. Consultation en ligne, ordonnance et livraison discrète à
+                Des soins pensés pour les hommes. Consultation en ligne, ordonnance et livraison discrète à
                 domicile.
               </p>
             </div>
