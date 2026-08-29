@@ -31,7 +31,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Consultation médicale en ligne, ordonnance délivrée par un médecin agréé et livraison discrète à domicile.",
+          "Consultation médicale en ligne : un médecin agréé évalue votre dossier et, si un traitement est prescrit, vous le recevez discrètement à domicile.",
       },
       { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/")({
       {
         name: "twitter:description",
         content:
-          "Consultation médicale en ligne, ordonnance et livraison discrète à domicile.",
+          "Consultation médicale en ligne : un médecin évalue votre dossier et, si un traitement est prescrit, vous le recevez discrètement à domicile.",
       },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -53,7 +53,7 @@ const soins: Soin[] = [
     tag: "Sexual",
     title: "Sexual Management",
     desc: "Dysfonction érectile, libido, andropause : un sujet traité sereinement, sans jugement.",
-    price: "Dès 49 €",
+    cost: "dès 49 €",
     img: soinSexual,
     alt: "Flacons d'apothicaire en verre ambré posés dans une lumière chaude",
     points: [
@@ -67,7 +67,7 @@ const soins: Soin[] = [
     tag: "Weight",
     title: "Weight Management",
     desc: "Surpoids, métabolisme, habitudes : un accompagnement médical structuré dans la durée.",
-    price: "Dès 59 €",
+    cost: "dès 59 €",
     img: soinWeight,
     alt: "Fruit mûr posé sur une pierre claire dans une lumière douce",
     points: [
@@ -81,7 +81,7 @@ const soins: Soin[] = [
     tag: "Hair",
     title: "Hair Management",
     desc: "Chute de cheveux, calvitie, cuir chevelu : agir tôt change tout.",
-    price: "Dès 45 €",
+    cost: "dès 45 €",
     img: soinHair,
     alt: "Peigne en bois sur du sable chaud",
     points: [
@@ -95,7 +95,7 @@ const soins: Soin[] = [
     tag: "Skin",
     title: "Skin Management",
     desc: "Acné, peau grasse, rides, taches : une routine validée médicalement.",
-    price: "Dès 42 €",
+    cost: "dès 42 €",
     img: soinSkin,
     alt: "Pot en verre ambré de soin pour la peau dans une lumière de fin de journée",
     points: [
@@ -145,7 +145,7 @@ const faq = [
   },
   {
     q: "Le traitement est-il garanti ?",
-    a: "Non. La prescription dépend de l'avis du médecin selon votre état de santé. Aucun médicament n'est délivré sans ordonnance.",
+    a: "Non. La prescription dépend de l'avis du médecin selon votre état de santé. Aucun médicament n'est délivré ni vendu sans ordonnance.",
   },
 ];
 
@@ -191,12 +191,12 @@ function Home() {
                 Simple et confidentiel
               </p>
               <h1 className="mt-6 animate-[rise_0.6s_var(--ease)_0.08s_both] text-balance font-display text-5xl font-medium leading-[1.03] tracking-tight lg:text-6xl">
-                Consultez un médecin,{" "}
+                Consultez un médecin en ligne.{" "}
                 <span className="relative inline-block">
-                  <span className="relative z-10">recevez votre traitement</span>
+                  <span className="relative z-10">Recevez votre traitement à domicile</span>
                   <span className="absolute inset-x-0 bottom-1 z-0 h-3 origin-left animate-[rise_0.8s_var(--ease)_0.5s_both] rounded-sm bg-amber/35" />
                 </span>{" "}
-                à domicile.
+                s'il vous est prescrit.
               </h1>
               <div className="mt-9 flex animate-[rise_0.6s_var(--ease)_0.24s_both] flex-wrap items-center gap-4">
                 <a
@@ -320,7 +320,7 @@ function Home() {
                 </h2>
                 <p className="mt-4 max-w-[40ch] text-pretty text-muted">
                   De vrais médecins, des données de santé protégées, une pharmacie agréée. Rien
-                  n'est vendu sans prescription.
+                  n'est vendu sans prescription médicale.
                 </p>
               </Reveal>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:col-span-7">

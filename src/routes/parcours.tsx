@@ -69,14 +69,14 @@ const etapes: Etape[] = [
     title: "Préparation et livraison à domicile",
     desc: "La pharmacie partenaire prépare puis expédie votre traitement.",
     detail:
-      "Colis neutre, sans mention du contenu ni de la marque. Suivi transporteur affiché dans votre espace, livraison en 24 à 48 h chez vous ou en point relais. Les renouvellements suivent le même circuit.",
+      "Une fois l'ordonnance validée, la pharmacie partenaire prépare puis expédie le traitement prescrit dans un colis neutre. Suivi transporteur affiché dans votre espace, livraison en 24 à 48 h chez vous ou en point relais.",
   },
 ];
 
 const details = [
   {
     t: "Ce que vous recevez",
-    d: "Une ordonnance officielle, utilisable aussi dans votre pharmacie habituelle, et le traitement correspondant.",
+    d: "Une ordonnance officielle et, si elle est délivrée, le traitement correspondant, utilisables dans votre pharmacie habituelle.",
   },
   {
     t: "Ce qui peut arriver",
@@ -102,8 +102,9 @@ function ParcoursPage() {
               Questionnaire, prescription, livraison.
             </h1>
             <p className="mt-6 max-w-[54ch] text-pretty text-lg text-muted">
-              Aucun traitement n'est vendu librement. Chaque commande passe par l'évaluation d'un
-              médecin agréé, puis par une pharmacie partenaire qui prépare et expédie.
+              Aucun traitement n'est vendu librement. Chaque demande est évaluée par un médecin
+              agréé ; si une ordonnance est délivrée, une pharmacie partenaire prépare et expédie
+              le traitement prescrit.
             </p>
           </Reveal>
           <Reveal delay={80}>
