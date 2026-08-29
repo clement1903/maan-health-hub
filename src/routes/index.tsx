@@ -325,7 +325,7 @@ function Home() {
               (b) — Le parcours
             </p>
             <h2 className="mt-3 max-w-[24ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-              Trois étapes, sans déplacement.
+              Quatre étapes, sans déplacement.
             </h2>
           </Reveal>
           <Reveal delay={80}>
