@@ -69,7 +69,7 @@ const etapes: Etape[] = [
     title: "Préparation et livraison à domicile",
     desc: "La pharmacie partenaire prépare puis expédie votre traitement.",
     detail:
-      "Colis neutre, sans mention du contenu ni de la marque. Suivi transporteur affiché dans votre espace, livraison en 24 à 48 h chez vous ou en point relais. Les renouvellements suivent le même circuit.",
+      "Une fois l'ordonnance validée, la pharmacie partenaire prépare puis expédie le traitement prescrit dans un colis neutre. Suivi transporteur affiché dans votre espace, livraison en 24 à 48 h chez vous ou en point relais.",
   },
 ];
 
