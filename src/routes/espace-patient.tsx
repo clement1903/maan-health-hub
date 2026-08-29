@@ -401,26 +401,50 @@ function SuiviTab({ orders, events }: { orders: Order[]; events: OrderEvent[] })
               </span>
             </div>
 
-            <ol className="mt-7 grid grid-cols-5 gap-2">
-              {trackSteps.map((s, i) => (
-                <li key={s} className="min-w-0">
-                  <div
-                    className={cn(
-                      "h-1 rounded-full transition-colors duration-500",
-                      i <= stepIndex ? "bg-clay" : "bg-border",
+            <ol className="mt-7 space-y-0">
+              {orderSteps.map((s, i) => {
+                const done = i <= stepIndex;
+                const current = i === stepIndex;
+                const evt = orderEvents.find(
+                  (e) => e.label.toLowerCase() === s.label.toLowerCase(),
+                );
+                return (
+                  <li key={s.key} className="relative flex gap-4 pb-6 last:pb-0">
+                    {i < orderSteps.length - 1 && (
+                      <span
+                        aria-hidden
+                        className={cn(
+                          "absolute left-[7px] top-4 h-full w-px transition-colors duration-500",
+                          i < stepIndex ? "bg-clay" : "bg-border",
+                        )}
+                      />
                     )}
-                  />
-                  <p
-                    className={cn(
-                      "mt-2 truncate font-mono text-[9px] uppercase tracking-[0.1em]",
-                      i <= stepIndex ? "text-foreground" : "text-muted",
-                    )}
-                    title={statusLabels[s]}
-                  >
-                    {statusLabels[s]}
-                  </p>
-                </li>
-              ))}
+                    <span
+                      className={cn(
+                        "relative mt-1 h-[15px] w-[15px] shrink-0 rounded-full border-2 transition-all duration-500 ease-[var(--ease)]",
+                        done ? "border-clay bg-clay" : "border-border bg-background",
+                        current && "shadow-[0_0_0_5px_color-mix(in_oklab,var(--color-clay)_18%,transparent)]",
+                      )}
+                    />
+                    <div className="min-w-0">
+                      <p
+                        className={cn(
+                          "text-sm font-medium transition-colors",
+                          done ? "text-foreground" : "text-muted",
+                        )}
+                      >
+                        {s.label}
+                      </p>
+                      <p className="text-pretty text-sm text-muted">{s.desc}</p>
+                      {evt && (
+                        <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.1em] text-clay">
+                          {new Date(evt.created_at).toLocaleString("fr-FR")}
+                        </p>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
             </ol>
 
             {(o.carrier || o.tracking_number) && (
