@@ -52,7 +52,7 @@ export function Temoignages() {
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
               (e) — Témoignages
             </p>
-            <h2 className="mt-3 max-w-[24ch] text-balance font-display text-3xl font-medium tracking-tight lg:text-4xl">
+            <h2 className="mt-3 max-w-[24ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
               Ils en parlent, anonymement.
             </h2>
           </div>

@@ -76,7 +76,7 @@ export function MedecinsSection() {
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
             (d) — Les médecins
           </p>
-          <h2 className="mt-3 max-w-[26ch] text-balance font-display text-3xl font-medium tracking-tight lg:text-4xl">
+          <h2 className="mt-3 max-w-[26ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
             Derrière chaque décision, un médecin identifiable.
           </h2>
           <p className="mt-4 max-w-[56ch] text-pretty text-muted">

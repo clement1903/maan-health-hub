@@ -39,7 +39,7 @@ export function ParcoursStepper({ etapes }: { etapes: Etape[] }) {
                 Étape
               </span>
             </div>
-            <h3 className="mt-6 font-display text-xl font-medium tracking-tight">{e.title}</h3>
+            <h3 className="mt-6 font-section text-xl font-medium tracking-tight">{e.title}</h3>
             <p className="mt-2 text-pretty text-sm text-muted">{e.desc}</p>
             <div
               className={cn(

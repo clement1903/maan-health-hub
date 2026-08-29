@@ -72,7 +72,7 @@ export function CookieConsent() {
       <div className="mx-auto max-w-3xl overflow-hidden rounded-[20px] border border-border bg-cream shadow-[0_30px_80px_-40px_var(--foreground)]">
         <div className="p-6 sm:p-7">
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-clay">Cookies</p>
-          <h2 className="mt-2 font-display text-xl font-medium tracking-tight">
+          <h2 className="mt-2 font-section text-xl font-medium tracking-tight">
             Vous choisissez ce que nous mesurons.
           </h2>
           <p className="mt-2 text-pretty text-sm text-muted">

@@ -108,7 +108,7 @@ function ConformitePage() {
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 lg:grid-cols-12 lg:py-20">
               <Reveal className="lg:col-span-5">
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">{b.tag}</p>
-                <h2 className="mt-3 text-balance font-display text-3xl font-medium tracking-tight lg:text-4xl">
+                <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
                   {b.title}
                 </h2>
                 <p className="mt-4 max-w-[42ch] text-pretty text-muted">{b.intro}</p>

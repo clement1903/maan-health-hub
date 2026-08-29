@@ -8,6 +8,7 @@ import soinHair from "@/assets/soin-hair.jpg";
 import soinSkin from "@/assets/soin-skin.jpg";
 
 import { Reveal } from "@/components/reveal";
+import { Magnetic, Tilt } from "@/components/magnetic";
 import { Marquee } from "@/components/marquee";
 import { CountUp } from "@/components/count-up";
 import { SoinsShowcase, type Soin } from "@/components/soins-showcase";
@@ -209,17 +210,20 @@ function Home() {
                 <span className="relative inline-block">
                   <span className="relative z-10">Recevez votre traitement à domicile</span>
                   <span className="absolute inset-x-0 bottom-1 z-0 h-3 origin-left animate-[rise_0.8s_var(--ease)_0.5s_both] rounded-sm bg-amber/35" />
-                </span>{" "}
-                s'il vous est prescrit.
+                </span>.
               </h1>
               <div className="mt-9 flex animate-[rise_0.6s_var(--ease)_0.24s_both] flex-wrap items-center gap-4">
-                <a
-                  href="#soins"
-                  className="group inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep hover:shadow-[0_18px_40px_-18px_var(--clay)]"
-                >
-                  Commencer une consultation
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </a>
+                <Magnetic>
+                  <a
+                    href="#soins"
+                    className="group inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep hover:shadow-[0_18px_40px_-18px_var(--clay)]"
+                  >
+                    Commencer une consultation
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </a>
+                </Magnetic>
                 <a
                   href="#parcours"
                   className="font-medium text-foreground underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
@@ -260,11 +264,11 @@ function Home() {
               </div>
             </div>
 
-            <div className="animate-[rise_0.7s_var(--ease)_0.1s_both] lg:col-span-6">
-              <div
-                className="group relative"
-                style={{ transform: `translateY(${Math.min(scrollY, 400) * -0.05}px)` }}
-              >
+            <div
+              className="animate-[rise_0.7s_var(--ease)_0.1s_both] lg:col-span-6"
+              style={{ transform: `translateY(${Math.min(scrollY, 400) * -0.05}px)` }}
+            >
+              <Tilt className="group relative">
                 <img
                   src={heroBox}
                   alt="Homme recevant un colis neutre et discret à sa porte, en pleine lumière dorée"
@@ -280,7 +284,7 @@ function Home() {
                     par un médecin agréé
                   </p>
                 </div>
-              </div>
+              </Tilt>
             </div>
           </div>
         </section>
@@ -295,7 +299,7 @@ function Home() {
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
                   (a) — Nos soins
                 </p>
-                <h2 className="mt-3 text-balance font-display text-3xl font-medium tracking-tight lg:text-4xl">
+                <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
                   Quatre domaines, un même soin.
                 </h2>
               </div>
@@ -312,7 +316,7 @@ function Home() {
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
               (b) — Le parcours
             </p>
-            <h2 className="mt-3 max-w-[24ch] text-balance font-display text-3xl font-medium tracking-tight lg:text-4xl">
+            <h2 className="mt-3 max-w-[24ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
               Trois étapes, sans déplacement.
             </h2>
           </Reveal>
@@ -329,7 +333,7 @@ function Home() {
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
                   (c) — Confiance
                 </p>
-                <h2 className="mt-3 text-balance font-display text-3xl font-medium tracking-tight lg:text-4xl">
+                <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
                   La rigueur d'une vraie consultation.
                 </h2>
                 <p className="mt-4 max-w-[40ch] text-pretty text-muted">
@@ -382,7 +386,7 @@ function Home() {
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
               (f) — Questions
             </p>
-            <h2 className="mt-3 font-display text-3xl font-medium tracking-tight lg:text-4xl">
+            <h2 className="mt-3 font-section text-3xl font-medium tracking-tight lg:text-4xl">
               Avant de commencer
             </h2>
           </Reveal>
@@ -431,7 +435,7 @@ function Home() {
               <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-cream/70">
                 Prêt quand vous l'êtes
               </p>
-              <h2 className="mt-3 max-w-[22ch] text-balance font-display text-4xl font-medium tracking-tight lg:text-5xl">
+              <h2 className="mt-3 max-w-[22ch] text-balance font-section text-4xl font-medium tracking-tight lg:text-5xl">
                 Commencer votre consultation aujourd'hui.
               </h2>
             </div>

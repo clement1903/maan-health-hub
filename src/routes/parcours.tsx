@@ -108,7 +108,7 @@ function ParcoursPage() {
                 delay={i * 90}
                 className="rounded-[16px] border border-border bg-background p-7"
               >
-                <h2 className="font-display text-xl font-medium tracking-tight">{d.t}</h2>
+                <h2 className="font-section text-xl font-medium tracking-tight">{d.t}</h2>
                 <p className="mt-2 text-pretty text-sm text-muted">{d.d}</p>
               </Reveal>
             ))}
@@ -117,7 +117,7 @@ function ParcoursPage() {
 
         <section className="bg-clay text-cream">
           <div className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-6 py-16 lg:flex-row lg:items-center lg:justify-between lg:py-20">
-            <h2 className="max-w-[24ch] text-balance font-display text-3xl font-medium tracking-tight lg:text-4xl">
+            <h2 className="max-w-[24ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
               Commencez votre questionnaire depuis votre espace patient.
             </h2>
             <Link
