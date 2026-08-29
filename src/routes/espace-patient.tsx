@@ -8,6 +8,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { cn } from "@/lib/utils";
+import { orderSteps } from "@/lib/order-status";
 
 export const Route = createFileRoute("/espace-patient")({
   head: () => ({
