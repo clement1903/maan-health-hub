@@ -12,6 +12,8 @@ import { Marquee } from "@/components/marquee";
 import { CountUp } from "@/components/count-up";
 import { SoinsShowcase, type Soin } from "@/components/soins-showcase";
 import { ParcoursStepper, type Etape } from "@/components/parcours-stepper";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 import { useScrollY } from "@/hooks/use-reveal";
 import { cn } from "@/lib/utils";
 
