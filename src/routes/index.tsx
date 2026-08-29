@@ -55,7 +55,7 @@ const soins: Soin[] = [
     desc: "Dysfonction érectile, libido, andropause : un sujet traité sereinement, sans jugement.",
     cost: "dès 49 €",
     img: soinSexual,
-    alt: "Flacons d'apothicaire en verre ambré posés dans une lumière chaude",
+    alt: "Homme détendu au réveil dans une lumière dorée, serein et confiant",
     points: [
       "Questionnaire discret évalué par un médecin",
       "Traitements sur ordonnance uniquement",
@@ -69,7 +69,7 @@ const soins: Soin[] = [
     desc: "Surpoids, métabolisme, habitudes : un accompagnement médical structuré dans la durée.",
     cost: "dès 59 €",
     img: soinWeight,
-    alt: "Fruit mûr posé sur une pierre claire dans une lumière douce",
+    alt: "Homme qui lace ses chaussures de course au lever du soleil",
     points: [
       "Bilan métabolique et objectifs réalistes",
       "Suivi mensuel avec votre médecin",
@@ -83,7 +83,7 @@ const soins: Soin[] = [
     desc: "Chute de cheveux, calvitie, cuir chevelu : agir tôt change tout.",
     cost: "dès 45 €",
     img: soinHair,
-    alt: "Peigne en bois sur du sable chaud",
+    alt: "Homme vérifiant sa ligne de cheveux devant un miroir en lumière chaude",
     points: [
       "Diagnostic à partir de photos du cuir chevelu",
       "Traitements oraux ou topiques prescrits",
@@ -97,7 +97,7 @@ const soins: Soin[] = [
     desc: "Acné, peau grasse, rides, taches : une routine validée médicalement.",
     cost: "dès 42 €",
     img: soinSkin,
-    alt: "Pot en verre ambré de soin pour la peau dans une lumière de fin de journée",
+    alt: "Homme appliquant une crème de soin sur le visage devant un miroir",
     points: [
       "Analyse dermatologique personnalisée",
       "Formules préparées en pharmacie",
@@ -253,7 +253,7 @@ function Home() {
               >
                 <img
                   src={heroBox}
-                  alt="Boîte en papier kraft mat éclairée par une lumière ambrée"
+                  alt="Homme recevant un colis neutre et discret à sa porte, en pleine lumière dorée"
                   width={1024}
                   height={1280}
                   className="aspect-[4/5] w-full rounded-[24px] object-cover shadow-[0_50px_120px_-60px_var(--foreground)] transition-transform duration-[900ms] ease-[var(--ease)] group-hover:scale-[1.015]"
