@@ -115,8 +115,8 @@ function Home() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex items-baseline gap-3">
             <span className="font-display text-2xl font-semibold tracking-tight">MAAN</span>
-            <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-muted sm:block">
-              Télémédecine
+            <span className="hidden text-sm text-muted sm:block">
+              Des soins pensés pour les hommes
             </span>
           </div>
           <nav className="hidden items-center gap-8 font-mono text-[11px] uppercase tracking-[0.15em] text-muted lg:flex">
