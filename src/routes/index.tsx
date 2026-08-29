@@ -8,6 +8,7 @@ import soinHair from "@/assets/soin-hair.jpg";
 import soinSkin from "@/assets/soin-skin.jpg";
 
 import { Reveal } from "@/components/reveal";
+import { Magnetic, Tilt } from "@/components/magnetic";
 import { Marquee } from "@/components/marquee";
 import { CountUp } from "@/components/count-up";
 import { SoinsShowcase, type Soin } from "@/components/soins-showcase";
@@ -260,7 +261,7 @@ function Home() {
             </div>
 
             <div className="animate-[rise_0.7s_var(--ease)_0.1s_both] lg:col-span-6">
-              <div
+              <Tilt
                 className="group relative"
                 style={{ transform: `translateY(${Math.min(scrollY, 400) * -0.05}px)` }}
               >
