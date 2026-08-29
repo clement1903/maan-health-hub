@@ -154,12 +154,7 @@ const marqueeItems = [
   "Suivi personnalisé",
 ];
 
-const nav = [
-  { href: "#soins", label: "Soins" },
-  { href: "#parcours", label: "Parcours" },
-  { href: "#confiance", label: "Confiance" },
-  { href: "#faq", label: "FAQ" },
-];
+
 
 function Home() {
   const scrollY = useScrollY();
