@@ -12,6 +12,8 @@ import { Marquee } from "@/components/marquee";
 import { CountUp } from "@/components/count-up";
 import { SoinsShowcase, type Soin } from "@/components/soins-showcase";
 import { ParcoursStepper, type Etape } from "@/components/parcours-stepper";
+import { MedecinsSection } from "@/components/medecins-section";
+import { Temoignages } from "@/components/temoignages";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { useScrollY } from "@/hooks/use-reveal";
@@ -370,11 +372,15 @@ function Home() {
           </div>
         </section>
 
+        <MedecinsSection />
+
+        <Temoignages />
+
         {/* FAQ */}
         <section id="faq" className="mx-auto max-w-4xl scroll-mt-24 px-6 py-16 lg:py-24">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-              (d) — Questions
+              (e) — Questions
             </p>
             <h2 className="mt-3 font-display text-3xl font-medium tracking-tight lg:text-4xl">
               Avant de commencer
