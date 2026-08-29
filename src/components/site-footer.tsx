@@ -1,6 +1,13 @@
 import { Link } from "@tanstack/react-router";
 
-const soins = ["Sexual", "Weight", "Hair", "Skin"];
+import { openConsentPreferences } from "@/lib/cookie-consent";
+
+const soins = [
+  { label: "Sexual", slug: "sexuel" },
+  { label: "Weight", slug: "poids" },
+  { label: "Hair", slug: "cheveux" },
+  { label: "Skin", slug: "peau" },
+];
 
 export function SiteFooter() {
   return (
