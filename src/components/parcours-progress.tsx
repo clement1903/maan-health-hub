@@ -72,7 +72,13 @@ export const etapesDetaillees: EtapeDetaillee[] = [
 ];
 
 
-export function ParcoursProgress({ etapes }: { etapes: EtapeDetaillee[] }) {
+export function ParcoursProgress({
+  etapes,
+  activeIndex,
+}: {
+  etapes: EtapeDetaillee[];
+  activeIndex?: number;
+}) {
   const refs = useRef<Array<HTMLLIElement | null>>([]);
   const [reached, setReached] = useState(0);
 
@@ -91,7 +97,13 @@ export function ParcoursProgress({ etapes }: { etapes: EtapeDetaillee[] }) {
     return () => observer.disconnect();
   }, [etapes.length]);
 
+  useEffect(() => {
+    if (activeIndex === undefined) return;
+    setReached((prev) => Math.max(prev, activeIndex + 1));
+  }, [activeIndex]);
+
   const pct = Math.round((reached / etapes.length) * 100);
+
 
   return (
     <div className="mt-12">
