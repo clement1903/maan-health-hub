@@ -320,7 +320,7 @@ function Home() {
                 </h2>
                 <p className="mt-4 max-w-[40ch] text-pretty text-muted">
                   De vrais médecins, des données de santé protégées, une pharmacie agréée. Rien
-                  n'est vendu sans prescription.
+                  n'est vendu sans prescription médicale.
                 </p>
               </Reveal>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:col-span-7">
