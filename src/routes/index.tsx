@@ -260,11 +260,11 @@ function Home() {
               </div>
             </div>
 
-            <div className="animate-[rise_0.7s_var(--ease)_0.1s_both] lg:col-span-6">
-              <Tilt
-                className="group relative"
-                style={{ transform: `translateY(${Math.min(scrollY, 400) * -0.05}px)` }}
-              >
+            <div
+              className="animate-[rise_0.7s_var(--ease)_0.1s_both] lg:col-span-6"
+              style={{ transform: `translateY(${Math.min(scrollY, 400) * -0.05}px)` }}
+            >
+              <Tilt className="group relative">
                 <img
                   src={heroBox}
                   alt="Homme recevant un colis neutre et discret à sa porte, en pleine lumière dorée"
