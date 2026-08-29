@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
 import { ParcoursStepper, type Etape } from "@/components/parcours-stepper";
+import consultationImg from "@/assets/parcours-consultation.jpg";
 
 export const Route = createFileRoute("/parcours")({
   head: () => ({
@@ -94,19 +95,31 @@ function ParcoursPage() {
       <SiteHeader />
       <main className="flex-1">
         <section className="mx-auto max-w-6xl px-6 py-16 lg:py-24">
-          <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-              Parcours d'accès aux traitements
-            </p>
-            <h1 className="mt-4 max-w-[22ch] text-balance font-display text-4xl font-medium leading-[1.05] tracking-tight lg:text-6xl">
-              Questionnaire, prescription, livraison.
-            </h1>
-            <p className="mt-6 max-w-[54ch] text-pretty text-lg text-muted">
-              Aucun traitement n'est vendu librement. Chaque demande est évaluée par un médecin
-              agréé ; si une ordonnance est délivrée, une pharmacie partenaire prépare et expédie
-              le traitement prescrit.
-            </p>
-          </Reveal>
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+            <Reveal className="lg:col-span-7">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
+                Parcours d'accès aux traitements
+              </p>
+              <h1 className="mt-4 max-w-[22ch] text-balance font-display text-4xl font-medium leading-[1.05] tracking-tight lg:text-6xl">
+                Questionnaire, prescription, livraison.
+              </h1>
+              <p className="mt-6 max-w-[54ch] text-pretty text-lg text-muted">
+                Aucun traitement n'est vendu librement. Chaque demande est évaluée par un médecin
+                agréé ; si une ordonnance est délivrée, une pharmacie partenaire prépare et expédie
+                le traitement prescrit.
+              </p>
+            </Reveal>
+            <Reveal delay={100} className="lg:col-span-5">
+              <img
+                src={consultationImg}
+                alt="Médecin rédigeant une ordonnance devant son ordinateur portable, dans une lumière chaude"
+                loading="lazy"
+                width={1280}
+                height={768}
+                className="aspect-[5/3] w-full rounded-[24px] object-cover shadow-[0_50px_120px_-60px_var(--foreground)]"
+              />
+            </Reveal>
+          </div>
           <Reveal delay={80}>
             <ParcoursStepper etapes={etapes} />
           </Reveal>
