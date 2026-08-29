@@ -76,7 +76,7 @@ const etapes: Etape[] = [
 const details = [
   {
     t: "Ce que vous recevez",
-    d: "Une ordonnance officielle, utilisable aussi dans votre pharmacie habituelle, et le traitement correspondant.",
+    d: "Une ordonnance officielle et, si elle est délivrée, le traitement correspondant, utilisables dans votre pharmacie habituelle.",
   },
   {
     t: "Ce qui peut arriver",
