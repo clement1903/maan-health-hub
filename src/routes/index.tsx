@@ -14,7 +14,7 @@ export const Route = createFileRoute("/")({
         name: "description",
         content:
           "Simple et confidentiel. Consultez un médecin en ligne et recevez votre traitement à domicile lorsqu'il vous est prescrit. Sexual, Weight, Hair et Skin Management.",
-      }
+      },
       { property: "og:title", content: "MAAN — Des soins pensés pour les hommes" },
       {
         property: "og:description",
