@@ -280,7 +280,7 @@ function Home() {
                     par un médecin agréé
                   </p>
                 </div>
-              </div>
+              </Tilt>
             </div>
           </div>
         </section>
