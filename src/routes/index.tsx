@@ -39,7 +39,7 @@ export const Route = createFileRoute("/")({
       {
         name: "twitter:description",
         content:
-          "Consultation médicale en ligne, ordonnance et livraison discrète à domicile.",
+          "Consultation médicale en ligne : un médecin évalue votre dossier et, si un traitement est prescrit, vous le recevez discrètement à domicile.",
       },
     ],
     links: [{ rel: "canonical", href: "/" }],
