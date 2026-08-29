@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
 import { ParcoursProgress, etapesDetaillees } from "@/components/parcours-progress";
+import { ParcoursVideo } from "@/components/parcours-video";
 import consultationImg from "@/assets/parcours-consultation.jpg";
 import explicationVideo from "@/assets/parcours-explication.mp4.asset.json";
 
