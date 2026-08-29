@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ConformiteRouteImport } from './routes/conformite'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as EspacePatientRouteImport } from './routes/espace-patient'
 import { Route as ParcoursRouteImport } from './routes/parcours'
 import { Route as SoinsDomaineRouteImport } from './routes/soins.$domaine'
@@ -29,6 +30,11 @@ const AuthRoute = AuthRouteImport.update({
 const ConformiteRoute = ConformiteRouteImport.update({
   id: '/conformite',
   path: '/conformite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EspacePatientRoute = EspacePatientRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/conformite': typeof ConformiteRoute
+  '/cookies': typeof CookiesRoute
   '/espace-patient': typeof EspacePatientRoute
   '/parcours': typeof ParcoursRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/conformite': typeof ConformiteRoute
+  '/cookies': typeof CookiesRoute
   '/espace-patient': typeof EspacePatientRoute
   '/parcours': typeof ParcoursRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/conformite': typeof ConformiteRoute
+  '/cookies': typeof CookiesRoute
   '/espace-patient': typeof EspacePatientRoute
   '/parcours': typeof ParcoursRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/conformite'
+    | '/cookies'
     | '/espace-patient'
     | '/parcours'
     | '/soins/$domaine'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/conformite'
+    | '/cookies'
     | '/espace-patient'
     | '/parcours'
     | '/soins/$domaine'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/conformite'
+    | '/cookies'
     | '/espace-patient'
     | '/parcours'
     | '/soins/$domaine'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
   ConformiteRoute: typeof ConformiteRoute
+  CookiesRoute: typeof CookiesRoute
   EspacePatientRoute: typeof EspacePatientRoute
   ParcoursRoute: typeof ParcoursRoute
   SoinsDomaineRoute: typeof SoinsDomaineRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/conformite'
       fullPath: '/conformite'
       preLoaderRoute: typeof ConformiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/espace-patient': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
   ConformiteRoute: ConformiteRoute,
+  CookiesRoute: CookiesRoute,
   EspacePatientRoute: EspacePatientRoute,
   ParcoursRoute: ParcoursRoute,
   SoinsDomaineRoute: SoinsDomaineRoute,
