@@ -87,15 +87,23 @@ function ParcoursPage() {
               </p>
             </Reveal>
             <Reveal delay={100} className="lg:col-span-5">
-              <img
-                src={consultationImg}
-                alt="Médecin rédigeant une ordonnance devant son ordinateur portable, dans une lumière chaude"
-                loading="lazy"
-                width={1280}
-                height={768}
-                className="aspect-[5/3] w-full rounded-[24px] object-cover shadow-[0_50px_120px_-60px_var(--foreground)]"
-              />
+              <div className="relative overflow-hidden rounded-[24px] shadow-[0_50px_120px_-60px_var(--foreground)]">
+                <video
+                  src={explicationVideo.url}
+                  poster={consultationImg}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  aria-label="Vidéo explicative du parcours : questionnaire, décision médicale, préparation en pharmacie, livraison et suivi"
+                  className="aspect-[5/3] w-full object-cover"
+                />
+                <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-background/85 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-clay backdrop-blur-sm">
+                  Le parcours en 40 secondes
+                </span>
+              </div>
             </Reveal>
+
           </div>
           <ParcoursProgress etapes={etapesDetaillees} />
         </section>
