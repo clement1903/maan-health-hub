@@ -33,6 +33,7 @@ export const Route = createFileRoute("/")({
         content:
           "Consultation médicale en ligne, ordonnance délivrée par un médecin agréé et livraison discrète à domicile.",
       },
+      { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "MAAN — Des soins pensés pour les hommes" },
       {
@@ -41,6 +42,7 @@ export const Route = createFileRoute("/")({
           "Consultation médicale en ligne, ordonnance et livraison discrète à domicile.",
       },
     ],
+    links: [{ rel: "canonical", href: "/" }],
   }),
   component: Home,
 });
