@@ -102,8 +102,9 @@ function ParcoursPage() {
               Questionnaire, prescription, livraison.
             </h1>
             <p className="mt-6 max-w-[54ch] text-pretty text-lg text-muted">
-              Aucun traitement n'est vendu librement. Chaque commande passe par l'évaluation d'un
-              médecin agréé, puis par une pharmacie partenaire qui prépare et expédie.
+              Aucun traitement n'est vendu librement. Chaque demande est évaluée par un médecin
+              agréé ; si une ordonnance est délivrée, une pharmacie partenaire prépare et expédie
+              le traitement prescrit.
             </p>
           </Reveal>
           <Reveal delay={80}>
