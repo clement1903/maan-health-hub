@@ -198,10 +198,6 @@ function Home() {
                 </span>{" "}
                 à domicile.
               </h1>
-              <p className="mt-6 max-w-[46ch] animate-[rise_0.6s_var(--ease)_0.16s_both] text-pretty text-lg text-muted">
-                Un parcours médical complet — questionnaire, consultation et ordonnance — pensé pour
-                les hommes, livré discrètement.
-              </p>
               <div className="mt-9 flex animate-[rise_0.6s_var(--ease)_0.24s_both] flex-wrap items-center gap-4">
                 <a
                   href="#soins"
