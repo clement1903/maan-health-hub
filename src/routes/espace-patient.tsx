@@ -184,11 +184,14 @@ function Dashboard({ email, userId }: { email: string; userId: string }) {
         </button>
       </div>
 
-      <div className="mt-8 flex w-full max-w-sm rounded-full border border-border p-1 font-mono text-[11px] uppercase tracking-[0.14em]">
+      <div className="mt-8 flex w-full max-w-3xl flex-wrap gap-1 rounded-full border border-border p-1 font-mono text-[11px] uppercase tracking-[0.14em]">
         {(
           [
             ["questionnaire", "Questionnaire"],
             ["suivi", "Suivi & mises à jour"],
+            ["documents", "Documents"],
+            ["messages", "Messagerie"],
+            ["parametres", "Paramètres"],
           ] as const
         ).map(([k, label]) => (
           <button
@@ -196,7 +199,7 @@ function Dashboard({ email, userId }: { email: string; userId: string }) {
             type="button"
             onClick={() => setTab(k)}
             className={cn(
-              "flex-1 rounded-full px-3 py-2 transition-all duration-400 ease-[var(--ease)]",
+              "flex-1 whitespace-nowrap rounded-full px-3 py-2 transition-all duration-400 ease-[var(--ease)]",
               tab === k ? "bg-clay text-cream" : "text-muted hover:text-foreground",
             )}
           >
@@ -205,7 +208,7 @@ function Dashboard({ email, userId }: { email: string; userId: string }) {
         ))}
       </div>
 
-      {tab === "questionnaire" ? (
+      {tab === "questionnaire" && (
         <QuestionnaireTab
           userId={userId}
           list={questionnaires.data ?? []}
@@ -216,9 +219,17 @@ function Dashboard({ email, userId }: { email: string; userId: string }) {
             setTab("suivi");
           }}
         />
-      ) : (
-        <SuiviTab orders={orders.data ?? []} events={events.data ?? []} />
       )}
+      {tab === "suivi" && (
+        <>
+          <SuiviTab orders={orders.data ?? []} events={events.data ?? []} />
+          <FollowUpPanel userId={userId} orderId={orders.data?.[0]?.id ?? null} />
+        </>
+      )}
+      {tab === "documents" && <DocumentsPanel userId={userId} />}
+      {tab === "messages" && <MessagesPanel userId={userId} />}
+      {tab === "parametres" && <NotificationPreferences userId={userId} />}
+
     </>
   );
 }
