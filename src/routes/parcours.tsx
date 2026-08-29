@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
 import { ParcoursProgress, etapesDetaillees } from "@/components/parcours-progress";
 import consultationImg from "@/assets/parcours-consultation.jpg";
+import explicationVideo from "@/assets/parcours-explication.mp4.asset.json";
 
 export const Route = createFileRoute("/parcours")({
   head: () => ({
@@ -99,7 +100,7 @@ function ParcoursPage() {
                   className="aspect-[5/3] w-full object-cover"
                 />
                 <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-background/85 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-clay backdrop-blur-sm">
-                  Le parcours en 40 secondes
+                  Le parcours en images
                 </span>
               </div>
             </Reveal>
