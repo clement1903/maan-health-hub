@@ -131,7 +131,15 @@ const etapes: Etape[] = [
     detail:
       "Colis sans mention de contenu ni de marque, suivi en temps réel, livré chez vous ou en point relais sous 24 à 48 h.",
   },
+  {
+    n: "4",
+    title: "Suivi",
+    desc: "Le médecin reste joignable pour ajuster, renouveler ou arrêter votre traitement.",
+    detail:
+      "Point de suivi après une semaine, signalement des effets indésirables depuis votre espace patient et décisions médicales tracées dans votre dossier.",
+  },
 ];
+
 
 const faq = [
   {
@@ -317,7 +325,7 @@ function Home() {
               (b) — Le parcours
             </p>
             <h2 className="mt-3 max-w-[24ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-              Trois étapes, sans déplacement.
+              Quatre étapes, sans déplacement.
             </h2>
           </Reveal>
           <Reveal delay={80}>

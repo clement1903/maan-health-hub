@@ -48,16 +48,29 @@ export const etapesDetaillees: EtapeDetaillee[] = [
   },
   {
     n: "4",
-    title: "Livraison et suivi",
+    title: "Livraison discrète",
     duree: "24 à 48 h",
     desc: "Le traitement prescrit est expédié chez vous ou en point relais.",
     micro: [
       "Numéro de suivi transporteur affiché",
       "Livraison discrète, sans signature de contenu",
-      "Suivi et renouvellement depuis votre espace patient",
+      "Colis neutre, sans mention de contenu",
+    ],
+  },
+  {
+    n: "5",
+    title: "Suivi médical",
+    duree: "en continu",
+    desc: "Après réception, le médecin reste joignable pour ajuster, renouveler ou arrêter le traitement.",
+    micro: [
+      "Point de suivi à J+7 puis à chaque renouvellement",
+      "Signalement d'effets indésirables depuis l'espace patient",
+      "Ajustement de dosage ou arrêt décidé par le médecin",
+      "Historique complet conservé dans votre dossier",
     ],
   },
 ];
+
 
 export function ParcoursProgress({ etapes }: { etapes: EtapeDetaillee[] }) {
   const refs = useRef<Array<HTMLLIElement | null>>([]);
