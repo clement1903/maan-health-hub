@@ -12,6 +12,8 @@ import { Marquee } from "@/components/marquee";
 import { CountUp } from "@/components/count-up";
 import { SoinsShowcase, type Soin } from "@/components/soins-showcase";
 import { ParcoursStepper, type Etape } from "@/components/parcours-stepper";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 import { useScrollY } from "@/hooks/use-reveal";
 import { cn } from "@/lib/utils";
 
@@ -31,6 +33,7 @@ export const Route = createFileRoute("/")({
         content:
           "Consultation médicale en ligne, ordonnance délivrée par un médecin agréé et livraison discrète à domicile.",
       },
+      { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "MAAN — Des soins pensés pour les hommes" },
       {
@@ -39,6 +42,7 @@ export const Route = createFileRoute("/")({
           "Consultation médicale en ligne, ordonnance et livraison discrète à domicile.",
       },
     ],
+    links: [{ rel: "canonical", href: "/" }],
   }),
   component: Home,
 });
@@ -154,12 +158,7 @@ const marqueeItems = [
   "Suivi personnalisé",
 ];
 
-const nav = [
-  { href: "#soins", label: "Soins" },
-  { href: "#parcours", label: "Parcours" },
-  { href: "#confiance", label: "Confiance" },
-  { href: "#faq", label: "FAQ" },
-];
+
 
 function Home() {
   const scrollY = useScrollY();
@@ -168,63 +167,8 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
-      <header
-        className={cn(
-          "sticky top-0 z-50 border-b bg-background/80 backdrop-blur-xl transition-all duration-500 ease-[var(--ease)]",
-          condensed ? "border-border shadow-[0_10px_40px_-32px_var(--foreground)]" : "border-transparent",
-        )}
-      >
-        <div
-          className={cn(
-            "mx-auto flex max-w-6xl items-center justify-between px-6 transition-all duration-500 ease-[var(--ease)]",
-            condensed ? "py-3" : "py-5",
-          )}
-        >
-          <div className="flex items-baseline gap-3">
-            <span className="font-display text-2xl font-semibold tracking-tight">MAAN</span>
-            <span
-              className={cn(
-                "hidden overflow-hidden whitespace-nowrap text-sm text-muted transition-all duration-500 ease-[var(--ease)] sm:block",
-                condensed ? "max-w-0 opacity-0" : "max-w-[24rem] opacity-100",
-              )}
-            >
-              Des soins pensés pour les hommes
-            </span>
-          </div>
-          <nav className="hidden items-center gap-8 font-mono text-[11px] uppercase tracking-[0.15em] text-muted lg:flex">
-            {nav.map((n) => (
-              <a
-                key={n.href}
-                href={n.href}
-                className="relative py-1 transition-colors hover:text-foreground after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-clay after:transition-transform after:duration-500 after:ease-[var(--ease)] hover:after:scale-x-100"
-              >
-                {n.label}
-              </a>
-            ))}
-          </nav>
-          <a
-            href="#cta"
-            className="group relative overflow-hidden rounded-full bg-clay px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:bg-clay-deep"
-          >
-            <span className="relative z-10">Démarrer</span>
-            <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-cream/25 to-transparent transition-transform duration-700 ease-[var(--ease)] group-hover:translate-x-full" />
-          </a>
-        </div>
-        <div
-          className="h-px origin-left bg-clay transition-transform duration-150"
-          style={{
-            transform: `scaleX(${
-              typeof document !== "undefined"
-                ? Math.min(
-                    1,
-                    scrollY /
-                      Math.max(1, document.documentElement.scrollHeight - window.innerHeight),
-                  )
-                : 0
-            })`,
-          }}
-        />
-      </header>
+      <SiteHeader />
+
 
       <main>
         {/* HERO */}
@@ -492,43 +436,8 @@ function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-border bg-background">
-        <div className="mx-auto max-w-6xl px-6 py-12">
-          <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
-            <div className="max-w-[36ch]">
-              <span className="font-display text-2xl font-semibold tracking-tight">MAAN</span>
-              <p className="mt-3 text-pretty text-sm text-muted">
-                Des soins pensés pour les hommes. Consultation en ligne, ordonnance et livraison
-                discrète à domicile.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-8 font-mono text-[11px] uppercase tracking-[0.12em] text-muted">
-              <div className="space-y-3">
-                <p className="text-foreground">Soins</p>
-                {soins.map((s) => (
-                  <p key={s.tag} className="transition-colors hover:text-clay">
-                    {s.tag}
-                  </p>
-                ))}
-              </div>
-              <div className="space-y-3">
-                <p className="text-foreground">Légal</p>
-                <p className="transition-colors hover:text-clay">Pharmacie</p>
-                <p className="transition-colors hover:text-clay">Données de santé</p>
-                <p className="transition-colors hover:text-clay">Mentions</p>
-                <p className="transition-colors hover:text-clay">CGV</p>
-              </div>
-            </div>
-          </div>
-          <div className="mt-10 border-t border-border pt-6">
-            <p className="text-[11px] leading-relaxed text-muted">
-              Les traitements sont délivrés uniquement sur ordonnance par un médecin agréé. La
-              pharmacie partenaire expédie les médicaments. Ce site ne vend pas de médicament en
-              vente libre.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
+
     </div>
   );
 }

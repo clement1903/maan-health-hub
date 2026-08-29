@@ -10,33 +10,74 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ConformiteRouteImport } from './routes/conformite'
+import { Route as EspacePatientRouteImport } from './routes/espace-patient'
+import { Route as ParcoursRouteImport } from './routes/parcours'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConformiteRoute = ConformiteRouteImport.update({
+  id: '/conformite',
+  path: '/conformite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EspacePatientRoute = EspacePatientRouteImport.update({
+  id: '/espace-patient',
+  path: '/espace-patient',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParcoursRoute = ParcoursRouteImport.update({
+  id: '/parcours',
+  path: '/parcours',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/conformite': typeof ConformiteRoute
+  '/espace-patient': typeof EspacePatientRoute
+  '/parcours': typeof ParcoursRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/conformite': typeof ConformiteRoute
+  '/espace-patient': typeof EspacePatientRoute
+  '/parcours': typeof ParcoursRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/conformite': typeof ConformiteRoute
+  '/espace-patient': typeof EspacePatientRoute
+  '/parcours': typeof ParcoursRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/auth' | '/conformite' | '/espace-patient' | '/parcours'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/auth' | '/conformite' | '/espace-patient' | '/parcours'
+  id:
+    '__root__' | '/' | '/auth' | '/conformite' | '/espace-patient' | '/parcours'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
+  ConformiteRoute: typeof ConformiteRoute
+  EspacePatientRoute: typeof EspacePatientRoute
+  ParcoursRoute: typeof ParcoursRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +89,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conformite': {
+      id: '/conformite'
+      path: '/conformite'
+      fullPath: '/conformite'
+      preLoaderRoute: typeof ConformiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/espace-patient': {
+      id: '/espace-patient'
+      path: '/espace-patient'
+      fullPath: '/espace-patient'
+      preLoaderRoute: typeof EspacePatientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/parcours': {
+      id: '/parcours'
+      path: '/parcours'
+      fullPath: '/parcours'
+      preLoaderRoute: typeof ParcoursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
+  ConformiteRoute: ConformiteRoute,
+  EspacePatientRoute: EspacePatientRoute,
+  ParcoursRoute: ParcoursRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
