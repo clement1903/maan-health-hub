@@ -32,7 +32,7 @@ export function SiteHeader() {
             <span className="relative z-10 font-display text-2xl font-semibold leading-none tracking-tight">
               MAAN
             </span>
-            <span className="absolute inset-x-0 bottom-1 z-0 h-3 origin-left rounded-sm bg-amber/35" />
+            <span className="absolute inset-x-0 bottom-1 z-0 h-2 origin-left rounded-sm bg-amber/35" />
           </span>
 
           <span
