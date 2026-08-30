@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 import heroBox from "@/assets/hero-box.jpg";
 import heroVideo from "@/assets/hero-parcours.mp4.asset.json";
@@ -219,15 +219,15 @@ function Home() {
               </h1>
               <div className="mt-9 flex animate-[rise_0.6s_var(--ease)_0.24s_both] flex-wrap items-center gap-4">
                 <Magnetic>
-                  <a
-                    href="#soins"
+                  <Link
+                    to="/questionnaire"
                     className="group inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep hover:shadow-[0_18px_40px_-18px_var(--clay)]"
                   >
                     Commencer une consultation
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>
-                  </a>
+                  </Link>
                 </Magnetic>
                 <a
                   href="#parcours"
@@ -392,13 +392,13 @@ function Home() {
                 Commencer votre consultation aujourd'hui.
               </h2>
             </div>
-            <a
-              href="#soins"
+            <Link
+              to="/questionnaire"
               className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-cream px-7 py-4 text-sm font-medium text-foreground transition-all duration-300 hover:gap-3 hover:bg-sand"
             >
               Démarrer en 3 minutes
               <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </a>
+            </Link>
           </div>
         </section>
       </main>
