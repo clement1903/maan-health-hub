@@ -11,7 +11,6 @@ import {
   visibleQuestions,
 } from "@/lib/questionnaire/engine";
 import { formatAnswer } from "@/lib/questionnaire/format";
-import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import {
   sectionLabels,
   type Answers,
@@ -191,7 +190,6 @@ export function QuestionnaireRunner({
           Vous pouvez vous arrêter à tout moment : vos réponses sont enregistrées et vous reprendrez
           exactement où vous en étiez.
         </p>
-        <MedicalDisclaimer variant="questionnaire" className="mt-8 text-left" />
       </div>
     );
   }
@@ -239,8 +237,6 @@ export function QuestionnaireRunner({
             ? "il ne reste plus qu'à envoyer votre dossier"
             : `${remaining} réponse(s) à compléter avant l'envoi`}
         </p>
-
-        <MedicalDisclaimer variant="questionnaire" className="mt-8" />
 
         <div className="mt-10 space-y-8">
           {sections.map((section) => (
