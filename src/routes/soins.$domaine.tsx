@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
 import { ProduitCarrousel } from "@/components/produit-carrousel";
-import { getDomaine, domaines, contenus } from "@/data/soins";
+import { getDomaine, domaines } from "@/data/soins";
 import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { cn } from "@/lib/utils";
 
@@ -85,7 +85,6 @@ function DomaineIntrouvable() {
 
 function DomainePage() {
   const { domaine } = Route.useLoaderData();
-  const contenu = contenus[domaine.slug];
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [activeProduit, setActiveProduit] = useState(0);
   const produit = domaine.produits[activeProduit] ?? domaine.produits[0]!;
