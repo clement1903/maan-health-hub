@@ -36,7 +36,7 @@ export const Route = createFileRoute("/conformite")({
 const blocs = [
   {
     id: "prescription",
-    tag: "(a) — Prescription",
+    tag: "Prescription",
     title: "Aucun médicament sans ordonnance",
     intro:
       "MAAN ne vend pas de médicament en libre accès. Chaque demande est évaluée individuellement par un médecin agréé.",
@@ -49,7 +49,7 @@ const blocs = [
   },
   {
     id: "donnees",
-    tag: "(b) — Données de santé",
+    tag: "Données de santé",
     title: "Vos réponses restent confidentielles",
     intro:
       "Les informations que vous transmettez sont des données de santé. Elles sont traitées avec le niveau de protection correspondant.",
@@ -62,7 +62,7 @@ const blocs = [
   },
   {
     id: "expedition",
-    tag: "(c) — Expédition à domicile",
+    tag: "Expédition à domicile",
     title: "Un colis neutre, préparé en pharmacie",
     intro:
       "La préparation et l'expédition sont assurées par une pharmacie partenaire agréée, jamais par MAAN directement.",
