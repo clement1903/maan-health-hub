@@ -223,11 +223,7 @@ function Home() {
                 Simple et confidentiel
               </p>
               <h1 className="mt-6 animate-[rise_0.6s_var(--ease)_0.08s_both] text-balance font-display text-5xl font-medium leading-[1.03] tracking-tight lg:text-6xl">
-                Consultez un médecin en ligne.{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10">Recevez votre traitement à domicile.</span>
-                  <span className="absolute inset-x-0 bottom-1 z-0 h-3 origin-left animate-[rise_0.8s_var(--ease)_0.5s_both] rounded-sm bg-amber/35" />
-                </span>
+                Consultez un médecin en ligne. Recevez votre traitement à domicile.
               </h1>
               <div className="mt-9 flex animate-[rise_0.6s_var(--ease)_0.24s_both] flex-wrap items-center gap-4">
                 <Magnetic>
