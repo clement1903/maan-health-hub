@@ -255,12 +255,12 @@ function Home() {
               <div className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-border pt-6">
                 <div>
                   <CountUp
-                    to={100}
-                    suffix="%"
+                    to={15000}
+                    suffix="+"
                     className="font-display text-2xl font-medium tracking-tight text-clay"
                   />
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                    Médecins agréés
+                    Dossiers accompagnés
                   </p>
                 </div>
                 <div>
