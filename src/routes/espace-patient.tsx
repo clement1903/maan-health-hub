@@ -15,6 +15,7 @@ import {
   NotificationPreferences,
 } from "@/components/patient-panels";
 import { orderSteps } from "@/lib/order-status";
+import { questionnaireDefinitions } from "@/lib/questionnaire/definitions";
 
 export const Route = createFileRoute("/espace-patient")({
   head: () => ({
