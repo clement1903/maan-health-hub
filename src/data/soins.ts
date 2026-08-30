@@ -51,10 +51,10 @@ export const domaines: Domaine[] = [
     ],
     produits: [
       {
-        nom: "Inhibiteur de la PDE5 — courte durée",
+        nom: "Viagra",
         molecule: "Sildénafil",
-        image: produitSildenafil,
-        alt: "Boîte et plaquette de comprimés de sildénafil, traitement de l'érection sur ordonnance",
+        image: produitViagra,
+        alt: "Boîte de Viagra (sildénafil 50 mg, Pfizer) et plaquette de comprimés bleus en losange, traitement de l'érection sur ordonnance",
         forme: "Comprimé pelliculé, 25 / 50 / 100 mg",
         posologie:
           "Posologie indicative : 50 mg environ 1 heure avant le rapport, maximum une prise par 24 h. Le médecin ajuste la dose selon la tolérance.",
@@ -62,13 +62,35 @@ export const domaines: Domaine[] = [
           "Contre-indiqué avec les dérivés nitrés. À signaler : maladie cardiaque, hypotension, troubles de la vision.",
       },
       {
-        nom: "Inhibiteur de la PDE5 — longue durée",
+        nom: "Sildénafil (générique)",
+        molecule: "Sildénafil",
+        image: produitSildenafil,
+        alt: "Boîte et plaquette de comprimés de sildénafil générique, traitement de l'érection sur ordonnance",
+        forme: "Comprimé pelliculé, 25 / 50 / 100 mg",
+        posologie:
+          "Posologie indicative : même principe actif et même schéma que la spécialité de référence, environ 1 heure avant le rapport.",
+        precautions:
+          "Contre-indiqué avec les dérivés nitrés. À signaler : maladie cardiaque, hypotension, troubles de la vision.",
+      },
+      {
+        nom: "Cialis",
         molecule: "Tadalafil",
-        image: produitTadalafil,
-        alt: "Boîte et plaquette de comprimés de tadalafil, traitement de l'érection longue durée sur ordonnance",
+        image: produitCialis,
+        alt: "Boîte de Cialis (tadalafil 10 mg, Eli Lilly) et plaquette de comprimés jaunes, traitement de l'érection longue durée sur ordonnance",
         forme: "Comprimé, 5 / 10 / 20 mg",
         posologie:
-          "Posologie indicative : 10 mg avant l'activité, ou 5 mg par jour en schéma continu selon la prescription.",
+          "Posologie indicative : 10 mg avant l'activité, ou 5 mg par jour en schéma continu selon la prescription. Durée d'action jusqu'à 36 h.",
+        precautions:
+          "Mêmes contre-indications cardiovasculaires que les autres inhibiteurs de la PDE5.",
+      },
+      {
+        nom: "Tadalafil (générique)",
+        molecule: "Tadalafil",
+        image: produitTadalafil,
+        alt: "Boîte et plaquette de comprimés de tadalafil générique, traitement de l'érection longue durée sur ordonnance",
+        forme: "Comprimé, 5 / 10 / 20 mg",
+        posologie:
+          "Posologie indicative : même principe actif et mêmes schémas que la spécialité de référence, à la demande ou en continu.",
         precautions:
           "Mêmes contre-indications cardiovasculaires. Durée d'action jusqu'à 36 h.",
       },
