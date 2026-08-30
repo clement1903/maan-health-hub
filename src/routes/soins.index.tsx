@@ -107,27 +107,27 @@ function SoinsIndex() {
                 </div>
               </Reveal>
 
-              <ProduitCarousel produits={d.produits} label={d.titre} />
+              <ProduitCarousel produits={d.produits} label={d.titre} domaineSlug={d.slug} />
 
-                <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <Link
-                    to="/soins/$domaine"
-                    params={{ domaine: d.slug }}
-                    className="group inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep"
-                  >
-                    En savoir plus sur {d.titre.toLowerCase()}
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">
-                      →
-                    </span>
-                  </Link>
-                  <Link
-                    to="/questionnaire/$slug"
-                    params={{ slug: d.slug }}
-                    className="font-medium underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
-                  >
-                    Commencer le questionnaire
-                  </Link>
-                </div>
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                <Link
+                  to="/soins/$domaine"
+                  params={{ domaine: d.slug }}
+                  className="group inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep"
+                >
+                  En savoir plus sur {d.titre.toLowerCase()}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </Link>
+                <Link
+                  to="/questionnaire/$slug"
+                  params={{ slug: d.slug }}
+                  className="font-medium underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
+                >
+                  Commencer le questionnaire
+                </Link>
+              </div>
             </div>
           </section>
         ))}
@@ -138,7 +138,15 @@ function SoinsIndex() {
   );
 }
 
-function ProduitCarousel({ produits, label }: { produits: Produit[]; label: string }) {
+function ProduitCarousel({
+  produits,
+  label,
+  domaineSlug,
+}: {
+  produits: Produit[];
+  label: string;
+  domaineSlug: string;
+}) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
 
@@ -226,6 +234,23 @@ function ProduitCarousel({ produits, label }: { produits: Produit[]; label: stri
                 <dd className="mt-1 text-pretty text-muted">{p.precautions}</dd>
               </div>
             </dl>
+            <div className="mt-auto flex items-center justify-between gap-3 border-t border-border p-6">
+              <Link
+                to="/soins/$domaine"
+                params={{ domaine: domaineSlug }}
+                className="text-sm font-medium underline decoration-clay/40 decoration-2 underline-offset-[5px] transition-all hover:decoration-clay hover:underline-offset-7"
+              >
+                Plus d’information
+              </Link>
+              <Link
+                to="/questionnaire/$slug"
+                params={{ slug: domaineSlug }}
+                className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-all duration-300 hover:bg-foreground/90"
+              >
+                Commencer le questionnaire
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </Link>
+            </div>
           </article>
         ))}
       </div>
