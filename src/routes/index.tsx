@@ -272,8 +272,8 @@ function Home() {
                     </svg>
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[13px] font-semibold leading-tight text-foreground">Traitement</span>
-                    <span className="text-[11px] text-muted">personnalisé</span>
+                    <span className="text-[13px] font-semibold leading-tight text-foreground">Traitement et suivi médical</span>
+                    <span className="text-[11px] text-muted">personnalisés</span>
                   </div>
                 </div>
 
@@ -291,6 +291,21 @@ function Home() {
                   <div className="flex flex-col">
                     <span className="text-[13px] font-semibold leading-tight text-foreground">Livraison</span>
                     <span className="text-[11px] text-muted">discrète</span>
+                  </div>
+                </div>
+
+                <div className="hidden h-8 w-px bg-border md:block" />
+
+                <div className="group flex items-center gap-3 transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream text-clay shadow-sm ring-1 ring-border transition-all duration-300 group-hover:bg-sand group-hover:shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[13px] font-semibold leading-tight text-foreground">Données chiffrées</span>
+                    <span className="text-[11px] text-muted">et confidentielles</span>
                   </div>
                 </div>
               </div>
