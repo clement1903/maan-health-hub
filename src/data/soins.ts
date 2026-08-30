@@ -52,7 +52,7 @@ export const domaines: Domaine[] = [
         nom: "Inhibiteur de la PDE5 — courte durée",
         molecule: "Sildénafil",
         image: produitSildenafil,
-        alt: "Comprimés de sildénafil sous blister, packaging neutre",
+        alt: "Boîte et plaquette de comprimés de sildénafil, traitement de l'érection sur ordonnance",
         forme: "Comprimé pelliculé, 25 / 50 / 100 mg",
         posologie:
           "Posologie indicative : 50 mg environ 1 heure avant le rapport, maximum une prise par 24 h. Le médecin ajuste la dose selon la tolérance.",
@@ -63,7 +63,7 @@ export const domaines: Domaine[] = [
         nom: "Inhibiteur de la PDE5 — longue durée",
         molecule: "Tadalafil",
         image: produitTadalafil,
-        alt: "Comprimés de tadalafil sous blister, packaging neutre",
+        alt: "Boîte et plaquette de comprimés de tadalafil, traitement de l'érection longue durée sur ordonnance",
         forme: "Comprimé, 5 / 10 / 20 mg",
         posologie:
           "Posologie indicative : 10 mg avant l'activité, ou 5 mg par jour en schéma continu selon la prescription.",
@@ -104,7 +104,7 @@ export const domaines: Domaine[] = [
         nom: "Wegovy",
         molecule: "Sémaglutide (indication perte de poids)",
         image: produitWegovy,
-        alt: "Stylo injecteur de sémaglutide Wegovy posé à côté de sa boîte",
+        alt: "Stylo injecteur Wegovy (sémaglutide) et sa boîte, traitement hebdomadaire du surpoids sur ordonnance",
         forme: "Stylo injectable sous-cutané, une injection par semaine",
         posologie:
           "Posologie indicative : montée progressive sur plusieurs semaines (0,25 mg puis paliers), une injection hebdomadaire, dose ajustée par le médecin selon la tolérance digestive.",
@@ -115,7 +115,7 @@ export const domaines: Domaine[] = [
         nom: "Ozempic",
         molecule: "Sémaglutide (indication diabète de type 2)",
         image: produitOzempic,
-        alt: "Stylo injecteur de sémaglutide Ozempic sur un tissu beige",
+        alt: "Stylo injecteur Ozempic (sémaglutide) et sa boîte, traitement hebdomadaire du diabète de type 2 sur ordonnance",
         forme: "Stylo injectable sous-cutané, une injection par semaine",
         posologie:
           "Posologie indicative : 0,25 mg par semaine pendant 4 semaines, puis augmentation progressive selon la décision du médecin.",
@@ -156,7 +156,7 @@ export const domaines: Domaine[] = [
         nom: "Inhibiteur de la 5-alpha-réductase",
         molecule: "Finastéride",
         image: produitFinasteride,
-        alt: "Comprimés de finastéride sous blister, packaging neutre",
+        alt: "Boîte et plaquette de comprimés de finastéride 1 mg, traitement quotidien de la chute de cheveux sur ordonnance",
         forme: "Comprimé 1 mg",
         posologie:
           "Posologie indicative : un comprimé par jour, en continu. Les premiers effets s'évaluent après 3 à 6 mois.",
@@ -167,7 +167,7 @@ export const domaines: Domaine[] = [
         nom: "Vasodilatateur topique",
         molecule: "Minoxidil 5 %",
         image: produitMinoxidil,
-        alt: "Flacon spray neutre de solution capillaire au minoxidil",
+        alt: "Flacon applicateur de solution capillaire au minoxidil 5 %, application locale matin et soir",
         forme: "Solution ou mousse à application locale",
         posologie:
           "Posologie indicative : application matin et soir sur cuir chevelu sec, sur les zones concernées.",
@@ -208,7 +208,7 @@ export const domaines: Domaine[] = [
         nom: "Rétinoïde topique",
         molecule: "Trétinoïne",
         image: produitTretinoine,
-        alt: "Tube de crème neutre à la trétinoïne",
+        alt: "Tube de crème à la trétinoïne, rétinoïde topique appliqué le soir sur ordonnance",
         forme: "Crème 0,025 % à 0,05 %",
         posologie:
           "Posologie indicative : une application le soir, sur peau sèche, en commençant un soir sur deux pendant deux semaines.",
@@ -219,7 +219,7 @@ export const domaines: Domaine[] = [
         nom: "Antibiotique topique de la rosacée",
         molecule: "Métronidazole 0,75 %",
         image: produitMetronidazole,
-        alt: "Tube de gel neutre au métronidazole",
+        alt: "Tube de gel au métronidazole 0,75 %, traitement local de la rosacée sur ordonnance",
         forme: "Gel ou crème",
         posologie:
           "Posologie indicative : une à deux applications par jour sur les zones atteintes, pendant plusieurs semaines.",
