@@ -238,8 +238,6 @@ export function QuestionnaireRunner({
             : `${remaining} réponse(s) à compléter avant l'envoi`}
         </p>
 
-        <MedicalDisclaimer variant="questionnaire" className="mt-8" />
-
         <div className="mt-10 space-y-8">
           {sections.map((section) => (
             <section key={section}>
