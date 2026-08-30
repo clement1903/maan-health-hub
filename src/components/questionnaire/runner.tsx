@@ -11,6 +11,7 @@ import {
   visibleQuestions,
 } from "@/lib/questionnaire/engine";
 import { formatAnswer } from "@/lib/questionnaire/format";
+import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import {
   sectionLabels,
   type Answers,
@@ -27,6 +28,7 @@ type Props = {
   initialAnswers?: Answers | undefined;
   initialQuestionId?: string | null | undefined;
   onAutosave?: ((state: { answers: Answers; currentQuestionId: string | null }) => void) | undefined;
+  productContext?: string | null | undefined;
   onSubmit: (payload: SubmissionPayload) => void | Promise<void>;
   submitting?: boolean | undefined;
 };
@@ -39,6 +41,7 @@ export function QuestionnaireRunner({
   initialAnswers,
   initialQuestionId,
   onAutosave,
+  productContext,
   onSubmit,
   submitting,
 }: Props) {
@@ -133,7 +136,7 @@ export function QuestionnaireRunner({
       definitionId: definition.id,
       version: definition.version,
       category: definition.category,
-      answers,
+      answers: productContext ? { ...answers, produit_selectionne: productContext } : answers,
       shownQuestions: questions.map((q) => q.id),
       triggeredRules: triggered,
       overallSignal: highestSignal(triggered.map((t) => t.signal)),

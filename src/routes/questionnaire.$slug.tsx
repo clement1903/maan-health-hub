@@ -10,6 +10,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
 
 export const Route = createFileRoute("/questionnaire/$slug")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    produit: typeof search['produit'] === "string" ? (search['produit'] as string) : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Questionnaire médical — MAAN" },
@@ -45,6 +48,7 @@ function localKey(slug: string) {
 
 function QuestionnairePage() {
   const { slug } = Route.useParams();
+  const { produit } = Route.useSearch();
   const navigate = useNavigate();
   const { user, loading } = useAuth();
   const definition = findDefinitionBySlug(slug);
@@ -200,6 +204,7 @@ function QuestionnairePage() {
               initialAnswers={draft?.answers}
               initialQuestionId={draft?.currentQuestionId ?? null}
               onAutosave={autosave}
+              productContext={produit ?? null}
               onSubmit={submit}
               submitting={submitting}
             />
