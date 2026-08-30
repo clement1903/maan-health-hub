@@ -7,6 +7,10 @@ import soinSexual from "@/assets/soin-sexual.jpg";
 import soinWeight from "@/assets/soin-weight.jpg";
 import soinHair from "@/assets/soin-hair.jpg";
 import soinSkin from "@/assets/soin-skin.jpg";
+import etapeQuestionnaire from "@/assets/etape-questionnaire.jpg";
+import etapeConsultation from "@/assets/etape-consultation.jpg";
+import etapeLivraison from "@/assets/etape-livraison.jpg";
+import etapeSuivi from "@/assets/etape-suivi.jpg";
 
 import { Reveal } from "@/components/reveal";
 import { Magnetic, Tilt } from "@/components/magnetic";
@@ -113,6 +117,8 @@ const etapes: Etape[] = [
     desc: "Un questionnaire médical rigoureux, en quelques minutes, à votre rythme.",
     detail:
       "Antécédents, traitements en cours, mode de vie : chaque réponse guide le médecin. Vous pouvez l'interrompre et le reprendre à tout moment.",
+    img: etapeQuestionnaire,
+    alt: "Homme remplissant le questionnaire médical MAAN sur son téléphone",
   },
   {
     n: "2",
@@ -120,6 +126,8 @@ const etapes: Etape[] = [
     desc: "Un médecin agréé analyse votre profil et délivre une ordonnance si elle est justifiée.",
     detail:
       "Réponse sous 24 h ouvrées. Le médecin peut demander des précisions, refuser un traitement ou vous orienter vers une consultation physique.",
+    img: etapeConsultation,
+    alt: "Médecin agréé analysant un dossier patient sur son ordinateur",
   },
   {
     n: "3",
@@ -127,6 +135,8 @@ const etapes: Etape[] = [
     desc: "La pharmacie partenaire expédie votre traitement dans un emballage neutre.",
     detail:
       "Colis sans mention de contenu ni de marque, suivi en temps réel, livré chez vous ou en point relais sous 24 à 48 h.",
+    img: etapeLivraison,
+    alt: "Colis neutre sans mention remis devant la porte d'un domicile",
   },
   {
     n: "4",
@@ -134,6 +144,8 @@ const etapes: Etape[] = [
     desc: "Le médecin reste joignable pour ajuster, renouveler ou arrêter votre traitement.",
     detail:
       "Point de suivi après une semaine, signalement des effets indésirables depuis votre espace patient et décisions médicales tracées dans votre dossier.",
+    img: etapeSuivi,
+    alt: "Homme détendu consultant son message de suivi médical sur son téléphone",
   },
 ];
 
