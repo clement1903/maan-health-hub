@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
 import { ProduitCarrousel } from "@/components/produit-carrousel";
 import { getDomaine, domaines, contenus } from "@/data/soins";
+import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/soins/$domaine")({
@@ -239,6 +240,8 @@ function DomainePage() {
                 <Link
                   to="/questionnaire/$slug"
                   params={{ slug: domaine.slug }}
+                  search={{ produit: produit.nom }}
+                  aria-label={`Démarrer mon questionnaire pour ${produit.nom}`}
                   className="group mt-8 inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep"
                 >
                   Démarrer mon questionnaire
@@ -251,6 +254,8 @@ function DomainePage() {
                 <ProduitCarrousel produit={produit} />
               </div>
             </div>
+
+            <MedicalDisclaimer className="mt-10" />
 
           </div>
         </section>
