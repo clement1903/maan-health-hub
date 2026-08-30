@@ -222,14 +222,7 @@ function Home() {
           />
           <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 py-16 lg:grid-cols-12 lg:py-24">
             <div className="lg:col-span-6">
-              <p className="inline-flex animate-[rise_0.5s_var(--ease)_both] items-center gap-2 rounded-full border border-border bg-cream px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-clay">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-[pulse-ring_2.4s_ease-out_infinite] rounded-full bg-clay" />
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-clay" />
-                </span>
-                Simple et confidentiel
-              </p>
-              <h1 className="mt-6 animate-[rise_0.6s_var(--ease)_0.08s_both] text-balance font-display text-5xl font-medium leading-[1.03] tracking-tight lg:text-6xl">
+              <h1 className="animate-[rise_0.6s_var(--ease)_0.08s_both] text-balance font-display text-5xl font-medium leading-[1.03] tracking-tight lg:text-6xl">
                 Consultez un médecin en ligne.{" "}
                 <span className="relative inline-block">
                   <span className="relative z-10">Recevez votre traitement à domicile.</span>
