@@ -269,7 +269,7 @@ function Home() {
                     className="font-display text-2xl font-medium tracking-tight text-clay"
                   />
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                    Domaines de soin
+                    Spécialités
                   </p>
                 </div>
               </div>
@@ -311,7 +311,7 @@ function Home() {
                   (a) — Nos soins
                 </p>
                 <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-                  Quatre domaines, un même soin.
+                  4 spécialités, un même soin.
                 </h2>
               </div>
             </Reveal>
@@ -334,57 +334,6 @@ function Home() {
           <Reveal delay={80}>
             <ParcoursStepper etapes={etapes} />
           </Reveal>
-        </section>
-
-        {/* CONFIANCE */}
-        <section id="confiance" className="scroll-mt-24 border-y border-border bg-sand">
-          <div className="mx-auto max-w-6xl px-6 py-16 lg:py-24">
-            <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
-              <Reveal className="lg:col-span-5">
-                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-                  (c) — Confiance
-                </p>
-                <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-                  La rigueur d'une vraie consultation.
-                </h2>
-                <p className="mt-4 max-w-[40ch] text-pretty text-muted">
-                  De vrais médecins, des données de santé protégées, une pharmacie agréée. Rien
-                  n'est vendu sans prescription médicale.
-                </p>
-              </Reveal>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:col-span-7">
-                {[
-                  {
-                    k: "100%",
-                    t: "Médecins agréés",
-                    d: "Inscrits à l'Ordre, formés à la consultation à distance.",
-                  },
-                  {
-                    k: "RGPD",
-                    t: "Données de santé",
-                    d: "Chiffrées, hébergées en Europe, jamais revendues.",
-                  },
-                  {
-                    k: "24–48h",
-                    t: "Livraison partenaire",
-                    d: "Expédition discrète depuis une pharmacie certifiée.",
-                  },
-                ].map((c, i) => (
-                  <Reveal
-                    key={c.k}
-                    delay={i * 90}
-                    className="group rounded-[16px] border border-border bg-background/60 p-6 transition-all duration-500 ease-[var(--ease)] hover:-translate-y-1 hover:bg-background hover:shadow-[0_24px_60px_-40px_var(--foreground)]"
-                  >
-                    <p className="font-display text-3xl font-medium tracking-tight text-clay">
-                      {c.k}
-                    </p>
-                    <p className="mt-2 text-sm font-medium">{c.t}</p>
-                    <p className="mt-1 text-pretty text-sm text-muted">{c.d}</p>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </div>
         </section>
 
         <MedecinsSection />
