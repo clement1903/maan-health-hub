@@ -69,10 +69,10 @@ function QuestionnairePage() {
         if (data) {
           base = {
             answers: (data.answers ?? {}) as Answers,
-            current_question_id: null,
-            ...{ currentQuestionId: data.current_question_id },
-          } as unknown as Draft;
+            currentQuestionId: data.current_question_id ?? null,
+          };
         }
+
       }
       if (!cancelled) {
         setDraft(base);
