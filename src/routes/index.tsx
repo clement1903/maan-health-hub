@@ -262,7 +262,7 @@ function Home() {
               <div className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-border pt-6">
                 <div>
                   <CountUp
-                    to={15000}
+                    to={dossiersAccompagnes}
                     suffix="+"
                     className="font-display text-2xl font-medium tracking-tight text-clay"
                   />
