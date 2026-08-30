@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
-export type Etape = { n: string; title: string; desc: string; detail: string };
+export type Etape = {
+  n: string;
+  title: string;
+  desc: string;
+  detail: string;
+  img: string;
+  alt: string;
+};
 
 export function ParcoursStepper({ etapes }: { etapes: Etape[] }) {
   const [open, setOpen] = useState(0);
@@ -47,12 +54,25 @@ export function ParcoursStepper({ etapes }: { etapes: Etape[] }) {
             <div
               className={cn(
                 "grid transition-all duration-500 ease-[var(--ease)]",
-                active ? "mt-4 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+                active ? "mt-5 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
               )}
             >
-              <p className="overflow-hidden text-pretty border-t border-border pt-4 text-sm text-foreground/80">
-                {e.detail}
-              </p>
+              <div className="overflow-hidden">
+                <img
+                  src={e.img}
+                  alt={e.alt}
+                  loading="lazy"
+                  width={1024}
+                  height={1024}
+                  className={cn(
+                    "aspect-[4/3] w-full rounded-[14px] object-cover transition-transform duration-700 ease-[var(--ease)]",
+                    active ? "scale-100" : "scale-105",
+                  )}
+                />
+                <p className="mt-4 text-pretty border-t border-border pt-4 text-sm text-foreground/80">
+                  {e.detail}
+                </p>
+              </div>
             </div>
           </button>
         );

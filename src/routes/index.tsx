@@ -7,6 +7,10 @@ import soinSexual from "@/assets/soin-sexual.jpg";
 import soinWeight from "@/assets/soin-weight.jpg";
 import soinHair from "@/assets/soin-hair.jpg";
 import soinSkin from "@/assets/soin-skin.jpg";
+import etapeQuestionnaire from "@/assets/etape-questionnaire.jpg";
+import etapeConsultation from "@/assets/etape-consultation.jpg";
+import etapeLivraison from "@/assets/etape-livraison.jpg";
+import etapeSuivi from "@/assets/etape-suivi.jpg";
 
 import { Reveal } from "@/components/reveal";
 import { Magnetic, Tilt } from "@/components/magnetic";
