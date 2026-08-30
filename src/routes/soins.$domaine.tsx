@@ -108,9 +108,11 @@ function DomainePage() {
                 ))}
               </ul>
               <Link
-                to="/espace-patient"
+                to="/questionnaire/$slug"
+                params={{ slug: domaine.slug }}
                 className="group mt-9 inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep"
               >
+
                 Démarrer mon questionnaire
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </Link>

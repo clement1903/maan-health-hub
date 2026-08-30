@@ -15,6 +15,7 @@ import {
   NotificationPreferences,
 } from "@/components/patient-panels";
 import { orderSteps } from "@/lib/order-status";
+import { questionnaireDefinitions } from "@/lib/questionnaire/definitions";
 
 export const Route = createFileRoute("/espace-patient")({
   head: () => ({
@@ -308,6 +309,28 @@ function QuestionnaireTab({
           Vos réponses sont lues par un médecin agréé. Aucun traitement n'est expédié sans
           prescription validée.
         </p>
+
+        <div className="mt-6 rounded-[18px] border border-border bg-card p-5">
+          <p className="font-section text-base font-semibold tracking-tight">
+            Questionnaire guidé, une question à la fois
+          </p>
+          <p className="mt-2 text-sm text-muted">
+            Adapté à votre situation, enregistré automatiquement, reprenable à tout moment.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {questionnaireDefinitions.map((d) => (
+              <Link
+                key={d.id}
+                to="/questionnaire/$slug"
+                params={{ slug: d.slug }}
+                className="rounded-full border border-border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-clay transition hover:border-clay"
+              >
+                {d.title} · {d.estimatedMinutes} min
+              </Link>
+            ))}
+          </div>
+        </div>
+
 
         <div className="mt-6 flex flex-wrap gap-2">
           {categories.map((c) => (
