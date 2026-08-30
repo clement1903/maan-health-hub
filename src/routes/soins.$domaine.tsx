@@ -10,6 +10,9 @@ import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/soins/$domaine")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    produit: typeof search.produit === "string" ? search.produit : undefined,
+  }),
   loader: ({ params }) => {
     const domaine = getDomaine(params.domaine);
     if (!domaine) throw notFound();
