@@ -258,13 +258,12 @@ function DomainePage() {
             </Reveal>
             {produitSeul && (
               <div className="mt-6">
-                <button
-                  type="button"
-                  onClick={() => window.history.back()}
+                <Link
+                  to="/soins"
                   className="text-sm font-medium underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
                 >
                   ← Retour
-                </button>
+                </Link>
               </div>
             )}
             <div className="mt-8 flex flex-wrap gap-2">
