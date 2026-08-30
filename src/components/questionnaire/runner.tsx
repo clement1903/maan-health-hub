@@ -11,7 +11,6 @@ import {
   visibleQuestions,
 } from "@/lib/questionnaire/engine";
 import { formatAnswer } from "@/lib/questionnaire/format";
-import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import {
   sectionLabels,
   type Answers,
