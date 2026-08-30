@@ -46,7 +46,6 @@ const antecedentsCommuns: Question[] = [
     title: "Avez-vous déjà reçu l'un de ces diagnostics ?",
     subtitle: "Sélectionnez tout ce qui s'applique.",
     why: "Vos antécédents aident le médecin à évaluer la sécurité d'un traitement.",
-    type_hint: undefined,
     required: true,
     options: [
       { value: "cardiovasculaire", label: "Maladie cardiaque ou vasculaire" },
