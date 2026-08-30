@@ -11,6 +11,7 @@ import {
   visibleQuestions,
 } from "@/lib/questionnaire/engine";
 import { formatAnswer } from "@/lib/questionnaire/format";
+import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import {
   sectionLabels,
   type Answers,
@@ -27,6 +28,7 @@ type Props = {
   initialAnswers?: Answers | undefined;
   initialQuestionId?: string | null | undefined;
   onAutosave?: ((state: { answers: Answers; currentQuestionId: string | null }) => void) | undefined;
+  productContext?: string | null | undefined;
   onSubmit: (payload: SubmissionPayload) => void | Promise<void>;
   submitting?: boolean | undefined;
 };
@@ -39,6 +41,7 @@ export function QuestionnaireRunner({
   initialAnswers,
   initialQuestionId,
   onAutosave,
+  productContext,
   onSubmit,
   submitting,
 }: Props) {
@@ -133,7 +136,7 @@ export function QuestionnaireRunner({
       definitionId: definition.id,
       version: definition.version,
       category: definition.category,
-      answers,
+      answers: productContext ? { ...answers, produit_selectionne: productContext } : answers,
       shownQuestions: questions.map((q) => q.id),
       triggeredRules: triggered,
       overallSignal: highestSignal(triggered.map((t) => t.signal)),
@@ -160,6 +163,11 @@ export function QuestionnaireRunner({
             <ShieldCheck className="size-3.5" /> réponses confidentielles
           </span>
         </div>
+        {productContext ? (
+          <p className="mx-auto mt-5 inline-flex items-center gap-2 rounded-full border border-clay/40 bg-clay/8 px-4 py-2 text-sm text-clay">
+            Traitement envisagé : <span className="font-medium">{productContext}</span>
+          </p>
+        ) : null}
         <button
           type="button"
           onClick={() => setPhase("questions")}
@@ -171,12 +179,15 @@ export function QuestionnaireRunner({
           Vous pouvez vous arrêter à tout moment : vos réponses sont enregistrées et vous reprendrez
           exactement où vous en étiez.
         </p>
+        <MedicalDisclaimer variant="questionnaire" className="mt-8 text-left" />
       </div>
     );
   }
 
   if (phase === "summary") {
     const sections = Array.from(new Set(questions.map((q) => q.section))) as SectionId[];
+    const answered = questions.filter((q) => isQuestionComplete(q, answers)).length;
+    const remaining = total - answered;
     return (
       <div className="mx-auto w-full max-w-3xl px-6 py-12">
         <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">Synthèse</p>
@@ -187,6 +198,37 @@ export function QuestionnaireRunner({
           Vos réponses sont transmises telles quelles au médecin. Vous pouvez encore modifier chaque
           élément.
         </p>
+
+        <dl className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {[
+            { k: "Questions répondues", v: `${answered} / ${total}` },
+            { k: "Sections complétées", v: `${sections.length} / ${sections.length}` },
+            { k: "Étapes restantes", v: remaining === 0 ? "Aucune" : `${remaining}` },
+            { k: "Dernière étape", v: "Envoi du dossier" },
+          ].map((item) => (
+            <div key={item.k} className="rounded-[16px] border border-border bg-card px-4 py-3">
+              <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                {item.k}
+              </dt>
+              <dd className="mt-1 text-base font-medium">{item.v}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-sand" aria-hidden="true">
+          <div
+            className="h-full rounded-full bg-clay transition-[width] duration-500 ease-out"
+            style={{ width: `${total ? Math.round((answered / total) * 100) : 0}%` }}
+          />
+        </div>
+        <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+          Progression {total ? Math.round((answered / total) * 100) : 0}% —{" "}
+          {remaining === 0
+            ? "il ne reste plus qu'à envoyer votre dossier"
+            : `${remaining} réponse(s) à compléter avant l'envoi`}
+        </p>
+
+        <MedicalDisclaimer variant="questionnaire" className="mt-8" />
 
         <div className="mt-10 space-y-8">
           {sections.map((section) => (
@@ -269,6 +311,11 @@ export function QuestionnaireRunner({
           </span>
           <span>{remainingMinutes(definition, answers, index)} min restantes</span>
         </div>
+        {productContext ? (
+          <p className="mt-2 truncate font-mono text-[10px] uppercase tracking-[0.16em] text-clay">
+            Traitement envisagé : {productContext}
+          </p>
+        ) : null}
       </div>
 
       <div

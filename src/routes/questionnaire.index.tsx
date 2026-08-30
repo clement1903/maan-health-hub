@@ -6,6 +6,7 @@ import { ArrowRight, Check, Clock, ShieldCheck } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { questionnaireDefinitions } from "@/lib/questionnaire/definitions";
+import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/questionnaire/")({
@@ -148,6 +149,8 @@ function QuestionnaireStart() {
             Vos réponses sont enregistrées automatiquement. Vous ne créerez un compte qu'au moment
             d'envoyer votre dossier au médecin.
           </p>
+
+          <MedicalDisclaimer variant="questionnaire" className="mt-8" />
         </div>
       </main>
       <SiteFooter />
