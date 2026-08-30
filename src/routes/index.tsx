@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import heroPoster from "@/assets/hero-poster.jpg";
+import heroPoster from "@/assets/hero-poster.jpg.asset.json";
 import heroVideo from "@/assets/hero-parcours.mp4.asset.json";
 import soinSexual from "@/assets/soin-sexual.jpg";
 import soinWeight from "@/assets/soin-weight.jpg";
