@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
+import { getDossiersAccompagnes } from "@/lib/stats.functions";
 
 import heroPoster from "@/assets/hero-poster.jpg";
 import heroVideo from "@/assets/hero-parcours.mp4.asset.json";
@@ -194,6 +196,11 @@ const marqueeItems = [
 
 function Home() {
   const scrollY = useScrollY();
+  const { data: dossiersAccompagnes = 15000 } = useQuery({
+    queryKey: ["dossiers-accompagnes"],
+    queryFn: () => getDossiersAccompagnes(),
+    staleTime: 60_000,
+  });
   const condensed = scrollY > 40;
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -255,7 +262,7 @@ function Home() {
               <div className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-border pt-6">
                 <div>
                   <CountUp
-                    to={15000}
+                    to={dossiersAccompagnes}
                     suffix="+"
                     className="font-display text-2xl font-medium tracking-tight text-clay"
                   />
