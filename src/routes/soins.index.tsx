@@ -107,54 +107,7 @@ function SoinsIndex() {
                 </div>
               </Reveal>
 
-              <div className="mt-10">
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                  {d.produits.map((p, j) => (
-                    <Reveal
-                      key={p.nom}
-                      delay={j * 80}
-                      className="group flex flex-col overflow-hidden rounded-[20px] border border-border bg-background transition-shadow duration-500 ease-[var(--ease)] hover:shadow-[0_30px_70px_-55px_var(--foreground)]"
-                    >
-                      <div className="relative border-b border-border bg-cream">
-                        <ImageZoom
-                          src={p.image}
-                          alt={p.alt}
-                          caption={`${p.molecule} — ${p.forme}`}
-                          imgClassName="aspect-[16/10]"
-                        />
-                        <span className="pointer-events-none absolute right-4 top-4 rounded-full border border-clay/40 bg-background/90 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-clay backdrop-blur">
-                          Ordonnance
-                        </span>
-                      </div>
-                      <div className="p-6 pb-0">
-                        <p className="font-display text-lg font-medium tracking-tight">
-                          {p.molecule}
-                        </p>
-                        <p className="mt-1 text-sm text-muted">{p.nom}</p>
-                      </div>
-                      <dl className="mt-5 space-y-3 border-t border-border p-6 pt-4 text-sm">
-                        <div>
-                          <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                            Forme
-                          </dt>
-                          <dd className="mt-1 text-pretty">{p.forme}</dd>
-                        </div>
-                        <div>
-                          <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                            Posologie indicative
-                          </dt>
-                          <dd className="mt-1 text-pretty text-muted">{p.posologie}</dd>
-                        </div>
-                        <div>
-                          <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                            Précautions
-                          </dt>
-                          <dd className="mt-1 text-pretty text-muted">{p.precautions}</dd>
-                        </div>
-                      </dl>
-                    </Reveal>
-                  ))}
-                </div>
+              <ProduitCarousel produits={d.produits} label={d.titre} />
 
                 <div className="mt-6 flex flex-wrap items-center gap-4">
                   <Link
