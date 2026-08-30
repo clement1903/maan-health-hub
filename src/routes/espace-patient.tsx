@@ -13,8 +13,12 @@ import {
   MessagesPanel,
   FollowUpPanel,
   NotificationPreferences,
+  NotificationsFeed,
 } from "@/components/patient-panels";
 import { orderSteps } from "@/lib/order-status";
+import { downloadQuestionnairePdf } from "@/lib/questionnaire-pdf";
+import { OrderCheckout, type CheckoutOrder } from "@/components/order-checkout";
+import { findDeliveryOption, paymentStatusLabels } from "@/lib/delivery";
 import { questionnaireDefinitions } from "@/lib/questionnaire/definitions";
 
 export const Route = createFileRoute("/espace-patient")({
@@ -93,7 +97,7 @@ type Order = {
   carrier: string | null;
   tracking_number: string | null;
   created_at: string;
-};
+} & CheckoutOrder;
 
 type OrderEvent = {
   id: string;
@@ -150,7 +154,9 @@ function Dashboard({ email, userId }: { email: string; userId: string }) {
     queryFn: async (): Promise<Order[]> => {
       const { data, error } = await supabase
         .from("orders")
-        .select("id, reference, treatment, status, carrier, tracking_number, created_at")
+        .select(
+          "id, reference, treatment, status, carrier, tracking_number, created_at, delivery_method, delivery_address, delivery_eta_min_days, delivery_eta_max_days, payment_status, amount_cents, paid_at",
+        )
         .order("created_at", { ascending: false });
       if (error) throw error;
       return (data ?? []) as Order[];
@@ -218,6 +224,7 @@ function Dashboard({ email, userId }: { email: string; userId: string }) {
       {tab === "questionnaire" && (
         <QuestionnaireTab
           userId={userId}
+          email={email}
           list={questionnaires.data ?? []}
           onDone={() => {
             qc.invalidateQueries({ queryKey: ["questionnaires", userId] });
@@ -229,7 +236,8 @@ function Dashboard({ email, userId }: { email: string; userId: string }) {
       )}
       {tab === "suivi" && (
         <>
-          <SuiviTab orders={orders.data ?? []} events={events.data ?? []} />
+          <SuiviTab orders={orders.data ?? []} events={events.data ?? []} userId={userId} />
+          <NotificationsFeed userId={userId} />
           <FollowUpPanel userId={userId} orderId={orders.data?.[0]?.id ?? null} />
         </>
       )}
@@ -243,10 +251,12 @@ function Dashboard({ email, userId }: { email: string; userId: string }) {
 
 function QuestionnaireTab({
   userId,
+  email,
   list,
   onDone,
 }: {
   userId: string;
+  email: string;
   list: Questionnaire[];
   onDone: () => void;
 }) {
@@ -400,8 +410,16 @@ function QuestionnaireTab({
                 </span>
               </div>
               <p className="mt-2 text-sm">{statusLabels[q.status] ?? q.status}</p>
+              <button
+                type="button"
+                onClick={() => downloadQuestionnairePdf(q as never, email)}
+                className="mt-3 rounded-full border border-border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] text-muted transition-colors hover:border-clay/40 hover:text-foreground"
+              >
+                Télécharger le récapitulatif PDF
+              </button>
             </div>
           ))}
+
         </div>
       </aside>
     </div>
@@ -410,7 +428,76 @@ function QuestionnaireTab({
 
 const trackSteps = orderSteps.map((s) => s.key) as string[];
 
-function SuiviTab({ orders, events }: { orders: Order[]; events: OrderEvent[] }) {
+const overviewSteps = [
+  { key: "en_attente_validation", label: "Reçu" },
+  { key: "prescription_validee", label: "En revue / approuvé" },
+  { key: "en_preparation", label: "En préparation" },
+  { key: "expedie", label: "Expédié" },
+  { key: "livre", label: "Livré" },
+];
+
+function StatusOverview({ orders }: { orders: Order[] }) {
+  const latest = orders[0];
+  if (!latest) return null;
+  const index = Math.max(0, trackSteps.indexOf(latest.status));
+  const pct = ((index + 1) / overviewSteps.length) * 100;
+
+  return (
+    <section className="rounded-[20px] border border-border bg-background p-6">
+      <div className="flex flex-wrap items-baseline justify-between gap-3">
+        <div>
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-clay">
+            Statut de ma demande
+          </p>
+          <h3 className="mt-1 font-section text-2xl font-medium tracking-tight">
+            {statusLabels[latest.status] ?? latest.status}
+          </h3>
+        </div>
+        <span className="rounded-full border border-clay/30 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-clay">
+          {paymentStatusLabels[latest.payment_status] ?? latest.payment_status}
+        </span>
+      </div>
+
+      <div
+        className="mt-5 h-1.5 w-full overflow-hidden rounded-full bg-border"
+        role="progressbar"
+        aria-valuenow={Math.round(pct)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label="Avancement de la demande"
+      >
+        <span
+          className="block h-full rounded-full bg-clay transition-[width] duration-700 ease-[var(--ease)]"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+
+      <ol className="mt-4 grid gap-2 sm:grid-cols-5">
+        {overviewSteps.map((s, i) => (
+          <li
+            key={s.key}
+            className={cn(
+              "rounded-xl border px-3 py-2 text-center font-mono text-[10px] uppercase tracking-[0.1em] transition-colors",
+              i <= index ? "border-clay/40 bg-clay/[0.07] text-clay" : "border-border text-muted",
+            )}
+          >
+            {s.label}
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+function SuiviTab({
+  orders,
+  events,
+  userId,
+}: {
+  orders: Order[];
+  events: OrderEvent[];
+  userId: string;
+}) {
   if (orders.length === 0) {
     return (
       <div className="mt-10 rounded-2xl border border-border bg-cream p-8">
@@ -423,6 +510,7 @@ function SuiviTab({ orders, events }: { orders: Order[]; events: OrderEvent[] })
 
   return (
     <div className="mt-10 space-y-6">
+      <StatusOverview orders={orders} />
       {orders.map((o) => {
         const stepIndex = Math.max(0, trackSteps.indexOf(o.status));
         const orderEvents = events.filter((e) => e.order_id === o.id);
@@ -487,6 +575,16 @@ function SuiviTab({ orders, events }: { orders: Order[]; events: OrderEvent[] })
                 );
               })}
             </ol>
+
+            {o.delivery_method && o.delivery_eta_min_days !== null && (
+              <p className="mt-4 text-sm text-muted">
+                {findDeliveryOption(o.delivery_method).label} · réception estimée sous{" "}
+                {o.delivery_eta_min_days}–{o.delivery_eta_max_days} jours ouvrés après expédition
+                {o.delivery_address?.city ? ` · ${o.delivery_address.city}` : ""}
+              </p>
+            )}
+
+            <OrderCheckout order={o} userId={userId} />
 
             {(o.carrier || o.tracking_number) && (
               <p className="mt-5 text-sm text-muted">

@@ -239,9 +239,17 @@ export type Database = {
       }
       orders: {
         Row: {
+          amount_cents: number
           carrier: string | null
           created_at: string
+          delivery_address: Json | null
+          delivery_eta_max_days: number | null
+          delivery_eta_min_days: number | null
+          delivery_method: string
           id: string
+          paid_at: string | null
+          payment_reference: string | null
+          payment_status: string
           questionnaire_id: string | null
           reference: string
           status: string
@@ -251,9 +259,17 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          amount_cents?: number
           carrier?: string | null
           created_at?: string
+          delivery_address?: Json | null
+          delivery_eta_max_days?: number | null
+          delivery_eta_min_days?: number | null
+          delivery_method?: string
           id?: string
+          paid_at?: string | null
+          payment_reference?: string | null
+          payment_status?: string
           questionnaire_id?: string | null
           reference: string
           status?: string
@@ -263,9 +279,17 @@ export type Database = {
           user_id: string
         }
         Update: {
+          amount_cents?: number
           carrier?: string | null
           created_at?: string
+          delivery_address?: Json | null
+          delivery_eta_max_days?: number | null
+          delivery_eta_min_days?: number | null
+          delivery_method?: string
           id?: string
+          paid_at?: string | null
+          payment_reference?: string | null
+          payment_status?: string
           questionnaire_id?: string | null
           reference?: string
           status?: string
