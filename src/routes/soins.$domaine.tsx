@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
 import { ProduitCarrousel } from "@/components/produit-carrousel";
-import { getDomaine, domaines, contenus } from "@/data/soins";
+import { getDomaine, domaines } from "@/data/soins";
 import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { cn } from "@/lib/utils";
 
@@ -85,7 +85,6 @@ function DomaineIntrouvable() {
 
 function DomainePage() {
   const { domaine } = Route.useLoaderData();
-  const contenu = contenus[domaine.slug];
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [activeProduit, setActiveProduit] = useState(0);
   const produit = domaine.produits[activeProduit] ?? domaine.produits[0]!;
@@ -97,88 +96,25 @@ function DomainePage() {
       <SiteHeader />
       <main className="flex-1">
         <section className="border-b border-border">
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 lg:grid-cols-12 lg:py-24">
-            <Reveal className="lg:col-span-7">
+          <div className="mx-auto max-w-6xl px-6 py-14 lg:py-16">
+            <Reveal>
               <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
                 {domaine.tag}
               </p>
-              <h1 className="mt-4 text-balance font-display text-4xl font-medium leading-[1.05] tracking-tight lg:text-6xl">
+              <h1 className="mt-4 text-balance font-display text-4xl font-medium leading-[1.05] tracking-tight lg:text-5xl">
                 {domaine.titre}
               </h1>
-              <p className="mt-6 max-w-[52ch] text-pretty text-lg text-muted">{domaine.chapo}</p>
-              <ul className="mt-8 space-y-2">
-                {domaine.indications.map((i) => (
-                  <li key={i} className="flex gap-3 text-sm">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-clay" />
-                    {i}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                to="/questionnaire/$slug"
-                params={{ slug: domaine.slug }}
-                className="group mt-9 inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep"
-              >
-
-                Démarrer mon questionnaire
-                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-              </Link>
-            </Reveal>
-            <Reveal delay={100} className="lg:col-span-5">
-              <img
-                src={domaine.image}
-                alt={`Illustration éditoriale — ${domaine.titre}`}
-                className="h-full w-full rounded-[20px] object-cover"
-                loading="lazy"
-              />
+              <p className="mt-5 max-w-[60ch] text-pretty text-muted">
+                Découvrez chaque traitement en détail : photo, mode d'action, précautions et
+                suivi. Informations indicatives — la décision appartient au médecin qui évalue
+                votre dossier.
+              </p>
             </Reveal>
           </div>
         </section>
 
-        {contenu && (
-          <section className="border-b border-border">
-            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 lg:grid-cols-12 lg:py-20">
-              <Reveal className="lg:col-span-7">
-                <h2 className="font-section text-3xl font-medium tracking-tight lg:text-4xl">
-                  Comprendre {domaine.titre.toLowerCase()}
-                </h2>
-                <p className="mt-5 max-w-[60ch] text-pretty text-muted">{contenu.intro}</p>
-                <h3 className="mt-10 font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-                  Qui est concerné
-                </h3>
-                <ul className="mt-4 space-y-2">
-                  {contenu.concerne.map((c) => (
-                    <li key={c} className="flex gap-3 text-sm">
-                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-clay" />
-                      {c}
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
-              <Reveal delay={100} className="lg:col-span-5">
-                <div className="grid gap-4">
-                  {contenu.chiffres.map((c) => (
-                    <div key={c.label} className="rounded-[18px] border border-border bg-cream p-6">
-                      <p className="font-display text-3xl font-medium tracking-tight text-clay">
-                        {c.valeur}
-                      </p>
-                      <p className="mt-2 text-pretty text-sm">{c.label}</p>
-                      <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                        {c.source}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-4 text-pretty text-xs text-muted">
-                  Ordres de grandeur donnés à titre informatif. Ils ne constituent ni un diagnostic
-                  ni une recommandation de traitement.
-                </p>
-              </Reveal>
-            </div>
-          </section>
-        )}
-
         <section className="bg-cream">
+
 
           <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
             <Reveal>
