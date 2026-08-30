@@ -83,7 +83,9 @@ function DomaineIntrouvable() {
 
 function DomainePage() {
   const { domaine } = Route.useLoaderData();
+  const contenu = contenus[domaine.slug];
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
 
   return (
     <div className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
