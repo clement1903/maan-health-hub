@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
+import { getDossiersAccompagnes } from "@/lib/stats.functions";
 
 import heroPoster from "@/assets/hero-poster.jpg";
 import heroVideo from "@/assets/hero-parcours.mp4.asset.json";
