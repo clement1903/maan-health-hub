@@ -148,8 +148,6 @@ function QuestionnaireStart() {
             Vos réponses sont enregistrées automatiquement. Vous ne créerez un compte qu'au moment
             d'envoyer votre dossier au médecin.
           </p>
-
-          <MedicalDisclaimer variant="questionnaire" className="mt-8" />
         </div>
       </main>
       <SiteFooter />
