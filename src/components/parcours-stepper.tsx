@@ -7,7 +7,7 @@ export function ParcoursStepper({ etapes }: { etapes: Etape[] }) {
   const [open, setOpen] = useState(0);
 
   return (
-    <div className="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-3">
+    <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {etapes.map((e, i) => {
         const active = open === i;
         return (

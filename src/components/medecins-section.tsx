@@ -74,7 +74,7 @@ export function MedecinsSection() {
       <div className="mx-auto max-w-6xl px-6 py-16 lg:py-24">
         <Reveal>
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-            (d) — Les médecins
+            (c) — Les médecins
           </p>
           <h2 className="mt-3 max-w-[26ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
             Derrière chaque décision, un médecin identifiable.

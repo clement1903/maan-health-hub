@@ -56,7 +56,6 @@ const soins: Soin[] = [
     tag: "Sexual",
     title: "Sexual Management",
     desc: "Dysfonction érectile, libido, andropause : un sujet traité sereinement, sans jugement.",
-    cost: "dès 49 €",
     img: soinSexual,
     alt: "Homme détendu au réveil dans une lumière dorée, serein et confiant",
     points: [
@@ -70,7 +69,6 @@ const soins: Soin[] = [
     tag: "Weight",
     title: "Weight Management",
     desc: "Surpoids, métabolisme, habitudes : un accompagnement médical structuré dans la durée.",
-    cost: "dès 59 €",
     img: soinWeight,
     alt: "Homme qui lace ses chaussures de course au lever du soleil",
     points: [
@@ -84,7 +82,6 @@ const soins: Soin[] = [
     tag: "Hair",
     title: "Hair Management",
     desc: "Chute de cheveux, calvitie, cuir chevelu : agir tôt change tout.",
-    cost: "dès 45 €",
     img: soinHair,
     alt: "Homme vérifiant sa ligne de cheveux devant un miroir en lumière chaude",
     points: [
@@ -98,7 +95,6 @@ const soins: Soin[] = [
     tag: "Skin",
     title: "Skin Management",
     desc: "Acné, peau grasse, rides, taches : une routine validée médicalement.",
-    cost: "dès 42 €",
     img: soinSkin,
     alt: "Homme appliquant une crème de soin sur le visage devant un miroir",
     points: [
@@ -152,7 +148,7 @@ const faq = [
   },
   {
     q: "Que se passe-t-il si le médecin refuse de prescrire ?",
-    a: "Vous recevez un motif écrit dans votre espace patient et des orientations adaptées. Les frais de consultation couvrent l'analyse médicale, quelle que soit la décision : un refus est un acte médical, pas un échec de commande.",
+    a: "Vous recevez un motif écrit dans votre espace patient et des orientations adaptées. La consultation est gratuite et sans engagement : un refus est un acte médical, pas un échec de commande.",
   },
   {
     q: "L'ordonnance m'appartient-elle ?",
@@ -168,7 +164,7 @@ const faq = [
   },
   {
     q: "La livraison est-elle vraiment discrète ?",
-    a: "Le colis est neutre : aucune mention du contenu, du domaine de soin ni de la marque. Vous choisissez la livraison à domicile ou en point relais.",
+    a: "Le colis est neutre : aucune mention du contenu, de la spécialité ni de la marque. Vous choisissez la livraison à domicile ou en point relais.",
   },
 ];
 
@@ -216,9 +212,9 @@ function Home() {
               <h1 className="mt-6 animate-[rise_0.6s_var(--ease)_0.08s_both] text-balance font-display text-5xl font-medium leading-[1.03] tracking-tight lg:text-6xl">
                 Consultez un médecin en ligne.{" "}
                 <span className="relative inline-block">
-                  <span className="relative z-10">Recevez votre traitement à domicile</span>
+                  <span className="relative z-10">Recevez votre traitement à domicile.</span>
                   <span className="absolute inset-x-0 bottom-1 z-0 h-3 origin-left animate-[rise_0.8s_var(--ease)_0.5s_both] rounded-sm bg-amber/35" />
-                </span>.
+                </span>
               </h1>
               <div className="mt-9 flex animate-[rise_0.6s_var(--ease)_0.24s_both] flex-wrap items-center gap-4">
                 <Magnetic>
@@ -239,6 +235,9 @@ function Home() {
                   Voir le parcours
                 </a>
               </div>
+              <p className="mt-4 animate-[rise_0.6s_var(--ease)_0.32s_both] font-signature text-2xl leading-none text-clay">
+                Consultation gratuite et sans engagement
+              </p>
               <div className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-border pt-6">
                 <div>
                   <CountUp
@@ -266,7 +265,7 @@ function Home() {
                     className="font-display text-2xl font-medium tracking-tight text-clay"
                   />
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                    Domaines de soin
+                    Spécialités
                   </p>
                 </div>
               </div>
@@ -308,7 +307,7 @@ function Home() {
                   (a) — Nos soins
                 </p>
                 <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-                  Quatre domaines, un même soin.
+                  4 spécialités, un même soin.
                 </h2>
               </div>
             </Reveal>
@@ -333,57 +332,6 @@ function Home() {
           </Reveal>
         </section>
 
-        {/* CONFIANCE */}
-        <section id="confiance" className="scroll-mt-24 border-y border-border bg-sand">
-          <div className="mx-auto max-w-6xl px-6 py-16 lg:py-24">
-            <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
-              <Reveal className="lg:col-span-5">
-                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-                  (c) — Confiance
-                </p>
-                <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-                  La rigueur d'une vraie consultation.
-                </h2>
-                <p className="mt-4 max-w-[40ch] text-pretty text-muted">
-                  De vrais médecins, des données de santé protégées, une pharmacie agréée. Rien
-                  n'est vendu sans prescription médicale.
-                </p>
-              </Reveal>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:col-span-7">
-                {[
-                  {
-                    k: "100%",
-                    t: "Médecins agréés",
-                    d: "Inscrits à l'Ordre, formés à la consultation à distance.",
-                  },
-                  {
-                    k: "RGPD",
-                    t: "Données de santé",
-                    d: "Chiffrées, hébergées en Europe, jamais revendues.",
-                  },
-                  {
-                    k: "24–48h",
-                    t: "Livraison partenaire",
-                    d: "Expédition discrète depuis une pharmacie certifiée.",
-                  },
-                ].map((c, i) => (
-                  <Reveal
-                    key={c.k}
-                    delay={i * 90}
-                    className="group rounded-[16px] border border-border bg-background/60 p-6 transition-all duration-500 ease-[var(--ease)] hover:-translate-y-1 hover:bg-background hover:shadow-[0_24px_60px_-40px_var(--foreground)]"
-                  >
-                    <p className="font-display text-3xl font-medium tracking-tight text-clay">
-                      {c.k}
-                    </p>
-                    <p className="mt-2 text-sm font-medium">{c.t}</p>
-                    <p className="mt-1 text-pretty text-sm text-muted">{c.d}</p>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
         <MedecinsSection />
 
         <Temoignages />
@@ -392,7 +340,7 @@ function Home() {
         <section id="faq" className="mx-auto max-w-4xl scroll-mt-24 px-6 py-16 lg:py-24">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-              (f) — Questions
+              (e) — Questions
             </p>
             <h2 className="mt-3 font-section text-3xl font-medium tracking-tight lg:text-4xl">
               Avant de commencer

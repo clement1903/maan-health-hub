@@ -31,7 +31,7 @@ export function SiteHeader() {
           <span className="font-display text-2xl font-semibold tracking-tight">MAAN</span>
           <span
             className={cn(
-              "hidden overflow-hidden whitespace-nowrap text-sm text-muted transition-all duration-500 ease-[var(--ease)] sm:block",
+              "hidden -rotate-2 overflow-hidden whitespace-nowrap font-signature text-xl leading-none text-clay transition-all duration-500 ease-[var(--ease)] sm:block",
               condensed ? "max-w-0 opacity-0" : "max-w-[24rem] opacity-100",
             )}
           >
