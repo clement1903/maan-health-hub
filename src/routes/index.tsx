@@ -196,6 +196,11 @@ const marqueeItems = [
 
 function Home() {
   const scrollY = useScrollY();
+  const { data: dossiersAccompagnes = 15000 } = useQuery({
+    queryKey: ["dossiers-accompagnes"],
+    queryFn: () => getDossiersAccompagnes(),
+    staleTime: 60_000,
+  });
   const condensed = scrollY > 40;
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
