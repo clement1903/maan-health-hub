@@ -255,19 +255,51 @@ function Home() {
                   Voir le parcours
                 </a>
               </div>
-              <div className="mt-5 flex animate-[rise_0.6s_var(--ease)_0.32s_both] flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
-                <span className="flex items-center gap-2.5">
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
-                  Consultation 100% gratuite et sans engagement
-                </span>
-                <span className="flex items-center gap-2.5">
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
-                  Traitement personnalisé
-                </span>
-                <span className="flex items-center gap-2.5">
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
-                  Livraison discrète
-                </span>
+              <div className="mt-6 flex animate-[rise_0.6s_var(--ease)_0.32s_both] flex-wrap items-center gap-4 md:gap-6">
+                <div className="group flex items-center gap-3 transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream text-clay shadow-sm ring-1 ring-border transition-all duration-300 group-hover:bg-sand group-hover:shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                      <path d="m9 12 2 2 4-4" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[13px] font-semibold leading-tight text-foreground">Consultation 100% gratuite</span>
+                    <span className="text-[11px] text-muted">et sans engagement</span>
+                  </div>
+                </div>
+
+                <div className="hidden h-8 w-px bg-border md:block" />
+
+                <div className="group flex items-center gap-3 transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream text-clay shadow-sm ring-1 ring-border transition-all duration-300 group-hover:bg-sand group-hover:shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                      <path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.85.85 2.23.85 3.08 0L15 8" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[13px] font-semibold leading-tight text-foreground">Traitement</span>
+                    <span className="text-[11px] text-muted">personnalisé</span>
+                  </div>
+                </div>
+
+                <div className="hidden h-8 w-px bg-border md:block" />
+
+                <div className="group flex items-center gap-3 transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream text-clay shadow-sm ring-1 ring-border transition-all duration-300 group-hover:bg-sand group-hover:shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M10 17h4V5H2v12h3" />
+                      <path d="M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5v8h1" />
+                      <circle cx="7.5" cy="17.5" r="2.5" />
+                      <circle cx="17.5" cy="17.5" r="2.5" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[13px] font-semibold leading-tight text-foreground">Livraison</span>
+                    <span className="text-[11px] text-muted">discrète</span>
+                  </div>
+                </div>
               </div>
               <div className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-border pt-6">
                 <div>
