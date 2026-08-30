@@ -307,8 +307,6 @@ function ProduitCarousel({
           ))}
         </div>
       )}
-
-      <MedicalDisclaimer className="mt-8" />
     </div>
   );
 }
