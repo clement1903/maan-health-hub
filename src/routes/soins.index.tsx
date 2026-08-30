@@ -150,16 +150,6 @@ function DomaineSection({ domaine: d }: { domaine: Domaine }) {
       </div>
 
       <ProduitCarousel produits={d.produits} label={d.titre} domaineSlug={d.slug} />
-
-      <div className="mt-6 flex flex-wrap items-center gap-4">
-        <Link
-          to="/questionnaire/$slug"
-          params={{ slug: d.slug }}
-          className="font-medium underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
-        >
-          Commencer le questionnaire
-        </Link>
-      </div>
     </>
   );
 }
