@@ -22,11 +22,15 @@ export function formatAnswer(question: Question, value: AnswerValue | undefined)
     case "multi":
     case "symptoms":
     case "conditions":
-      return Array.isArray(value) && value.length ? value.map(labelOf).join(", ") : "Non renseigné";
+      return Array.isArray(value) && value.length
+        ? (value as string[]).map(labelOf).join(", ")
+        : "Non renseigné";
     case "medications":
     case "allergies":
     case "previous_treatments":
-      return Array.isArray(value) && value.length ? value.join(" · ") : "Non renseigné";
+      return Array.isArray(value) && value.length
+        ? (value as string[]).join(" · ")
+        : "Non renseigné";
     case "body": {
       const v = value as Record<string, unknown>;
       return `${v['height'] ?? "?"} cm · ${v['weight'] ?? "?"} kg`;
