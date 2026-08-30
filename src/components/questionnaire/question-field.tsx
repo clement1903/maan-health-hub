@@ -259,41 +259,32 @@ export function QuestionField({ question, value, onChange, onAdvance, userId }: 
     case "boolean": {
       const v = value as string | undefined;
       return (
-        <div className="grid gap-3 sm:grid-cols-2">
-          {[
+        <OptionList
+          options={[
             { value: "oui", label: "Oui" },
             { value: "non", label: "Non" },
-          ].map((o) => (
-            <OptionCard
-              key={o.value}
-              option={o}
-              selected={v === o.value}
-              onSelect={() => {
-                onChange(o.value);
-                advance();
-              }}
-            />
-          ))}
-        </div>
+          ]}
+          isSelected={(x) => v === x}
+          onSelect={(o) => {
+            onChange(o.value);
+            advance();
+          }}
+          gridClass="grid gap-3 sm:grid-cols-2"
+        />
       );
     }
 
     case "single": {
       const v = value as string | undefined;
       return (
-        <div className="grid gap-3">
-          {(question.options ?? []).map((o) => (
-            <OptionCard
-              key={o.value}
-              option={o}
-              selected={v === o.value}
-              onSelect={() => {
-                onChange(o.value);
-                advance();
-              }}
-            />
-          ))}
-        </div>
+        <OptionList
+          options={question.options ?? []}
+          isSelected={(x) => v === x}
+          onSelect={(o) => {
+            onChange(o.value);
+            advance();
+          }}
+        />
       );
     }
 
@@ -314,11 +305,12 @@ export function QuestionField({ question, value, onChange, onAdvance, userId }: 
         );
       };
       return (
-        <div className="grid gap-3">
-          {(question.options ?? []).map((o) => (
-            <OptionCard key={o.value} option={o} selected={v.includes(o.value)} onSelect={() => toggle(o)} />
-          ))}
-        </div>
+        <OptionList
+          multi
+          options={question.options ?? []}
+          isSelected={(x) => v.includes(x)}
+          onSelect={(o) => toggle(o)}
+        />
       );
     }
 
@@ -434,19 +426,19 @@ export function QuestionField({ question, value, onChange, onAdvance, userId }: 
         <div className="space-y-6">
           {lifestyleBlocks.map((block) => (
             <div key={block.key}>
-              <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
+              <p
+                id={`lifestyle-${block.key}`}
+                className="mb-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted"
+              >
                 {block.label}
               </p>
-              <div className="grid gap-2 sm:grid-cols-3">
-                {block.options.map((o) => (
-                  <OptionCard
-                    key={o.value}
-                    option={o}
-                    selected={v[block.key] === o.value}
-                    onSelect={() => onChange({ ...v, [block.key]: o.value })}
-                  />
-                ))}
-              </div>
+              <OptionList
+                options={block.options}
+                isSelected={(x) => v[block.key] === x}
+                onSelect={(o) => onChange({ ...v, [block.key]: o.value })}
+                labelledBy={`lifestyle-${block.key}`}
+                gridClass="grid gap-2 sm:grid-cols-3"
+              />
             </div>
           ))}
         </div>
