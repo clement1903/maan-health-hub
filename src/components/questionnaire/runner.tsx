@@ -164,10 +164,22 @@ export function QuestionnaireRunner({
           </span>
         </div>
         {productContext ? (
-          <p className="mx-auto mt-5 inline-flex items-center gap-2 rounded-full border border-clay/40 bg-clay/8 px-4 py-2 text-sm text-clay">
-            Traitement envisagé : <span className="font-medium">{productContext}</span>
-          </p>
+          <div
+            role="status"
+            aria-live="polite"
+            className="mx-auto mt-6 inline-flex max-w-[52ch] items-start gap-3 rounded-[18px] border border-clay/30 bg-clay/8 px-5 py-4 text-left text-sm text-foreground"
+          >
+            <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-clay text-cream">
+              <Check className="size-3" />
+            </span>
+            <span>
+              Votre consultation est lancée pour{" "}
+              <span className="font-medium text-clay">{productContext}</span>. Répondez aux
+              questions pour permettre au médecin d'évaluer si ce traitement peut être approprié.
+            </span>
+          </div>
         ) : null}
+
         <button
           type="button"
           onClick={() => setPhase("questions")}
