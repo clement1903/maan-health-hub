@@ -88,9 +88,14 @@ function DomaineIntrouvable() {
 
 function DomainePage() {
   const { domaine } = Route.useLoaderData();
+  const { produit: produitSearch } = Route.useSearch();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [activeProduit, setActiveProduit] = useState(0);
+  const [activeProduit, setActiveProduit] = useState(() => {
+    const idx = domaine.produits.findIndex((p) => p.nom === produitSearch);
+    return idx >= 0 ? idx : 0;
+  });
   const produit = domaine.produits[activeProduit] ?? domaine.produits[0]!;
+  const produitSeul = domaine.produits.some((p) => p.nom === produitSearch);
 
 
 
