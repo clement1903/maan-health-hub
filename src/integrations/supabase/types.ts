@@ -317,33 +317,87 @@ export type Database = {
         }
         Relationships: []
       }
+      questionnaire_drafts: {
+        Row: {
+          answers: Json
+          created_at: string
+          current_question_id: string | null
+          definition_id: string
+          id: string
+          updated_at: string
+          user_id: string
+          version: string
+        }
+        Insert: {
+          answers?: Json
+          created_at?: string
+          current_question_id?: string | null
+          definition_id: string
+          id?: string
+          updated_at?: string
+          user_id: string
+          version: string
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          current_question_id?: string | null
+          definition_id?: string
+          id?: string
+          updated_at?: string
+          user_id?: string
+          version?: string
+        }
+        Relationships: []
+      }
       questionnaires: {
         Row: {
           answers: Json
           category: string
           created_at: string
+          definition_id: string | null
+          edit_log: Json
           id: string
+          overall_signal: string
+          shown_questions: Json
           status: string
+          submitted_at: string | null
+          triggered_rules: Json
           updated_at: string
           user_id: string
+          version: string | null
         }
         Insert: {
           answers?: Json
           category: string
           created_at?: string
+          definition_id?: string | null
+          edit_log?: Json
           id?: string
+          overall_signal?: string
+          shown_questions?: Json
           status?: string
+          submitted_at?: string | null
+          triggered_rules?: Json
           updated_at?: string
           user_id: string
+          version?: string | null
         }
         Update: {
           answers?: Json
           category?: string
           created_at?: string
+          definition_id?: string | null
+          edit_log?: Json
           id?: string
+          overall_signal?: string
+          shown_questions?: Json
           status?: string
+          submitted_at?: string | null
+          triggered_rules?: Json
           updated_at?: string
           user_id?: string
+          version?: string | null
         }
         Relationships: []
       }
