@@ -1,7 +1,7 @@
 import produitSildenafil from "@/assets/produit-sildenafil.jpg";
 import produitTadalafil from "@/assets/produit-tadalafil.jpg";
-import produitSemaglutide from "@/assets/produit-semaglutide.jpg";
-import produitOrlistat from "@/assets/produit-orlistat.jpg";
+import produitWegovy from "@/assets/produit-wegovy.jpg";
+import produitOzempic from "@/assets/produit-ozempic.jpg";
 import produitFinasteride from "@/assets/produit-finasteride.jpg";
 import produitMinoxidil from "@/assets/produit-minoxidil.jpg";
 import produitTretinoine from "@/assets/produit-tretinoine.jpg";
@@ -101,26 +101,26 @@ export const domaines: Domaine[] = [
     ],
     produits: [
       {
-        nom: "Analogue du GLP-1 hebdomadaire",
-        molecule: "Sémaglutide",
-        image: produitSemaglutide,
-        alt: "Stylo injecteur neutre pour sémaglutide",
-        forme: "Stylo injectable sous-cutané",
+        nom: "Wegovy",
+        molecule: "Sémaglutide (indication perte de poids)",
+        image: produitWegovy,
+        alt: "Stylo injecteur de sémaglutide Wegovy posé à côté de sa boîte",
+        forme: "Stylo injectable sous-cutané, une injection par semaine",
         posologie:
-          "Posologie indicative : montée progressive sur plusieurs semaines, une injection par semaine, dose ajustée par le médecin selon la tolérance digestive.",
+          "Posologie indicative : montée progressive sur plusieurs semaines (0,25 mg puis paliers), une injection hebdomadaire, dose ajustée par le médecin selon la tolérance digestive.",
         precautions:
-          "Non prescrit en cas d'antécédent de cancer médullaire de la thyroïde ou de pancréatite. Nausées fréquentes en début de traitement.",
+          "Non prescrit en cas d'antécédent de cancer médullaire de la thyroïde, de NEM2 ou de pancréatite. Nausées fréquentes en début de traitement.",
       },
       {
-        nom: "Inhibiteur des lipases",
-        molecule: "Orlistat",
-        image: produitOrlistat,
-        alt: "Capsules d’orlistat et flacon de pharmacie neutre",
-        forme: "Gélule 120 mg",
+        nom: "Ozempic",
+        molecule: "Sémaglutide (indication diabète de type 2)",
+        image: produitOzempic,
+        alt: "Stylo injecteur de sémaglutide Ozempic sur un tissu beige",
+        forme: "Stylo injectable sous-cutané, une injection par semaine",
         posologie:
-          "Posologie indicative : une gélule à chacun des trois repas principaux contenant des graisses.",
+          "Posologie indicative : 0,25 mg par semaine pendant 4 semaines, puis augmentation progressive selon la décision du médecin.",
         precautions:
-          "Effets digestifs fréquents. Supplémentation en vitamines liposolubles parfois nécessaire.",
+          "Prescrit dans le cadre du diabète de type 2. Mêmes contre-indications thyroïdiennes et pancréatiques. Signaler tout traitement antidiabétique en cours.",
       },
     ],
     faq: [
