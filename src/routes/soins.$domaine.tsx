@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
 import { ProduitCarrousel } from "@/components/produit-carrousel";
-import { getDomaine, domaines } from "@/data/soins";
+import { getDomaine, domaines, prixAbonnement, type Produit } from "@/data/soins";
 import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { cn } from "@/lib/utils";
 
@@ -60,6 +60,100 @@ export const Route = createFileRoute("/soins/$domaine")({
   notFoundComponent: DomaineIntrouvable,
   component: DomainePage,
 });
+
+const fmt = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+
+function TarifsProduit({ produit }: { produit: Produit }) {
+  const [mode, setMode] = useState<"unite" | "abonnement">("abonnement");
+  const [mois, setMois] = useState(3);
+  const abo = prixAbonnement(produit.prixMensuel!, mois);
+  const remisePct = Math.round(abo.remise * 100);
+
+  return (
+    <div className="mt-8 border-t border-border pt-6">
+      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+        Prix indicatif
+      </p>
+      <div
+        role="group"
+        aria-label="Choisir le mode d'achat"
+        className="mt-3 inline-flex rounded-full border border-border bg-cream p-1"
+      >
+        {(
+          [
+            { key: "unite", label: "À l'unité" },
+            { key: "abonnement", label: "Abonnement" },
+          ] as const
+        ).map((opt) => (
+          <button
+            key={opt.key}
+            type="button"
+            onClick={() => setMode(opt.key)}
+            aria-pressed={mode === opt.key}
+            className={cn(
+              "rounded-full px-4 py-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-all duration-300",
+              mode === opt.key ? "bg-clay text-cream" : "text-muted hover:text-foreground",
+            )}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
+
+      {mode === "unite" ? (
+        <div className="mt-4 animate-[rise_0.3s_var(--ease)_both]">
+          <p className="font-section text-3xl font-medium tracking-tight">
+            {fmt.format(produit.prixUnite!)}
+          </p>
+          <p className="mt-1 text-[11px] leading-relaxed text-muted">
+            Achat unique, sans engagement. Renouvellement uniquement après décision du médecin.
+          </p>
+        </div>
+      ) : (
+        <div className="mt-4 animate-[rise_0.3s_var(--ease)_both]">
+          <div className="flex flex-wrap items-center gap-2">
+            {[1, 2, 3, 4, 5, 6].map((m) => (
+              <button
+                key={m}
+                type="button"
+                onClick={() => setMois(m)}
+                aria-pressed={mois === m}
+                aria-label={`Abonnement de ${m} mois`}
+                className={cn(
+                  "h-9 w-9 rounded-full border font-mono text-[11px] transition-all duration-300",
+                  mois === m
+                    ? "border-clay bg-clay text-cream"
+                    : "border-border bg-background text-muted hover:border-clay/40 hover:text-foreground",
+                )}
+              >
+                {m}
+              </button>
+            ))}
+            <span className="text-xs text-muted">mois</span>
+          </div>
+          <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <p className="font-section text-3xl font-medium tracking-tight">
+              {fmt.format(abo.mensuel)}
+              <span className="text-sm font-normal text-muted"> / mois</span>
+            </p>
+            <p className="text-xs text-muted">
+              soit {fmt.format(abo.total)} pour {mois} mois
+            </p>
+            {remisePct > 0 && (
+              <span className="rounded-full bg-clay/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-clay">
+                −{remisePct} %
+              </span>
+            )}
+          </div>
+          <p className="mt-2 text-[11px] leading-relaxed text-muted">
+            Engagement de {mois} mois, résiliable à l'échéance. Frais de consultation et de
+            livraison détaillés lors de votre parcours.
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
 
 function DomaineIntrouvable() {
   return (
@@ -195,19 +289,23 @@ function DomainePage() {
                     <dd className="mt-1 text-pretty">{produit.posologie}</dd>
                   </div>
                 </dl>
-                <div className="mt-8 flex items-end justify-between gap-4 border-t border-border pt-6">
-                  <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                      Prix indicatif
-                    </p>
-                    <p className="mt-1 font-section text-3xl font-medium tracking-tight text-foreground">
-                      {produit.prix}
+                {produit.prixUnite != null && produit.prixMensuel != null ? (
+                  <TarifsProduit key={produit.nom} produit={produit} />
+                ) : (
+                  <div className="mt-8 flex items-end justify-between gap-4 border-t border-border pt-6">
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                        Prix indicatif
+                      </p>
+                      <p className="mt-1 font-section text-3xl font-medium tracking-tight text-foreground">
+                        {produit.prix}
+                      </p>
+                    </div>
+                    <p className="max-w-[20ch] text-right text-[11px] leading-relaxed text-muted">
+                      Frais de consultation et de livraison détaillés lors de votre parcours.
                     </p>
                   </div>
-                  <p className="max-w-[20ch] text-right text-[11px] leading-relaxed text-muted">
-                    Frais de consultation et de livraison détaillés lors de votre parcours.
-                  </p>
-                </div>
+                )}
               </div>
               <div className="lg:col-span-7">
                 <ProduitCarrousel produit={produit} />
