@@ -4,6 +4,7 @@ import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
+import { ProduitCarrousel } from "@/components/produit-carrousel";
 import { getDomaine, domaines, contenus } from "@/data/soins";
 import { cn } from "@/lib/utils";
 
@@ -207,24 +208,10 @@ function DomainePage() {
               ))}
             </div>
 
-            <div className="mt-6 grid grid-cols-1 gap-px overflow-hidden rounded-[24px] border border-border bg-border lg:grid-cols-12">
-              <div className="relative bg-background lg:col-span-5">
-                <img
-                  key={produit.image}
-                  src={produit.image}
-                  alt={produit.alt}
-                  loading="lazy"
-                  width={1024}
-                  height={768}
-                  className="h-full min-h-[280px] w-full animate-[rise_0.6s_var(--ease)_both] object-cover"
-                />
-                <span className="absolute left-5 top-5 rounded-full border border-clay/40 bg-background/90 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-clay backdrop-blur">
-                  Ordonnance
-                </span>
-              </div>
+            <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-12">
               <div
                 key={produit.nom}
-                className="animate-[rise_0.5s_var(--ease)_both] bg-background p-8 lg:col-span-7 lg:p-10"
+                className="animate-[rise_0.5s_var(--ease)_both] rounded-[24px] border border-border bg-background p-8 lg:col-span-5 lg:p-10"
               >
                 <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-clay">
                   {produit.molecule}
@@ -232,7 +219,10 @@ function DomainePage() {
                 <h3 className="mt-2 font-section text-2xl font-medium tracking-tight">
                   {produit.nom}
                 </h3>
-                <dl className="mt-7 grid gap-5 text-sm sm:grid-cols-2">
+                <span className="mt-4 inline-block rounded-full border border-clay/40 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-clay">
+                  Ordonnance
+                </span>
+                <dl className="mt-7 grid gap-5 text-sm">
                   <div>
                     <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
                       Forme
@@ -244,12 +234,6 @@ function DomainePage() {
                       Posologie indicative
                     </dt>
                     <dd className="mt-1 text-pretty">{produit.posologie}</dd>
-                  </div>
-                  <div className="sm:col-span-2">
-                    <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                      Précautions
-                    </dt>
-                    <dd className="mt-1 text-pretty text-muted">{produit.precautions}</dd>
                   </div>
                 </dl>
                 <Link
@@ -263,7 +247,11 @@ function DomainePage() {
                   </span>
                 </Link>
               </div>
+              <div className="lg:col-span-7">
+                <ProduitCarrousel produit={produit} />
+              </div>
             </div>
+
           </div>
         </section>
 

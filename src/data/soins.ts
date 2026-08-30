@@ -52,7 +52,7 @@ export const domaines: Domaine[] = [
         nom: "Inhibiteur de la PDE5 — courte durée",
         molecule: "Sildénafil",
         image: produitSildenafil,
-        alt: "Comprimés de sildénafil sous blister, packaging neutre",
+        alt: "Boîte et plaquette de comprimés de sildénafil, traitement de l'érection sur ordonnance",
         forme: "Comprimé pelliculé, 25 / 50 / 100 mg",
         posologie:
           "Posologie indicative : 50 mg environ 1 heure avant le rapport, maximum une prise par 24 h. Le médecin ajuste la dose selon la tolérance.",
@@ -63,7 +63,7 @@ export const domaines: Domaine[] = [
         nom: "Inhibiteur de la PDE5 — longue durée",
         molecule: "Tadalafil",
         image: produitTadalafil,
-        alt: "Comprimés de tadalafil sous blister, packaging neutre",
+        alt: "Boîte et plaquette de comprimés de tadalafil, traitement de l'érection longue durée sur ordonnance",
         forme: "Comprimé, 5 / 10 / 20 mg",
         posologie:
           "Posologie indicative : 10 mg avant l'activité, ou 5 mg par jour en schéma continu selon la prescription.",
@@ -104,7 +104,7 @@ export const domaines: Domaine[] = [
         nom: "Wegovy",
         molecule: "Sémaglutide (indication perte de poids)",
         image: produitWegovy,
-        alt: "Stylo injecteur de sémaglutide Wegovy posé à côté de sa boîte",
+        alt: "Stylo injecteur Wegovy (sémaglutide) et sa boîte, traitement hebdomadaire du surpoids sur ordonnance",
         forme: "Stylo injectable sous-cutané, une injection par semaine",
         posologie:
           "Posologie indicative : montée progressive sur plusieurs semaines (0,25 mg puis paliers), une injection hebdomadaire, dose ajustée par le médecin selon la tolérance digestive.",
@@ -115,7 +115,7 @@ export const domaines: Domaine[] = [
         nom: "Ozempic",
         molecule: "Sémaglutide (indication diabète de type 2)",
         image: produitOzempic,
-        alt: "Stylo injecteur de sémaglutide Ozempic sur un tissu beige",
+        alt: "Stylo injecteur Ozempic (sémaglutide) et sa boîte, traitement hebdomadaire du diabète de type 2 sur ordonnance",
         forme: "Stylo injectable sous-cutané, une injection par semaine",
         posologie:
           "Posologie indicative : 0,25 mg par semaine pendant 4 semaines, puis augmentation progressive selon la décision du médecin.",
@@ -156,7 +156,7 @@ export const domaines: Domaine[] = [
         nom: "Inhibiteur de la 5-alpha-réductase",
         molecule: "Finastéride",
         image: produitFinasteride,
-        alt: "Comprimés de finastéride sous blister, packaging neutre",
+        alt: "Boîte et plaquette de comprimés de finastéride 1 mg, traitement quotidien de la chute de cheveux sur ordonnance",
         forme: "Comprimé 1 mg",
         posologie:
           "Posologie indicative : un comprimé par jour, en continu. Les premiers effets s'évaluent après 3 à 6 mois.",
@@ -167,7 +167,7 @@ export const domaines: Domaine[] = [
         nom: "Vasodilatateur topique",
         molecule: "Minoxidil 5 %",
         image: produitMinoxidil,
-        alt: "Flacon spray neutre de solution capillaire au minoxidil",
+        alt: "Flacon applicateur de solution capillaire au minoxidil 5 %, application locale matin et soir",
         forme: "Solution ou mousse à application locale",
         posologie:
           "Posologie indicative : application matin et soir sur cuir chevelu sec, sur les zones concernées.",
@@ -208,7 +208,7 @@ export const domaines: Domaine[] = [
         nom: "Rétinoïde topique",
         molecule: "Trétinoïne",
         image: produitTretinoine,
-        alt: "Tube de crème neutre à la trétinoïne",
+        alt: "Tube de crème à la trétinoïne, rétinoïde topique appliqué le soir sur ordonnance",
         forme: "Crème 0,025 % à 0,05 %",
         posologie:
           "Posologie indicative : une application le soir, sur peau sèche, en commençant un soir sur deux pendant deux semaines.",
@@ -219,7 +219,7 @@ export const domaines: Domaine[] = [
         nom: "Antibiotique topique de la rosacée",
         molecule: "Métronidazole 0,75 %",
         image: produitMetronidazole,
-        alt: "Tube de gel neutre au métronidazole",
+        alt: "Tube de gel au métronidazole 0,75 %, traitement local de la rosacée sur ordonnance",
         forme: "Gel ou crème",
         posologie:
           "Posologie indicative : une à deux applications par jour sur les zones atteintes, pendant plusieurs semaines.",
@@ -362,5 +362,65 @@ export const contenus: Record<string, Contenu> = {
         source: "Littérature dermatologique",
       },
     ],
+  },
+};
+
+export type ProduitDetails = {
+  modeAction: string;
+  suivi: string;
+};
+
+/**
+ * Informations pédagogiques complémentaires, à titre indicatif.
+ * Elles n'établissent aucune éligibilité : seul le médecin décide.
+ */
+export const produitDetails: Record<string, ProduitDetails> = {
+  Sildénafil: {
+    modeAction:
+      "Le sildénafil appartient aux inhibiteurs de la PDE5. Il facilite l'afflux sanguin dans les corps caverneux lorsqu'une stimulation sexuelle est présente. Il n'agit ni sur le désir ni sur l'anxiété.",
+    suivi:
+      "Un point est proposé après les premières prises pour évaluer l'efficacité ressentie et la tolérance. Le médecin peut ajuster la dose, changer de molécule ou demander un examen complémentaire.",
+  },
+  Tadalafil: {
+    modeAction:
+      "Même mécanisme que le sildénafil, avec une durée d'action prolongée pouvant aller jusqu'à 36 heures, ce qui permet un schéma quotidien à faible dose lorsque le médecin le juge pertinent.",
+    suivi:
+      "Le suivi porte sur la fréquence des prises, les effets ressentis (maux de tête, douleurs dorsales) et la pertinence d'un schéma continu plutôt qu'à la demande.",
+  },
+  "Sémaglutide (indication perte de poids)": {
+    modeAction:
+      "Le sémaglutide imite l'hormone GLP-1 : il ralentit la vidange gastrique et augmente la sensation de satiété, ce qui réduit les apports alimentaires spontanés.",
+    suivi:
+      "Suivi rapproché indispensable : poids, tolérance digestive et paliers de dose sont revus régulièrement. Le renouvellement dépend de ces éléments.",
+  },
+  "Sémaglutide (indication diabète de type 2)": {
+    modeAction:
+      "Dans le diabète de type 2, le sémaglutide stimule la sécrétion d'insuline en réponse aux repas et diminue la production hépatique de glucose.",
+    suivi:
+      "Le suivi intègre la glycémie, les traitements antidiabétiques associés et la tolérance digestive. Toute hypoglycémie doit être signalée.",
+  },
+  Finastéride: {
+    modeAction:
+      "Le finastéride bloque la conversion de la testostérone en DHT, l'hormone impliquée dans la miniaturisation du follicule pileux dans l'alopécie androgénétique.",
+    suivi:
+      "Une évaluation à 3 puis 6 mois permet de juger de la stabilisation. Tout effet sexuel ou changement d'humeur doit être signalé au médecin.",
+  },
+  "Minoxidil 5 %": {
+    modeAction:
+      "Le minoxidil topique agit localement en prolongeant la phase de croissance du cheveu et en améliorant la microcirculation du cuir chevelu.",
+    suivi:
+      "Une chute transitoire dans les premières semaines est fréquente. Le suivi vérifie l'observance, l'irritation locale et l'évolution des zones traitées.",
+  },
+  Trétinoïne: {
+    modeAction:
+      "Rétinoïde topique : il accélère le renouvellement cellulaire, désobstrue les pores et améliore progressivement la texture et les marques post-inflammatoires.",
+    suivi:
+      "Le suivi porte sur l'irritation, la fréquence d'application et la protection solaire. La montée en fréquence se fait progressivement.",
+  },
+  "Métronidazole 0,75 %": {
+    modeAction:
+      "Action anti-inflammatoire locale sur les papules et pustules de la rosacée, avec un effet sur la flore cutanée impliquée dans les poussées.",
+    suivi:
+      "Le suivi évalue la réduction des rougeurs et des lésions après plusieurs semaines, ainsi que les facteurs déclenchants du quotidien.",
   },
 };

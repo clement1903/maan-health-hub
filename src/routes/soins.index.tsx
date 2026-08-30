@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { domaines } from "@/data/soins";
 import { Reveal } from "@/components/reveal";
+import { ImageZoom } from "@/components/image-zoom";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
@@ -79,7 +80,7 @@ function SoinsIndex() {
                 <div className="lg:col-span-5">
                   <img
                     src={d.image}
-                    alt={`Illustration de la spécialité ${d.titre}`}
+                    alt={`Spécialité MAAN ${d.titre} — ${d.tag}`}
                     loading="lazy"
                     width={1024}
                     height={768}
@@ -113,16 +114,14 @@ function SoinsIndex() {
                       delay={j * 80}
                       className="group flex flex-col overflow-hidden rounded-[20px] border border-border bg-background transition-shadow duration-500 ease-[var(--ease)] hover:shadow-[0_30px_70px_-55px_var(--foreground)]"
                     >
-                      <div className="relative overflow-hidden border-b border-border bg-cream">
-                        <img
+                      <div className="relative border-b border-border bg-cream">
+                        <ImageZoom
                           src={p.image}
                           alt={p.alt}
-                          loading="lazy"
-                          width={1024}
-                          height={768}
-                          className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-[var(--ease)] group-hover:scale-[1.04]"
+                          caption={`${p.molecule} — ${p.forme}`}
+                          imgClassName="aspect-[16/10]"
                         />
-                        <span className="absolute right-4 top-4 rounded-full border border-clay/40 bg-background/90 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-clay backdrop-blur">
+                        <span className="pointer-events-none absolute right-4 top-4 rounded-full border border-clay/40 bg-background/90 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-clay backdrop-blur">
                           Ordonnance
                         </span>
                       </div>
