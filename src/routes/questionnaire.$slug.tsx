@@ -10,9 +10,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
 
 export const Route = createFileRoute("/questionnaire/$slug")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    produit: typeof search['produit'] === "string" ? (search['produit'] as string) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { produit?: string } =>
+    typeof search['produit'] === "string" && search['produit']
+      ? { produit: search['produit'] as string }
+      : {},
   head: () => ({
     meta: [
       { title: "Questionnaire médical — MAAN" },
