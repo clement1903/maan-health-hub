@@ -75,7 +75,7 @@ function SoinsIndex() {
             className={`scroll-mt-24 border-b border-border ${i % 2 === 1 ? "bg-cream" : ""}`}
           >
             <div className="mx-auto max-w-6xl px-6 py-14 lg:py-20">
-              <Reveal className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+              <Reveal className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
                 <div className="lg:col-span-5">
                   <img
                     src={d.image}
@@ -106,10 +106,7 @@ function SoinsIndex() {
               </Reveal>
 
               <div className="mt-10">
-                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
-                  Traitements proposés — sur ordonnance uniquement
-                </p>
-                <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   {d.produits.map((p, j) => (
                     <Reveal
                       key={p.nom}
