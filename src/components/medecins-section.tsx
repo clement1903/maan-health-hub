@@ -1,10 +1,15 @@
 import { useState } from "react";
 
+import medecin1 from "@/assets/medecin-1.jpg";
+import medecin2 from "@/assets/medecin-2.jpg";
+import medecin3 from "@/assets/medecin-3.jpg";
+
 import { Reveal } from "@/components/reveal";
 import { cn } from "@/lib/utils";
 
 type Medecin = {
-  initiales: string;
+  nom: string;
+  photo: string;
   role: string;
   specialite: string;
   approche: string;
@@ -13,7 +18,8 @@ type Medecin = {
 
 const medecins: Medecin[] = [
   {
-    initiales: "Dr. A. L.",
+    nom: "Dr Antoine Lemoine",
+    photo: medecin1,
     role: "Médecin généraliste",
     specialite: "Sexual & Weight Management",
     approche:
@@ -25,7 +31,8 @@ const medecins: Medecin[] = [
     ],
   },
   {
-    initiales: "Dr. M. B.",
+    nom: "Dr Marion Badel",
+    photo: medecin2,
     role: "Dermatologue",
     specialite: "Skin & Hair Management",
     approche:
@@ -33,11 +40,12 @@ const medecins: Medecin[] = [
     qualifications: [
       "Spécialiste en dermatologie",
       "Praticienne hospitalière pendant 8 ans",
-      "Formée à la téléexpertise dermatologique",
+      "Formée à l'expertise dermatologique à distance",
     ],
   },
   {
-    initiales: "Dr. S. R.",
+    nom: "Dr Serge Renard",
+    photo: medecin3,
     role: "Médecin généraliste",
     specialite: "Sexual Management",
     approche:
@@ -80,8 +88,8 @@ export function MedecinsSection() {
             Derrière chaque décision, un médecin identifiable.
           </h2>
           <p className="mt-4 max-w-[56ch] text-pretty text-muted">
-            Les praticiens qui évaluent votre dossier sont des médecins agréés, tenus au secret
-            médical. Leurs initiales protègent leur vie privée comme la vôtre.
+            Les praticiens qui évaluent votre dossier sont des médecins agréés, inscrits à l'Ordre
+            et tenus au secret médical.
           </p>
         </Reveal>
 
@@ -89,29 +97,32 @@ export function MedecinsSection() {
           <div className="flex flex-col gap-2 lg:col-span-5">
             {medecins.map((doc, i) => (
               <button
-                key={doc.initiales}
+                key={doc.nom}
                 type="button"
                 onClick={() => setActive(i)}
                 aria-pressed={active === i}
                 className={cn(
-                  "group cursor-pointer rounded-[16px] border border-border bg-background/60 p-5 text-left transition-all duration-500 ease-[var(--ease)] hover:bg-background",
+                  "group cursor-pointer rounded-[16px] border border-border bg-background/60 p-4 text-left transition-all duration-500 ease-[var(--ease)] hover:bg-background",
                   active === i &&
                     "border-clay bg-background shadow-[0_24px_60px_-45px_var(--foreground)]",
                 )}
               >
                 <div className="flex items-center gap-4">
-                  <span
+                  <img
+                    src={doc.photo}
+                    alt={`Portrait du ${doc.nom}, ${doc.role.toLowerCase()}`}
+                    loading="lazy"
+                    width={800}
+                    height={800}
                     className={cn(
-                      "grid h-11 w-11 shrink-0 place-items-center rounded-full border border-border font-mono text-[11px] tracking-tight text-clay transition-colors",
-                      active === i && "border-clay bg-clay text-cream",
+                      "h-14 w-14 shrink-0 rounded-full object-cover transition-all duration-500 ease-[var(--ease)]",
+                      active === i
+                        ? "ring-2 ring-clay ring-offset-2 ring-offset-background"
+                        : "grayscale group-hover:grayscale-0",
                     )}
-                  >
-                    {doc.initiales.replace("Dr. ", "").replace(/[.\s]/g, "")}
-                  </span>
+                  />
                   <div>
-                    <p className="font-display text-lg font-medium tracking-tight">
-                      {doc.initiales}
-                    </p>
+                    <p className="font-display text-lg font-medium tracking-tight">{doc.nom}</p>
                     <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
                       {doc.role} · {doc.specialite}
                     </p>
@@ -122,11 +133,27 @@ export function MedecinsSection() {
           </div>
 
           <div className="rounded-[20px] border border-border bg-background p-7 lg:col-span-7">
-            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-clay">
+            <div className="flex items-center gap-4">
+              <img
+                src={m.photo}
+                alt={`Portrait du ${m.nom}`}
+                loading="lazy"
+                width={800}
+                height={800}
+                className="h-16 w-16 rounded-full object-cover"
+              />
+              <div>
+                <p className="font-display text-xl font-medium tracking-tight">{m.nom}</p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                  {m.role}
+                </p>
+              </div>
+            </div>
+            <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.16em] text-clay">
               Son approche
             </p>
             <p
-              key={m.initiales}
+              key={m.nom}
               className="mt-3 animate-[rise_0.5s_var(--ease)_both] text-pretty font-display text-xl font-medium leading-snug tracking-tight"
             >
               « {m.approche} »
