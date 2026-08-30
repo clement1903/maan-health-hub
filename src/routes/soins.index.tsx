@@ -240,7 +240,7 @@ function ProduitCarousel({
                 params={{ domaine: domaineSlug }}
                 className="text-sm font-medium underline decoration-clay/40 decoration-2 underline-offset-[5px] transition-all hover:decoration-clay hover:underline-offset-7"
               >
-                Plus d’information
+                Découvrir le produit
               </Link>
               <Link
                 to="/questionnaire/$slug"
