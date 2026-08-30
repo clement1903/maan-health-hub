@@ -231,14 +231,13 @@ function DomainePage() {
             </Reveal>
             {produitSeul && (
               <div className="mt-6">
-                <Link
-                  to="/soins/$domaine"
-                  params={{ domaine: domaine.slug }}
-                  search={{ produit: undefined }}
+                <button
+                  type="button"
+                  onClick={() => window.history.back()}
                   className="text-sm font-medium underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
                 >
-                  ← Voir tous les traitements {domaine.titre.toLowerCase()}
-                </Link>
+                  ← Retour
+                </button>
               </div>
             )}
             <div className="mt-8 flex flex-wrap gap-2">
