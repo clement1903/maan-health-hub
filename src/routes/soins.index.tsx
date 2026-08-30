@@ -138,7 +138,15 @@ function SoinsIndex() {
   );
 }
 
-function ProduitCarousel({ produits, label }: { produits: Produit[]; label: string }) {
+function ProduitCarousel({
+  produits,
+  label,
+  domaineSlug,
+}: {
+  produits: Produit[];
+  label: string;
+  domaineSlug: string;
+}) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
 
