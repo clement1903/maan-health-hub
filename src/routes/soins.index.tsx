@@ -250,24 +250,16 @@ function ProduitCarousel({
                 <dd className="mt-1 text-pretty text-muted">{p.precautions}</dd>
               </div>
             </dl>
-            <div className="mt-auto flex items-center justify-between gap-3 border-t border-border p-6">
+            <div className="mt-auto border-t border-border p-6">
               <Link
                 to="/soins/$domaine"
                 params={{ domaine: domaineSlug }}
                 search={{ produit: p.nom }}
-                className="text-sm font-medium underline decoration-clay/40 decoration-2 underline-offset-[5px] transition-all hover:decoration-clay hover:underline-offset-7"
+                aria-label={`Découvrir ${p.nom}`}
+                className="group/btn inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-medium text-background transition-all duration-300 hover:bg-foreground/90"
               >
                 Découvrir le produit
-              </Link>
-              <Link
-                to="/questionnaire/$slug"
-                params={{ slug: domaineSlug }}
-                search={{ produit: p.nom }}
-                aria-label={`Commencer le questionnaire pour ${p.nom}`}
-                className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-all duration-300 hover:bg-foreground/90"
-              >
-                Commencer le questionnaire
-                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                <span className="transition-transform duration-300 group-hover/btn:translate-x-1">→</span>
               </Link>
             </div>
           </article>
