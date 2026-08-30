@@ -4,7 +4,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { domaines, type Domaine, type Produit } from "@/data/soins";
 import { Reveal } from "@/components/reveal";
 import { ImageZoom } from "@/components/image-zoom";
-import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
@@ -308,8 +307,6 @@ function ProduitCarousel({
           ))}
         </div>
       )}
-
-      <MedicalDisclaimer className="mt-8" />
     </div>
   );
 }
