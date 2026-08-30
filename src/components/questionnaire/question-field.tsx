@@ -25,13 +25,31 @@ function OptionCard({
   option,
   selected,
   onSelect,
+  role = "radio",
+  tabIndex,
+  cardRef,
 }: {
   option: Option;
   selected: boolean;
   onSelect: () => void;
+  role?: "radio" | "checkbox";
+  tabIndex?: number | undefined;
+  cardRef?: ((el: HTMLButtonElement | null) => void) | undefined;
 }) {
   return (
-    <button type="button" onClick={onSelect} className={cn(cardBase, selected && cardActive)}>
+    <button
+      type="button"
+      role={role}
+      aria-checked={selected}
+      tabIndex={tabIndex}
+      ref={cardRef}
+      onClick={onSelect}
+      className={cn(
+        cardBase,
+        "active:scale-[0.985] data-[just-selected]:animate-[select-pop_0.32s_var(--ease)]",
+        selected && cardActive,
+      )}
+    >
       <span className="flex items-center justify-between gap-4">
         <span>
           <span className="block text-lg font-medium leading-snug">{option.label}</span>
@@ -41,14 +59,84 @@ function OptionCard({
         </span>
         <span
           className={cn(
-            "flex size-6 shrink-0 items-center justify-center rounded-full border border-border transition-all duration-300",
-            selected && "border-clay bg-clay text-primary-foreground",
+            "flex size-6 shrink-0 items-center justify-center rounded-full border border-border transition-all duration-200",
+            selected && "scale-110 border-clay bg-clay text-primary-foreground",
           )}
         >
-          <Check className={cn("size-3.5 opacity-0 transition-opacity", selected && "opacity-100")} />
+          <Check
+            className={cn(
+              "size-3.5 opacity-0 transition-all duration-200",
+              selected && "scale-110 opacity-100",
+            )}
+          />
         </span>
       </span>
     </button>
+  );
+}
+
+/**
+ * Liste d'options accessible : radiogroup / group avec tabindex itinérant
+ * et navigation flèches / Home / End. Sélection = highlight instantané.
+ */
+function OptionList({
+  options,
+  isSelected,
+  onSelect,
+  multi = false,
+  labelledBy,
+  gridClass = "grid gap-3",
+}: {
+  options: Option[];
+  isSelected: (value: string) => boolean;
+  onSelect: (option: Option) => void;
+  multi?: boolean;
+  labelledBy?: string | undefined;
+  gridClass?: string;
+}) {
+  const refs = useRef<(HTMLButtonElement | null)[]>([]);
+  const selectedIdx = options.findIndex((o) => isSelected(o.value));
+
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const current = refs.current.findIndex((el) => el === document.activeElement);
+    if (current === -1) return;
+    let next: number | null = null;
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") next = (current + 1) % options.length;
+    if (e.key === "ArrowUp" || e.key === "ArrowLeft")
+      next = (current - 1 + options.length) % options.length;
+    if (e.key === "Home") next = 0;
+    if (e.key === "End") next = options.length - 1;
+    if (next !== null) {
+      e.preventDefault();
+      refs.current[next]?.focus();
+    }
+  };
+
+  return (
+    <div
+      role={multi ? "group" : "radiogroup"}
+      aria-labelledby={labelledBy}
+      className={gridClass}
+      onKeyDown={onKeyDown}
+    >
+      {options.map((o, i) => {
+        const selected = isSelected(o.value);
+        const focusable = multi ? true : selectedIdx === -1 ? i === 0 : i === selectedIdx;
+        return (
+          <OptionCard
+            key={o.value}
+            option={o}
+            selected={selected}
+            role={multi ? "checkbox" : "radio"}
+            tabIndex={focusable ? 0 : -1}
+            cardRef={(el) => {
+              refs.current[i] = el;
+            }}
+            onSelect={() => onSelect(o)}
+          />
+        );
+      })}
+    </div>
   );
 }
 
