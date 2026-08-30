@@ -19,6 +19,10 @@ export type Produit = {
   image: string;
   alt: string;
   prix: string;
+  /** Prix d'un achat à l'unité (une boîte / un flacon), en euros. Absent pour la santé sexuelle. */
+  prixUnite?: number;
+  /** Prix mensuel de base d'un abonnement, en euros. Absent pour la santé sexuelle. */
+  prixMensuel?: number;
   forme: string;
   posologie: string;
   precautions: string;
@@ -131,6 +135,8 @@ export const domaines: Domaine[] = [
     produits: [
       {
         nom: "Wegovy",
+        prixUnite: 279,
+        prixMensuel: 249,
         prix: "249 € / mois",
         molecule: "Sémaglutide (indication perte de poids)",
         image: produitWegovy,
@@ -143,6 +149,8 @@ export const domaines: Domaine[] = [
       },
       {
         nom: "Ozempic",
+        prixUnite: 149,
+        prixMensuel: 129,
         prix: "129 € / mois",
         molecule: "Sémaglutide (indication diabète de type 2)",
         image: produitOzempic,
@@ -185,6 +193,8 @@ export const domaines: Domaine[] = [
     produits: [
       {
         nom: "Inhibiteur de la 5-alpha-réductase",
+        prixUnite: 29,
+        prixMensuel: 24,
         prix: "24 € / mois",
         molecule: "Finastéride",
         image: produitFinasteride,
@@ -197,6 +207,8 @@ export const domaines: Domaine[] = [
       },
       {
         nom: "Vasodilatateur topique",
+        prixUnite: 24,
+        prixMensuel: 19,
         prix: "19 € / mois",
         molecule: "Minoxidil 5 %",
         image: produitMinoxidil,
@@ -239,6 +251,8 @@ export const domaines: Domaine[] = [
     produits: [
       {
         nom: "Rétinoïde topique",
+        prixUnite: 27,
+        prixMensuel: 22,
         prix: "22 € / mois",
         molecule: "Trétinoïne",
         image: produitTretinoine,
@@ -251,6 +265,8 @@ export const domaines: Domaine[] = [
       },
       {
         nom: "Antibiotique topique de la rosacée",
+        prixUnite: 22,
+        prixMensuel: 18,
         prix: "18 € / mois",
         molecule: "Métronidazole 0,75 %",
         image: produitMetronidazole,
@@ -459,3 +475,19 @@ export const produitDetails: Record<string, ProduitDetails> = {
       "Le suivi évalue la réduction des rougeurs et des lésions après plusieurs semaines, ainsi que les facteurs déclenchants du quotidien.",
   },
 };
+
+/** Remises indicatives appliquées selon la durée d'abonnement (1 à 6 mois). */
+export const remisesAbonnement: Record<number, number> = {
+  1: 0,
+  2: 0.03,
+  3: 0.05,
+  4: 0.08,
+  5: 0.1,
+  6: 0.15,
+};
+
+export function prixAbonnement(prixMensuel: number, mois: number) {
+  const remise = remisesAbonnement[mois] ?? 0;
+  const mensuel = prixMensuel * (1 - remise);
+  return { mensuel, total: mensuel * mois, remise };
+}
