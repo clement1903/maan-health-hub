@@ -1,9 +1,12 @@
+import { useRef, useState } from "react";
+import type { KeyboardEvent } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { ArrowRight, Clock, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, Clock, ShieldCheck } from "lucide-react";
 
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { questionnaireDefinitions } from "@/lib/questionnaire/definitions";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/questionnaire/")({
   head: () => ({
@@ -34,6 +37,36 @@ export const Route = createFileRoute("/questionnaire/")({
 
 function QuestionnaireStart() {
   const navigate = useNavigate();
+  const [picked, setPicked] = useState<string | null>(null);
+  const refs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const pick = (slug: string) => {
+    if (picked) return;
+    setPicked(slug);
+    window.setTimeout(
+      () => void navigate({ to: "/questionnaire/$slug", params: { slug } }),
+      300,
+    );
+  };
+
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const current = refs.current.findIndex((el) => el === document.activeElement);
+    if (current === -1) return;
+    const cols = window.matchMedia("(min-width: 640px)").matches ? 2 : 1;
+    let next: number | null = null;
+    if (e.key === "ArrowRight") next = (current + 1) % questionnaireDefinitions.length;
+    if (e.key === "ArrowLeft")
+      next = (current - 1 + questionnaireDefinitions.length) % questionnaireDefinitions.length;
+    if (e.key === "ArrowDown")
+      next = Math.min(current + cols, questionnaireDefinitions.length - 1);
+    if (e.key === "ArrowUp") next = Math.max(current - cols, 0);
+    if (e.key === "Home") next = 0;
+    if (e.key === "End") next = questionnaireDefinitions.length - 1;
+    if (next !== null) {
+      e.preventDefault();
+      refs.current[next]?.focus();
+    }
+  };
 
   return (
     <div className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
@@ -60,21 +93,55 @@ function QuestionnaireStart() {
             </span>
           </div>
 
-          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {questionnaireDefinitions.map((d) => (
-              <button
-                key={d.id}
-                type="button"
-                onClick={() => void navigate({ to: "/questionnaire/$slug", params: { slug: d.slug } })}
-                className="group flex h-full flex-col items-start rounded-[20px] border border-border bg-card p-6 text-left transition-all duration-500 ease-[var(--ease)] hover:-translate-y-1 hover:border-clay hover:shadow-[0_28px_70px_-50px_var(--foreground)]"
-              >
-                <span className="font-section text-xl font-medium tracking-tight">{d.title}</span>
-                <span className="mt-2 flex-1 text-pretty text-sm text-muted">{d.intro}</span>
-                <span className="mt-5 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-clay transition-all group-hover:gap-3">
-                  Commencer <ArrowRight className="size-3.5" />
-                </span>
-              </button>
-            ))}
+          <div
+            role="radiogroup"
+            aria-label="Spécialité à traiter"
+            onKeyDown={onKeyDown}
+            className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2"
+          >
+            {questionnaireDefinitions.map((d, i) => {
+              const selected = picked === d.slug;
+              return (
+                <button
+                  key={d.id}
+                  type="button"
+                  role="radio"
+                  aria-checked={selected}
+                  ref={(el) => {
+                    refs.current[i] = el;
+                  }}
+                  onClick={() => pick(d.slug)}
+                  className={cn(
+                    "group flex h-full flex-col items-start rounded-[20px] border border-border bg-card p-6 text-left transition-all duration-300 ease-[var(--ease)] hover:-translate-y-1 hover:border-clay hover:shadow-[0_28px_70px_-50px_var(--foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 active:scale-[0.99]",
+                    selected &&
+                      "animate-[select-pop_0.32s_var(--ease)] border-clay bg-clay/8 shadow-[0_28px_70px_-50px_var(--foreground)]",
+                  )}
+                >
+                  <span className="flex w-full items-center justify-between gap-3">
+                    <span className="font-section text-xl font-medium tracking-tight">
+                      {d.title}
+                    </span>
+                    <span
+                      className={cn(
+                        "flex size-6 shrink-0 items-center justify-center rounded-full border border-border transition-all duration-200",
+                        selected && "scale-110 border-clay bg-clay text-primary-foreground",
+                      )}
+                    >
+                      <Check
+                        className={cn(
+                          "size-3.5 opacity-0 transition-opacity",
+                          selected && "opacity-100",
+                        )}
+                      />
+                    </span>
+                  </span>
+                  <span className="mt-2 flex-1 text-pretty text-sm text-muted">{d.intro}</span>
+                  <span className="mt-5 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-clay transition-all group-hover:gap-3">
+                    {selected ? "C'est parti" : "Commencer"} <ArrowRight className="size-3.5" />
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
           <p className="mt-8 text-sm text-muted">
