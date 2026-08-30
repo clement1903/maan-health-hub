@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import heroPoster from "@/assets/hero-poster.jpg";
+import heroPoster from "@/assets/hero-poster.jpg.asset.json";
 import heroVideo from "@/assets/hero-parcours.mp4.asset.json";
 import soinSexual from "@/assets/soin-sexual.jpg";
 import soinWeight from "@/assets/soin-weight.jpg";
@@ -280,11 +280,12 @@ function Home() {
               <Tilt className="group relative">
                 <video
                   src={heroVideo.url}
-                  poster={heroPoster}
+                  poster={heroPoster.url}
                   autoPlay
                   muted
                   loop
                   playsInline
+                  preload="auto"
                   aria-label="Un homme préoccupé trouve une solution avec MAAN : questionnaire, évaluation médicale, préparation en pharmacie et livraison discrète à domicile"
                   className="aspect-[4/5] w-full rounded-[24px] object-cover shadow-[0_50px_120px_-60px_var(--foreground)] transition-transform duration-[900ms] ease-[var(--ease)] group-hover:scale-[1.015]"
                 />
