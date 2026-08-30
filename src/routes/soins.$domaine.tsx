@@ -85,6 +85,9 @@ function DomainePage() {
   const { domaine } = Route.useLoaderData();
   const contenu = contenus[domaine.slug];
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [activeProduit, setActiveProduit] = useState(0);
+  const produit = domaine.produits[activeProduit] ?? domaine.produits[0]!;
+
 
 
   return (
@@ -185,40 +188,81 @@ function DomainePage() {
                 dossier fixe la molécule, le dosage et la durée.
               </p>
             </Reveal>
-            <div className="mt-9 grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <div className="mt-8 flex flex-wrap gap-2">
               {domaine.produits.map((p, i) => (
-                <Reveal
+                <button
                   key={p.nom}
-                  delay={i * 90}
-                  as="article"
-                  className="rounded-[20px] border border-border bg-background p-7 transition-colors duration-500 hover:border-clay/30"
+                  type="button"
+                  onClick={() => setActiveProduit(i)}
+                  aria-pressed={activeProduit === i}
+                  className={cn(
+                    "rounded-full border px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-all duration-500 ease-[var(--ease)]",
+                    activeProduit === i
+                      ? "border-clay bg-clay text-cream"
+                      : "border-border bg-background text-muted hover:border-clay/40 hover:text-foreground",
+                  )}
                 >
-                  <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-clay">
-                    {p.molecule}
-                  </p>
-                  <h3 className="mt-2 font-section text-xl font-medium tracking-tight">{p.nom}</h3>
-                  <dl className="mt-5 space-y-4 text-sm">
-                    <div>
-                      <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                        Forme
-                      </dt>
-                      <dd className="mt-1">{p.forme}</dd>
-                    </div>
-                    <div>
-                      <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                        Posologie indicative
-                      </dt>
-                      <dd className="mt-1 text-pretty">{p.posologie}</dd>
-                    </div>
-                    <div>
-                      <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                        Précautions
-                      </dt>
-                      <dd className="mt-1 text-pretty text-muted">{p.precautions}</dd>
-                    </div>
-                  </dl>
-                </Reveal>
+                  {p.molecule}
+                </button>
               ))}
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-px overflow-hidden rounded-[24px] border border-border bg-border lg:grid-cols-12">
+              <div className="relative bg-background lg:col-span-5">
+                <img
+                  key={produit.image}
+                  src={produit.image}
+                  alt={produit.alt}
+                  loading="lazy"
+                  width={1024}
+                  height={768}
+                  className="h-full min-h-[280px] w-full animate-[rise_0.6s_var(--ease)_both] object-cover"
+                />
+                <span className="absolute left-5 top-5 rounded-full border border-clay/40 bg-background/90 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-clay backdrop-blur">
+                  Ordonnance
+                </span>
+              </div>
+              <div
+                key={produit.nom}
+                className="animate-[rise_0.5s_var(--ease)_both] bg-background p-8 lg:col-span-7 lg:p-10"
+              >
+                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-clay">
+                  {produit.molecule}
+                </p>
+                <h3 className="mt-2 font-section text-2xl font-medium tracking-tight">
+                  {produit.nom}
+                </h3>
+                <dl className="mt-7 grid gap-5 text-sm sm:grid-cols-2">
+                  <div>
+                    <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                      Forme
+                    </dt>
+                    <dd className="mt-1 text-pretty">{produit.forme}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                      Posologie indicative
+                    </dt>
+                    <dd className="mt-1 text-pretty">{produit.posologie}</dd>
+                  </div>
+                  <div className="sm:col-span-2">
+                    <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                      Précautions
+                    </dt>
+                    <dd className="mt-1 text-pretty text-muted">{produit.precautions}</dd>
+                  </div>
+                </dl>
+                <Link
+                  to="/questionnaire/$slug"
+                  params={{ slug: domaine.slug }}
+                  className="group mt-8 inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep"
+                >
+                  Démarrer mon questionnaire
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </Link>
+              </div>
             </div>
           </div>
         </section>

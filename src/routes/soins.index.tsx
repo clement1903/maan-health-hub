@@ -75,7 +75,7 @@ function SoinsIndex() {
             className={`scroll-mt-24 border-b border-border ${i % 2 === 1 ? "bg-cream" : ""}`}
           >
             <div className="mx-auto max-w-6xl px-6 py-14 lg:py-20">
-              <Reveal className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+              <Reveal className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
                 <div className="lg:col-span-5">
                   <img
                     src={d.image}
@@ -106,28 +106,33 @@ function SoinsIndex() {
               </Reveal>
 
               <div className="mt-10">
-                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
-                  Traitements proposés — sur ordonnance uniquement
-                </p>
-                <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   {d.produits.map((p, j) => (
                     <Reveal
                       key={p.nom}
                       delay={j * 80}
-                      className="flex flex-col rounded-[20px] border border-border bg-background p-6 transition-shadow duration-500 ease-[var(--ease)] hover:shadow-[0_30px_70px_-55px_var(--foreground)]"
+                      className="group flex flex-col overflow-hidden rounded-[20px] border border-border bg-background transition-shadow duration-500 ease-[var(--ease)] hover:shadow-[0_30px_70px_-55px_var(--foreground)]"
                     >
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <p className="font-display text-lg font-medium tracking-tight">
-                            {p.molecule}
-                          </p>
-                          <p className="mt-1 text-sm text-muted">{p.nom}</p>
-                        </div>
-                        <span className="shrink-0 rounded-full border border-clay/40 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-clay">
+                      <div className="relative overflow-hidden border-b border-border bg-cream">
+                        <img
+                          src={p.image}
+                          alt={p.alt}
+                          loading="lazy"
+                          width={1024}
+                          height={768}
+                          className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-[var(--ease)] group-hover:scale-[1.04]"
+                        />
+                        <span className="absolute right-4 top-4 rounded-full border border-clay/40 bg-background/90 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-clay backdrop-blur">
                           Ordonnance
                         </span>
                       </div>
-                      <dl className="mt-5 space-y-3 border-t border-border pt-4 text-sm">
+                      <div className="p-6 pb-0">
+                        <p className="font-display text-lg font-medium tracking-tight">
+                          {p.molecule}
+                        </p>
+                        <p className="mt-1 text-sm text-muted">{p.nom}</p>
+                      </div>
+                      <dl className="mt-5 space-y-3 border-t border-border p-6 pt-4 text-sm">
                         <div>
                           <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
                             Forme

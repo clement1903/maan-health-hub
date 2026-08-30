@@ -1,3 +1,11 @@
+import produitSildenafil from "@/assets/produit-sildenafil.jpg";
+import produitTadalafil from "@/assets/produit-tadalafil.jpg";
+import produitSemaglutide from "@/assets/produit-semaglutide.jpg";
+import produitOrlistat from "@/assets/produit-orlistat.jpg";
+import produitFinasteride from "@/assets/produit-finasteride.jpg";
+import produitMinoxidil from "@/assets/produit-minoxidil.jpg";
+import produitTretinoine from "@/assets/produit-tretinoine.jpg";
+import produitMetronidazole from "@/assets/produit-metronidazole.jpg";
 import soinSexual from "@/assets/soin-sexual.jpg";
 import soinWeight from "@/assets/soin-weight.jpg";
 import soinHair from "@/assets/soin-hair.jpg";
@@ -6,6 +14,8 @@ import soinSkin from "@/assets/soin-skin.jpg";
 export type Produit = {
   nom: string;
   molecule: string;
+  image: string;
+  alt: string;
   forme: string;
   posologie: string;
   precautions: string;
@@ -41,6 +51,8 @@ export const domaines: Domaine[] = [
       {
         nom: "Inhibiteur de la PDE5 — courte durée",
         molecule: "Sildénafil",
+        image: produitSildenafil,
+        alt: "Comprimés de sildénafil sous blister, packaging neutre",
         forme: "Comprimé pelliculé, 25 / 50 / 100 mg",
         posologie:
           "Posologie indicative : 50 mg environ 1 heure avant le rapport, maximum une prise par 24 h. Le médecin ajuste la dose selon la tolérance.",
@@ -50,6 +62,8 @@ export const domaines: Domaine[] = [
       {
         nom: "Inhibiteur de la PDE5 — longue durée",
         molecule: "Tadalafil",
+        image: produitTadalafil,
+        alt: "Comprimés de tadalafil sous blister, packaging neutre",
         forme: "Comprimé, 5 / 10 / 20 mg",
         posologie:
           "Posologie indicative : 10 mg avant l'activité, ou 5 mg par jour en schéma continu selon la prescription.",
@@ -89,6 +103,8 @@ export const domaines: Domaine[] = [
       {
         nom: "Analogue du GLP-1 hebdomadaire",
         molecule: "Sémaglutide",
+        image: produitSemaglutide,
+        alt: "Stylo injecteur neutre pour sémaglutide",
         forme: "Stylo injectable sous-cutané",
         posologie:
           "Posologie indicative : montée progressive sur plusieurs semaines, une injection par semaine, dose ajustée par le médecin selon la tolérance digestive.",
@@ -98,6 +114,8 @@ export const domaines: Domaine[] = [
       {
         nom: "Inhibiteur des lipases",
         molecule: "Orlistat",
+        image: produitOrlistat,
+        alt: "Capsules d’orlistat et flacon de pharmacie neutre",
         forme: "Gélule 120 mg",
         posologie:
           "Posologie indicative : une gélule à chacun des trois repas principaux contenant des graisses.",
@@ -137,6 +155,8 @@ export const domaines: Domaine[] = [
       {
         nom: "Inhibiteur de la 5-alpha-réductase",
         molecule: "Finastéride",
+        image: produitFinasteride,
+        alt: "Comprimés de finastéride sous blister, packaging neutre",
         forme: "Comprimé 1 mg",
         posologie:
           "Posologie indicative : un comprimé par jour, en continu. Les premiers effets s'évaluent après 3 à 6 mois.",
@@ -146,6 +166,8 @@ export const domaines: Domaine[] = [
       {
         nom: "Vasodilatateur topique",
         molecule: "Minoxidil 5 %",
+        image: produitMinoxidil,
+        alt: "Flacon spray neutre de solution capillaire au minoxidil",
         forme: "Solution ou mousse à application locale",
         posologie:
           "Posologie indicative : application matin et soir sur cuir chevelu sec, sur les zones concernées.",
@@ -185,6 +207,8 @@ export const domaines: Domaine[] = [
       {
         nom: "Rétinoïde topique",
         molecule: "Trétinoïne",
+        image: produitTretinoine,
+        alt: "Tube de crème neutre à la trétinoïne",
         forme: "Crème 0,025 % à 0,05 %",
         posologie:
           "Posologie indicative : une application le soir, sur peau sèche, en commençant un soir sur deux pendant deux semaines.",
@@ -194,6 +218,8 @@ export const domaines: Domaine[] = [
       {
         nom: "Antibiotique topique de la rosacée",
         molecule: "Métronidazole 0,75 %",
+        image: produitMetronidazole,
+        alt: "Tube de gel neutre au métronidazole",
         forme: "Gel ou crème",
         posologie:
           "Posologie indicative : une à deux applications par jour sur les zones atteintes, pendant plusieurs semaines.",
