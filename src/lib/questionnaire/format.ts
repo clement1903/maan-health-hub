@@ -39,7 +39,7 @@ export function formatAnswer(question: Question, value: AnswerValue | undefined)
       return parts.length ? parts.join(" · ") : "Non renseigné";
     }
     case "file": {
-      const files = value as { name: string }[];
+      const files = value as unknown as { name: string }[];
       return files.length ? files.map((f) => f.name).join(", ") : "Aucun document";
     }
     case "number":

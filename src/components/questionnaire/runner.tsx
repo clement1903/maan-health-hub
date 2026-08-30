@@ -23,12 +23,12 @@ import {
 
 type Props = {
   definition: QuestionnaireDefinition;
-  userId?: string | null;
-  initialAnswers?: Answers;
-  initialQuestionId?: string | null;
-  onAutosave?: (state: { answers: Answers; currentQuestionId: string | null }) => void;
+  userId?: string | null | undefined;
+  initialAnswers?: Answers | undefined;
+  initialQuestionId?: string | null | undefined;
+  onAutosave?: ((state: { answers: Answers; currentQuestionId: string | null }) => void) | undefined;
   onSubmit: (payload: SubmissionPayload) => void | Promise<void>;
-  submitting?: boolean;
+  submitting?: boolean | undefined;
 };
 
 type Phase = "intro" | "questions" | "summary";

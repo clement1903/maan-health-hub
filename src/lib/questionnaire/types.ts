@@ -86,6 +86,7 @@ export type AnswerValue =
   | number
   | boolean
   | string[]
+  | { name: string; path: string }[]
   | Record<string, unknown>
   | null;
 

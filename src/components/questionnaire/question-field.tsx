@@ -11,8 +11,8 @@ type Props = {
   value: AnswerValue | undefined;
   onChange: (value: AnswerValue) => void;
   /** Sélection immédiate → passage automatique à la suite. */
-  onAdvance?: () => void;
-  userId?: string | null;
+  onAdvance?: (() => void) | undefined;
+  userId?: string | null | undefined;
 };
 
 const cardBase =
