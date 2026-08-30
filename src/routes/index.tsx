@@ -280,7 +280,7 @@ function Home() {
               <Tilt className="group relative">
                 <video
                   src={heroVideo.url}
-                  poster={heroPoster}
+                  poster={heroPoster.url}
                   autoPlay
                   muted
                   loop
