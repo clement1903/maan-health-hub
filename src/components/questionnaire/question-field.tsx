@@ -36,6 +36,12 @@ function OptionCard({
   tabIndex?: number | undefined;
   cardRef?: ((el: HTMLButtonElement | null) => void) | undefined;
 }) {
+  const [pop, setPop] = useState(false);
+  const prevSelected = useRef(selected);
+  if (prevSelected.current !== selected) {
+    prevSelected.current = selected;
+    if (selected) setPop(true);
+  }
   return (
     <button
       type="button"
@@ -44,9 +50,11 @@ function OptionCard({
       tabIndex={tabIndex}
       ref={cardRef}
       onClick={onSelect}
+      onAnimationEnd={() => setPop(false)}
       className={cn(
         cardBase,
-        "active:scale-[0.985] data-[just-selected]:animate-[select-pop_0.32s_var(--ease)]",
+        "active:scale-[0.985]",
+        pop && "animate-[select-pop_0.32s_var(--ease)]",
         selected && cardActive,
       )}
     >
