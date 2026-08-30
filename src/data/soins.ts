@@ -18,6 +18,7 @@ export type Produit = {
   molecule: string;
   image: string;
   alt: string;
+  prix: string;
   forme: string;
   posologie: string;
   precautions: string;
@@ -52,6 +53,7 @@ export const domaines: Domaine[] = [
     produits: [
       {
         nom: "Viagra",
+        prix: "54 € / mois",
         molecule: "Sildénafil",
         image: produitViagra,
         alt: "Boîte de Viagra (sildénafil 50 mg, Pfizer) et plaquette de comprimés bleus en losange, traitement de l'érection sur ordonnance",
@@ -63,6 +65,7 @@ export const domaines: Domaine[] = [
       },
       {
         nom: "Sildénafil (générique)",
+        prix: "29 € / mois",
         molecule: "Sildénafil",
         image: produitSildenafil,
         alt: "Boîte et plaquette de comprimés de sildénafil générique, traitement de l'érection sur ordonnance",
@@ -74,6 +77,7 @@ export const domaines: Domaine[] = [
       },
       {
         nom: "Cialis",
+        prix: "62 € / mois",
         molecule: "Tadalafil",
         image: produitCialis,
         alt: "Boîte de Cialis (tadalafil 10 mg, Eli Lilly) et plaquette de comprimés jaunes, traitement de l'érection longue durée sur ordonnance",
@@ -85,6 +89,7 @@ export const domaines: Domaine[] = [
       },
       {
         nom: "Tadalafil (générique)",
+        prix: "34 € / mois",
         molecule: "Tadalafil",
         image: produitTadalafil,
         alt: "Boîte et plaquette de comprimés de tadalafil générique, traitement de l'érection longue durée sur ordonnance",
@@ -126,6 +131,7 @@ export const domaines: Domaine[] = [
     produits: [
       {
         nom: "Wegovy",
+        prix: "249 € / mois",
         molecule: "Sémaglutide (indication perte de poids)",
         image: produitWegovy,
         alt: "Stylo injecteur Wegovy (sémaglutide) et sa boîte, traitement hebdomadaire du surpoids sur ordonnance",
@@ -137,6 +143,7 @@ export const domaines: Domaine[] = [
       },
       {
         nom: "Ozempic",
+        prix: "129 € / mois",
         molecule: "Sémaglutide (indication diabète de type 2)",
         image: produitOzempic,
         alt: "Stylo injecteur Ozempic (sémaglutide) et sa boîte, traitement hebdomadaire du diabète de type 2 sur ordonnance",
@@ -178,6 +185,7 @@ export const domaines: Domaine[] = [
     produits: [
       {
         nom: "Inhibiteur de la 5-alpha-réductase",
+        prix: "24 € / mois",
         molecule: "Finastéride",
         image: produitFinasteride,
         alt: "Boîte et plaquette de comprimés de finastéride 1 mg, traitement quotidien de la chute de cheveux sur ordonnance",
@@ -189,6 +197,7 @@ export const domaines: Domaine[] = [
       },
       {
         nom: "Vasodilatateur topique",
+        prix: "19 € / mois",
         molecule: "Minoxidil 5 %",
         image: produitMinoxidil,
         alt: "Flacon applicateur de solution capillaire au minoxidil 5 %, application locale matin et soir",
@@ -230,6 +239,7 @@ export const domaines: Domaine[] = [
     produits: [
       {
         nom: "Rétinoïde topique",
+        prix: "22 € / mois",
         molecule: "Trétinoïne",
         image: produitTretinoine,
         alt: "Tube de crème à la trétinoïne, rétinoïde topique appliqué le soir sur ordonnance",
@@ -241,6 +251,7 @@ export const domaines: Domaine[] = [
       },
       {
         nom: "Antibiotique topique de la rosacée",
+        prix: "18 € / mois",
         molecule: "Métronidazole 0,75 %",
         image: produitMetronidazole,
         alt: "Tube de gel au métronidazole 0,75 %, traitement local de la rosacée sur ordonnance",

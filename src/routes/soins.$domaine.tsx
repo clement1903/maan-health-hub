@@ -195,18 +195,19 @@ function DomainePage() {
                     <dd className="mt-1 text-pretty">{produit.posologie}</dd>
                   </div>
                 </dl>
-                <Link
-                  to="/questionnaire/$slug"
-                  params={{ slug: domaine.slug }}
-                  search={{ produit: produit.nom }}
-                  aria-label={`Démarrer mon questionnaire pour ${produit.nom}`}
-                  className="group mt-8 inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep"
-                >
-                  Démarrer mon questionnaire
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </Link>
+                <div className="mt-8 flex items-end justify-between gap-4 border-t border-border pt-6">
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                      Prix indicatif
+                    </p>
+                    <p className="mt-1 font-section text-3xl font-medium tracking-tight text-foreground">
+                      {produit.prix}
+                    </p>
+                  </div>
+                  <p className="max-w-[20ch] text-right text-[11px] leading-relaxed text-muted">
+                    Frais de consultation et de livraison détaillés lors de votre parcours.
+                  </p>
+                </div>
               </div>
               <div className="lg:col-span-7">
                 <ProduitCarrousel produit={produit} />
