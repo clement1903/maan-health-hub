@@ -134,8 +134,21 @@ function DomainePage() {
                 dossier fixe la molécule, le dosage et la durée.
               </p>
             </Reveal>
+            {produitSeul && (
+              <div className="mt-6">
+                <Link
+                  to="/soins/$domaine"
+                  params={{ domaine: domaine.slug }}
+                  search={{ produit: undefined }}
+                  className="text-sm font-medium underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
+                >
+                  ← Voir tous les traitements {domaine.titre.toLowerCase()}
+                </Link>
+              </div>
+            )}
             <div className="mt-8 flex flex-wrap gap-2">
-              {domaine.produits.map((p, i) => (
+              {!produitSeul &&
+                domaine.produits.map((p, i) => (
                 <button
                   key={p.nom}
                   type="button"
