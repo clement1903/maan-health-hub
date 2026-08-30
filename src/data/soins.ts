@@ -1,5 +1,7 @@
 import produitSildenafil from "@/assets/produit-sildenafil.jpg";
+import produitViagra from "@/assets/produit-viagra.jpg";
 import produitTadalafil from "@/assets/produit-tadalafil.jpg";
+import produitCialis from "@/assets/produit-cialis.jpg";
 import produitWegovy from "@/assets/produit-wegovy.jpg";
 import produitOzempic from "@/assets/produit-ozempic.jpg";
 import produitFinasteride from "@/assets/produit-finasteride.jpg";
