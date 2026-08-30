@@ -28,9 +28,13 @@ export function SiteHeader() {
         )}
       >
         <Link to="/" className="flex items-baseline gap-3">
-          <span className="font-display text-2xl font-semibold leading-none tracking-tight">
-            MAAN
+          <span className="relative inline-block">
+            <span className="relative z-10 font-display text-2xl font-semibold leading-none tracking-tight">
+              MAAN
+            </span>
+            <span className="absolute inset-x-0 -bottom-0.5 z-0 h-2 rounded-sm bg-amber/45" />
           </span>
+
           <span
             className={cn(
               "hidden overflow-hidden whitespace-nowrap font-signature text-xl leading-none text-clay transition-all duration-500 ease-[var(--ease)] sm:block",
