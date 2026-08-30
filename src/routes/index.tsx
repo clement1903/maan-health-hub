@@ -255,10 +255,20 @@ function Home() {
                   Voir le parcours
                 </a>
               </div>
-              <p className="mt-5 flex animate-[rise_0.6s_var(--ease)_0.32s_both] items-center gap-2.5 text-sm text-muted">
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
-                Consultation gratuite et sans engagement
-              </p>
+              <div className="mt-5 flex animate-[rise_0.6s_var(--ease)_0.32s_both] flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
+                <span className="flex items-center gap-2.5">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
+                  Consultation 100% gratuite et sans engagement
+                </span>
+                <span className="flex items-center gap-2.5">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
+                  Traitement personnalisé
+                </span>
+                <span className="flex items-center gap-2.5">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
+                  Livraison discrète
+                </span>
+              </div>
               <div className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-border pt-6">
                 <div>
                   <CountUp
