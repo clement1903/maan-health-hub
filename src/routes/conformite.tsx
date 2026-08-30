@@ -73,6 +73,21 @@ const blocs = [
       "En cas d'incident de livraison, la pharmacie assure le remplacement selon la réglementation en vigueur.",
     ],
   },
+  {
+    id: "medical",
+    tag: "Information médicale",
+    title: "Aucune décision automatisée",
+    intro:
+      "Les informations présentées sur ce site sont fournies à titre indicatif et ne remplacent pas un avis médical.",
+    points: [
+      "Les médicaments présentés sont disponibles sur ordonnance uniquement : aucun traitement n'est vendu ni délivré sans prescription d'un médecin.",
+      "Les posologies affichées sont indicatives ; seul le médecin fixe la dose adaptée à votre situation.",
+      "Le questionnaire médical ne constitue ni un diagnostic, ni une prescription. Vos réponses sont transmises telles quelles à un médecin indépendant, seul habilité à décider si un traitement est approprié, si des informations complémentaires sont nécessaires, ou s'il n'est pas adapté.",
+      "Aucune décision n'est automatisée. Répondez avec précision et sincérité : la qualité de l'évaluation en dépend.",
+      "Lisez toujours la notice et signalez tout effet indésirable à votre médecin ou à la pharmacie qui vous a dispensé le médicament.",
+      "En cas d'urgence, contactez le 15 ou le 112.",
+    ],
+  },
 ];
 
 function ConformitePage() {
