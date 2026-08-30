@@ -84,13 +84,14 @@ export function SoinsShowcase({ soins }: { soins: Soin[] }) {
               </li>
             ))}
           </ul>
-          <a
-            href="#cta"
+          <Link
+            to="/questionnaire"
             className="group mt-8 inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:bg-clay-deep hover:gap-3"
           >
-            Consulter pour {current.tag.toLowerCase()}
+            Commencer ma consultation
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-          </a>
+          </Link>
+
         </div>
       </div>
     </div>
