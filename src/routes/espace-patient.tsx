@@ -426,6 +426,67 @@ function QuestionnaireTab({
 
 const trackSteps = orderSteps.map((s) => s.key) as string[];
 
+const overviewSteps = [
+  { key: "en_attente_validation", label: "Reçu" },
+  { key: "prescription_validee", label: "En revue / approuvé" },
+  { key: "en_preparation", label: "En préparation" },
+  { key: "expedie", label: "Expédié" },
+  { key: "livre", label: "Livré" },
+];
+
+function StatusOverview({ orders }: { orders: Order[] }) {
+  const latest = orders[0];
+  if (!latest) return null;
+  const index = Math.max(0, trackSteps.indexOf(latest.status));
+  const pct = ((index + 1) / overviewSteps.length) * 100;
+
+  return (
+    <section className="rounded-[20px] border border-border bg-background p-6">
+      <div className="flex flex-wrap items-baseline justify-between gap-3">
+        <div>
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-clay">
+            Statut de ma demande
+          </p>
+          <h3 className="mt-1 font-section text-2xl font-medium tracking-tight">
+            {statusLabels[latest.status] ?? latest.status}
+          </h3>
+        </div>
+        <span className="rounded-full border border-clay/30 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-clay">
+          {paymentStatusLabels[latest.payment_status] ?? latest.payment_status}
+        </span>
+      </div>
+
+      <div
+        className="mt-5 h-1.5 w-full overflow-hidden rounded-full bg-border"
+        role="progressbar"
+        aria-valuenow={Math.round(pct)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label="Avancement de la demande"
+      >
+        <span
+          className="block h-full rounded-full bg-clay transition-[width] duration-700 ease-[var(--ease)]"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+
+      <ol className="mt-4 grid gap-2 sm:grid-cols-5">
+        {overviewSteps.map((s, i) => (
+          <li
+            key={s.key}
+            className={cn(
+              "rounded-xl border px-3 py-2 text-center font-mono text-[10px] uppercase tracking-[0.1em] transition-colors",
+              i <= index ? "border-clay/40 bg-clay/[0.07] text-clay" : "border-border text-muted",
+            )}
+          >
+            {s.label}
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
 function SuiviTab({
   orders,
   events,
