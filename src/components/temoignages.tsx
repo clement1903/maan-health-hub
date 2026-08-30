@@ -67,7 +67,7 @@ export function Temoignages() {
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-              (d) — Témoignages
+              Témoignages
             </p>
             <h2 className="mt-3 max-w-[24ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
               Ils en parlent, en vidéo.

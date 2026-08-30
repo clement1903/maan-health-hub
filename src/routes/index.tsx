@@ -301,7 +301,7 @@ function Home() {
             <Reveal className="flex flex-wrap items-end justify-between gap-6">
               <div>
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-                  (a) — Nos soins
+                  Nos soins
                 </p>
                 <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
                   Choisissez la spécialité qui vous concerne.
@@ -318,7 +318,7 @@ function Home() {
         <section id="parcours" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16 lg:py-24">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-              (b) — Le parcours
+              Le parcours
             </p>
             <h2 className="mt-3 max-w-[24ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
               Quatre étapes, sans déplacement.
@@ -337,7 +337,7 @@ function Home() {
         <section id="faq" className="mx-auto max-w-4xl scroll-mt-24 px-6 py-16 lg:py-24">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-              (e) — Questions
+              Questions
             </p>
             <h2 className="mt-3 font-section text-3xl font-medium tracking-tight lg:text-4xl">
               Avant de commencer

@@ -82,10 +82,10 @@ export function MedecinsSection() {
       <div className="mx-auto max-w-6xl px-6 py-16 lg:py-24">
         <Reveal>
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-            (c) — Les médecins
+            Les médecins
           </p>
           <h2 className="mt-3 max-w-[26ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-            Derrière chaque décision, un médecin identifiable.
+            Derrière chaque décision, un professionnel de santé identifiable.
           </h2>
           <p className="mt-4 max-w-[56ch] text-pretty text-muted">
             Les praticiens qui évaluent votre dossier sont des médecins agréés, inscrits à l'Ordre

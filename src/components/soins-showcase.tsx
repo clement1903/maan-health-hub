@@ -58,10 +58,8 @@ export function SoinsShowcase({ soins }: { soins: Soin[] }) {
               )}
             />
           ))}
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_20%_0%,transparent,color-mix(in_oklab,var(--foreground)_28%,transparent))]" />
-          <span className="absolute bottom-5 left-6 font-mono text-[11px] uppercase tracking-[0.16em] text-cream/90">
-            {current.tag} Management
-          </span>
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_20%_0%,transparent,color-mix(in_oklab,var(--foreground)_18%,transparent))]" />
+
         </div>
 
         <div key={current.n} className="animate-[rise_0.55s_var(--ease)_both] bg-background p-8 lg:col-span-6 lg:p-10">

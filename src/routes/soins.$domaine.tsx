@@ -4,7 +4,7 @@ import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
-import { getDomaine, domaines } from "@/data/soins";
+import { getDomaine, domaines, contenus } from "@/data/soins";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/soins/$domaine")({
@@ -83,7 +83,9 @@ function DomaineIntrouvable() {
 
 function DomainePage() {
   const { domaine } = Route.useLoaderData();
+  const contenu = contenus[domaine.slug];
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
 
   return (
     <div className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
@@ -128,7 +130,51 @@ function DomainePage() {
           </div>
         </section>
 
+        {contenu && (
+          <section className="border-b border-border">
+            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 lg:grid-cols-12 lg:py-20">
+              <Reveal className="lg:col-span-7">
+                <h2 className="font-section text-3xl font-medium tracking-tight lg:text-4xl">
+                  Comprendre {domaine.titre.toLowerCase()}
+                </h2>
+                <p className="mt-5 max-w-[60ch] text-pretty text-muted">{contenu.intro}</p>
+                <h3 className="mt-10 font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
+                  Qui est concerné
+                </h3>
+                <ul className="mt-4 space-y-2">
+                  {contenu.concerne.map((c) => (
+                    <li key={c} className="flex gap-3 text-sm">
+                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-clay" />
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+              <Reveal delay={100} className="lg:col-span-5">
+                <div className="grid gap-4">
+                  {contenu.chiffres.map((c) => (
+                    <div key={c.label} className="rounded-[18px] border border-border bg-cream p-6">
+                      <p className="font-display text-3xl font-medium tracking-tight text-clay">
+                        {c.valeur}
+                      </p>
+                      <p className="mt-2 text-pretty text-sm">{c.label}</p>
+                      <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+                        {c.source}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-4 text-pretty text-xs text-muted">
+                  Ordres de grandeur donnés à titre informatif. Ils ne constituent ni un diagnostic
+                  ni une recommandation de traitement.
+                </p>
+              </Reveal>
+            </div>
+          </section>
+        )}
+
         <section className="bg-cream">
+
           <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
             <Reveal>
               <h2 className="font-section text-3xl font-medium tracking-tight lg:text-4xl">
