@@ -6,7 +6,6 @@ import { ArrowRight, Check, Clock, ShieldCheck } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { questionnaireDefinitions } from "@/lib/questionnaire/definitions";
-import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/questionnaire/")({
