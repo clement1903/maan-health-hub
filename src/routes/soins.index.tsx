@@ -78,57 +78,7 @@ function SoinsIndex() {
             className={`scroll-mt-24 border-b border-border ${i % 2 === 1 ? "bg-cream" : ""}`}
           >
             <div className="mx-auto max-w-6xl px-6 py-14 lg:py-20">
-              <Reveal className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
-                <div className="lg:col-span-5">
-                  <img
-                    src={d.image}
-                    alt={`Spécialité MAAN ${d.titre} — ${d.tag}`}
-                    loading="lazy"
-                    width={1024}
-                    height={768}
-                    className="aspect-[4/3] w-full rounded-[20px] object-cover shadow-[0_40px_100px_-70px_var(--foreground)]"
-                  />
-                </div>
-                <div className="lg:col-span-7">
-                  <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-                    {d.tag}
-                  </p>
-                  <h2 className="mt-3 font-section text-3xl font-medium tracking-tight lg:text-4xl">
-                    {d.titre}
-                  </h2>
-                  <p className="mt-3 max-w-[56ch] text-pretty text-muted">{d.chapo}</p>
-                  <ul className="mt-6 space-y-2">
-                    {d.indications.map((ind) => (
-                      <li key={ind} className="flex items-start gap-3 text-sm">
-                        <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
-                        <span className="text-pretty">{ind}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
-
-              <ProduitCarousel produits={d.produits} label={d.titre} domaineSlug={d.slug} />
-
-              <div className="mt-6 flex flex-wrap items-center gap-4">
-                <Link
-                  to="/soins/$domaine"
-                  params={{ domaine: d.slug }}
-                  className="group inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep"
-                >
-                  En savoir plus sur {d.titre.toLowerCase()}
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </Link>
-                <Link
-                  to="/questionnaire/$slug"
-                  params={{ slug: d.slug }}
-                  className="font-medium underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
-                >
-                  Commencer le questionnaire
-                </Link>
-              </div>
+              <DomaineSection domaine={d} />
             </div>
           </section>
         ))}
