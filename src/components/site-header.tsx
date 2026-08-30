@@ -27,8 +27,10 @@ export function SiteHeader() {
           condensed ? "py-3" : "py-5",
         )}
       >
-        <Link to="/" className="flex items-baseline gap-3">
-          <span className="font-display text-2xl font-semibold tracking-tight">MAAN</span>
+        <Link to="/" className="flex items-center gap-3">
+          <span className="font-display text-2xl font-semibold leading-none tracking-tight">
+            MAAN
+          </span>
           <span
             className={cn(
               "hidden -rotate-2 overflow-hidden whitespace-nowrap font-signature text-xl leading-none text-clay transition-all duration-500 ease-[var(--ease)] sm:block",
@@ -39,12 +41,13 @@ export function SiteHeader() {
           </span>
         </Link>
         <nav className="hidden items-center gap-8 font-mono text-[11px] uppercase tracking-[0.15em] text-muted lg:flex">
-          <a
-            href="/#soins"
+          <Link
+            to="/soins"
+            activeProps={{ className: "text-foreground" }}
             className="relative py-1 transition-colors hover:text-foreground after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-clay after:transition-transform after:duration-500 after:ease-[var(--ease)] hover:after:scale-x-100"
           >
             Soins
-          </a>
+          </Link>
           {nav.map((n) => (
             <Link
               key={n.to}

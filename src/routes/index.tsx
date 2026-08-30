@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
 import heroBox from "@/assets/hero-box.jpg";
+import heroVideo from "@/assets/hero-parcours.mp4.asset.json";
 import soinSexual from "@/assets/soin-sexual.jpg";
 import soinWeight from "@/assets/soin-weight.jpg";
 import soinHair from "@/assets/soin-hair.jpg";
@@ -235,7 +236,8 @@ function Home() {
                   Voir le parcours
                 </a>
               </div>
-              <p className="mt-4 animate-[rise_0.6s_var(--ease)_0.32s_both] font-signature text-2xl leading-none text-clay">
+              <p className="mt-5 flex animate-[rise_0.6s_var(--ease)_0.32s_both] items-center gap-2.5 text-sm text-muted">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
                 Consultation gratuite et sans engagement
               </p>
               <div className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-border pt-6">
@@ -276,21 +278,16 @@ function Home() {
               style={{ transform: `translateY(${Math.min(scrollY, 400) * -0.05}px)` }}
             >
               <Tilt className="group relative">
-                <img
-                  src={heroBox}
-                  alt="Homme recevant un colis neutre et discret à sa porte, en pleine lumière dorée"
-                  width={1024}
-                  height={1280}
+                <video
+                  src={heroVideo.url}
+                  poster={heroBox}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  aria-label="Un homme préoccupé trouve une solution avec MAAN : questionnaire, évaluation médicale, préparation en pharmacie et livraison discrète à domicile"
                   className="aspect-[4/5] w-full rounded-[24px] object-cover shadow-[0_50px_120px_-60px_var(--foreground)] transition-transform duration-[900ms] ease-[var(--ease)] group-hover:scale-[1.015]"
                 />
-                <div className="absolute -bottom-6 -left-4 animate-[floaty_6s_ease-in-out_infinite] rounded-2xl border border-border bg-background/90 p-4 shadow-[0_24px_60px_-40px_var(--foreground)] backdrop-blur-md sm:-left-8">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                    Ordonnance délivrée
-                  </p>
-                  <p className="mt-1 font-display text-lg font-medium tracking-tight">
-                    par un médecin agréé
-                  </p>
-                </div>
               </Tilt>
             </div>
           </div>
@@ -307,7 +304,7 @@ function Home() {
                   (a) — Nos soins
                 </p>
                 <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-                  4 spécialités, un même soin.
+                  Choisissez la spécialité qui vous concerne.
                 </h2>
               </div>
             </Reveal>
