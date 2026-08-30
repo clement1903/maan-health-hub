@@ -56,7 +56,6 @@ const soins: Soin[] = [
     tag: "Sexual",
     title: "Sexual Management",
     desc: "Dysfonction érectile, libido, andropause : un sujet traité sereinement, sans jugement.",
-    cost: "dès 49 €",
     img: soinSexual,
     alt: "Homme détendu au réveil dans une lumière dorée, serein et confiant",
     points: [
@@ -70,7 +69,6 @@ const soins: Soin[] = [
     tag: "Weight",
     title: "Weight Management",
     desc: "Surpoids, métabolisme, habitudes : un accompagnement médical structuré dans la durée.",
-    cost: "dès 59 €",
     img: soinWeight,
     alt: "Homme qui lace ses chaussures de course au lever du soleil",
     points: [
@@ -84,7 +82,6 @@ const soins: Soin[] = [
     tag: "Hair",
     title: "Hair Management",
     desc: "Chute de cheveux, calvitie, cuir chevelu : agir tôt change tout.",
-    cost: "dès 45 €",
     img: soinHair,
     alt: "Homme vérifiant sa ligne de cheveux devant un miroir en lumière chaude",
     points: [
@@ -98,7 +95,6 @@ const soins: Soin[] = [
     tag: "Skin",
     title: "Skin Management",
     desc: "Acné, peau grasse, rides, taches : une routine validée médicalement.",
-    cost: "dès 42 €",
     img: soinSkin,
     alt: "Homme appliquant une crème de soin sur le visage devant un miroir",
     points: [
@@ -152,7 +148,7 @@ const faq = [
   },
   {
     q: "Que se passe-t-il si le médecin refuse de prescrire ?",
-    a: "Vous recevez un motif écrit dans votre espace patient et des orientations adaptées. Les frais de consultation couvrent l'analyse médicale, quelle que soit la décision : un refus est un acte médical, pas un échec de commande.",
+    a: "Vous recevez un motif écrit dans votre espace patient et des orientations adaptées. La consultation est gratuite et sans engagement : un refus est un acte médical, pas un échec de commande.",
   },
   {
     q: "L'ordonnance m'appartient-elle ?",
@@ -168,7 +164,7 @@ const faq = [
   },
   {
     q: "La livraison est-elle vraiment discrète ?",
-    a: "Le colis est neutre : aucune mention du contenu, du domaine de soin ni de la marque. Vous choisissez la livraison à domicile ou en point relais.",
+    a: "Le colis est neutre : aucune mention du contenu, de la spécialité ni de la marque. Vous choisissez la livraison à domicile ou en point relais.",
   },
 ];
 
