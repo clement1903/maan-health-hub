@@ -29,6 +29,7 @@ export function SiteFooter() {
                   key={s.slug}
                   to="/soins/$domaine"
                   params={{ domaine: s.slug }}
+                  search={{ produit: undefined }}
                   className="block transition-colors hover:text-clay"
                 >
                   {s.label}

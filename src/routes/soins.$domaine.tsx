@@ -10,6 +10,9 @@ import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/soins/$domaine")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    produit: typeof search["produit"] === "string" ? (search["produit"] as string) : undefined,
+  }),
   loader: ({ params }) => {
     const domaine = getDomaine(params.domaine);
     if (!domaine) throw notFound();
@@ -67,14 +70,15 @@ function DomaineIntrouvable() {
         <p className="mt-4 text-muted">Cette spécialité n'existe pas.</p>
         <div className="mt-8 flex flex-wrap gap-3">
           {domaines.map((d) => (
-            <Link
-              key={d.slug}
-              to="/soins/$domaine"
-              params={{ domaine: d.slug }}
-              className="rounded-full border border-border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-muted hover:border-clay/40 hover:text-foreground"
-            >
-              {d.tag}
-            </Link>
+              <Link
+                key={d.slug}
+                to="/soins/$domaine"
+                params={{ domaine: d.slug }}
+                search={{ produit: undefined }}
+                className="rounded-full border border-border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-muted hover:border-clay/40 hover:text-foreground"
+              >
+                {d.tag}
+              </Link>
           ))}
         </div>
       </main>
@@ -85,9 +89,14 @@ function DomaineIntrouvable() {
 
 function DomainePage() {
   const { domaine } = Route.useLoaderData();
+  const { produit: produitSearch } = Route.useSearch();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [activeProduit, setActiveProduit] = useState(0);
+  const [activeProduit, setActiveProduit] = useState(() => {
+    const idx = domaine.produits.findIndex((p) => p.nom === produitSearch);
+    return idx >= 0 ? idx : 0;
+  });
   const produit = domaine.produits[activeProduit] ?? domaine.produits[0]!;
+  const produitSeul = domaine.produits.some((p) => p.nom === produitSearch);
 
 
 
@@ -126,8 +135,21 @@ function DomainePage() {
                 dossier fixe la molécule, le dosage et la durée.
               </p>
             </Reveal>
+            {produitSeul && (
+              <div className="mt-6">
+                <Link
+                  to="/soins/$domaine"
+                  params={{ domaine: domaine.slug }}
+                  search={{ produit: undefined }}
+                  className="text-sm font-medium underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
+                >
+                  ← Voir tous les traitements {domaine.titre.toLowerCase()}
+                </Link>
+              </div>
+            )}
             <div className="mt-8 flex flex-wrap gap-2">
-              {domaine.produits.map((p, i) => (
+              {!produitSeul &&
+                domaine.produits.map((p, i) => (
                 <button
                   key={p.nom}
                   type="button"
@@ -249,6 +271,7 @@ function DomainePage() {
                   key={d.slug}
                   to="/soins/$domaine"
                   params={{ domaine: d.slug }}
+                  search={{ produit: undefined }}
                   className="rounded-full border border-border bg-background px-4 py-2 text-sm transition-colors hover:border-clay/40 hover:text-clay"
                 >
                   {d.titre}
