@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-import { domaines } from "@/data/soins";
+import { domaines, type Produit } from "@/data/soins";
 import { Reveal } from "@/components/reveal";
 import { ImageZoom } from "@/components/image-zoom";
 import { SiteHeader } from "@/components/site-header";
