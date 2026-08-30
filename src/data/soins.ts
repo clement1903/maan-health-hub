@@ -221,3 +221,120 @@ export const domaines: Domaine[] = [
 export function getDomaine(slug: string) {
   return domaines.find((d) => d.slug === slug);
 }
+
+export type Contenu = {
+  intro: string;
+  concerne: string[];
+  chiffres: { valeur: string; label: string; source: string }[];
+};
+
+export const contenus: Record<string, Contenu> = {
+  sexuel: {
+    intro:
+      "Les troubles de l'érection sont fréquents et rarement isolés : fatigue, stress, tabac, alcool, diabète, hypertension ou certains médicaments peuvent y contribuer. C'est un motif de consultation courant, et souvent le premier signe d'un déséquilibre plus général qu'un médecin peut explorer.",
+    concerne: [
+      "Hommes constatant des difficultés d'érection régulières depuis plus de trois mois",
+      "Hommes présentant une éjaculation plus rapide que souhaitée, de façon répétée",
+      "Hommes avec facteurs de risque cardiovasculaires ou métaboliques (tabac, diabète, surpoids)",
+      "Hommes dont la vie de couple ou la confiance est affectée par la situation",
+    ],
+    chiffres: [
+      {
+        valeur: "≈ 1 sur 5",
+        label: "hommes adultes concernés par des troubles de l'érection",
+        source: "Estimation de prévalence issue de la littérature médicale internationale",
+      },
+      {
+        valeur: "Augmente avec l'âge",
+        label: "la fréquence progresse nettement après 40 ans",
+        source: "Données épidémiologiques générales",
+      },
+      {
+        valeur: "Souvent multifactoriel",
+        label: "causes physiques et psychologiques fréquemment associées",
+        source: "Consensus médical",
+      },
+    ],
+  },
+  poids: {
+    intro:
+      "Le surpoids n'est pas un simple manque de volonté : métabolisme, sommeil, stress, traitements et habitudes alimentaires interagissent. Un accompagnement médical permet d'objectiver la situation, de fixer des objectifs réalistes et de suivre l'évolution dans la durée.",
+    concerne: [
+      "Hommes dont l'IMC se situe au-dessus de la zone considérée comme normale",
+      "Hommes ayant repris du poids après plusieurs tentatives de régime",
+      "Hommes présentant des facteurs associés : hypertension, glycémie élevée, apnée du sommeil",
+      "Hommes cherchant un cadre médical plutôt qu'une solution en libre accès",
+    ],
+    chiffres: [
+      {
+        valeur: "Majorité d'adultes",
+        label: "en surpoids ou en situation d'obésité dans de nombreux pays européens",
+        source: "Données de santé publique européennes",
+      },
+      {
+        valeur: "Suivi long",
+        label: "les résultats durables reposent sur un accompagnement de plusieurs mois",
+        source: "Recommandations générales de prise en charge",
+      },
+      {
+        valeur: "Risques associés",
+        label: "diabète de type 2, hypertension et troubles du sommeil",
+        source: "Littérature médicale",
+      },
+    ],
+  },
+  cheveux: {
+    intro:
+      "L'alopécie androgénétique est la cause la plus fréquente de chute de cheveux chez l'homme. Elle évolue progressivement, généralement des tempes vers le sommet du crâne. Plus la prise en charge est précoce, plus l'objectif de préserver les cheveux existants est réaliste.",
+    concerne: [
+      "Hommes constatant un recul des golfes temporaux ou un éclaircissement du vertex",
+      "Hommes avec des antécédents familiaux de calvitie",
+      "Hommes en début de chute, avec une densité encore majoritairement préservée",
+      "Hommes souhaitant stabiliser l'évolution avant qu'elle ne s'installe",
+    ],
+    chiffres: [
+      {
+        valeur: "≈ 1 sur 2",
+        label: "hommes touchés par une calvitie à partir de la cinquantaine",
+        source: "Estimation issue de la littérature dermatologique",
+      },
+      {
+        valeur: "Dès 20-30 ans",
+        label: "les premiers signes apparaissent souvent chez l'adulte jeune",
+        source: "Données dermatologiques générales",
+      },
+      {
+        valeur: "Agir tôt",
+        label: "les traitements visent surtout à ralentir la chute, pas à recréer un cheveu perdu",
+        source: "Consensus médical",
+      },
+    ],
+  },
+  peau: {
+    intro:
+      "Acné persistante, peau grasse, rougeurs ou marques : la peau masculine, souvent plus épaisse et soumise au rasage, réagit différemment. Une routine validée médicalement évite les essais successifs de produits inadaptés.",
+    concerne: [
+      "Hommes avec une acné qui persiste à l'âge adulte",
+      "Hommes gênés par des rougeurs, une peau grasse ou des irritations liées au rasage",
+      "Hommes ayant déjà essayé plusieurs produits sans résultat stable",
+      "Hommes souhaitant traiter des marques ou des taches post-inflammatoires",
+    ],
+    chiffres: [
+      {
+        valeur: "Très fréquente",
+        label: "l'acné touche la grande majorité des adolescents et persiste chez de nombreux adultes",
+        source: "Données dermatologiques générales",
+      },
+      {
+        valeur: "Plusieurs semaines",
+        label: "les traitements cutanés demandent en général 8 à 12 semaines avant évaluation",
+        source: "Recommandations dermatologiques usuelles",
+      },
+      {
+        valeur: "Rasage",
+        label: "facteur d'irritation spécifique chez l'homme",
+        source: "Littérature dermatologique",
+      },
+    ],
+  },
+};
