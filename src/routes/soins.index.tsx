@@ -132,7 +132,7 @@ function SoinsIndex() {
                         </p>
                         <p className="mt-1 text-sm text-muted">{p.nom}</p>
                       </div>
-                      <dl className="mt-5 space-y-3 border-t border-border pt-4 text-sm">
+                      <dl className="mt-5 space-y-3 border-t border-border p-6 pt-4 text-sm">
                         <div>
                           <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
                             Forme
