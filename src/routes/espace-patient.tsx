@@ -13,6 +13,7 @@ import {
   MessagesPanel,
   FollowUpPanel,
   NotificationPreferences,
+  NotificationsFeed,
 } from "@/components/patient-panels";
 import { orderSteps } from "@/lib/order-status";
 import { downloadQuestionnairePdf } from "@/lib/questionnaire-pdf";
@@ -236,6 +237,7 @@ function Dashboard({ email, userId }: { email: string; userId: string }) {
       {tab === "suivi" && (
         <>
           <SuiviTab orders={orders.data ?? []} events={events.data ?? []} userId={userId} />
+          <NotificationsFeed userId={userId} />
           <FollowUpPanel userId={userId} orderId={orders.data?.[0]?.id ?? null} />
         </>
       )}

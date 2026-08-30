@@ -528,3 +528,53 @@ export function NotificationPreferences({ userId }: { userId: string }) {
     </div>
   );
 }
+
+/* ------------------------------ Notifications ----------------------------- */
+
+const notificationChannelLabels: Record<string, string> = {
+  email: "E-mail",
+  sms: "SMS",
+};
+
+export function NotificationsFeed({ userId }: { userId: string }) {
+  const notifications = useQuery({
+    queryKey: ["notifications", userId],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("notifications")
+        .select("id, channel, subject, body, status, created_at")
+        .order("created_at", { ascending: false })
+        .limit(20);
+      if (error) throw error;
+      return data ?? [];
+    },
+  });
+
+  return (
+    <section className="mt-6 rounded-[20px] border border-border bg-background p-6">
+      <h3 className="font-section text-lg font-medium tracking-tight">Notifications</h3>
+      <p className="mt-1 text-sm text-muted">
+        Chaque changement de statut déclenche un message discret, sans mention du traitement.
+      </p>
+      <div className="mt-5 space-y-3">
+        {(notifications.data ?? []).length === 0 && (
+          <p className="text-sm text-muted">Aucune notification pour le moment.</p>
+        )}
+        {(notifications.data ?? []).map((n) => (
+          <article key={n.id} className="rounded-2xl border border-border bg-cream p-4">
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <p className="text-sm font-medium">{n.subject}</p>
+              <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-clay">
+                {notificationChannelLabels[n.channel] ?? n.channel}
+              </span>
+            </div>
+            <p className="mt-1 text-sm text-muted">{n.body}</p>
+            <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
+              {new Date(n.created_at).toLocaleString("fr-FR")}
+            </p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
