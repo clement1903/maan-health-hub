@@ -201,6 +201,33 @@ function DomainePage() {
         <section className="border-b border-border">
           <div className="mx-auto max-w-6xl px-6 py-14 lg:py-16">
             <Reveal>
+              <nav aria-label="Fil d'Ariane" className="mb-8">
+                <ol className="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+                  <li>
+                    <Link
+                      to="/soins"
+                      className="transition-colors hover:text-clay"
+                    >
+                      Nos soins
+                    </Link>
+                  </li>
+                  <li aria-hidden="true" className="text-border">/</li>
+                  <li>
+                    <Link
+                      to="/soins/$domaine"
+                      params={{ domaine: domaine.slug }}
+                      search={{ produit: undefined }}
+                      className="transition-colors hover:text-clay"
+                    >
+                      {domaine.tag}
+                    </Link>
+                  </li>
+                  <li aria-hidden="true" className="text-border">/</li>
+                  <li aria-current="page" className="text-foreground">
+                    {produit.nom}
+                  </li>
+                </ol>
+              </nav>
               <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
                 {domaine.tag}
               </p>
@@ -231,13 +258,12 @@ function DomainePage() {
             </Reveal>
             {produitSeul && (
               <div className="mt-6">
-                <button
-                  type="button"
-                  onClick={() => window.history.back()}
+                <Link
+                  to="/soins"
                   className="text-sm font-medium underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
                 >
                   ← Retour
-                </button>
+                </Link>
               </div>
             )}
             <div className="mt-8 flex flex-wrap gap-2">
