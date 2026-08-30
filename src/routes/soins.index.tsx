@@ -138,3 +138,122 @@ function SoinsIndex() {
     </div>
   );
 }
+
+function ProduitCarousel({ produits, label }: { produits: Produit[]; label: string }) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  const onScroll = useCallback(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const cards = Array.from(el.children) as HTMLElement[];
+    const mid = el.scrollLeft + el.clientWidth / 2;
+    let best = 0;
+    let bestDist = Infinity;
+    cards.forEach((c, i) => {
+      const center = c.offsetLeft + c.offsetWidth / 2;
+      const dist = Math.abs(center - mid);
+      if (dist < bestDist) {
+        bestDist = dist;
+        best = i;
+      }
+    });
+    setActive(best);
+  }, []);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    onScroll();
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [onScroll]);
+
+  const goTo = (i: number) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.children[i] as HTMLElement | undefined;
+    if (card) {
+      el.scrollTo({ left: card.offsetLeft - 24, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <div className="mt-10">
+      <div
+        ref={trackRef}
+        role="region"
+        aria-roledescription="carrousel"
+        aria-label={`Traitements — ${label}`}
+        className="no-scrollbar -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-6 pb-2"
+      >
+        {produits.map((p) => (
+          <article
+            key={p.nom}
+            className="group flex w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-[20px] border border-border bg-background transition-shadow duration-500 ease-[var(--ease)] hover:shadow-[0_30px_70px_-55px_var(--foreground)] sm:w-[62%] lg:w-[calc(50%-8px)]"
+          >
+            <div className="relative border-b border-border bg-cream">
+              <ImageZoom
+                src={p.image}
+                alt={p.alt}
+                caption={`${p.nom} — ${p.forme}`}
+                imgClassName="aspect-[16/10]"
+              />
+              <span className="pointer-events-none absolute right-4 top-4 rounded-full border border-clay/40 bg-background/90 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-clay backdrop-blur">
+                Ordonnance
+              </span>
+            </div>
+            <div className="p-6 pb-0">
+              <p className="font-display text-lg font-medium tracking-tight">{p.nom}</p>
+              <p className="mt-1 text-sm text-muted">{p.molecule}</p>
+            </div>
+            <dl className="mt-5 space-y-3 border-t border-border p-6 pt-4 text-sm">
+              <div>
+                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                  Forme
+                </dt>
+                <dd className="mt-1 text-pretty">{p.forme}</dd>
+              </div>
+              <div>
+                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                  Posologie indicative
+                </dt>
+                <dd className="mt-1 text-pretty text-muted">{p.posologie}</dd>
+              </div>
+              <div>
+                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                  Précautions
+                </dt>
+                <dd className="mt-1 text-pretty text-muted">{p.precautions}</dd>
+              </div>
+            </dl>
+          </article>
+        ))}
+      </div>
+
+      {produits.length > 1 && (
+        <div
+          className="mt-5 flex items-center justify-center gap-2.5"
+          role="tablist"
+          aria-label={`Parcourir les traitements — ${label}`}
+        >
+          {produits.map((p, i) => (
+            <button
+              key={p.nom}
+              type="button"
+              role="tab"
+              aria-selected={active === i}
+              aria-label={`Voir ${p.nom}`}
+              onClick={() => goTo(i)}
+              className={`h-2.5 cursor-pointer rounded-full transition-all duration-300 ease-[var(--ease)] ${
+                active === i
+                  ? "w-7 bg-clay"
+                  : "w-2.5 bg-clay/25 hover:bg-clay/50"
+              }`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
