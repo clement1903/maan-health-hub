@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { domaines, type Produit } from "@/data/soins";
 import { Reveal } from "@/components/reveal";
 import { ImageZoom } from "@/components/image-zoom";
+import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
@@ -245,6 +246,8 @@ function ProduitCarousel({
               <Link
                 to="/questionnaire/$slug"
                 params={{ slug: domaineSlug }}
+                search={{ produit: p.nom }}
+                aria-label={`Commencer le questionnaire pour ${p.nom}`}
                 className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-all duration-300 hover:bg-foreground/90"
               >
                 Commencer le questionnaire
@@ -278,6 +281,8 @@ function ProduitCarousel({
           ))}
         </div>
       )}
+
+      <MedicalDisclaimer className="mt-8" />
     </div>
   );
 }
