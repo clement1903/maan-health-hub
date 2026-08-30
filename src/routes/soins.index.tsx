@@ -128,7 +128,6 @@ function SoinsIndex() {
                     Commencer le questionnaire
                   </Link>
                 </div>
-              </div>
             </div>
           </section>
         ))}
