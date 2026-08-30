@@ -400,8 +400,16 @@ function QuestionnaireTab({
                 </span>
               </div>
               <p className="mt-2 text-sm">{statusLabels[q.status] ?? q.status}</p>
+              <button
+                type="button"
+                onClick={() => downloadQuestionnairePdf(q as never, email)}
+                className="mt-3 rounded-full border border-border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] text-muted transition-colors hover:border-clay/40 hover:text-foreground"
+              >
+                Télécharger le récapitulatif PDF
+              </button>
             </div>
           ))}
+
         </div>
       </aside>
     </div>
