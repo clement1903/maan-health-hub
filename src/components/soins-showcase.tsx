@@ -66,7 +66,7 @@ export function SoinsShowcase({ soins }: { soins: Soin[] }) {
 
         <div key={current.n} className="animate-[rise_0.55s_var(--ease)_both] bg-background p-8 lg:col-span-6 lg:p-10">
           <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-clay">
-            {current.n} · Consultation gratuite
+            {current.n} · {current.tag} Management
           </span>
           <h3 className="mt-4 font-section text-3xl font-medium tracking-tight lg:text-4xl">
             {current.title}

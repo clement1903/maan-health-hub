@@ -304,7 +304,7 @@ function Home() {
                   (a) — Nos soins
                 </p>
                 <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-                  4 spécialités, un même soin.
+                  Choisissez la spécialité qui vous concerne.
                 </h2>
               </div>
             </Reveal>
