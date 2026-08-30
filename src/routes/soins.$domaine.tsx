@@ -85,6 +85,9 @@ function DomainePage() {
   const { domaine } = Route.useLoaderData();
   const contenu = contenus[domaine.slug];
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [activeProduit, setActiveProduit] = useState(0);
+  const produit = domaine.produits[activeProduit] ?? domaine.produits[0]!;
+
 
 
   return (
