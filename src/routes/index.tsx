@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import heroBox from "@/assets/hero-box.jpg";
+import heroPoster from "@/assets/hero-poster.jpg";
 import heroVideo from "@/assets/hero-parcours.mp4.asset.json";
 import soinSexual from "@/assets/soin-sexual.jpg";
 import soinWeight from "@/assets/soin-weight.jpg";
@@ -280,7 +280,7 @@ function Home() {
               <Tilt className="group relative">
                 <video
                   src={heroVideo.url}
-                  poster={heroBox}
+                  poster={heroPoster}
                   autoPlay
                   muted
                   loop
