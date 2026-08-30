@@ -190,7 +190,6 @@ export function QuestionnaireRunner({
           Vous pouvez vous arrêter à tout moment : vos réponses sont enregistrées et vous reprendrez
           exactement où vous en étiez.
         </p>
-        <MedicalDisclaimer variant="questionnaire" className="mt-8 text-left" />
       </div>
     );
   }
