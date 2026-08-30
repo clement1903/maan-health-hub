@@ -195,19 +195,23 @@ function DomainePage() {
                     <dd className="mt-1 text-pretty">{produit.posologie}</dd>
                   </div>
                 </dl>
-                <div className="mt-8 flex items-end justify-between gap-4 border-t border-border pt-6">
-                  <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                      Prix indicatif
-                    </p>
-                    <p className="mt-1 font-section text-3xl font-medium tracking-tight text-foreground">
-                      {produit.prix}
+                {produit.prixUnite != null && produit.prixMensuel != null ? (
+                  <TarifsProduit key={produit.nom} produit={produit} />
+                ) : (
+                  <div className="mt-8 flex items-end justify-between gap-4 border-t border-border pt-6">
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                        Prix indicatif
+                      </p>
+                      <p className="mt-1 font-section text-3xl font-medium tracking-tight text-foreground">
+                        {produit.prix}
+                      </p>
+                    </div>
+                    <p className="max-w-[20ch] text-right text-[11px] leading-relaxed text-muted">
+                      Frais de consultation et de livraison détaillés lors de votre parcours.
                     </p>
                   </div>
-                  <p className="max-w-[20ch] text-right text-[11px] leading-relaxed text-muted">
-                    Frais de consultation et de livraison détaillés lors de votre parcours.
-                  </p>
-                </div>
+                )}
               </div>
               <div className="lg:col-span-7">
                 <ProduitCarrousel produit={produit} />
