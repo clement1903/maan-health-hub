@@ -98,6 +98,12 @@
   to { background-position: -200% 0; }
 }
 
+@keyframes select-pop {
+  0% { transform: scale(0.985); }
+  55% { transform: scale(1.012); }
+  100% { transform: scale(1); }
+}
+
 @keyframes pulse-ring {
   0% { opacity: 0.55; transform: scale(0.9); }
   70% { opacity: 0; transform: scale(1.6); }
