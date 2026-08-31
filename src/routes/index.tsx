@@ -299,6 +299,11 @@ function Home() {
   });
   const condensed = scrollY > 40;
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const { t } = useI18n();
+  const soins = buildSoins(t);
+  const etapes = buildEtapes(t);
+  const faq = buildFaq(t);
+  const marqueeItems = buildMarquee(t);
 
   return (
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
