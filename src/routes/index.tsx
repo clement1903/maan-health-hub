@@ -416,7 +416,7 @@ function Home() {
                     {t("Dossiers accompagnés", "Cases supported")}
                   </p>
                 </div>
-                <span className="hidden h-5 w-px bg-border sm:block" aria-hidden="true" />
+                <span className="hidden h-6 w-px bg-clay/20 sm:block" aria-hidden="true" />
                 <div className="w-1/2 px-5 text-center sm:w-auto sm:min-w-[150px]">
                   <CountUp
                     to={24}
