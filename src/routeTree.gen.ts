@@ -16,6 +16,7 @@ import { Route as ConformiteRouteImport } from './routes/conformite'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as EspacePatientRouteImport } from './routes/espace-patient'
 import { Route as ParcoursRouteImport } from './routes/parcours'
+import { Route as StatistiquesRouteImport } from './routes/statistiques'
 import { Route as QuestionnaireIndexRouteImport } from './routes/questionnaire.index'
 import { Route as QuestionnaireSlugRouteImport } from './routes/questionnaire.$slug'
 import { Route as SoinsIndexRouteImport } from './routes/soins.index'
@@ -56,6 +57,11 @@ const ParcoursRoute = ParcoursRouteImport.update({
   path: '/parcours',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StatistiquesRoute = StatistiquesRouteImport.update({
+  id: '/statistiques',
+  path: '/statistiques',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuestionnaireIndexRoute = QuestionnaireIndexRouteImport.update({
   id: '/questionnaire/',
   path: '/questionnaire/',
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/cookies': typeof CookiesRoute
   '/espace-patient': typeof EspacePatientRoute
   '/parcours': typeof ParcoursRoute
+  '/statistiques': typeof StatistiquesRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
   '/questionnaire/': typeof QuestionnaireIndexRoute
@@ -98,6 +105,7 @@ export interface FileRoutesByTo {
   '/cookies': typeof CookiesRoute
   '/espace-patient': typeof EspacePatientRoute
   '/parcours': typeof ParcoursRoute
+  '/statistiques': typeof StatistiquesRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
   '/questionnaire': typeof QuestionnaireIndexRoute
@@ -112,6 +120,7 @@ export interface FileRoutesById {
   '/cookies': typeof CookiesRoute
   '/espace-patient': typeof EspacePatientRoute
   '/parcours': typeof ParcoursRoute
+  '/statistiques': typeof StatistiquesRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
   '/questionnaire/': typeof QuestionnaireIndexRoute
@@ -127,6 +136,7 @@ export interface FileRouteTypes {
     | '/cookies'
     | '/espace-patient'
     | '/parcours'
+    | '/statistiques'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
     | '/questionnaire/'
@@ -140,6 +150,7 @@ export interface FileRouteTypes {
     | '/cookies'
     | '/espace-patient'
     | '/parcours'
+    | '/statistiques'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
     | '/questionnaire'
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/cookies'
     | '/espace-patient'
     | '/parcours'
+    | '/statistiques'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
     | '/questionnaire/'
@@ -167,6 +179,7 @@ export interface RootRouteChildren {
   CookiesRoute: typeof CookiesRoute
   EspacePatientRoute: typeof EspacePatientRoute
   ParcoursRoute: typeof ParcoursRoute
+  StatistiquesRoute: typeof StatistiquesRoute
   QuestionnaireSlugRoute: typeof QuestionnaireSlugRoute
   SoinsDomaineRoute: typeof SoinsDomaineRoute
   QuestionnaireIndexRoute: typeof QuestionnaireIndexRoute
@@ -224,6 +237,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ParcoursRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/statistiques': {
+      id: '/statistiques'
+      path: '/statistiques'
+      fullPath: '/statistiques'
+      preLoaderRoute: typeof StatistiquesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/questionnaire/': {
       id: '/questionnaire/'
       path: '/questionnaire'
@@ -263,6 +283,7 @@ const rootRouteChildren: RootRouteChildren = {
   CookiesRoute: CookiesRoute,
   EspacePatientRoute: EspacePatientRoute,
   ParcoursRoute: ParcoursRoute,
+  StatistiquesRoute: StatistiquesRoute,
   QuestionnaireSlugRoute: QuestionnaireSlugRoute,
   SoinsDomaineRoute: SoinsDomaineRoute,
   QuestionnaireIndexRoute: QuestionnaireIndexRoute,
