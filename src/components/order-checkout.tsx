@@ -210,7 +210,7 @@ export function OrderCheckout({
         </p>
         <dl className="mt-3 space-y-1 text-sm text-muted">
           <div className="flex justify-between">
-            <dt>{t("Consultation médicale", "Medical consultation")}</dt>
+            <dt>{t("Consultation médicale en ligne", "Online medical consultation")}</dt>
             <dd>{t("Gratuite", "Free")}</dd>
           </div>
           <div className="flex justify-between">
