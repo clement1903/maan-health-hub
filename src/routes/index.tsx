@@ -98,6 +98,7 @@ const soins: Soin[] = [
       "Traitements oraux ou topiques prescrits",
       "Suivi photo tous les 3 mois",
     ],
+    slug: "cheveux",
   },
   {
     n: "04",
@@ -111,6 +112,7 @@ const soins: Soin[] = [
       "Formules préparées en pharmacie",
       "Ajustement selon votre tolérance",
     ],
+    slug: "peau",
   },
 ];
 
