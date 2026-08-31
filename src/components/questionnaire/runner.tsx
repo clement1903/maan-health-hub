@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, Check, Clock, Info, Pencil, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Clock, Info, Pencil, ShieldCheck, ShieldAlert, Video } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
+import { evaluateEligibility } from "@/lib/questionnaire/eligibility";
 import { QuestionField } from "./question-field";
 import {
   evaluateRules,
