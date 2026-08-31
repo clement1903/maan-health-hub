@@ -94,14 +94,6 @@ function ParcoursPage() {
               </h1>
             </Reveal>
 
-            <Reveal delay={120} className="mt-12">
-              <p className="mx-auto max-w-2xl text-pretty text-lg leading-relaxed text-muted">
-                {t(
-                  "Questionnaire médical en ligne, consultation avec un médecin certifié, préparation en pharmacie agréée et suivi personnalisé.",
-                  "Online medical questionnaire, consultation with a certified doctor, preparation at a licensed pharmacy and personalized follow-up.",
-                )}
-              </p>
-            </Reveal>
           </header>
 
           {/* Steps */}
