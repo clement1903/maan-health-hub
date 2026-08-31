@@ -2,7 +2,6 @@ import produitSildenafil from "@/assets/produit-sildenafil.jpg";
 import produitViagra from "@/assets/produit-viagra.jpg";
 import produitTadalafil from "@/assets/produit-tadalafil.jpg";
 import produitCialis from "@/assets/produit-cialis.jpg";
-import produitPriligy from "@/assets/produit-priligy.jpg";
 import produitWegovy from "@/assets/produit-wegovy.jpg";
 import produitOzempic from "@/assets/produit-ozempic.jpg";
 import produitFinasteride from "@/assets/produit-finasteride.jpg";
@@ -104,18 +103,6 @@ export const domaines: Domaine[] = [
         precautions:
           "Mêmes contre-indications cardiovasculaires. Durée d'action jusqu'à 36 h.",
       },
-      {
-        nom: "Priligy",
-        prix: "9,90 € / comprimé",
-        molecule: "Dapoxétine",
-        image: produitPriligy,
-        alt: "Boîte de Priligy 30 mg (dapoxétine, Menarini) et plaquette de 3 comprimés pelliculés bleus, traitement de l'éjaculation précoce sur ordonnance",
-        forme: "Comprimé pelliculé, 30 mg",
-        posologie:
-          "Posologie indicative : 1 comprimé de 30 mg, 1 à 3 heures avant le rapport sexuel, au maximum une fois par 24 h. Le médecin peut ajuster à 60 mg selon la tolérance.",
-        precautions:
-          "Réservé aux hommes de 18 à 64 ans. Contre-indiqué avec les IMAO, les anticoagulants et en cas d'épilepsie non contrôlée. Signalez tout traitement psychiatrique ou cardiaque.",
-      },
     ],
     faq: [
       {
@@ -124,15 +111,11 @@ export const domaines: Domaine[] = [
       },
       {
         q: "Le traitement agit-il sans désir sexuel ?",
-        r: "Non. Les inhibiteurs de la PDE5 nécessitent une stimulation sexuelle pour produire leur effet. La dapoxétine agit sur le timing de l'éjaculation, pas sur l'érection elle-même.",
+        r: "Non. Les inhibiteurs de la PDE5 nécessitent une stimulation sexuelle pour produire leur effet.",
       },
       {
         q: "Puis-je le prendre avec un traitement cardiaque ?",
         r: "Certains traitements cardiaques, en particulier les dérivés nitrés, sont incompatibles. Indiquez-les dans le questionnaire.",
-      },
-      {
-        q: "Quelle différence entre les troubles de l'érection et l'éjaculation précoce ?",
-        r: "L'érection concerne la rigidité et le maintien du pénis, l'éjaculation concerne le contrôle du moment de l'éjaculation. Les deux peuvent coexister. Le médecin oriente vers le traitement adapté après évaluation.",
       },
     ],
   },

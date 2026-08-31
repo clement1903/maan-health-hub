@@ -64,7 +64,7 @@ const soins: Soin[] = [
     n: "01",
     tag: "Santé sexuelle",
     title: "Santé sexuelle",
-    desc: "Une baisse de désir ou des pannes d'érection arrivent à la plupart des hommes au moins une fois dans leur vie. Vous n'êtes pas seul, et ce n'est pas une fatalité : on en parle, sans gêne.",
+    desc: "Une baisse de désir, des pannes d'érection ou une éjaculation précoce arrivent à la plupart des hommes au moins une fois dans leur vie. Vous n'êtes pas seul, et ce n'est pas une fatalité : on en parle, sans gêne.",
     img: soinSexual,
     alt: "Homme détendu au réveil dans une lumière dorée, serein et confiant",
     points: [
