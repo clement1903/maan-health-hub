@@ -435,6 +435,12 @@ function Home() {
                     {t("Spécialités", "Specialties")}
                   </p>
                 </div>
+                <div className="text-center">
+                  <p className="font-display text-2xl font-medium tracking-tight text-clay">BIG</p>
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+                    {t("Médecins certifiés", "Certified doctors")}
+                  </p>
+                </div>
               </div>
             </div>
 
