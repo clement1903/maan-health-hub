@@ -3,11 +3,6 @@ import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
 
-import img3dSexual from "@/assets/3d-sexual.png";
-import img3dWeight from "@/assets/3d-weight.png";
-import img3dHair from "@/assets/3d-hair.png";
-import img3dSkin from "@/assets/3d-skin.png";
-
 type Card = {
   slug: string;
   title: string;
