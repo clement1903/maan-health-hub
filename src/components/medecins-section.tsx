@@ -13,6 +13,7 @@ type Medecin = {
   photo: string;
   role: string;
   specialite: string;
+  big: string;
   approche: string;
   qualifications: string[];
 };
