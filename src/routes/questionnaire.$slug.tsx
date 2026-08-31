@@ -160,13 +160,36 @@ function QuestionnairePage() {
     }
 
     const reference = `MAAN-${Date.now().toString(36).toUpperCase().slice(-6)}`;
-    await supabase.from("orders").insert({
+    const { data: order } = await supabase
+      .from("orders")
+      .insert({
+        user_id: user.id,
+        questionnaire_id: questionnaire.id,
+        reference,
+        treatment: definition.title,
+        status: "en_attente_validation",
+      })
+      .select("id")
+      .single();
+
+    const submittedAt = payload.submittedAt ?? new Date().toISOString();
+    const condition = domainConditions[payload.category] ?? { fr: definition.title, en: definition.title };
+    await supabase.from("care_journeys").insert({
       user_id: user.id,
       questionnaire_id: questionnaire.id,
-      reference,
-      treatment: definition.title,
-      status: "en_attente_validation",
+      order_id: order?.id ?? null,
+      domain: payload.category,
+      title: domainTitles[payload.category] ?? definition.title,
+      condition_fr: condition.fr,
+      condition_en: condition.en,
+      status: "SUBMITTED",
+      stage_index: 1,
+      stages: defaultStages(submittedAt) as never,
+      follow_up: { due: false } as never,
+      photos_enabled: payload.category === "hair" || payload.category === "skin",
+      ...(payload.category === "weight" ? { progress: { kind: "weight", unit: "kg" } as never } : {}),
     });
+
 
     window.localStorage.removeItem(localKey(slug));
     await supabase
