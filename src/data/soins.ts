@@ -104,6 +104,18 @@ export const domaines: Domaine[] = [
         precautions:
           "Mêmes contre-indications cardiovasculaires. Durée d'action jusqu'à 36 h.",
       },
+      {
+        nom: "Priligy",
+        prix: "9,90 € / comprimé",
+        molecule: "Dapoxétine",
+        image: produitPriligy,
+        alt: "Boîte de Priligy 30 mg (dapoxétine, Menarini) et plaquette de 3 comprimés pelliculés bleus, traitement de l'éjaculation précoce sur ordonnance",
+        forme: "Comprimé pelliculé, 30 mg",
+        posologie:
+          "Posologie indicative : 1 comprimé de 30 mg, 1 à 3 heures avant le rapport sexuel, au maximum une fois par 24 h. Le médecin peut ajuster à 60 mg selon la tolérance.",
+        precautions:
+          "Réservé aux hommes de 18 à 64 ans. Contre-indiqué avec les IMAO, les anticoagulants et en cas d'épilepsie non contrôlée. Signalez tout traitement psychiatrique ou cardiaque.",
+      },
     ],
     faq: [
       {
