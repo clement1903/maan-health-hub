@@ -112,7 +112,11 @@ function ParcoursPage() {
               />
             </Reveal>
           </div>
-          <ParcoursProgress etapes={etapesDetaillees} activeIndex={chapitre} />
+          <ParcoursProgress
+            etapes={etapesDetaillees}
+            activeIndex={chapitre}
+            scrollSignal={scrollSignal}
+          />
         </section>
 
 
