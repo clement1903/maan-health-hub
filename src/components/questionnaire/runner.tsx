@@ -132,16 +132,25 @@ export function QuestionnaireRunner({
 
   const canContinue = current ? isQuestionComplete(current, answers) : false;
 
+  const eligibility = useMemo(
+    () => evaluateEligibility(definition.category, answers),
+    [definition.category, answers],
+  );
+
   const submit = async () => {
     const triggered = evaluateRules(definition.rules, answers);
     await onSubmit({
       definitionId: definition.id,
       version: definition.version,
       category: definition.category,
-      answers: productContext ? { ...answers, produit_selectionne: productContext } : answers,
+      answers: {
+        ...answers,
+        ...(productContext ? { produit_selectionne: productContext } : {}),
+        score_eligibilite: eligibility as never,
+      },
       shownQuestions: questions.map((q) => q.id),
       triggeredRules: triggered,
-      overallSignal: highestSignal(triggered.map((t) => t.signal)),
+      overallSignal: highestSignal(triggered.map((r) => r.signal)),
       editLog,
       submittedAt: new Date().toISOString(),
     });
