@@ -13,6 +13,7 @@ import { orderSteps } from "@/lib/order-status";
 import { domaines } from "@/data/soins";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
+import { JourneysAdmin } from "@/components/admin/journeys-admin";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -128,7 +129,7 @@ function AdminPage() {
 function AdminConsole() {
   const { t } = useI18n();
   const qc = useQueryClient();
-  const [tab, setTab] = useState<"questionnaires" | "commandes" | "notifications">(
+  const [tab, setTab] = useState<"questionnaires" | "parcours" | "commandes" | "notifications">(
     "questionnaires",
   );
   const dispatch = useServerFn(dispatchNotifications);
@@ -219,10 +220,11 @@ function AdminConsole() {
       </div>
       {flash && <p className="mt-3 text-sm text-clay">{flash}</p>}
 
-      <div className="mt-8 flex w-full max-w-xl rounded-full border border-border p-1 font-mono text-[11px] uppercase tracking-[0.12em]">
+      <div className="mt-8 flex w-full max-w-3xl flex-wrap rounded-full border border-border p-1 font-mono text-[11px] uppercase tracking-[0.12em]">
         {(
           [
             ["questionnaires", t("Questionnaires", "Questionnaires")],
+            ["parcours", t("Parcours patients", "Patient journeys")],
             ["commandes", t("Commandes & expédition", "Orders & shipping")],
             ["notifications", t("Notifications", "Notifications")],
           ] as const
@@ -244,6 +246,7 @@ function AdminConsole() {
       {tab === "questionnaires" && (
         <QuestionnairesAdmin list={questionnaires.data ?? []} profileFor={profileFor} />
       )}
+      {tab === "parcours" && <JourneysAdmin profileFor={profileFor} />}
       {tab === "commandes" && (
         <OrdersAdmin
           list={orders.data ?? []}
