@@ -303,8 +303,8 @@ function Home() {
                   </div>
                 </div>
               </div>
-              <div className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-border pt-6">
-                <div>
+              <div className="mt-10 grid grid-cols-3 gap-3 border-t border-border pt-6">
+                <div className="text-center">
                   <CountUp
                     to={dossiersAccompagnes}
                     suffix="+"
@@ -314,7 +314,7 @@ function Home() {
                     Dossiers accompagnés
                   </p>
                 </div>
-                <div>
+                <div className="text-center">
                   <CountUp
                     to={24}
                     suffix="h"
@@ -324,7 +324,7 @@ function Home() {
                     Réponse médicale
                   </p>
                 </div>
-                <div>
+                <div className="text-center">
                   <CountUp
                     to={4}
                     className="font-display text-2xl font-medium tracking-tight text-clay"
