@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
+import type { Soin } from "@/components/soins-showcase";
 
 type Card = {
   slug: string;
@@ -10,82 +11,101 @@ type Card = {
   cta: string;
   gradient: string;
   large?: boolean;
+  desc: string;
 };
 
-/** Carte du bento : inclinaison 3D au survol, sans visuel produit. */
+/** Carte du bento : se retourne au clic pour révéler la description au verso. */
 function BentoCard({ card }: { card: Card }) {
-  const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
-  const [hover, setHover] = useState(false);
-
-  const onMove = (e: React.MouseEvent) => {
-    const r = e.currentTarget.getBoundingClientRect();
-    const px = (e.clientX - r.left) / r.width - 0.5;
-    const py = (e.clientY - r.top) / r.height - 0.5;
-    setTilt({ rx: -py * 10, ry: px * 14 });
-  };
-
-  const reset = () => {
-    setHover(false);
-    setTilt({ rx: 0, ry: 0 });
-  };
+  const { t } = useI18n();
+  const [flipped, setFlipped] = useState(false);
 
   return (
-    <Link
-      to="/soins/$domaine"
-      params={{ domaine: card.slug }}
-      search={{ produit: undefined }}
-      onMouseMove={onMove}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={reset}
-      className={cn(
-        "group relative isolate flex min-h-[220px] overflow-hidden rounded-[28px] p-6 transition-shadow duration-500 lg:p-8",
-        card.large ? "min-h-[340px] lg:min-h-[380px]" : "",
-        hover
-          ? "shadow-[0_50px_100px_-45px_var(--foreground)]"
-          : "shadow-[0_20px_50px_-40px_var(--foreground)]",
-      )}
-      style={{
-        background: card.gradient,
-        transform: `perspective(1100px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg) translateY(${hover ? -4 : 0}px)`,
-        transformStyle: "preserve-3d",
-        transition: "transform 500ms var(--ease), box-shadow 500ms var(--ease)",
-      }}
+    <div
+      className={cn("min-h-[220px] [perspective:1200px]", card.large && "min-h-[340px] lg:min-h-[380px]")}
     >
-      {/* halo lumineux */}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.55),transparent_65%)] opacity-70 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
-      />
-
-      <div className="relative z-10 flex w-full flex-col justify-between">
-        <div style={{ transform: "translateZ(40px)" }}>
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-clay-deep/70">
-            {card.accent}
-          </p>
-          <h3
-            className={cn(
-              "mt-2 max-w-[12ch] text-balance font-section font-medium leading-[1.05] tracking-tight text-foreground",
-              card.large ? "text-3xl lg:text-4xl" : "text-2xl",
-            )}
-          >
-            {card.title}
-          </h3>
-        </div>
+      <button
+        type="button"
+        onClick={() => setFlipped((f) => !f)}
+        aria-pressed={flipped}
+        aria-label={
+          flipped
+            ? t("Revenir au recto de la carte", "Flip the card back")
+            : t("Retourner la carte pour lire la description", "Flip the card to read the description")
+        }
+        className="group relative block h-full w-full text-left [transform-style:preserve-3d]"
+        style={{
+          transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+          transition: "transform 650ms var(--ease)",
+        }}
+      >
+        {/* RECTO */}
         <span
-          className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-foreground/80 transition-all duration-300 group-hover:gap-3 group-hover:text-foreground"
-          style={{ transform: "translateZ(30px)" }}
+          className={cn(
+            "absolute inset-0 flex overflow-hidden rounded-[28px] p-6 shadow-[0_20px_50px_-40px_var(--foreground)] transition-shadow duration-500 [backface-visibility:hidden] lg:p-8",
+            "group-hover:shadow-[0_50px_100px_-45px_var(--foreground)]",
+          )}
+          style={{ background: card.gradient }}
         >
-          {card.cta}
-          <span aria-hidden="true">→</span>
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.55),transparent_65%)] opacity-70 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
+          />
+          <span className="relative z-10 flex w-full flex-col justify-between">
+            <span>
+              <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-clay-deep/70">
+                {card.accent}
+              </span>
+              <span
+                className={cn(
+                  "mt-2 block max-w-[12ch] text-balance font-section font-medium leading-[1.05] tracking-tight text-foreground",
+                  card.large ? "text-3xl lg:text-4xl" : "text-2xl",
+                )}
+              >
+                {card.title}
+              </span>
+            </span>
+            <span className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-foreground/80 transition-all duration-300 group-hover:gap-3 group-hover:text-foreground">
+              {t("Retourner la carte", "Flip the card")}
+              <span aria-hidden="true" className="transition-transform duration-500 group-hover:rotate-180">⟳</span>
+            </span>
+          </span>
         </span>
-      </div>
 
-    </Link>
+        {/* VERSO */}
+        <span
+          aria-hidden={!flipped}
+          className="absolute inset-0 flex overflow-hidden rounded-[28px] bg-foreground p-6 shadow-[0_20px_50px_-40px_var(--foreground)] [backface-visibility:hidden] [transform:rotateY(180deg)] lg:p-8"
+        >
+          <span className="relative z-10 flex w-full flex-col justify-between gap-6">
+            <span>
+              <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-cream/60">
+                {card.accent}
+              </span>
+              <span className="mt-3 block max-w-[46ch] text-pretty text-sm leading-relaxed text-cream/90 lg:text-[15px]">
+                {card.desc}
+              </span>
+            </span>
+            <Link
+              to="/soins/$domaine"
+              params={{ domaine: card.slug }}
+              search={{ produit: undefined }}
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex w-fit items-center gap-2 rounded-full bg-cream px-5 py-2.5 text-sm font-medium text-foreground transition-all duration-300 hover:gap-3"
+            >
+              {card.cta}
+              <span aria-hidden="true">→</span>
+            </Link>
+          </span>
+        </span>
+      </button>
+    </div>
   );
 }
 
-export function Bento3D() {
+export function Bento3D({ soins }: { soins: Soin[] }) {
   const { t } = useI18n();
+
+  const descOf = (slug: string) => soins.find((s) => s.slug === slug)?.desc ?? "";
 
   const cards: Card[] = [
     {
@@ -96,6 +116,7 @@ export function Bento3D() {
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--amber) 40%, var(--cream)), color-mix(in oklab, var(--clay) 22%, var(--cream)))",
       large: true,
+      desc: descOf("poids"),
     },
     {
       slug: "sexuel",
@@ -104,6 +125,7 @@ export function Bento3D() {
       cta: t("Découvrir", "Discover"),
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--sand) 70%, var(--cream)), var(--cream))",
+      desc: descOf("sexuel"),
     },
     {
       slug: "cheveux",
@@ -112,6 +134,7 @@ export function Bento3D() {
       cta: t("Découvrir", "Discover"),
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--clay) 16%, var(--cream)), var(--cream))",
+      desc: descOf("cheveux"),
     },
     {
       slug: "peau",
@@ -120,6 +143,7 @@ export function Bento3D() {
       cta: t("Découvrir", "Discover"),
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--amber) 22%, var(--cream)), var(--cream))",
+      desc: descOf("peau"),
     },
   ];
 
