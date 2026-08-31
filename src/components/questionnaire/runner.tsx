@@ -46,6 +46,7 @@ export function QuestionnaireRunner({
   onSubmit,
   submitting,
 }: Props) {
+  const { t, lang } = useI18n();
   const [answers, setAnswers] = useState<Answers>(initialAnswers ?? {});
   const [editLog, setEditLog] = useState<EditLogEntry[]>([]);
   const [phase, setPhase] = useState<Phase>(
