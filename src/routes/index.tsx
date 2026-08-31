@@ -70,6 +70,7 @@ const soins: Soin[] = [
       "Traitements sur ordonnance uniquement",
       "Renouvellement suivi et ajustable",
     ],
+    slug: "sexuel",
   },
   {
     n: "02",
@@ -83,6 +84,7 @@ const soins: Soin[] = [
       "Suivi mensuel avec votre médecin",
       "Conseils nutrition inclus",
     ],
+    slug: "poids",
   },
   {
     n: "03",
@@ -96,6 +98,7 @@ const soins: Soin[] = [
       "Traitements oraux ou topiques prescrits",
       "Suivi photo tous les 3 mois",
     ],
+    slug: "cheveux",
   },
   {
     n: "04",
@@ -109,6 +112,7 @@ const soins: Soin[] = [
       "Formules préparées en pharmacie",
       "Ajustement selon votre tolérance",
     ],
+    slug: "peau",
   },
 ];
 
@@ -367,7 +371,7 @@ function Home() {
                   Nos soins
                 </p>
                 <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-                  Choisissez la spécialité qui vous concerne.
+                  Comment peut-on vous accompagner ?
                 </h2>
               </div>
             </Reveal>
