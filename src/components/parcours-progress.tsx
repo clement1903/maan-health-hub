@@ -52,9 +52,11 @@ export const etapesDetaillees: EtapeDetaillee[] = [
 export function ParcoursProgress({
   etapes,
   activeIndex,
+  scrollSignal,
 }: {
   etapes: EtapeDetaillee[];
   activeIndex?: number;
+  scrollSignal?: number;
 }) {
   const refs = useRef<Array<HTMLLIElement | null>>([]);
   const [reached, setReached] = useState(0);
