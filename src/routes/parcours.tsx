@@ -57,15 +57,15 @@ export const Route = createFileRoute("/parcours")({
 const details = [
   {
     t: "Ce que vous recevez",
-    d: "Une ordonnance officielle et, si elle est délivrée, le traitement correspondant, utilisables dans votre pharmacie habituelle.",
+    d: "Une ordonnance officielle, valable dans la pharmacie de votre choix.",
   },
   {
     t: "Ce qui peut arriver",
-    d: "Une demande de précisions, un ajustement de dosage, ou un refus motivé si le traitement n'est pas adapté.",
+    d: "Des précisions demandées, un dosage ajusté, ou un refus motivé.",
   },
   {
     t: "Le suivi",
-    d: "Chaque changement d'état — dossier reçu, prescription validée, colis expédié — s'affiche dans votre espace patient.",
+    d: "Chaque étape s'affiche en direct dans votre espace patient.",
   },
 ];
 
