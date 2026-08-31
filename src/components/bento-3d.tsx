@@ -8,8 +8,6 @@ type Card = {
   title: string;
   accent: string;
   cta: string;
-  img: string;
-  alt: string;
   gradient: string;
   large?: boolean;
   delay: number;
