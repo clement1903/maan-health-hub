@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
 export type Etape = {
   n: string;
@@ -11,6 +12,7 @@ export type Etape = {
 };
 
 export function ParcoursStepper({ etapes }: { etapes: Etape[] }) {
+  const { t } = useI18n();
   const [open, setOpen] = useState(0);
 
   return (
@@ -43,7 +45,7 @@ export function ParcoursStepper({ etapes }: { etapes: Etape[] }) {
                 {e.n}
               </span>
               <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
-                Étape
+                {t("Étape", "Step")}
               </span>
             </div>
             <h3 className="mt-6 flex min-h-[3.5rem] items-start font-section text-xl font-medium leading-snug tracking-tight">

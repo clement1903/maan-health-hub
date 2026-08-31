@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
 export type EtapeDetaillee = {
   n: string;
@@ -10,41 +11,76 @@ export type EtapeDetaillee = {
   micro: string[];
 };
 
-export const etapesDetaillees: EtapeDetaillee[] = [
+export const etapesDetaillees = (t: (fr: string, en: string) => string): EtapeDetaillee[] => [
   {
     n: "1",
-    title: "Questionnaire",
-    duree: "3 min",
-    desc: "Vos symptômes, antécédents et traitements en cours.",
-    micro: ["Espace patient sécurisé", "Questions ciblées", "Envoi au médecin"],
+    title: t("Questionnaire", "Questionnaire"),
+    duree: t("3 min", "3 min"),
+    desc: t(
+      "Vos symptômes, antécédents et traitements en cours.",
+      "Your symptoms, medical history and current treatments.",
+    ),
+    micro: [
+      t("Espace patient sécurisé", "Secure patient portal"),
+      t("Questions ciblées", "Targeted questions"),
+      t("Envoi au médecin", "Sent to the doctor"),
+    ],
   },
   {
     n: "2",
-    title: "Consultation médicale",
-    duree: "sous 24 h",
-    desc: "Un médecin évalue votre dossier et décide.",
-    micro: ["Lecture par un médecin", "Précisions si besoin", "Décision notifiée"],
+    title: t("Consultation médicale", "Medical consultation"),
+    duree: t("sous 24 h", "within 24 h"),
+    desc: t(
+      "Un médecin évalue votre dossier et décide.",
+      "A doctor reviews your file and makes a decision.",
+    ),
+    micro: [
+      t("Lecture par un médecin", "Reviewed by a doctor"),
+      t("Précisions si besoin", "Follow-up questions if needed"),
+      t("Décision notifiée", "Decision notified"),
+    ],
   },
   {
     n: "3",
-    title: "Préparation",
-    duree: "quelques heures",
-    desc: "La pharmacie partenaire prépare l'ordonnance.",
-    micro: ["Contrôle pharmaceutique", "Colis neutre", "Notice incluse"],
+    title: t("Préparation", "Preparation"),
+    duree: t("quelques heures", "a few hours"),
+    desc: t(
+      "La pharmacie partenaire prépare l'ordonnance.",
+      "The partner pharmacy prepares the prescription.",
+    ),
+    micro: [
+      t("Contrôle pharmaceutique", "Pharmaceutical check"),
+      t("Colis neutre", "Discreet packaging"),
+      t("Notice incluse", "Instructions included"),
+    ],
   },
   {
     n: "4",
-    title: "Livraison discrète",
-    duree: "24 à 48 h",
-    desc: "À domicile ou en point relais, discrètement.",
-    micro: ["Suivi transporteur", "Colis sans mention", "Sans signature de contenu"],
+    title: t("Livraison discrète", "Discreet delivery"),
+    duree: t("24 à 48 h", "24 to 48 h"),
+    desc: t(
+      "À domicile ou en point relais, discrètement.",
+      "To your home or a pickup point, discreetly.",
+    ),
+    micro: [
+      t("Suivi transporteur", "Carrier tracking"),
+      t("Colis sans mention", "Unmarked package"),
+      t("Sans signature de contenu", "No content-revealing signature"),
+    ],
   },
   {
     n: "5",
-    title: "Suivi",
-    duree: "en continu",
-    desc: "Ajustement, renouvellement ou arrêt avec le médecin.",
-    micro: ["Point à J+7", "Effets indésirables signalés", "Historique conservé"],
+    title: t("Suivi", "Follow-up"),
+    duree: t("en continu", "ongoing"),
+    desc: t(
+      "Ajustement, renouvellement ou arrêt avec le médecin.",
+      "Adjustment, renewal or discontinuation with the doctor.",
+    ),
+    micro: [
+      t("Point à J+7", "Check-in on day 7"),
+      t("Effets indésirables signalés", "Side effects reported"),
+      t("Historique conservé", "History kept on record"),
+    ],
   },
 ];
 
@@ -58,6 +94,7 @@ export function ParcoursProgress({
   activeIndex?: number;
   scrollSignal?: number;
 }) {
+  const { t } = useI18n();
   const refs = useRef<Array<HTMLLIElement | null>>([]);
   const [reached, setReached] = useState(0);
 
@@ -96,7 +133,7 @@ export function ParcoursProgress({
       <div className="sticky top-20 z-10 -mx-6 mb-10 border-y border-border bg-background/85 px-6 py-3 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center gap-4">
           <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-            Progression du parcours
+            {t("Progression du parcours", "Journey progress")}
           </span>
           <div className="h-1 flex-1 overflow-hidden rounded-full bg-border">
             <div
@@ -151,7 +188,7 @@ export function ParcoursProgress({
                     current ? "border-clay bg-clay text-cream" : "border-border text-clay",
                   )}
                 >
-                  {current ? "Étape en cours" : e.duree}
+                  {current ? t("Étape en cours", "Current step") : e.duree}
                 </span>
               </div>
               <p className="mt-2 max-w-[60ch] text-pretty text-sm text-muted">{e.desc}</p>
