@@ -105,6 +105,10 @@ function ParcoursPage() {
                 src={explicationVideo.url}
                 poster={consultationImg}
                 onChapterChange={setChapitre}
+                onChapterSelect={(i) => {
+                  setChapitre(i);
+                  setScrollSignal((s) => s + 1);
+                }}
               />
             </Reveal>
           </div>
