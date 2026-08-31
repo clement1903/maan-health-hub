@@ -59,143 +59,233 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const soins: Soin[] = [
+type T = (fr: string, en: string) => string;
+
+const buildSoins = (t: T): Soin[] => [
   {
     n: "01",
-    tag: "Santé sexuelle",
-    title: "Santé sexuelle",
-    desc: "Une baisse de désir, des pannes d'érection ou une éjaculation précoce arrivent à la plupart des hommes au moins une fois dans leur vie. Vous n'êtes pas seul, et ce n'est pas une fatalité : on en parle, sans gêne.",
+    tag: t("Santé sexuelle", "Sexual health"),
+    title: t("Santé sexuelle", "Sexual health"),
+    desc: t(
+      "Une baisse de désir, des pannes d'érection ou une éjaculation précoce arrivent à la plupart des hommes au moins une fois dans leur vie. Vous n'êtes pas seul, et ce n'est pas une fatalité : on en parle, sans gêne.",
+      "Low desire, erection problems or premature ejaculation happen to most men at least once in their life. You are not alone, and it is not permanent: let's talk about it, without embarrassment.",
+    ),
     img: soinSexual,
-    alt: "Homme détendu au réveil dans une lumière dorée, serein et confiant",
+    alt: t(
+      "Homme détendu au réveil dans une lumière dorée, serein et confiant",
+      "Relaxed man waking up in golden light, calm and confident",
+    ),
     points: [
-      "1 homme sur 3 concerné après 40 ans",
-      "Un médecin vous écoute, sans jugement",
-      "Des solutions efficaces existent dès aujourd'hui",
+      t("1 homme sur 3 concerné après 40 ans", "1 in 3 men affected after the age of 40"),
+      t("Un médecin vous écoute, sans jugement", "A doctor listens, without judgement"),
+      t("Des solutions efficaces existent dès aujourd'hui", "Effective solutions exist today"),
     ],
     slug: "sexuel",
   },
   {
     n: "02",
-    tag: "Poids",
-    title: "Poids",
-    desc: "Vous avez déjà essayé les régimes, sans résultat durable ? Ce n'est pas une question de volonté. Le poids est aussi une affaire de métabolisme, et un médecin peut vraiment vous aider.",
+    tag: t("Poids", "Weight"),
+    title: t("Poids", "Weight"),
+    desc: t(
+      "Vous avez déjà essayé les régimes, sans résultat durable ? Ce n'est pas une question de volonté. Le poids est aussi une affaire de métabolisme, et un médecin peut vraiment vous aider.",
+      "Tried diets without lasting results? It is not about willpower. Weight is also a matter of metabolism, and a doctor can genuinely help.",
+    ),
     img: soinWeight,
-    alt: "Homme qui lace ses chaussures de course au lever du soleil",
+    alt: t(
+      "Homme qui lace ses chaussures de course au lever du soleil",
+      "Man lacing his running shoes at sunrise",
+    ),
     points: [
-      "Des objectifs réalistes, à votre rythme",
-      "Un médecin qui vous suit chaque mois",
-      "Des solutions médicales si les régimes ont échoué",
+      t("Des objectifs réalistes, à votre rythme", "Realistic goals, at your own pace"),
+      t("Un médecin qui vous suit chaque mois", "A doctor following you every month"),
+      t(
+        "Des solutions médicales si les régimes ont échoué",
+        "Medical options when diets have failed",
+      ),
     ],
     slug: "poids",
   },
   {
     n: "03",
-    tag: "Cheveux",
-    title: "Cheveux",
-    desc: "Une raie qui s'élargit, des tempes qui se dégarnissent… Vous l'avez remarqué et ça vous trotte dans la tête. Plus on agit tôt, plus on garde ses cheveux : c'est le bon moment.",
+    tag: t("Cheveux", "Hair"),
+    title: t("Cheveux", "Hair"),
+    desc: t(
+      "Une raie qui s'élargit, des tempes qui se dégarnissent… Vous l'avez remarqué et ça vous trotte dans la tête. Plus on agit tôt, plus on garde ses cheveux : c'est le bon moment.",
+      "A widening parting, receding temples… You have noticed it and it stays on your mind. The earlier you act, the more hair you keep: now is the right time.",
+    ),
     img: soinHair,
-    alt: "Homme vérifiant sa ligne de cheveux devant un miroir en lumière chaude",
+    alt: t(
+      "Homme vérifiant sa ligne de cheveux devant un miroir en lumière chaude",
+      "Man checking his hairline in a mirror in warm light",
+    ),
     points: [
-      "9 hommes sur 10 touchés au cours de leur vie",
-      "Agir tôt permet de préserver vos cheveux",
-      "Diagnostic simple à partir de photos",
+      t("9 hommes sur 10 touchés au cours de leur vie", "9 in 10 men affected during their life"),
+      t("Agir tôt permet de préserver vos cheveux", "Acting early helps preserve your hair"),
+      t("Diagnostic simple à partir de photos", "Simple assessment based on photos"),
     ],
     slug: "cheveux",
   },
   {
     n: "04",
-    tag: "Peau",
-    title: "Peau",
-    desc: "Boutons qui persistent, peau qui tire, premières rides… Votre peau influence votre confiance au quotidien. Une routine médicalement validée peut tout changer, simplement.",
+    tag: t("Peau", "Skin"),
+    title: t("Peau", "Skin"),
+    desc: t(
+      "Boutons qui persistent, peau qui tire, premières rides… Votre peau influence votre confiance au quotidien. Une routine médicalement validée peut tout changer, simplement.",
+      "Persistent breakouts, tight skin, first wrinkles… Your skin shapes your daily confidence. A medically reviewed routine can change everything, simply.",
+    ),
     img: soinSkin,
-    alt: "Homme appliquant une crème de soin sur le visage devant un miroir",
+    alt: t(
+      "Homme appliquant une crème de soin sur le visage devant un miroir",
+      "Man applying a skincare cream in front of a mirror",
+    ),
     points: [
-      "Une routine adaptée à VOTRE peau",
-      "Des formules préparées en pharmacie",
-      "Des résultats visibles, un suivi régulier",
+      t("Une routine adaptée à VOTRE peau", "A routine tailored to YOUR skin"),
+      t("Des formules préparées en pharmacie", "Formulas prepared by a pharmacy"),
+      t("Des résultats visibles, un suivi régulier", "Visible results, regular follow-up"),
     ],
     slug: "peau",
   },
 ];
 
-const etapes: Etape[] = [
+const buildEtapes = (t: T): Etape[] => [
   {
     n: "1",
-    title: "Questionnaire",
-    desc: "Un questionnaire médical rigoureux, en quelques minutes, à votre rythme.",
-    detail:
+    title: t("Questionnaire", "Questionnaire"),
+    desc: t(
+      "Un questionnaire médical rigoureux, en quelques minutes, à votre rythme.",
+      "A thorough medical questionnaire, in a few minutes, at your own pace.",
+    ),
+    detail: t(
       "Antécédents, traitements en cours, mode de vie : chaque réponse guide le médecin. Vous pouvez l'interrompre et le reprendre à tout moment.",
+      "Medical history, current treatments, lifestyle: every answer guides the doctor. You can pause and resume at any time.",
+    ),
     img: etapeQuestionnaire,
-    alt: "Homme remplissant le questionnaire médical MAAN sur son téléphone",
+    alt: t(
+      "Homme remplissant le questionnaire médical MAAN sur son téléphone",
+      "Man filling in the MAAN medical questionnaire on his phone",
+    ),
   },
   {
     n: "2",
-    title: "Consultation médicale",
-    desc: "Un médecin agréé analyse votre profil et délivre une ordonnance si elle est justifiée.",
-    detail:
+    title: t("Consultation médicale", "Medical review"),
+    desc: t(
+      "Un médecin agréé analyse votre profil et délivre une ordonnance si elle est justifiée.",
+      "A licensed doctor reviews your profile and issues a prescription when justified.",
+    ),
+    detail: t(
       "Réponse sous 24 h ouvrées. Le médecin peut demander des précisions, refuser un traitement ou vous orienter vers une consultation physique.",
+      "Answer within 24 working hours. The doctor may ask for details, decline a treatment or refer you to an in-person consultation.",
+    ),
     img: etapeConsultation,
-    alt: "Médecin agréé analysant un dossier patient sur son ordinateur",
+    alt: t(
+      "Médecin agréé analysant un dossier patient sur son ordinateur",
+      "Licensed doctor reviewing a patient file on a computer",
+    ),
   },
   {
     n: "3",
-    title: "Livraison discrète",
-    desc: "La pharmacie partenaire expédie votre traitement dans un emballage neutre.",
-    detail:
+    title: t("Livraison discrète", "Discreet delivery"),
+    desc: t(
+      "La pharmacie partenaire expédie votre traitement dans un emballage neutre.",
+      "The partner pharmacy ships your treatment in neutral packaging.",
+    ),
+    detail: t(
       "Colis sans mention de contenu ni de marque, suivi en temps réel, livré chez vous ou en point relais sous 24 à 48 h.",
+      "Parcel with no mention of contents or brand, real-time tracking, delivered to your home or a pickup point within 24 to 48 hours.",
+    ),
     img: etapeLivraison,
-    alt: "Colis neutre sans mention remis devant la porte d'un domicile",
+    alt: t(
+      "Colis neutre sans mention remis devant la porte d'un domicile",
+      "Neutral unbranded parcel left at a front door",
+    ),
   },
   {
     n: "4",
-    title: "Suivi",
-    desc: "Le médecin reste joignable pour ajuster, renouveler ou arrêter votre traitement.",
-    detail:
+    title: t("Suivi", "Follow-up"),
+    desc: t(
+      "Le médecin reste joignable pour ajuster, renouveler ou arrêter votre traitement.",
+      "The doctor stays reachable to adjust, renew or stop your treatment.",
+    ),
+    detail: t(
       "Point de suivi après une semaine, signalement des effets indésirables depuis votre espace patient et décisions médicales tracées dans votre dossier.",
+      "Check-in after one week, side-effect reporting from your patient area and medical decisions recorded in your file.",
+    ),
     img: etapeSuivi,
-    alt: "Homme détendu consultant son message de suivi médical sur son téléphone",
+    alt: t(
+      "Homme détendu consultant son message de suivi médical sur son téléphone",
+      "Relaxed man reading his medical follow-up message on his phone",
+    ),
   },
 ];
 
-
-const faq = [
+const buildFaq = (t: T) => [
   {
-    q: "Comment se déroule la consultation ?",
-    a: "Vous remplissez un questionnaire médical, puis un médecin agréé l'analyse. S'il l'estime justifié, il délivre une ordonnance ; sinon il demande des précisions, refuse la demande ou vous oriente vers une consultation physique.",
+    q: t("Comment se déroule la consultation ?", "How does the consultation work?"),
+    a: t(
+      "Vous remplissez un questionnaire médical, puis un médecin agréé l'analyse. S'il l'estime justifié, il délivre une ordonnance ; sinon il demande des précisions, refuse la demande ou vous oriente vers une consultation physique.",
+      "You complete a medical questionnaire, then a licensed doctor reviews it. If justified, they issue a prescription; otherwise they ask for details, decline the request or refer you to an in-person consultation.",
+    ),
   },
   {
-    q: "Puis-je acheter un médicament sans ordonnance ?",
-    a: "Non. MAAN ne vend aucun médicament en libre accès. Un traitement soumis à prescription ne peut être préparé et expédié qu'après la délivrance d'une ordonnance par un médecin.",
+    q: t(
+      "Puis-je acheter un médicament sans ordonnance ?",
+      "Can I buy medication without a prescription?",
+    ),
+    a: t(
+      "Non. MAAN ne vend aucun médicament en libre accès. Un traitement soumis à prescription ne peut être préparé et expédié qu'après la délivrance d'une ordonnance par un médecin.",
+      "No. MAAN does not sell any medication over the counter. A prescription-only treatment can be prepared and shipped only after a doctor has issued a prescription.",
+    ),
   },
   {
-    q: "Que se passe-t-il si le médecin refuse de prescrire ?",
-    a: "Vous recevez un motif écrit dans votre espace patient et des orientations adaptées. La consultation est gratuite et sans engagement : un refus est un acte médical, pas un échec de commande.",
+    q: t(
+      "Que se passe-t-il si le médecin refuse de prescrire ?",
+      "What happens if the doctor declines to prescribe?",
+    ),
+    a: t(
+      "Vous recevez un motif écrit dans votre espace patient et des orientations adaptées. La consultation est gratuite et sans engagement : un refus est un acte médical, pas un échec de commande.",
+      "You receive a written reason in your patient area along with suitable guidance. The consultation is free and without commitment: a refusal is a medical decision, not a failed order.",
+    ),
   },
   {
-    q: "L'ordonnance m'appartient-elle ?",
-    a: "Oui. Vous recevez une ordonnance officielle, téléchargeable depuis votre espace patient, que vous pouvez présenter à votre pharmacie habituelle plutôt qu'à notre pharmacie partenaire.",
+    q: t("L'ordonnance m'appartient-elle ?", "Does the prescription belong to me?"),
+    a: t(
+      "Oui. Vous recevez une ordonnance officielle, téléchargeable depuis votre espace patient, que vous pouvez présenter à votre pharmacie habituelle plutôt qu'à notre pharmacie partenaire.",
+      "Yes. You receive an official prescription, downloadable from your patient area, which you may take to your usual pharmacy instead of our partner pharmacy.",
+    ),
   },
   {
-    q: "Qui peut lire mes réponses de santé ?",
-    a: "Uniquement le médecin en charge de votre dossier et, pour la préparation, le pharmacien concerné. Vos réponses sont couvertes par le secret médical.",
+    q: t("Qui peut lire mes réponses de santé ?", "Who can read my health answers?"),
+    a: t(
+      "Uniquement le médecin en charge de votre dossier et, pour la préparation, le pharmacien concerné. Vos réponses sont couvertes par le secret médical.",
+      "Only the doctor handling your file and, for preparation, the pharmacist involved. Your answers are covered by medical confidentiality.",
+    ),
   },
   {
-    q: "Comment mes données personnelles sont-elles traitées ?",
-    a: "Les données de santé sont chiffrées et hébergées en Europe chez un hébergeur conforme au RGPD. Elles ne sont ni revendues, ni utilisées à des fins publicitaires. Vous pouvez demander leur export ou leur suppression à tout moment depuis votre espace patient.",
+    q: t(
+      "Comment mes données personnelles sont-elles traitées ?",
+      "How is my personal data handled?",
+    ),
+    a: t(
+      "Les données de santé sont chiffrées et hébergées en Europe chez un hébergeur conforme au RGPD. Elles ne sont ni revendues, ni utilisées à des fins publicitaires. Vous pouvez demander leur export ou leur suppression à tout moment depuis votre espace patient.",
+      "Health data is encrypted and hosted in Europe with a GDPR-compliant provider. It is never sold or used for advertising. You can request an export or deletion at any time from your patient area.",
+    ),
   },
   {
-    q: "La livraison est-elle vraiment discrète ?",
-    a: "Le colis est neutre : aucune mention du contenu, de la spécialité ni de la marque. Vous choisissez la livraison à domicile ou en point relais.",
+    q: t("La livraison est-elle vraiment discrète ?", "Is delivery really discreet?"),
+    a: t(
+      "Le colis est neutre : aucune mention du contenu, de la spécialité ni de la marque. Vous choisissez la livraison à domicile ou en point relais.",
+      "The parcel is neutral: no mention of the contents, the specialty or the brand. You choose home delivery or a pickup point.",
+    ),
   },
 ];
 
-const marqueeItems = [
-  "Médecins agréés",
-  "Ordonnance obligatoire",
-  "Colis neutre",
-  "Données chiffrées",
-  "Pharmacie certifiée",
-  "Suivi personnalisé",
+const buildMarquee = (t: T) => [
+  t("Médecins agréés", "Licensed doctors"),
+  t("Ordonnance obligatoire", "Prescription required"),
+  t("Colis neutre", "Neutral parcel"),
+  t("Données chiffrées", "Encrypted data"),
+  t("Pharmacie certifiée", "Certified pharmacy"),
+  t("Suivi personnalisé", "Personalised follow-up"),
 ];
 
 
