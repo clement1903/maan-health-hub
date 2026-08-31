@@ -43,7 +43,7 @@ export const Route = createFileRoute("/")({
         content:
           "Consultation médicale en ligne : un médecin agréé évalue votre dossier et, si un traitement est prescrit, vous le recevez discrètement à domicile. Ces hommes, ils parlent de MAAN.",
       },
-      { property: "og:url", content: "/#temoignages" },
+      { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "MAAN — Des soins pensés pour les hommes" },
       {
