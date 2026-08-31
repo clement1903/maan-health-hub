@@ -67,11 +67,8 @@ export function SoinsShowcase({ soins }: { soins: Soin[] }) {
 
         <div key={current.n} className="animate-[rise_0.55s_var(--ease)_both] bg-background p-8 lg:col-span-6 lg:p-10">
           <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-clay">
-            {current.n} · {current.tag} Management
+            {current.n} · {current.tag}
           </span>
-          <h3 className="mt-4 font-section text-3xl font-medium tracking-tight lg:text-4xl">
-            {current.title}
-          </h3>
           <p className="mt-3 max-w-[42ch] text-pretty text-muted">{current.desc}</p>
           <ul className="mt-7 space-y-3">
             {current.points.map((p, i) => (
