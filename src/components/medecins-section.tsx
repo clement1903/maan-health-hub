@@ -157,6 +157,9 @@ export function MedecinsSection() {
                     <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
                       {doc.role} · {doc.specialite}
                     </p>
+                    <p className="mt-0.5 font-mono text-[10px] tracking-[0.08em] text-clay">
+                      BIG {doc.big}
+                    </p>
                   </div>
                 </div>
               </button>
@@ -177,6 +180,9 @@ export function MedecinsSection() {
                 <p className="font-display text-xl font-medium tracking-tight">{m.nom}</p>
                 <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
                   {m.role}
+                </p>
+                <p className="mt-1 inline-flex items-center gap-1.5 rounded-full border border-clay/30 bg-cream px-2.5 py-0.5 font-mono text-[10px] tracking-[0.08em] text-clay">
+                  {t("Certifié BIG", "BIG certified")} · {m.big}
                 </p>
               </div>
             </div>
