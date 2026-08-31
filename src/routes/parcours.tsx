@@ -10,6 +10,7 @@ import consultationImg from "@/assets/etape-consultation.jpg";
 import pharmacieImg from "@/assets/parcours-pharmacie.jpg";
 import livraisonImg from "@/assets/etape-livraison.jpg";
 import suiviImg from "@/assets/parcours-suivi.jpg";
+import patientImg from "@/assets/parcours-patient.jpg";
 
 export const Route = createFileRoute("/parcours")({
   head: () => ({
@@ -81,8 +82,8 @@ function ParcoursPage() {
 
       <main className="flex-1">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-6 py-20 lg:py-28">
-          {/* Hero */}
-          <header className="w-full max-w-5xl text-center">
+          {/* Hero — éditorial */}
+          <header className="grid w-full max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
             <Reveal>
               <span className="inline-block rounded-full border border-border px-3 py-1">
                 <Eyebrow>{t("Le parcours MAAN", "The MAAN journey")}</Eyebrow>
@@ -92,8 +93,37 @@ function ParcoursPage() {
                 <br />
                 <span className="text-clay">{t("redéfinie.", "redefined.")}</span>
               </h1>
+              <p className="mt-10 max-w-[40ch] text-pretty border-l-2 border-clay/40 pl-6 font-display text-2xl font-light italic leading-snug text-foreground/80 md:text-[1.7rem]">
+                {t(
+                  "« Je repoussais ce rendez-vous depuis deux ans. Ici, tout s'est fait sans avoir à le dire à voix haute. »",
+                  "\"I had been putting off this appointment for two years. Here, everything happened without having to say it out loud.\"",
+                )}
+              </p>
+              <p className="mt-6 pl-6 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
+                Thomas · {t("38 ans · patient MAAN depuis 2025", "38 · MAAN patient since 2025")}
+              </p>
             </Reveal>
-
+            <Reveal delay={120}>
+              <figure>
+                <div className="group aspect-[4/5] overflow-hidden rounded-[2.5rem]">
+                  <img
+                    src={patientImg}
+                    alt={t(
+                      "Thomas, patient MAAN, chez lui au matin",
+                      "Thomas, MAAN patient, at home in the morning",
+                    )}
+                    width={1024}
+                    height={1280}
+                    fetchPriority="high"
+                    className="h-full w-full object-cover transition-transform duration-[1400ms] ease-[var(--ease)] group-hover:scale-[1.03]"
+                  />
+                </div>
+                <figcaption className="mt-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
+                  <span>{t("Amsterdam, 7 h 42", "Amsterdam, 7:42 am")}</span>
+                  <span>{t("Histoire vraie", "A true story")}</span>
+                </figcaption>
+              </figure>
+            </Reveal>
           </header>
 
           {/* Steps */}
