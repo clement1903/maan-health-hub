@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
@@ -22,14 +22,11 @@ type Card = {
 
 /** Carte 3D : le visuel produit flotte et suit la souris sur deux axes. */
 function BentoCard({ card }: { card: Card }) {
-  const ref = useRef<HTMLAnchorElement>(null);
   const [tilt, setTilt] = useState({ rx: 0, ry: 0, x: 0, y: 0 });
   const [hover, setHover] = useState(false);
 
   const onMove = (e: React.MouseEvent) => {
-    const el = ref.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
+    const r = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width - 0.5;
     const py = (e.clientY - r.top) / r.height - 0.5;
     setTilt({ rx: -py * 10, ry: px * 14, x: px * 26, y: py * 20 });
@@ -42,7 +39,6 @@ function BentoCard({ card }: { card: Card }) {
 
   return (
     <Link
-      ref={ref}
       to="/soins/$domaine"
       params={{ domaine: card.slug }}
       onMouseMove={onMove}
