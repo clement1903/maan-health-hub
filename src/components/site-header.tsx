@@ -1,16 +1,19 @@
 import { Link } from "@tanstack/react-router";
 import { useScrollY } from "@/hooks/use-reveal";
 import { cn } from "@/lib/utils";
-
-const nav = [
-  { to: "/parcours", label: "Parcours" },
-  { to: "/conformite", label: "Conformité" },
-  { to: "/espace-patient", label: "Espace patient" },
-];
+import { useI18n } from "@/lib/i18n";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 export function SiteHeader() {
   const scrollY = useScrollY();
+  const { t } = useI18n();
   const condensed = scrollY > 40;
+
+  const nav = [
+    { to: "/parcours", label: t("Parcours", "How it works") },
+    { to: "/conformite", label: t("Conformité", "Compliance") },
+    { to: "/espace-patient", label: t("Espace patient", "Patient area") },
+  ];
 
   return (
     <header
