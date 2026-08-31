@@ -302,13 +302,158 @@ export function QuestionnaireRunner({
           </button>
           <button
             type="button"
-            disabled={submitting}
-            onClick={() => void submit()}
+            disabled={submitting || remaining > 0}
+            onClick={() => setPhase("eligibilite")}
             className="inline-flex h-14 flex-1 items-center justify-center gap-2 rounded-full bg-clay px-8 text-base font-medium text-primary-foreground transition-all duration-300 hover:bg-clay-deep disabled:opacity-60"
           >
             <Check className="size-4" />
-            {submitting ? "Envoi en cours…" : "Vérifier et envoyer mon dossier"}
+            {t("Vérifier mon éligibilité", "Check my eligibility")}
           </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (phase === "eligibilite") {
+    const { score, canBookVideo, blockers, warnings } = eligibility;
+    const tone = canBookVideo
+      ? score >= 85
+        ? { ring: "text-clay", bg: "bg-clay/10" }
+        : { ring: "text-clay", bg: "bg-clay/8" }
+      : { ring: "text-destructive", bg: "bg-destructive/8" };
+
+    return (
+      <div className="mx-auto w-full max-w-2xl px-6 py-14">
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
+          {t("Pré-éligibilité", "Pre-eligibility")}
+        </p>
+        <h1 className="mt-4 text-balance font-display text-3xl font-medium leading-tight lg:text-4xl">
+          {canBookVideo
+            ? t("Votre dossier peut aller en consultation vidéo.", "Your file can go to a video consultation.")
+            : t("La consultation vidéo n'est pas ouverte pour ce dossier.", "The video consultation is not available for this file.")}
+        </h1>
+
+        <div
+          className={cn(
+            "mt-8 flex flex-col items-center gap-5 rounded-[22px] border border-border p-8 sm:flex-row sm:gap-8",
+            tone.bg,
+          )}
+        >
+          <div className="relative grid size-32 shrink-0 place-items-center">
+            <svg viewBox="0 0 120 120" className="size-32 -rotate-90">
+              <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" strokeWidth="10" className="text-border" />
+              <circle
+                cx="60"
+                cy="60"
+                r="52"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="10"
+                strokeLinecap="round"
+                className={cn("transition-[stroke-dashoffset] duration-1000 ease-out", tone.ring)}
+                strokeDasharray={2 * Math.PI * 52}
+                strokeDashoffset={2 * Math.PI * 52 * (1 - score / 100)}
+              />
+            </svg>
+            <div className="absolute text-center">
+              <span className="font-display text-3xl font-medium">{score}</span>
+              <span className="block font-mono text-[10px] uppercase tracking-[0.16em] text-muted">/ 100</span>
+            </div>
+          </div>
+          <div>
+            <p className="flex items-center gap-2 text-lg font-medium">
+              {canBookVideo ? <Video className="size-5 text-clay" /> : <ShieldAlert className="size-5 text-destructive" />}
+              {canBookVideo
+                ? t("Consultation vidéo possible", "Video consultation available")
+                : t("Consultation vidéo non proposée", "Video consultation not offered")}
+            </p>
+            <p className="mt-2 text-pretty text-sm text-muted">
+              {canBookVideo
+                ? t(
+                    "Ce score compare vos réponses aux règles de prescription du traitement concerné. Le médecin garde la décision finale.",
+                    "This score compares your answers with the prescribing rules for this treatment. The doctor makes the final decision.",
+                  )
+                : t(
+                    "D'après les règles de prescription de ce traitement, une ordonnance ne pourrait pas être délivrée à distance. Nous préférons vous l'annoncer maintenant plutôt que de vous faire payer une consultation sans issue.",
+                    "Based on the prescribing rules for this treatment, a prescription could not be issued remotely. We prefer to tell you now rather than have you pay for a consultation with no outcome.",
+                  )}
+            </p>
+          </div>
+        </div>
+
+        {blockers.length ? (
+          <section className="mt-8">
+            <h2 className="font-section text-lg font-semibold tracking-tight">
+              {t("Ce qui bloque la prescription à distance", "What blocks a remote prescription")}
+            </h2>
+            <ul className="mt-3 space-y-3">
+              {blockers.map((b) => (
+                <li key={b.id} className="rounded-[18px] border border-destructive/30 bg-card px-5 py-4">
+                  <p className="text-sm font-medium">{b.label[lang]}</p>
+                  <p className="mt-1 text-sm text-muted">{b.detail[lang]}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {warnings.length ? (
+          <section className="mt-8">
+            <h2 className="font-section text-lg font-semibold tracking-tight">
+              {t("Points que le médecin vérifiera", "Points the doctor will check")}
+            </h2>
+            <ul className="mt-3 space-y-3">
+              {warnings.map((w) => (
+                <li key={w.id} className="rounded-[18px] border border-border bg-card px-5 py-4">
+                  <p className="text-sm font-medium">
+                    {w.label[lang]}{" "}
+                    <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                      −{w.weight} {t("pts", "pts")}
+                    </span>
+                  </p>
+                  <p className="mt-1 text-sm text-muted">{w.detail[lang]}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        <p className="mt-8 rounded-[18px] border border-border bg-sand/50 p-5 text-sm text-muted">
+          {t(
+            "Ce score est un filtre administratif basé sur les critères de prescription. Il ne constitue pas un diagnostic ni une décision médicale.",
+            "This score is an administrative filter based on prescribing criteria. It is not a diagnosis or a medical decision.",
+          )}
+        </p>
+
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <button
+            type="button"
+            onClick={() => setPhase("summary")}
+            className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-border px-6 text-base transition hover:border-clay"
+          >
+            <ArrowLeft className="size-4" />
+            {t("Revoir mes réponses", "Review my answers")}
+          </button>
+          {canBookVideo ? (
+            <button
+              type="button"
+              disabled={submitting}
+              onClick={() => void submit()}
+              className="inline-flex h-14 flex-1 items-center justify-center gap-2 rounded-full bg-clay px-8 text-base font-medium text-primary-foreground transition-all duration-300 hover:bg-clay-deep disabled:opacity-60"
+            >
+              <Check className="size-4" />
+              {submitting
+                ? t("Envoi en cours…", "Sending…")
+                : t("Envoyer mon dossier et réserver la visio", "Send my file and book the video call")}
+            </button>
+          ) : (
+            <p className="flex flex-1 items-center justify-center rounded-full border border-border bg-card px-6 text-center text-sm text-muted">
+              {t(
+                "Rapprochez-vous de votre médecin traitant pour une consultation en présentiel.",
+                "Please see your regular doctor for an in-person consultation.",
+              )}
+            </p>
+          )}
         </div>
       </div>
     );
