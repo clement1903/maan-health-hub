@@ -54,20 +54,6 @@ export const Route = createFileRoute("/parcours")({
 });
 
 
-const details = [
-  {
-    t: "Ce que vous recevez",
-    d: "Une ordonnance officielle, valable dans la pharmacie de votre choix.",
-  },
-  {
-    t: "Ce qui peut arriver",
-    d: "Des précisions demandées, un dosage ajusté, ou un refus motivé.",
-  },
-  {
-    t: "Le suivi",
-    d: "Chaque étape s'affiche en direct dans votre espace patient.",
-  },
-];
 
 function ParcoursPage() {
   const [chapitre, setChapitre] = useState(0);
@@ -120,20 +106,6 @@ function ParcoursPage() {
         </section>
 
 
-        <section className="border-y border-border bg-cream">
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 px-6 py-16 sm:grid-cols-3 lg:py-20">
-            {details.map((d, i) => (
-              <Reveal
-                key={d.t}
-                delay={i * 90}
-                className="rounded-[16px] border border-border bg-background p-7"
-              >
-                <h2 className="font-section text-xl font-medium tracking-tight">{d.t}</h2>
-                <p className="mt-2 text-pretty text-sm text-muted">{d.d}</p>
-              </Reveal>
-            ))}
-          </div>
-        </section>
 
         <section className="bg-clay text-cream">
           <div className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-6 py-16 lg:flex-row lg:items-center lg:justify-between lg:py-20">
