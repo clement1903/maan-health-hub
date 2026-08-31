@@ -126,6 +126,7 @@ function PartageTemoignage({ t }: { t: Temoignage }) {
 
 const temoignages: Temoignage[] = [
   {
+    id: "thomas",
     prenom: "Thomas",
     age: "38 ans",
     domaine: "Sexual Management",
@@ -135,6 +136,7 @@ const temoignages: Temoignage[] = [
     video: video1.url,
   },
   {
+    id: "karim",
     prenom: "Karim",
     age: "45 ans",
     domaine: "Weight Management",
@@ -144,6 +146,7 @@ const temoignages: Temoignage[] = [
     video: video2.url,
   },
   {
+    id: "romain",
     prenom: "Romain",
     age: "31 ans",
     domaine: "Hair Management",
@@ -152,6 +155,7 @@ const temoignages: Temoignage[] = [
     photo: temoin3,
   },
   {
+    id: "nicolas",
     prenom: "Nicolas",
     age: "52 ans",
     domaine: "Skin Management",
