@@ -19,6 +19,7 @@ import { Magnetic, Tilt } from "@/components/magnetic";
 import { Marquee } from "@/components/marquee";
 import { CountUp } from "@/components/count-up";
 import { SoinsShowcase, type Soin } from "@/components/soins-showcase";
+import { Bento3D } from "@/components/bento-3d";
 import { ParcoursStepper, type Etape } from "@/components/parcours-stepper";
 import { MedecinsSection } from "@/components/medecins-section";
 import { Temoignages } from "@/components/temoignages";
@@ -480,6 +481,11 @@ function Home() {
                 <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
                   {t("Qu'est-ce qui vous préoccupe ?", "What is concerning you?")}
                 </h2>
+              </div>
+            </Reveal>
+            <Reveal delay={60}>
+              <div className="mt-10">
+                <Bento3D />
               </div>
             </Reveal>
             <Reveal delay={80}>
