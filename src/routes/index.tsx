@@ -168,10 +168,10 @@ const buildEtapes = (t: T): Etape[] => [
   },
   {
     n: "2",
-    title: t("Consultation médicale", "Medical review"),
+    title: t("Consultation médicale en ligne", "Online medical consultation"),
     desc: t(
-      "Un médecin agréé analyse votre profil et délivre une ordonnance si elle est justifiée.",
-      "A licensed doctor reviews your profile and issues a prescription when justified.",
+      "Un médecin agréé analyse votre profil en ligne et délivre une ordonnance si elle est justifiée.",
+      "A licensed doctor reviews your profile online and issues a prescription when justified.",
     ),
     detail: t(
       "Réponse sous 24 h ouvrées. Le médecin peut demander des précisions, refuser un traitement ou vous orienter vers une consultation physique.",
@@ -221,10 +221,10 @@ const buildEtapes = (t: T): Etape[] => [
 
 const buildFaq = (t: T) => [
   {
-    q: t("Comment se déroule la consultation ?", "How does the consultation work?"),
+    q: t("Comment se déroule la consultation en ligne ?", "How does the online consultation work?"),
     a: t(
-      "Vous remplissez un questionnaire médical, puis un médecin agréé l'analyse. S'il l'estime justifié, il délivre une ordonnance ; sinon il demande des précisions, refuse la demande ou vous oriente vers une consultation physique.",
-      "You complete a medical questionnaire, then a licensed doctor reviews it. If justified, they issue a prescription; otherwise they ask for details, decline the request or refer you to an in-person consultation.",
+      "Vous remplissez un questionnaire médical en ligne, puis un médecin agréé l'analyse à distance. S'il l'estime justifié, il délivre une ordonnance ; sinon il demande des précisions, refuse la demande ou vous oriente vers une consultation physique.",
+      "You complete a medical questionnaire online, then a licensed doctor reviews it remotely. If justified, they issue a prescription; otherwise they ask for details, decline the request or refer you to an in-person consultation.",
     ),
   },
   {

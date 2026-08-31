@@ -7,7 +7,7 @@ export type Chapitre = { start: number; title: string };
 
 const buildChapitres = (t: (fr: string, en: string) => string): Chapitre[] => [
   { start: 0, title: t("Questionnaire médical", "Medical questionnaire") },
-  { start: 2, title: t("Consultation médicale", "Medical consultation") },
+  { start: 2, title: t("Consultation médicale en ligne", "Online medical consultation") },
   { start: 4, title: t("Préparation en pharmacie", "Pharmacy preparation") },
   { start: 6, title: t("Livraison discrète", "Discreet delivery") },
   { start: 8, title: t("Suivi médical", "Medical follow-up") },
