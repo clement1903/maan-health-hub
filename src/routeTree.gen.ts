@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ConformiteRouteImport } from './routes/conformite'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as EspacePatientRouteImport } from './routes/espace-patient'
+import { Route as MonEspaceRouteImport } from './routes/mon-espace'
 import { Route as ParcoursRouteImport } from './routes/parcours'
 import { Route as StatistiquesRouteImport } from './routes/statistiques'
 import { Route as QuestionnaireIndexRouteImport } from './routes/questionnaire.index'
@@ -50,6 +51,11 @@ const CookiesRoute = CookiesRouteImport.update({
 const EspacePatientRoute = EspacePatientRouteImport.update({
   id: '/espace-patient',
   path: '/espace-patient',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MonEspaceRoute = MonEspaceRouteImport.update({
+  id: '/mon-espace',
+  path: '/mon-espace',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ParcoursRoute = ParcoursRouteImport.update({
@@ -90,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/conformite': typeof ConformiteRoute
   '/cookies': typeof CookiesRoute
   '/espace-patient': typeof EspacePatientRoute
+  '/mon-espace': typeof MonEspaceRoute
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
@@ -104,6 +111,7 @@ export interface FileRoutesByTo {
   '/conformite': typeof ConformiteRoute
   '/cookies': typeof CookiesRoute
   '/espace-patient': typeof EspacePatientRoute
+  '/mon-espace': typeof MonEspaceRoute
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
@@ -119,6 +127,7 @@ export interface FileRoutesById {
   '/conformite': typeof ConformiteRoute
   '/cookies': typeof CookiesRoute
   '/espace-patient': typeof EspacePatientRoute
+  '/mon-espace': typeof MonEspaceRoute
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
@@ -135,6 +144,7 @@ export interface FileRouteTypes {
     | '/conformite'
     | '/cookies'
     | '/espace-patient'
+    | '/mon-espace'
     | '/parcours'
     | '/statistiques'
     | '/questionnaire/$slug'
@@ -149,6 +159,7 @@ export interface FileRouteTypes {
     | '/conformite'
     | '/cookies'
     | '/espace-patient'
+    | '/mon-espace'
     | '/parcours'
     | '/statistiques'
     | '/questionnaire/$slug'
@@ -163,6 +174,7 @@ export interface FileRouteTypes {
     | '/conformite'
     | '/cookies'
     | '/espace-patient'
+    | '/mon-espace'
     | '/parcours'
     | '/statistiques'
     | '/questionnaire/$slug'
@@ -178,6 +190,7 @@ export interface RootRouteChildren {
   ConformiteRoute: typeof ConformiteRoute
   CookiesRoute: typeof CookiesRoute
   EspacePatientRoute: typeof EspacePatientRoute
+  MonEspaceRoute: typeof MonEspaceRoute
   ParcoursRoute: typeof ParcoursRoute
   StatistiquesRoute: typeof StatistiquesRoute
   QuestionnaireSlugRoute: typeof QuestionnaireSlugRoute
@@ -228,6 +241,13 @@ declare module '@tanstack/react-router' {
       path: '/espace-patient'
       fullPath: '/espace-patient'
       preLoaderRoute: typeof EspacePatientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mon-espace': {
+      id: '/mon-espace'
+      path: '/mon-espace'
+      fullPath: '/mon-espace'
+      preLoaderRoute: typeof MonEspaceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/parcours': {
@@ -282,6 +302,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConformiteRoute: ConformiteRoute,
   CookiesRoute: CookiesRoute,
   EspacePatientRoute: EspacePatientRoute,
+  MonEspaceRoute: MonEspaceRoute,
   ParcoursRoute: ParcoursRoute,
   StatistiquesRoute: StatistiquesRoute,
   QuestionnaireSlugRoute: QuestionnaireSlugRoute,
