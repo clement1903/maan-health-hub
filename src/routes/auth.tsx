@@ -213,17 +213,68 @@ function Field({
   type: string;
   autoComplete?: string;
 }) {
+  const isPassword = type === "password";
+  const [visible, setVisible] = useState(false);
+  const inputType = isPassword && visible ? "text" : type;
+
   return (
     <label className="block">
       <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">{label}</span>
-      <input
-        type={type}
-        value={value}
-        autoComplete={autoComplete}
-        onChange={(e) => onChange(e.target.value)}
-        maxLength={255}
-        className="mt-2 w-full rounded-xl border border-border bg-cream px-4 py-3 text-sm outline-none transition-colors focus:border-clay"
-      />
+      <div className="relative mt-2">
+        <input
+          type={inputType}
+          value={value}
+          autoComplete={autoComplete}
+          onChange={(e) => onChange(e.target.value)}
+          maxLength={255}
+          className={cn(
+            "w-full rounded-xl border border-border bg-cream px-4 py-3 text-sm outline-none transition-colors focus:border-clay",
+            isPassword && "pr-12",
+          )}
+        />
+        {isPassword && (
+          <button
+            type="button"
+            onClick={() => setVisible((v) => !v)}
+            aria-label={visible ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+            aria-pressed={visible}
+            className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-muted transition-colors hover:text-clay"
+          >
+            {visible ? (
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M3 3l18 18" />
+                <path d="M10.6 10.6a2 2 0 002.8 2.8" />
+                <path d="M9.4 5.2A9.5 9.5 0 0112 5c5 0 9 4.5 9 7 0 .9-.6 2.1-1.6 3.3M6.3 6.9C3.9 8.4 3 10.4 3 12c0 2.5 4 7 9 7 1.6 0 3-.4 4.2-1" />
+              </svg>
+            ) : (
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M3 12s3.6-7 9-7 9 7 9 7-3.6 7-9 7-9-7-9-7z" />
+                <circle cx="12" cy="12" r="2.6" />
+              </svg>
+            )}
+          </button>
+        )}
+      </div>
     </label>
   );
 }
