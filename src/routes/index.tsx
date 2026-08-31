@@ -168,10 +168,10 @@ const buildEtapes = (t: T): Etape[] => [
   },
   {
     n: "2",
-    title: t("Consultation médicale", "Medical review"),
+    title: t("Consultation médicale en ligne", "Online medical consultation"),
     desc: t(
-      "Un médecin agréé analyse votre profil et délivre une ordonnance si elle est justifiée.",
-      "A licensed doctor reviews your profile and issues a prescription when justified.",
+      "Un médecin agréé analyse votre profil en ligne et délivre une ordonnance si elle est justifiée.",
+      "A licensed doctor reviews your profile online and issues a prescription when justified.",
     ),
     detail: t(
       "Réponse sous 24 h ouvrées. Le médecin peut demander des précisions, refuser un traitement ou vous orienter vers une consultation physique.",

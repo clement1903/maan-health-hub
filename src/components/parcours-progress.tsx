@@ -28,11 +28,11 @@ export const etapesDetaillees = (t: (fr: string, en: string) => string): EtapeDe
   },
   {
     n: "2",
-    title: t("Consultation médicale", "Medical consultation"),
+    title: t("Consultation médicale en ligne", "Online medical consultation"),
     duree: t("sous 24 h", "within 24 h"),
     desc: t(
-      "Un médecin évalue votre dossier et décide.",
-      "A doctor reviews your file and makes a decision.",
+      "Un médecin évalue votre dossier en ligne et décide.",
+      "A doctor reviews your file online and makes a decision.",
     ),
     micro: [
       t("Lecture par un médecin", "Reviewed by a doctor"),
