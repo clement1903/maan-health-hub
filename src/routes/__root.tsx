@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { CookieConsent } from "../components/cookie-consent";
+import { I18nProvider } from "@/lib/i18n";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
