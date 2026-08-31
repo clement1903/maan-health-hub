@@ -48,7 +48,7 @@ function SoinsIndex() {
         <section className="border-b border-border bg-cream">
           <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-              t("Nos soins", "Our treatments")
+              {t("Nos soins", "Our treatments")}
             </p>
             <h1 className="mt-3 max-w-[22ch] text-balance font-section text-4xl font-medium tracking-tight lg:text-5xl">
               {t("Les spécialités et les traitements que nous proposons.", "The specialties and treatments we offer.")}
@@ -259,7 +259,7 @@ function ProduitCarousel({
               <Link
                 to="/soins/$domaine"
                 params={{ domaine: domaineSlug }}
-                search={{ produit: p.nom }}
+                search={{ produit: p.id }}
                 aria-label={t(`Découvrir ${p.nom}`, `Discover ${p.nom}`)}
                 className="group/btn inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-medium text-background transition-all duration-300 hover:bg-foreground/90"
               >
