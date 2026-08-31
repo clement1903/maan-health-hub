@@ -85,14 +85,21 @@ function ParcoursPage() {
               <h1 className="mt-4 max-w-[22ch] text-balance font-display text-4xl font-medium leading-[1.05] tracking-tight lg:text-6xl">
                 Questionnaire, prescription, livraison.
               </h1>
-              <p className="mt-6 max-w-[54ch] text-pretty text-lg text-muted">
-                Aucun traitement n'est vendu librement. Chaque demande est évaluée par un médecin
-                agréé ; si une ordonnance est délivrée, une pharmacie partenaire prépare et expédie
-                le traitement prescrit.
+              <p className="mt-6 max-w-[46ch] text-pretty text-lg text-muted">
+                Chaque demande est évaluée par un médecin agréé. Rien n'est vendu librement.
               </p>
-              <p className="mt-4 max-w-[54ch] text-pretty text-sm text-muted">
-                Cliquez sur un chapitre de la vidéo : l'étape correspondante se met en avant
-                ci-dessous.
+              <ul className="mt-6 flex flex-wrap gap-2">
+                {["5 étapes", "Réponse sous 24 h", "Colis neutre"].map((c) => (
+                  <li
+                    key={c}
+                    className="rounded-full border border-border bg-cream px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-clay"
+                  >
+                    {c}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-sm text-muted">
+                Cliquez sur un chapitre de la vidéo pour suivre l'étape.
               </p>
             </Reveal>
             <Reveal delay={100} className="lg:col-span-5">
