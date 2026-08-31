@@ -11,6 +11,7 @@ export type Soin = {
   img: string;
   alt: string;
   points: string[];
+  slug: string;
 };
 
 export function SoinsShowcase({ soins }: { soins: Soin[] }) {
@@ -85,7 +86,8 @@ export function SoinsShowcase({ soins }: { soins: Soin[] }) {
             ))}
           </ul>
           <Link
-            to="/questionnaire"
+            to="/questionnaire/$slug"
+            params={{ slug: current.slug }}
             className="group mt-8 inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:bg-clay-deep hover:gap-3"
           >
             Commencer ma consultation
