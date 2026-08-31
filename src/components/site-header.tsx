@@ -53,7 +53,7 @@ export function SiteHeader() {
             activeProps={{ className: "text-foreground" }}
             className="relative py-1 transition-colors hover:text-foreground after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-clay after:transition-transform after:duration-500 after:ease-[var(--ease)] hover:after:scale-x-100"
           >
-            Soins
+            {t("Soins", "Treatments")}
           </Link>
           {nav.map((n) => (
             <Link
