@@ -20,7 +20,7 @@ import { Marquee } from "@/components/marquee";
 import { CountUp } from "@/components/count-up";
 import { SoinsShowcase, type Soin } from "@/components/soins-showcase";
 import { Bento3D } from "@/components/bento-3d";
-import { Floating3D } from "@/components/floating-3d";
+
 import { ParcoursStepper, type Etape } from "@/components/parcours-stepper";
 import { MedecinsSection } from "@/components/medecins-section";
 import { Temoignages } from "@/components/temoignages";
@@ -466,22 +466,6 @@ function Home() {
                     className="aspect-[4/5] w-full rounded-[24px] object-cover shadow-[0_50px_120px_-60px_var(--foreground)] transition-transform duration-[900ms] ease-[var(--ease)] group-hover:scale-[1.015]"
                   />
                 </Tilt>
-                <Floating3D
-                  domaine="poids"
-                  alt=""
-                  halo={false}
-                  className="absolute -left-14 top-8 hidden w-28 lg:block xl:w-36"
-                  imgClassName="drop-shadow-[0_30px_35px_rgba(0,0,0,0.28)]"
-                  delay={0.4}
-                />
-                <Floating3D
-                  domaine="cheveux"
-                  alt=""
-                  halo={false}
-                  className="absolute -right-12 bottom-16 hidden w-24 lg:block xl:w-32"
-                  imgClassName="drop-shadow-[0_30px_35px_rgba(0,0,0,0.28)]"
-                  delay={1.6}
-                />
               </div>
             </div>
           </div>
