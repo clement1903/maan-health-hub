@@ -487,11 +487,6 @@ function Home() {
               </div>
             </Reveal>
             <Reveal delay={60}>
-              <div className="mt-10">
-                <Bento3D />
-              </div>
-            </Reveal>
-            <Reveal delay={80}>
               <SoinsShowcase soins={soins} />
             </Reveal>
           </div>
