@@ -488,6 +488,31 @@ function DomainePage() {
 
             <MedicalDisclaimer className="mt-10" />
 
+            <div className="mt-10 rounded-[24px] border border-clay/20 bg-cream p-8 lg:p-10">
+              <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:justify-between">
+                <div>
+                  <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-clay">
+                    {t("Consultation en ligne", "Online consultation")}
+                  </p>
+                  <h3 className="mt-2 font-section text-2xl font-medium tracking-tight">
+                    {t("Votre avis médical commence ici", "Your medical opinion starts here")}
+                  </h3>
+                  <p className="mt-2 max-w-[50ch] text-pretty text-sm text-muted">
+                    {t(
+                      "Répondez au questionnaire médical. Un médecin agréé étudie votre dossier et vous répond sous 24 h. La consultation est gratuite et sans engagement.",
+                      "Answer the medical questionnaire. A licensed doctor reviews your file and replies within 24 hours. The consultation is free and without commitment.",
+                    )}
+                  </p>
+                </div>
+                <Link
+                  to="/questionnaire"
+                  className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep hover:shadow-[0_18px_40px_-18px_var(--clay)]"
+                >
+                  {t("Commencer ma consultation", "Start my consultation")}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
 
