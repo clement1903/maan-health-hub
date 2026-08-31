@@ -58,7 +58,7 @@ export function SiteHeader() {
               aria-haspopup="true"
               className="relative inline-flex items-center gap-1.5 py-4 transition-colors hover:text-foreground after:absolute after:bottom-3 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-clay after:transition-transform after:duration-500 after:ease-[var(--ease)] hover:after:scale-x-100"
             >
-              {t("Expertises", "Expertise")}
+              {t("Soins", "Treatments")}
               <span
                 aria-hidden
                 className="text-[8px] text-clay transition-transform duration-500 ease-[var(--ease)] group-hover:rotate-180"
@@ -96,7 +96,7 @@ export function SiteHeader() {
                   to="/soins"
                   className="mt-1 block rounded-[12px] border-t border-transparent px-4 py-3 text-[10px] uppercase tracking-[0.14em] text-clay transition-colors duration-300 hover:bg-cream"
                 >
-                  {t("Toutes nos expertises", "All our expertise")} →
+                  {t("Tous nos soins", "All our treatments")} →
                 </Link>
               </div>
             </div>
@@ -118,7 +118,7 @@ export function SiteHeader() {
             to="/espace-patient"
             className="group relative overflow-hidden rounded-full bg-clay px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:bg-clay-deep"
           >
-            <span className="relative z-10">{t("Commencer ma consultation", "Start my consultation")}</span>
+            <span className="relative z-10">{t("Démarrer", "Get started")}</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-cream/25 to-transparent transition-transform duration-700 ease-[var(--ease)] group-hover:translate-x-full" />
           </Link>
         </div>

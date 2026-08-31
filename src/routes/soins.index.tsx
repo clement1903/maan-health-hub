@@ -56,15 +56,15 @@ function SoinsIndex() {
         <section className="border-b border-border bg-cream">
           <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-              {t("Nos programmes de soins", "Our care programmes")}
+              {t("Nos soins", "Our treatments")}
             </p>
             <h1 className="mt-3 max-w-[22ch] text-balance font-section text-4xl font-medium tracking-tight lg:text-5xl">
-              {t("Des programmes de soins pensés pour les hommes.", "Care programmes designed for men.")}
+              {t("Les expertises et les traitements que nous proposons.", "Our expertises and the treatments we offer.")}
             </h1>
             <p className="mt-5 max-w-[62ch] text-pretty text-muted">
 {t(
-                "Ce que nous présentons ici ne sont pas des produits en libre accès. Ce sont des options thérapeutiques possibles, délivrées uniquement après une consultation en ligne avec un médecin agréé et la délivrance d'une ordonnance. Les informations sur cette page visent à vous informer : seul le médecin qui examine votre dossier décide de ce qui vous convient.",
-                "What we present here are not over-the-counter products. They are possible therapeutic options, delivered only after an online consultation with a licensed doctor and the issuance of a prescription. The information on this page is for guidance only: only the doctor reviewing your file decides what suits you.",
+                "Chaque traitement présenté ici est un médicament soumis à prescription. Il n'est préparé et expédié qu'après l'évaluation de votre dossier par un médecin agréé et la délivrance d'une ordonnance. Les posologies indiquées sont fournies à titre informatif : seule celle de votre ordonnance fait foi.",
+                "Each treatment shown here is a prescription-only medicine. It is prepared and shipped only after your file has been reviewed by an approved doctor and a prescription issued. The dosages shown are for information only: only the dosage on your prescription is authoritative.",
               )}
             </p>
             <nav className="mt-8 flex flex-wrap gap-2">
@@ -280,7 +280,7 @@ function ProduitCarousel({
                 aria-label={t(`Découvrir ${p.nom}`, `Discover ${p.nom}`)}
                 className="group/btn inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-medium text-background transition-all duration-300 hover:bg-foreground/90"
               >
-                {t("Voir le programme", "See the programme")}
+                {t("Découvrir le produit", "Discover this product")}
                 <span className="transition-transform duration-300 group-hover/btn:translate-x-1">→</span>
               </Link>
             </div>
