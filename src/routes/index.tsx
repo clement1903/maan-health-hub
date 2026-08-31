@@ -60,8 +60,8 @@ export const Route = createFileRoute("/")({
 const soins: Soin[] = [
   {
     n: "01",
-    tag: "Sexual",
-    title: "Sexual Management",
+    tag: "Santé sexuelle",
+    title: "Santé sexuelle",
     desc: "Dysfonction érectile, libido, andropause : un sujet traité sereinement, sans jugement.",
     img: soinSexual,
     alt: "Homme détendu au réveil dans une lumière dorée, serein et confiant",
@@ -74,8 +74,8 @@ const soins: Soin[] = [
   },
   {
     n: "02",
-    tag: "Weight",
-    title: "Weight Management",
+    tag: "Poids",
+    title: "Poids",
     desc: "Surpoids, métabolisme, habitudes : un accompagnement médical structuré dans la durée.",
     img: soinWeight,
     alt: "Homme qui lace ses chaussures de course au lever du soleil",
@@ -88,8 +88,8 @@ const soins: Soin[] = [
   },
   {
     n: "03",
-    tag: "Hair",
-    title: "Hair Management",
+    tag: "Cheveux",
+    title: "Cheveux",
     desc: "Chute de cheveux, calvitie, cuir chevelu : agir tôt change tout.",
     img: soinHair,
     alt: "Homme vérifiant sa ligne de cheveux devant un miroir en lumière chaude",
@@ -102,8 +102,8 @@ const soins: Soin[] = [
   },
   {
     n: "04",
-    tag: "Skin",
-    title: "Skin Management",
+    tag: "Peau",
+    title: "Peau",
     desc: "Acné, peau grasse, rides, taches : une routine validée médicalement.",
     img: soinSkin,
     alt: "Homme appliquant une crème de soin sur le visage devant un miroir",
