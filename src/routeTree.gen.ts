@@ -19,6 +19,7 @@ import { Route as MonEspaceRouteImport } from './routes/mon-espace'
 import { Route as ParcoursRouteImport } from './routes/parcours'
 import { Route as StatistiquesRouteImport } from './routes/statistiques'
 import { Route as MonEspaceIndexRouteImport } from './routes/mon-espace.index'
+import { Route as MonEspaceMessagesRouteImport } from './routes/mon-espace.messages'
 import { Route as QuestionnaireIndexRouteImport } from './routes/questionnaire.index'
 import { Route as QuestionnaireSlugRouteImport } from './routes/questionnaire.$slug'
 import { Route as SoinsIndexRouteImport } from './routes/soins.index'
@@ -76,6 +77,11 @@ const MonEspaceIndexRoute = MonEspaceIndexRouteImport.update({
   path: '/',
   getParentRoute: () => MonEspaceRoute,
 } as any)
+const MonEspaceMessagesRoute = MonEspaceMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => MonEspaceRoute,
+} as any)
 const QuestionnaireIndexRoute = QuestionnaireIndexRouteImport.update({
   id: '/questionnaire/',
   path: '/questionnaire/',
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/mon-espace': typeof MonEspaceRouteWithChildren
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
+  '/mon-espace/messages': typeof MonEspaceMessagesRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
   '/mon-espace/': typeof MonEspaceIndexRoute
@@ -134,6 +141,7 @@ export interface FileRoutesByTo {
   '/espace-patient': typeof EspacePatientRoute
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
+  '/mon-espace/messages': typeof MonEspaceMessagesRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
   '/mon-espace': typeof MonEspaceIndexRoute
@@ -153,6 +161,7 @@ export interface FileRoutesById {
   '/mon-espace': typeof MonEspaceRouteWithChildren
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
+  '/mon-espace/messages': typeof MonEspaceMessagesRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
   '/mon-espace/': typeof MonEspaceIndexRoute
@@ -173,6 +182,7 @@ export interface FileRouteTypes {
     | '/mon-espace'
     | '/parcours'
     | '/statistiques'
+    | '/mon-espace/messages'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
     | '/mon-espace/'
@@ -190,6 +200,7 @@ export interface FileRouteTypes {
     | '/espace-patient'
     | '/parcours'
     | '/statistiques'
+    | '/mon-espace/messages'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
     | '/mon-espace'
@@ -208,6 +219,7 @@ export interface FileRouteTypes {
     | '/mon-espace'
     | '/parcours'
     | '/statistiques'
+    | '/mon-espace/messages'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
     | '/mon-espace/'
@@ -305,6 +317,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MonEspaceIndexRouteImport
       parentRoute: typeof MonEspaceRoute
     }
+    '/mon-espace/messages': {
+      id: '/mon-espace/messages'
+      path: '/messages'
+      fullPath: '/mon-espace/messages'
+      preLoaderRoute: typeof MonEspaceMessagesRouteImport
+      parentRoute: typeof MonEspaceRoute
+    }
     '/questionnaire/': {
       id: '/questionnaire/'
       path: '/questionnaire'
@@ -351,12 +370,14 @@ declare module '@tanstack/react-router' {
 }
 
 interface MonEspaceRouteChildren {
+  MonEspaceMessagesRoute: typeof MonEspaceMessagesRoute
   MonEspaceIndexRoute: typeof MonEspaceIndexRoute
   MonEspaceSoinsJourneyIdRoute: typeof MonEspaceSoinsJourneyIdRoute
   MonEspaceSoinsIndexRoute: typeof MonEspaceSoinsIndexRoute
 }
 
 const MonEspaceRouteChildren: MonEspaceRouteChildren = {
+  MonEspaceMessagesRoute: MonEspaceMessagesRoute,
   MonEspaceIndexRoute: MonEspaceIndexRoute,
   MonEspaceSoinsJourneyIdRoute: MonEspaceSoinsJourneyIdRoute,
   MonEspaceSoinsIndexRoute: MonEspaceSoinsIndexRoute,
