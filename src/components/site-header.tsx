@@ -13,6 +13,7 @@ export function SiteHeader() {
     { to: "/parcours", label: t("Parcours", "How it works") },
     { to: "/statistiques", label: t("Les chiffres", "The numbers") },
     { to: "/conformite", label: t("Conformité", "Compliance") },
+    { to: "/mon-espace", label: t("Mon espace", "My area") },
     { to: "/espace-patient", label: t("Espace patient", "Patient area") },
   ];
 

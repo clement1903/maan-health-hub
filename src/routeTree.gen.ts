@@ -15,12 +15,19 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ConformiteRouteImport } from './routes/conformite'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as EspacePatientRouteImport } from './routes/espace-patient'
+import { Route as MonEspaceRouteImport } from './routes/mon-espace'
 import { Route as ParcoursRouteImport } from './routes/parcours'
 import { Route as StatistiquesRouteImport } from './routes/statistiques'
+import { Route as MonEspaceIndexRouteImport } from './routes/mon-espace.index'
+import { Route as MonEspaceMessagesRouteImport } from './routes/mon-espace.messages'
+import { Route as MonEspaceProfilRouteImport } from './routes/mon-espace.profil'
+import { Route as MonEspaceSuiviRouteImport } from './routes/mon-espace.suivi'
 import { Route as QuestionnaireIndexRouteImport } from './routes/questionnaire.index'
 import { Route as QuestionnaireSlugRouteImport } from './routes/questionnaire.$slug'
 import { Route as SoinsIndexRouteImport } from './routes/soins.index'
 import { Route as SoinsDomaineRouteImport } from './routes/soins.$domaine'
+import { Route as MonEspaceSoinsIndexRouteImport } from './routes/mon-espace.soins.index'
+import { Route as MonEspaceSoinsJourneyIdRouteImport } from './routes/mon-espace.soins.$journeyId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +59,11 @@ const EspacePatientRoute = EspacePatientRouteImport.update({
   path: '/espace-patient',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MonEspaceRoute = MonEspaceRouteImport.update({
+  id: '/mon-espace',
+  path: '/mon-espace',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ParcoursRoute = ParcoursRouteImport.update({
   id: '/parcours',
   path: '/parcours',
@@ -61,6 +73,26 @@ const StatistiquesRoute = StatistiquesRouteImport.update({
   id: '/statistiques',
   path: '/statistiques',
   getParentRoute: () => rootRouteImport,
+} as any)
+const MonEspaceIndexRoute = MonEspaceIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MonEspaceRoute,
+} as any)
+const MonEspaceMessagesRoute = MonEspaceMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => MonEspaceRoute,
+} as any)
+const MonEspaceProfilRoute = MonEspaceProfilRouteImport.update({
+  id: '/profil',
+  path: '/profil',
+  getParentRoute: () => MonEspaceRoute,
+} as any)
+const MonEspaceSuiviRoute = MonEspaceSuiviRouteImport.update({
+  id: '/suivi',
+  path: '/suivi',
+  getParentRoute: () => MonEspaceRoute,
 } as any)
 const QuestionnaireIndexRoute = QuestionnaireIndexRouteImport.update({
   id: '/questionnaire/',
@@ -82,6 +114,16 @@ const SoinsDomaineRoute = SoinsDomaineRouteImport.update({
   path: '/soins/$domaine',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MonEspaceSoinsIndexRoute = MonEspaceSoinsIndexRouteImport.update({
+  id: '/soins/',
+  path: '/soins/',
+  getParentRoute: () => MonEspaceRoute,
+} as any)
+const MonEspaceSoinsJourneyIdRoute = MonEspaceSoinsJourneyIdRouteImport.update({
+  id: '/soins/$journeyId',
+  path: '/soins/$journeyId',
+  getParentRoute: () => MonEspaceRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -90,12 +132,19 @@ export interface FileRoutesByFullPath {
   '/conformite': typeof ConformiteRoute
   '/cookies': typeof CookiesRoute
   '/espace-patient': typeof EspacePatientRoute
+  '/mon-espace': typeof MonEspaceRouteWithChildren
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
+  '/mon-espace/messages': typeof MonEspaceMessagesRoute
+  '/mon-espace/profil': typeof MonEspaceProfilRoute
+  '/mon-espace/suivi': typeof MonEspaceSuiviRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
+  '/mon-espace/': typeof MonEspaceIndexRoute
   '/questionnaire/': typeof QuestionnaireIndexRoute
   '/soins/': typeof SoinsIndexRoute
+  '/mon-espace/soins/$journeyId': typeof MonEspaceSoinsJourneyIdRoute
+  '/mon-espace/soins/': typeof MonEspaceSoinsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -106,10 +155,16 @@ export interface FileRoutesByTo {
   '/espace-patient': typeof EspacePatientRoute
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
+  '/mon-espace/messages': typeof MonEspaceMessagesRoute
+  '/mon-espace/profil': typeof MonEspaceProfilRoute
+  '/mon-espace/suivi': typeof MonEspaceSuiviRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
+  '/mon-espace': typeof MonEspaceIndexRoute
   '/questionnaire': typeof QuestionnaireIndexRoute
   '/soins': typeof SoinsIndexRoute
+  '/mon-espace/soins/$journeyId': typeof MonEspaceSoinsJourneyIdRoute
+  '/mon-espace/soins': typeof MonEspaceSoinsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -119,12 +174,19 @@ export interface FileRoutesById {
   '/conformite': typeof ConformiteRoute
   '/cookies': typeof CookiesRoute
   '/espace-patient': typeof EspacePatientRoute
+  '/mon-espace': typeof MonEspaceRouteWithChildren
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
+  '/mon-espace/messages': typeof MonEspaceMessagesRoute
+  '/mon-espace/profil': typeof MonEspaceProfilRoute
+  '/mon-espace/suivi': typeof MonEspaceSuiviRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
+  '/mon-espace/': typeof MonEspaceIndexRoute
   '/questionnaire/': typeof QuestionnaireIndexRoute
   '/soins/': typeof SoinsIndexRoute
+  '/mon-espace/soins/$journeyId': typeof MonEspaceSoinsJourneyIdRoute
+  '/mon-espace/soins/': typeof MonEspaceSoinsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -135,12 +197,19 @@ export interface FileRouteTypes {
     | '/conformite'
     | '/cookies'
     | '/espace-patient'
+    | '/mon-espace'
     | '/parcours'
     | '/statistiques'
+    | '/mon-espace/messages'
+    | '/mon-espace/profil'
+    | '/mon-espace/suivi'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
+    | '/mon-espace/'
     | '/questionnaire/'
     | '/soins/'
+    | '/mon-espace/soins/$journeyId'
+    | '/mon-espace/soins/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -151,10 +220,16 @@ export interface FileRouteTypes {
     | '/espace-patient'
     | '/parcours'
     | '/statistiques'
+    | '/mon-espace/messages'
+    | '/mon-espace/profil'
+    | '/mon-espace/suivi'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
+    | '/mon-espace'
     | '/questionnaire'
     | '/soins'
+    | '/mon-espace/soins/$journeyId'
+    | '/mon-espace/soins'
   id:
     | '__root__'
     | '/'
@@ -163,12 +238,19 @@ export interface FileRouteTypes {
     | '/conformite'
     | '/cookies'
     | '/espace-patient'
+    | '/mon-espace'
     | '/parcours'
     | '/statistiques'
+    | '/mon-espace/messages'
+    | '/mon-espace/profil'
+    | '/mon-espace/suivi'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
+    | '/mon-espace/'
     | '/questionnaire/'
     | '/soins/'
+    | '/mon-espace/soins/$journeyId'
+    | '/mon-espace/soins/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -178,6 +260,7 @@ export interface RootRouteChildren {
   ConformiteRoute: typeof ConformiteRoute
   CookiesRoute: typeof CookiesRoute
   EspacePatientRoute: typeof EspacePatientRoute
+  MonEspaceRoute: typeof MonEspaceRouteWithChildren
   ParcoursRoute: typeof ParcoursRoute
   StatistiquesRoute: typeof StatistiquesRoute
   QuestionnaireSlugRoute: typeof QuestionnaireSlugRoute
@@ -230,6 +313,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EspacePatientRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mon-espace': {
+      id: '/mon-espace'
+      path: '/mon-espace'
+      fullPath: '/mon-espace'
+      preLoaderRoute: typeof MonEspaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/parcours': {
       id: '/parcours'
       path: '/parcours'
@@ -243,6 +333,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/statistiques'
       preLoaderRoute: typeof StatistiquesRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/mon-espace/': {
+      id: '/mon-espace/'
+      path: '/'
+      fullPath: '/mon-espace/'
+      preLoaderRoute: typeof MonEspaceIndexRouteImport
+      parentRoute: typeof MonEspaceRoute
+    }
+    '/mon-espace/messages': {
+      id: '/mon-espace/messages'
+      path: '/messages'
+      fullPath: '/mon-espace/messages'
+      preLoaderRoute: typeof MonEspaceMessagesRouteImport
+      parentRoute: typeof MonEspaceRoute
+    }
+    '/mon-espace/profil': {
+      id: '/mon-espace/profil'
+      path: '/profil'
+      fullPath: '/mon-espace/profil'
+      preLoaderRoute: typeof MonEspaceProfilRouteImport
+      parentRoute: typeof MonEspaceRoute
+    }
+    '/mon-espace/suivi': {
+      id: '/mon-espace/suivi'
+      path: '/suivi'
+      fullPath: '/mon-espace/suivi'
+      preLoaderRoute: typeof MonEspaceSuiviRouteImport
+      parentRoute: typeof MonEspaceRoute
     }
     '/questionnaire/': {
       id: '/questionnaire/'
@@ -272,8 +390,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SoinsDomaineRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mon-espace/soins/': {
+      id: '/mon-espace/soins/'
+      path: '/soins'
+      fullPath: '/mon-espace/soins/'
+      preLoaderRoute: typeof MonEspaceSoinsIndexRouteImport
+      parentRoute: typeof MonEspaceRoute
+    }
+    '/mon-espace/soins/$journeyId': {
+      id: '/mon-espace/soins/$journeyId'
+      path: '/soins/$journeyId'
+      fullPath: '/mon-espace/soins/$journeyId'
+      preLoaderRoute: typeof MonEspaceSoinsJourneyIdRouteImport
+      parentRoute: typeof MonEspaceRoute
+    }
   }
 }
+
+interface MonEspaceRouteChildren {
+  MonEspaceMessagesRoute: typeof MonEspaceMessagesRoute
+  MonEspaceProfilRoute: typeof MonEspaceProfilRoute
+  MonEspaceSuiviRoute: typeof MonEspaceSuiviRoute
+  MonEspaceIndexRoute: typeof MonEspaceIndexRoute
+  MonEspaceSoinsJourneyIdRoute: typeof MonEspaceSoinsJourneyIdRoute
+  MonEspaceSoinsIndexRoute: typeof MonEspaceSoinsIndexRoute
+}
+
+const MonEspaceRouteChildren: MonEspaceRouteChildren = {
+  MonEspaceMessagesRoute: MonEspaceMessagesRoute,
+  MonEspaceProfilRoute: MonEspaceProfilRoute,
+  MonEspaceSuiviRoute: MonEspaceSuiviRoute,
+  MonEspaceIndexRoute: MonEspaceIndexRoute,
+  MonEspaceSoinsJourneyIdRoute: MonEspaceSoinsJourneyIdRoute,
+  MonEspaceSoinsIndexRoute: MonEspaceSoinsIndexRoute,
+}
+
+const MonEspaceRouteWithChildren = MonEspaceRoute._addFileChildren(
+  MonEspaceRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -282,6 +436,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConformiteRoute: ConformiteRoute,
   CookiesRoute: CookiesRoute,
   EspacePatientRoute: EspacePatientRoute,
+  MonEspaceRoute: MonEspaceRouteWithChildren,
   ParcoursRoute: ParcoursRoute,
   StatistiquesRoute: StatistiquesRoute,
   QuestionnaireSlugRoute: QuestionnaireSlugRoute,
