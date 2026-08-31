@@ -51,7 +51,7 @@ function SoinsIndex() {
               {t("Nos soins", "Our treatments")}
             </p>
             <h1 className="mt-3 max-w-[22ch] text-balance font-section text-4xl font-medium tracking-tight lg:text-5xl">
-              {t("Les spécialités et les traitements que nous proposons.", "The specialties and treatments we offer.")}
+              {t("Les expertises et les traitements que nous proposons.", "Our expertises and the treatments we offer.")}
             </h1>
             <p className="mt-5 max-w-[62ch] text-pretty text-muted">
 {t(
