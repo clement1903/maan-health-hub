@@ -405,8 +405,8 @@ function Home() {
                   </div>
                 </div>
               </div>
-              <div className="mt-10 flex flex-wrap items-center justify-center gap-y-6 sm:flex-nowrap sm:justify-between">
-                <div className="w-1/2 text-center sm:w-auto sm:flex-1">
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-y-6 sm:flex-nowrap sm:gap-0">
+                <div className="w-1/2 px-5 text-center sm:w-auto sm:min-w-[150px]">
                   <CountUp
                     to={dossiersAccompagnes}
                     suffix="+"
@@ -416,8 +416,8 @@ function Home() {
                     {t("Dossiers accompagnés", "Cases supported")}
                   </p>
                 </div>
-                <span className="hidden h-8 w-px bg-border sm:block" aria-hidden="true" />
-                <div className="w-1/2 text-center sm:w-auto sm:flex-1">
+                <span className="hidden h-5 w-px bg-border sm:block" aria-hidden="true" />
+                <div className="w-1/2 px-5 text-center sm:w-auto sm:min-w-[150px]">
                   <CountUp
                     to={24}
                     suffix="h"
@@ -427,8 +427,8 @@ function Home() {
                     {t("Réponse médicale", "Medical answer")}
                   </p>
                 </div>
-                <span className="hidden h-8 w-px bg-border sm:block" aria-hidden="true" />
-                <div className="w-1/2 text-center sm:w-auto sm:flex-1">
+                <span className="hidden h-5 w-px bg-border sm:block" aria-hidden="true" />
+                <div className="w-1/2 px-5 text-center sm:w-auto sm:min-w-[150px]">
                   <CountUp
                     to={4}
                     className="font-display text-2xl font-medium tracking-tight text-clay"
@@ -437,8 +437,8 @@ function Home() {
                     {t("Spécialités", "Specialties")}
                   </p>
                 </div>
-                <span className="hidden h-8 w-px bg-border sm:block" aria-hidden="true" />
-                <div className="w-1/2 text-center sm:w-auto sm:flex-1">
+                <span className="hidden h-5 w-px bg-border sm:block" aria-hidden="true" />
+                <div className="w-1/2 px-5 text-center sm:w-auto sm:min-w-[150px]">
                   <p className="font-display text-2xl font-medium tracking-tight text-clay">BIG</p>
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
                     {t("Médecins certifiés", "Certified doctors")}
