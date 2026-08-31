@@ -8,6 +8,7 @@ import { findDefinitionBySlug, questionnaireDefinitions } from "@/lib/questionna
 import type { Answers, SubmissionPayload } from "@/lib/questionnaire/types";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/questionnaire/$slug")({
   validateSearch: (search: Record<string, unknown>): { produit?: string } =>
@@ -48,6 +49,7 @@ function localKey(slug: string) {
 }
 
 function QuestionnairePage() {
+  const { t } = useI18n();
   const { slug } = Route.useParams();
   const { produit } = Route.useSearch();
   const navigate = useNavigate();
@@ -95,7 +97,7 @@ function QuestionnairePage() {
       <div className="flex min-h-screen flex-col bg-background font-sans text-foreground">
         <SiteHeader />
         <main className="mx-auto max-w-2xl flex-1 px-6 py-24 text-center">
-          <h1 className="font-display text-3xl">Questionnaire introuvable</h1>
+          <h1 className="font-display text-3xl">{t("Questionnaire introuvable", "Questionnaire not found")}</h1>
           <ul className="mt-8 space-y-2">
             {questionnaireDefinitions.map((d) => (
               <li key={d.id}>
@@ -153,7 +155,7 @@ function QuestionnairePage() {
 
     if (qError || !questionnaire) {
       setSubmitting(false);
-      setError("L'envoi a échoué. Réessayez dans un instant.");
+      setError(t("L'envoi a échoué. Réessayez dans un instant.", "Sending failed. Please try again in a moment."));
       return;
     }
 
@@ -182,16 +184,16 @@ function QuestionnairePage() {
       <SiteHeader />
       <main className="flex-1">
         {!ready || loading ? (
-          <div className="mx-auto max-w-2xl px-6 py-24 text-center text-muted">Chargement…</div>
+          <div className="mx-auto max-w-2xl px-6 py-24 text-center text-muted">{t("Chargement…", "Loading…")}</div>
         ) : (
           <>
             {!user ? (
               <p className="mx-auto mt-6 max-w-2xl rounded-[16px] border border-border bg-card px-5 py-4 text-sm text-muted">
-                Vos réponses sont enregistrées sur cet appareil.{" "}
+                {t("Vos réponses sont enregistrées sur cet appareil.", "Your answers are saved on this device.")}{" "}
                 <Link to="/auth" className="text-clay underline">
-                  Connectez-vous
+                  {t("Connectez-vous", "Log in")}
                 </Link>{" "}
-                pour les retrouver partout et envoyer votre dossier.
+                {t("pour les retrouver partout et envoyer votre dossier.", "to find them anywhere and send your file.")}
               </p>
             ) : null}
             {error ? (
