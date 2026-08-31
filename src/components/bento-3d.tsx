@@ -94,8 +94,6 @@ export function Bento3D() {
       title: t("Perdez du poids, durablement.", "Lose weight, for good."),
       accent: t("Poids", "Weight"),
       cta: t("Voir les traitements", "See treatments"),
-      img: img3dWeight,
-      alt: t("Stylo injecteur médical en 3D", "3D medical injection pen"),
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--amber) 40%, var(--cream)), color-mix(in oklab, var(--clay) 22%, var(--cream)))",
       large: true,
@@ -106,8 +104,6 @@ export function Bento3D() {
       title: t("Retrouvez confiance au lit.", "Get your confidence back."),
       accent: t("Santé sexuelle", "Sexual health"),
       cta: t("Découvrir", "Discover"),
-      img: img3dSexual,
-      alt: t("Comprimé bleu en rendu 3D", "3D render of a blue tablet"),
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--sand) 70%, var(--cream)), var(--cream))",
       delay: 0.6,
@@ -117,8 +113,6 @@ export function Bento3D() {
       title: t("Gardez vos cheveux.", "Keep your hair."),
       accent: t("Cheveux", "Hair"),
       cta: t("Découvrir", "Discover"),
-      img: img3dHair,
-      alt: t("Comprimés et pipette en rendu 3D", "3D render of tablets and a dropper"),
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--clay) 16%, var(--cream)), var(--cream))",
       delay: 1.2,
@@ -128,8 +122,6 @@ export function Bento3D() {
       title: t("Une peau nette.", "Clear, calm skin."),
       accent: t("Peau", "Skin"),
       cta: t("Découvrir", "Discover"),
-      img: img3dSkin,
-      alt: t("Tube de crème en rendu 3D", "3D render of a cream tube"),
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--amber) 22%, var(--cream)), var(--cream))",
       delay: 1.8,
