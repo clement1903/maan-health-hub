@@ -24,7 +24,6 @@ export function ParcoursVideo({
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [playing, setPlaying] = useState(true);
 
   useEffect(() => {
     onChapterChange?.(active);
@@ -51,8 +50,6 @@ export function ParcoursVideo({
           playsInline
           aria-label="Vidéo explicative du parcours : questionnaire, décision médicale, préparation en pharmacie, livraison et suivi"
           className="aspect-[5/3] w-full object-cover"
-          onPlay={() => setPlaying(true)}
-          onPause={() => setPlaying(false)}
           onTimeUpdate={(e) => {
             const v = e.currentTarget;
             const d = v.duration || 10;
@@ -65,18 +62,6 @@ export function ParcoursVideo({
           }}
         />
 
-        <button
-          type="button"
-          onClick={() => {
-            const v = videoRef.current;
-            if (!v) return;
-            if (v.paused) void v.play().catch(() => undefined);
-            else v.pause();
-          }}
-          className="absolute right-3 top-3 rounded-full bg-background/85 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-clay backdrop-blur-sm transition-colors hover:bg-background"
-        >
-          {playing ? "Pause" : "Lecture"}
-        </button>
 
         <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-background/85 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-clay backdrop-blur-sm">
           {chapitres[active]!.title}
@@ -104,9 +89,6 @@ export function ParcoursVideo({
                   : "border-border text-muted hover:border-clay/40 hover:text-foreground",
               )}
             >
-              <span className="font-mono text-[10px] tabular-nums opacity-70">
-                0:0{c.start}
-              </span>
               <span className="truncate">{c.title}</span>
             </button>
           </li>

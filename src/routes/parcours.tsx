@@ -98,9 +98,6 @@ function ParcoursPage() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-5 text-sm text-muted">
-                Cliquez sur un chapitre de la vidéo pour suivre l'étape.
-              </p>
             </Reveal>
             <Reveal delay={100} className="lg:col-span-5">
               <ParcoursVideo
