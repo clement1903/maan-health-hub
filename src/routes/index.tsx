@@ -398,7 +398,10 @@ function Home() {
 
         <MedecinsSection />
 
+        <MotFondateur />
+
         <Temoignages />
+
 
         {/* FAQ */}
         <section id="faq" className="mx-auto max-w-4xl scroll-mt-24 px-6 py-16 lg:py-24">
