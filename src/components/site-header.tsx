@@ -44,7 +44,7 @@ export function SiteHeader() {
               condensed ? "max-w-0 opacity-0" : "max-w-[24rem] opacity-100",
             )}
           >
-            Des soins pensés pour les hommes
+            {t("Des soins pensés pour les hommes", "Care designed for men")}
           </span>
         </Link>
         <nav className="hidden items-center gap-8 font-mono text-[11px] uppercase tracking-[0.15em] text-muted lg:flex">
