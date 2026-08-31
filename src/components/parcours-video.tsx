@@ -6,7 +6,7 @@ export type Chapitre = { start: number; title: string };
 
 export const chapitres: Chapitre[] = [
   { start: 0, title: "Questionnaire médical" },
-  { start: 2, title: "Décision médicale" },
+  { start: 2, title: "Consultation médicale" },
   { start: 4, title: "Préparation en pharmacie" },
   { start: 6, title: "Livraison discrète" },
   { start: 8, title: "Suivi médical" },
