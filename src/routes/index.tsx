@@ -405,8 +405,8 @@ function Home() {
                   </div>
                 </div>
               </div>
-              <div className="mt-10 grid grid-cols-2 gap-3 border-t border-border pt-6 sm:grid-cols-4">
-                <div className="text-center">
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-y-6 sm:flex-nowrap sm:justify-between">
+                <div className="w-1/2 text-center sm:w-auto sm:flex-1">
                   <CountUp
                     to={dossiersAccompagnes}
                     suffix="+"
@@ -416,7 +416,8 @@ function Home() {
                     {t("Dossiers accompagnés", "Cases supported")}
                   </p>
                 </div>
-                <div className="text-center">
+                <span className="hidden h-8 w-px bg-border sm:block" aria-hidden="true" />
+                <div className="w-1/2 text-center sm:w-auto sm:flex-1">
                   <CountUp
                     to={24}
                     suffix="h"
@@ -426,7 +427,8 @@ function Home() {
                     {t("Réponse médicale", "Medical answer")}
                   </p>
                 </div>
-                <div className="text-center">
+                <span className="hidden h-8 w-px bg-border sm:block" aria-hidden="true" />
+                <div className="w-1/2 text-center sm:w-auto sm:flex-1">
                   <CountUp
                     to={4}
                     className="font-display text-2xl font-medium tracking-tight text-clay"
@@ -435,7 +437,8 @@ function Home() {
                     {t("Spécialités", "Specialties")}
                   </p>
                 </div>
-                <div className="text-center">
+                <span className="hidden h-8 w-px bg-border sm:block" aria-hidden="true" />
+                <div className="w-1/2 text-center sm:w-auto sm:flex-1">
                   <p className="font-display text-2xl font-medium tracking-tight text-clay">BIG</p>
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
                     {t("Médecins certifiés", "Certified doctors")}
