@@ -34,7 +34,7 @@ type Props = {
   submitting?: boolean | undefined;
 };
 
-type Phase = "intro" | "questions" | "summary";
+type Phase = "intro" | "questions" | "summary" | "eligibilite";
 
 export function QuestionnaireRunner({
   definition,
