@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 import { ImageZoom } from "@/components/image-zoom";
-import { produitDetails, type Produit } from "@/data/soins";
+import type { Produit } from "@/data/soins";
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 type Slide = {
@@ -12,15 +13,15 @@ type Slide = {
 };
 
 export function ProduitCarrousel({ produit }: { produit: Produit }) {
-  const details = produitDetails[produit.molecule];
+  const { t } = useI18n();
   const [index, setIndex] = useState(0);
   const tabsRef = useRef<Array<HTMLButtonElement | null>>([]);
 
   const slides: Slide[] = [
     {
       id: "photo",
-      label: "Photo",
-      titre: "Le traitement",
+      label: t("Photo", "Photo"),
+      titre: t("Le traitement", "The treatment"),
       render: () => (
         <div className="space-y-4">
           <ImageZoom
@@ -36,50 +37,46 @@ export function ProduitCarrousel({ produit }: { produit: Produit }) {
     },
     {
       id: "action",
-      label: "Mode d'action",
-      titre: "Comment ça agit",
+      label: t("Mode d'action", "How it works"),
+      titre: t("Comment ça agit", "How it works"),
       render: () => (
         <div className="space-y-4">
-          <p className="text-pretty">
-            {details?.modeAction ??
-              "Le mode d'action détaillé est expliqué par le médecin lors de l'évaluation de votre dossier."}
-          </p>
+          <p className="text-pretty">{produit.modeAction}</p>
           <p className="text-pretty text-sm text-muted">
-            Posologie indicative — {produit.posologie}
+            {t("Posologie indicative", "Indicative dosage")} — {produit.posologie}
           </p>
         </div>
       ),
     },
     {
       id: "precautions",
-      label: "Précautions",
-      titre: "Ce qu'il faut signaler",
+      label: t("Précautions", "Precautions"),
+      titre: t("Ce qu'il faut signaler", "What to report"),
       render: () => (
         <div className="space-y-4">
           <p className="text-pretty">{produit.precautions}</p>
           <p className="text-pretty text-sm text-muted">
-            Ces éléments sont demandés dans le questionnaire. Ils aident le médecin à décider ; ils
-            ne constituent ni un diagnostic ni une autorisation de traitement.
+            {t(
+              "Ces éléments sont demandés dans le questionnaire. Ils aident le médecin à décider ; ils ne constituent ni un diagnostic ni une autorisation de traitement.",
+              "These elements are requested in the questionnaire. They help the doctor decide; they are neither a diagnosis nor an authorization to treat.",
+            )}
           </p>
         </div>
       ),
     },
     {
       id: "suivi",
-      label: "Suivi",
-      titre: "Après la prescription",
+      label: t("Suivi", "Follow-up"),
+      titre: t("Après la prescription", "After the prescription"),
       render: () => (
-        <p className="text-pretty">
-          {details?.suivi ??
-            "Un suivi est proposé après la mise en route du traitement afin d'évaluer l'efficacité et la tolérance."}
-        </p>
+        <p className="text-pretty">{produit.suivi}</p>
       ),
     },
   ];
 
   useEffect(() => {
     setIndex(0);
-  }, [produit.nom]);
+  }, [produit.id]);
 
   const go = (next: number) => {
     const clamped = (next + slides.length) % slides.length;
@@ -93,7 +90,7 @@ export function ProduitCarrousel({ produit }: { produit: Produit }) {
     <div className="rounded-[24px] border border-border bg-background p-6 lg:p-8">
       <div
         role="tablist"
-        aria-label={`Informations sur ${produit.molecule}`}
+        aria-label={t(`Informations sur ${produit.molecule}`, `Information about ${produit.molecule}`)}
         className="flex flex-wrap gap-2"
         onKeyDown={(e) => {
           if (e.key === "ArrowRight") {
@@ -119,9 +116,9 @@ export function ProduitCarrousel({ produit }: { produit: Produit }) {
             }}
             type="button"
             role="tab"
-            id={`tab-${produit.molecule}-${s.id}`}
+            id={`tab-${produit.id}-${s.id}`}
             aria-selected={index === i}
-            aria-controls={`panel-${produit.molecule}-${s.id}`}
+            aria-controls={`panel-${produit.id}-${s.id}`}
             tabIndex={index === i ? 0 : -1}
             onClick={() => setIndex(i)}
             className={cn(
@@ -138,8 +135,8 @@ export function ProduitCarrousel({ produit }: { produit: Produit }) {
 
       <div
         role="tabpanel"
-        id={`panel-${produit.molecule}-${active.id}`}
-        aria-labelledby={`tab-${produit.molecule}-${active.id}`}
+        id={`panel-${produit.id}-${active.id}`}
+        aria-labelledby={`tab-${produit.id}-${active.id}`}
         key={active.id}
         className="mt-6 animate-[rise_0.4s_var(--ease)_both]"
       >
@@ -163,7 +160,7 @@ export function ProduitCarrousel({ produit }: { produit: Produit }) {
           <button
             type="button"
             onClick={() => go(index - 1)}
-            aria-label="Élément précédent"
+            aria-label={t("Élément précédent", "Previous item")}
             className="h-10 w-10 rounded-full border border-border text-muted transition-colors hover:border-clay/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay"
           >
             ←
@@ -171,7 +168,7 @@ export function ProduitCarrousel({ produit }: { produit: Produit }) {
           <button
             type="button"
             onClick={() => go(index + 1)}
-            aria-label="Élément suivant"
+            aria-label={t("Élément suivant", "Next item")}
             className="h-10 w-10 rounded-full border border-border text-muted transition-colors hover:border-clay/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay"
           >
             →

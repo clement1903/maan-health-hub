@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
 import { ParcoursProgress, etapesDetaillees } from "@/components/parcours-progress";
 import { ParcoursVideo } from "@/components/parcours-video";
+import { useI18n } from "@/lib/i18n";
 import consultationImg from "@/assets/parcours-consultation.jpg";
 import explicationVideo from "@/assets/parcours-explication.mp4.asset.json";
 
@@ -56,8 +57,15 @@ export const Route = createFileRoute("/parcours")({
 
 
 function ParcoursPage() {
+  const { t } = useI18n();
   const [chapitre, setChapitre] = useState(0);
   const [scrollSignal, setScrollSignal] = useState(0);
+
+  const tags = [
+    t("5 étapes", "5 steps"),
+    t("Réponse sous 24 h", "Response within 24 h"),
+    t("Colis neutre", "Discreet packaging"),
+  ];
 
   return (
     <div className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
@@ -67,16 +75,19 @@ function ParcoursPage() {
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
             <Reveal className="lg:col-span-7">
               <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-                Parcours d'accès aux traitements
+                {t("Parcours d'accès aux traitements", "The path to treatment")}
               </p>
               <h1 className="mt-4 max-w-[22ch] text-balance font-display text-4xl font-medium leading-[1.05] tracking-tight lg:text-6xl">
-                Questionnaire, prescription, livraison.
+                {t("Questionnaire, prescription, livraison.", "Questionnaire, prescription, delivery.")}
               </h1>
               <p className="mt-6 max-w-[46ch] text-pretty text-lg text-muted">
-                Chaque demande est évaluée par un médecin agréé. Rien n'est vendu librement.
+                {t(
+                  "Chaque demande est évaluée par un médecin agréé. Rien n'est vendu librement.",
+                  "Every request is assessed by a licensed doctor. Nothing is sold freely.",
+                )}
               </p>
               <ul className="mt-6 flex flex-wrap gap-2">
-                {["5 étapes", "Réponse sous 24 h", "Colis neutre"].map((c) => (
+                {tags.map((c) => (
                   <li
                     key={c}
                     className="rounded-full border border-border bg-cream px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-clay"
@@ -99,7 +110,7 @@ function ParcoursPage() {
             </Reveal>
           </div>
           <ParcoursProgress
-            etapes={etapesDetaillees}
+            etapes={etapesDetaillees(t)}
             activeIndex={chapitre}
             scrollSignal={scrollSignal}
           />
@@ -110,13 +121,16 @@ function ParcoursPage() {
         <section className="bg-clay text-cream">
           <div className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-6 py-16 lg:flex-row lg:items-center lg:justify-between lg:py-20">
             <h2 className="max-w-[24ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-              Commencez votre questionnaire depuis votre espace patient.
+              {t(
+                "Commencez votre questionnaire depuis votre espace patient.",
+                "Start your questionnaire from your patient portal.",
+              )}
             </h2>
             <Link
               to="/espace-patient"
               className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-cream px-7 py-4 text-sm font-medium text-foreground transition-all duration-300 hover:gap-3 hover:bg-sand"
             >
-              Ouvrir mon espace patient
+              {t("Ouvrir mon espace patient", "Open my patient portal")}
               <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </Link>
           </div>

@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { domaines, type Domaine, type Produit } from "@/data/soins";
+import { getSoins, type Domaine, type Produit } from "@/data/soins";
 import { Reveal } from "@/components/reveal";
 import { ImageZoom } from "@/components/image-zoom";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/soins/")({
   head: () => ({
@@ -37,6 +38,8 @@ export const Route = createFileRoute("/soins/")({
 });
 
 function SoinsIndex() {
+  const { t, lang } = useI18n();
+  const domaines = getSoins(lang);
   return (
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
       <SiteHeader />
@@ -45,16 +48,16 @@ function SoinsIndex() {
         <section className="border-b border-border bg-cream">
           <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-              Nos soins
+              {t("Nos soins", "Our treatments")}
             </p>
             <h1 className="mt-3 max-w-[22ch] text-balance font-section text-4xl font-medium tracking-tight lg:text-5xl">
-              Les spécialités et les traitements que nous proposons.
+              {t("Les spécialités et les traitements que nous proposons.", "The specialties and treatments we offer.")}
             </h1>
             <p className="mt-5 max-w-[62ch] text-pretty text-muted">
-              Chaque traitement présenté ici est un médicament soumis à prescription. Il n'est
-              préparé et expédié qu'après l'évaluation de votre dossier par un médecin agréé et la
-              délivrance d'une ordonnance. Les posologies indiquées sont fournies à titre
-              informatif : seule celle de votre ordonnance fait foi.
+{t(
+                "Chaque traitement présenté ici est un médicament soumis à prescription. Il n'est préparé et expédié qu'après l'évaluation de votre dossier par un médecin agréé et la délivrance d'une ordonnance. Les posologies indiquées sont fournies à titre informatif : seule celle de votre ordonnance fait foi.",
+                "Each treatment shown here is a prescription-only medicine. It is prepared and shipped only after your file has been reviewed by an approved doctor and a prescription issued. The dosages shown are for information only: only the dosage on your prescription is authoritative.",
+              )}
             </p>
             <nav className="mt-8 flex flex-wrap gap-2">
               {domaines.map((d) => (
@@ -89,6 +92,7 @@ function SoinsIndex() {
 }
 
 function DomaineSection({ domaine: d }: { domaine: Domaine }) {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -105,7 +109,7 @@ function DomaineSection({ domaine: d }: { domaine: Domaine }) {
             aria-controls={`domaine-info-${d.slug}`}
             className="group inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted transition-all duration-300 hover:border-clay/50 hover:text-foreground"
           >
-            {open ? "Réduire" : "En savoir plus"}
+            {open ? t("Réduire", "Collapse") : t("En savoir plus", "Learn more")}
             <span
               aria-hidden
               className={`font-mono text-clay transition-transform duration-500 ease-[var(--ease)] ${open ? "rotate-45" : ""}`}
@@ -127,7 +131,7 @@ function DomaineSection({ domaine: d }: { domaine: Domaine }) {
             <div className="lg:col-span-5">
               <img
                 src={d.image}
-                alt={`Spécialité MAAN ${d.titre} — ${d.tag}`}
+                alt={t(`Spécialité MAAN ${d.titre} — ${d.tag}`, `MAAN specialty ${d.titre} — ${d.tag}`)}
                 loading="lazy"
                 width={1024}
                 height={768}
@@ -163,6 +167,7 @@ function ProduitCarousel({
   label: string;
   domaineSlug: string;
 }) {
+  const { t } = useI18n();
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
 
@@ -207,12 +212,12 @@ function ProduitCarousel({
         ref={trackRef}
         role="region"
         aria-roledescription="carrousel"
-        aria-label={`Traitements — ${label}`}
+        aria-label={t(`Traitements — ${label}`, `Treatments — ${label}`)}
         className="no-scrollbar -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-6 pb-2"
       >
         {produits.map((p) => (
           <article
-            key={p.nom}
+            key={p.id}
             className="group flex w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-[20px] border border-border bg-background transition-shadow duration-500 ease-[var(--ease)] hover:shadow-[0_30px_70px_-55px_var(--foreground)] sm:w-[62%] lg:w-[calc(50%-8px)]"
           >
             <div className="relative border-b border-border bg-cream">
@@ -223,7 +228,7 @@ function ProduitCarousel({
                 imgClassName="aspect-[16/10]"
               />
               <span className="pointer-events-none absolute right-4 top-4 rounded-full border border-clay/40 bg-background/90 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-clay backdrop-blur">
-                Ordonnance
+                {t("Ordonnance", "Prescription")}
               </span>
             </div>
             <div className="p-6 pb-0">
@@ -233,19 +238,19 @@ function ProduitCarousel({
             <dl className="mt-5 space-y-3 border-t border-border p-6 pt-4 text-sm">
               <div>
                 <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                  Forme
+                  {t("Forme", "Form")}
                 </dt>
                 <dd className="mt-1 text-pretty">{p.forme}</dd>
               </div>
               <div>
                 <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                  Posologie indicative
+                  {t("Posologie indicative", "Indicative dosage")}
                 </dt>
                 <dd className="mt-1 text-pretty text-muted">{p.posologie}</dd>
               </div>
               <div>
                 <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                  Précautions
+                  {t("Précautions", "Precautions")}
                 </dt>
                 <dd className="mt-1 text-pretty text-muted">{p.precautions}</dd>
               </div>
@@ -254,11 +259,11 @@ function ProduitCarousel({
               <Link
                 to="/soins/$domaine"
                 params={{ domaine: domaineSlug }}
-                search={{ produit: p.nom }}
-                aria-label={`Découvrir ${p.nom}`}
+                search={{ produit: p.id }}
+                aria-label={t(`Découvrir ${p.nom}`, `Discover ${p.nom}`)}
                 className="group/btn inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-medium text-background transition-all duration-300 hover:bg-foreground/90"
               >
-                Découvrir le produit
+                {t("Découvrir le produit", "Discover this product")}
                 <span className="transition-transform duration-300 group-hover/btn:translate-x-1">→</span>
               </Link>
             </div>
@@ -270,15 +275,15 @@ function ProduitCarousel({
         <div
           className="mt-5 flex items-center justify-center gap-2.5"
           role="tablist"
-          aria-label={`Parcourir les traitements — ${label}`}
+          aria-label={t(`Parcourir les traitements — ${label}`, `Browse treatments — ${label}`)}
         >
           {produits.map((p, i) => (
             <button
-              key={p.nom}
+              key={p.id}
               type="button"
               role="tab"
               aria-selected={active === i}
-              aria-label={`Voir ${p.nom}`}
+              aria-label={t(`Voir ${p.nom}`, `View ${p.nom}`)}
               onClick={() => goTo(i)}
               className={`h-2.5 cursor-pointer rounded-full transition-all duration-300 ease-[var(--ease)] ${
                 active === i

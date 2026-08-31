@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
 export type Chapitre = { start: number; title: string };
 
-export const chapitres: Chapitre[] = [
-  { start: 0, title: "Questionnaire médical" },
-  { start: 2, title: "Consultation médicale" },
-  { start: 4, title: "Préparation en pharmacie" },
-  { start: 6, title: "Livraison discrète" },
-  { start: 8, title: "Suivi médical" },
+const buildChapitres = (t: (fr: string, en: string) => string): Chapitre[] => [
+  { start: 0, title: t("Questionnaire médical", "Medical questionnaire") },
+  { start: 2, title: t("Consultation médicale", "Medical consultation") },
+  { start: 4, title: t("Préparation en pharmacie", "Pharmacy preparation") },
+  { start: 6, title: t("Livraison discrète", "Discreet delivery") },
+  { start: 8, title: t("Suivi médical", "Medical follow-up") },
 ];
 
 export function ParcoursVideo({
@@ -23,6 +24,8 @@ export function ParcoursVideo({
   onChapterChange?: (index: number) => void;
   onChapterSelect?: (index: number) => void;
 }) {
+  const { t } = useI18n();
+  const chapitres = buildChapitres(t);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
@@ -51,7 +54,10 @@ export function ParcoursVideo({
           muted
           loop
           playsInline
-          aria-label="Vidéo explicative du parcours : questionnaire, décision médicale, préparation en pharmacie, livraison et suivi"
+          aria-label={t(
+            "Vidéo explicative du parcours : questionnaire, décision médicale, préparation en pharmacie, livraison et suivi",
+            "Explainer video of the journey: questionnaire, medical decision, pharmacy preparation, delivery and follow-up",
+          )}
           className="aspect-[5/3] w-full object-cover"
           onTimeUpdate={(e) => {
             const v = e.currentTarget;

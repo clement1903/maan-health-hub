@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { questionnaireDefinitions } from "@/lib/questionnaire/definitions";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/questionnaire/")({
   head: () => ({
@@ -36,6 +37,7 @@ export const Route = createFileRoute("/questionnaire/")({
 });
 
 function QuestionnaireStart() {
+  const { t } = useI18n();
   const navigate = useNavigate();
   const [picked, setPicked] = useState<string | null>(null);
   const refs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -74,28 +76,30 @@ function QuestionnaireStart() {
       <main className="flex-1">
         <div className="mx-auto w-full max-w-3xl px-6 py-16 lg:py-24">
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-            Question 1 sur votre parcours
+            {t("Question 1 sur votre parcours", "Question 1 of your journey")}
           </p>
           <h1 className="mt-5 text-balance font-display text-4xl font-medium leading-[1.08] lg:text-5xl">
-            Que souhaitez-vous traiter&nbsp;?
+            {t("Que souhaitez-vous traiter\u00a0?", "What would you like to treat?")}
           </h1>
           <p className="mt-5 max-w-[52ch] text-pretty text-lg text-muted">
-            Choisissez votre spécialité : les questions suivantes s'adaptent à votre situation. Aucun
-            compte, aucune adresse e-mail à ce stade.
+            {t(
+              "Choisissez votre spécialité : les questions suivantes s'adaptent à votre situation. Aucun compte, aucune adresse e-mail à ce stade.",
+              "Choose your specialty: the following questions adapt to your situation. No account, no email address at this stage.",
+            )}
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2">
-              <Clock className="size-3.5" /> environ 3 minutes
+              <Clock className="size-3.5" /> {t("environ 3 minutes", "about 3 minutes")}
             </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2">
-              <ShieldCheck className="size-3.5" /> gratuit et sans engagement
+              <ShieldCheck className="size-3.5" /> {t("gratuit et sans engagement", "free and with no commitment")}
             </span>
           </div>
 
           <div
             role="radiogroup"
-            aria-label="Spécialité à traiter"
+            aria-label={t("Spécialité à traiter", "Specialty to treat")}
             onKeyDown={onKeyDown}
             className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2"
           >
@@ -137,7 +141,7 @@ function QuestionnaireStart() {
                   </span>
                   <span className="mt-2 flex-1 text-pretty text-sm text-muted">{d.intro}</span>
                   <span className="mt-5 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-clay transition-all group-hover:gap-3">
-                    {selected ? "C'est parti" : "Commencer"} <ArrowRight className="size-3.5" />
+                    {selected ? t("C'est parti", "Let's go") : t("Commencer", "Start")} <ArrowRight className="size-3.5" />
                   </span>
                 </button>
               );
@@ -145,8 +149,10 @@ function QuestionnaireStart() {
           </div>
 
           <p className="mt-8 text-sm text-muted">
-            Vos réponses sont enregistrées automatiquement. Vous ne créerez un compte qu'au moment
-            d'envoyer votre dossier au médecin.
+            {t(
+              "Vos réponses sont enregistrées automatiquement. Vous ne créerez un compte qu'au moment d'envoyer votre dossier au médecin.",
+              "Your answers are saved automatically. You will only create an account when sending your file to the doctor.",
+            )}
           </p>
         </div>
       </main>

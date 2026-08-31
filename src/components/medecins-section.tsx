@@ -6,6 +6,7 @@ import medecin3 from "@/assets/medecin-3.jpg";
 
 import { Reveal } from "@/components/reveal";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
 type Medecin = {
   nom: string;
@@ -16,65 +17,83 @@ type Medecin = {
   qualifications: string[];
 };
 
-const medecins: Medecin[] = [
+const buildMedecins = (t: (fr: string, en: string) => string): Medecin[] => [
   {
     nom: "Dr Antoine Lemoine",
     photo: medecin1,
-    role: "Médecin généraliste",
+    role: t("Médecin généraliste", "General practitioner"),
     specialite: "Sexual & Weight Management",
-    approche:
+    approche: t(
       "Poser les bonnes questions avant de prescrire. Un traitement n'a de sens que s'il s'inscrit dans une situation médicale précise.",
+      "Ask the right questions before prescribing. A treatment only makes sense if it fits a precise medical situation.",
+    ),
     qualifications: [
-      "Docteur en médecine, inscrit à l'Ordre",
-      "12 ans de pratique en cabinet",
-      "DU nutrition et métabolisme",
+      t("Docteur en médecine, inscrit à l'Ordre", "Doctor of Medicine, registered with the Medical Board"),
+      t("12 ans de pratique en cabinet", "12 years of practice in private clinics"),
+      t("DU nutrition et métabolisme", "Postgraduate diploma in nutrition and metabolism"),
     ],
   },
   {
     nom: "Dr Marion Badel",
     photo: medecin2,
-    role: "Dermatologue",
+    role: t("Dermatologue", "Dermatologist"),
     specialite: "Skin & Hair Management",
-    approche:
+    approche: t(
       "Les résultats visibles demandent du temps. Je préfère annoncer un calendrier réaliste plutôt qu'une promesse.",
+      "Visible results take time. I prefer setting a realistic timeline rather than a promise.",
+    ),
     qualifications: [
-      "Spécialiste en dermatologie",
-      "Praticienne hospitalière pendant 8 ans",
-      "Formée à l'expertise dermatologique à distance",
+      t("Spécialiste en dermatologie", "Specialist in dermatology"),
+      t("Praticienne hospitalière pendant 8 ans", "Hospital practitioner for 8 years"),
+      t("Formée à l'expertise dermatologique à distance", "Trained in remote dermatological assessment"),
     ],
   },
   {
     nom: "Dr Serge Renard",
     photo: medecin3,
-    role: "Médecin généraliste",
+    role: t("Médecin généraliste", "General practitioner"),
     specialite: "Sexual Management",
-    approche:
+    approche: t(
       "Aucun jugement, aucune gêne. La consultation à distance permet souvent de parler plus librement de sujets intimes.",
+      "No judgment, no embarrassment. Remote consultations often make it easier to speak freely about intimate topics.",
+    ),
     qualifications: [
-      "Docteur en médecine, inscrit à l'Ordre",
-      "DU sexologie médicale",
-      "Membre d'un réseau de soins masculins",
+      t("Docteur en médecine, inscrit à l'Ordre", "Doctor of Medicine, registered with the Medical Board"),
+      t("DU sexologie médicale", "Postgraduate diploma in medical sexology"),
+      t("Membre d'un réseau de soins masculins", "Member of a men's healthcare network"),
     ],
   },
 ];
 
-const garanties = [
+const buildGaranties = (t: (fr: string, en: string) => string) => [
   {
-    t: "Identité vérifiée",
-    d: "Chaque médecin est inscrit à l'Ordre et son numéro RPPS est contrôlé avant tout accès aux dossiers.",
+    t: t("Identité vérifiée", "Verified identity"),
+    d: t(
+      "Chaque médecin est inscrit à l'Ordre et son numéro RPPS est contrôlé avant tout accès aux dossiers.",
+      "Every doctor is registered with the Medical Board and their RPPS number is checked before any file access.",
+    ),
   },
   {
-    t: "Secret médical",
-    d: "Vos réponses sont couvertes par le secret médical et ne sont lisibles que par le praticien en charge de votre dossier.",
+    t: t("Secret médical", "Medical confidentiality"),
+    d: t(
+      "Vos réponses sont couvertes par le secret médical et ne sont lisibles que par le praticien en charge de votre dossier.",
+      "Your answers are protected by medical confidentiality and can only be read by the practitioner handling your file.",
+    ),
   },
   {
-    t: "Liberté de refus",
-    d: "Un médecin peut refuser une demande, demander des précisions ou vous orienter vers une consultation physique.",
+    t: t("Liberté de refus", "Freedom to decline"),
+    d: t(
+      "Un médecin peut refuser une demande, demander des précisions ou vous orienter vers une consultation physique.",
+      "A doctor may decline a request, ask for further details, or refer you to an in-person consultation.",
+    ),
   },
 ];
 
 export function MedecinsSection() {
+  const { t } = useI18n();
   const [active, setActive] = useState(0);
+  const medecins = buildMedecins(t);
+  const garanties = buildGaranties(t);
   const m = medecins[active]!;
 
   return (
@@ -82,14 +101,19 @@ export function MedecinsSection() {
       <div className="mx-auto max-w-6xl px-6 py-16 lg:py-24">
         <Reveal>
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-            Les médecins
+            {t("Les médecins", "The doctors")}
           </p>
           <h2 className="mt-3 max-w-[26ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-            Derrière chaque décision, un professionnel de santé identifiable.
+            {t(
+              "Derrière chaque décision, un professionnel de santé identifiable.",
+              "Behind every decision, an identifiable healthcare professional.",
+            )}
           </h2>
           <p className="mt-4 max-w-[56ch] text-pretty text-muted">
-            Les praticiens qui évaluent votre dossier sont des médecins agréés, inscrits à l'Ordre
-            et tenus au secret médical.
+            {t(
+              "Les praticiens qui évaluent votre dossier sont des médecins agréés, inscrits à l'Ordre et tenus au secret médical.",
+              "The practitioners who review your file are licensed doctors, registered with the Medical Board and bound by medical confidentiality.",
+            )}
           </p>
         </Reveal>
 
@@ -110,7 +134,10 @@ export function MedecinsSection() {
                 <div className="flex items-center gap-4">
                   <img
                     src={doc.photo}
-                    alt={`Portrait du ${doc.nom}, ${doc.role.toLowerCase()}`}
+                    alt={t(
+                      `Portrait du ${doc.nom}, ${doc.role.toLowerCase()}`,
+                      `Portrait of ${doc.nom}, ${doc.role.toLowerCase()}`,
+                    )}
                     loading="lazy"
                     width={800}
                     height={800}
@@ -136,7 +163,7 @@ export function MedecinsSection() {
             <div className="flex items-center gap-4">
               <img
                 src={m.photo}
-                alt={`Portrait du ${m.nom}`}
+                alt={t(`Portrait du ${m.nom}`, `Portrait of ${m.nom}`)}
                 loading="lazy"
                 width={800}
                 height={800}
@@ -150,7 +177,7 @@ export function MedecinsSection() {
               </div>
             </div>
             <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.16em] text-clay">
-              Son approche
+              {t("Son approche", "Their approach")}
             </p>
             <p
               key={m.nom}
@@ -159,7 +186,7 @@ export function MedecinsSection() {
               « {m.approche} »
             </p>
             <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-              Qualifications
+              {t("Qualifications", "Qualifications")}
             </p>
             <ul className="mt-3 space-y-2">
               {m.qualifications.map((q) => (

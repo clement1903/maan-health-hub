@@ -3,6 +3,7 @@ import { Play } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
 import temoin1 from "@/assets/temoin-1.jpg";
 import temoin2 from "@/assets/temoin-2.jpg";
@@ -21,48 +22,58 @@ type Temoignage = {
   video?: string;
 };
 
-const temoignages: Temoignage[] = [
+const buildTemoignages = (t: (fr: string, en: string) => string): Temoignage[] => [
   {
     id: "thomas",
     prenom: "Thomas",
-    age: "38 ans",
+    age: t("38 ans", "38 years old"),
     domaine: "Sexual Management",
-    texte:
+    texte: t(
       "Je repoussais ce rendez-vous depuis deux ans. Le questionnaire m'a permis de tout dire sans avoir à le formuler à voix haute. Le médecin a demandé des précisions avant de prescrire.",
+      "I had been putting off this appointment for two years. The questionnaire let me say everything without having to voice it out loud. The doctor asked for details before prescribing.",
+    ),
     photo: temoin1,
     video: video1.url,
   },
   {
     id: "karim",
     prenom: "Karim",
-    age: "45 ans",
+    age: t("45 ans", "45 years old"),
     domaine: "Weight Management",
-    texte:
+    texte: t(
       "On m'a expliqué qu'un traitement ne remplace pas le suivi. J'ai eu un plan clair, un point mensuel, et un refus sur un dosage que je demandais. Ça m'a rassuré, honnêtement.",
+      "I was told that a treatment doesn't replace follow-up. I got a clear plan, a monthly check-in, and a refusal on a dosage I had asked for. Honestly, that reassured me.",
+    ),
     photo: temoin2,
     video: video2.url,
   },
   {
     id: "romain",
     prenom: "Romain",
-    age: "31 ans",
+    age: t("31 ans", "31 years old"),
     domaine: "Hair Management",
-    texte:
+    texte: t(
       "Le colis est arrivé sans aucune mention. Personne au bureau n'a pu deviner ce qu'il contenait. Le suivi photo tous les trois mois me tient dans la durée.",
+      "The package arrived with no markings at all. No one at the office could guess what was inside. The photo follow-up every three months keeps me on track.",
+    ),
     photo: temoin3,
   },
   {
     id: "nicolas",
     prenom: "Nicolas",
-    age: "52 ans",
+    age: t("52 ans", "52 years old"),
     domaine: "Skin Management",
-    texte:
+    texte: t(
       "J'apprécie que tout soit écrit : l'ordonnance, la posologie, les précautions. Je l'ai montrée à mon médecin traitant, qui a validé sans réserve.",
+      "I appreciate that everything is written down: the prescription, the dosage, the precautions. I showed it to my regular doctor, who approved it without reservation.",
+    ),
     photo: temoin4,
   },
 ];
 
 export function Temoignages() {
+  const { t } = useI18n();
+  const temoignages = buildTemoignages(t);
   const [active, setActive] = useState(0);
   const [playing, setPlaying] = useState<string | null>(null);
 
@@ -72,17 +83,17 @@ export function Temoignages() {
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-              Témoignages
+              {t("Témoignages", "Testimonials")}
             </p>
             <h2 className="mt-3 max-w-[24ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-              Ces hommes, ils parlent de MAAN.
+              {t("Ces hommes, ils parlent de MAAN.", "These men talk about MAAN.")}
             </h2>
           </div>
         </Reveal>
 
         <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {temoignages.map((t, i) => (
-            <Reveal key={t.prenom} delay={i * 80} className="h-full">
+          {temoignages.map((tm, i) => (
+            <Reveal key={tm.prenom} delay={i * 80} className="h-full">
               <article
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
@@ -91,12 +102,12 @@ export function Temoignages() {
                   active === i && "border-clay bg-background",
                 )}
               >
-                {t.video ? (
+                {tm.video ? (
                   <div className="relative mb-6 overflow-hidden rounded-[16px] border border-border bg-sand">
-                    {playing === t.video ? (
+                    {playing === tm.video ? (
                       <video
-                        src={t.video}
-                        poster={t.photo}
+                        src={tm.video}
+                        poster={tm.photo}
                         controls
                         autoPlay
                         playsInline
@@ -105,13 +116,19 @@ export function Temoignages() {
                     ) : (
                       <button
                         type="button"
-                        onClick={() => setPlaying(t.video!)}
+                        onClick={() => setPlaying(tm.video!)}
                         className="group relative block w-full"
-                        aria-label={`Voir le témoignage vidéo de ${t.prenom}`}
+                        aria-label={t(
+                          `Voir le témoignage vidéo de ${tm.prenom}`,
+                          `Watch ${tm.prenom}'s video testimonial`,
+                        )}
                       >
                         <img
-                          src={t.photo}
-                          alt={`${t.prenom}, ${t.age}, patient MAAN`}
+                          src={tm.photo}
+                          alt={t(
+                            `${tm.prenom}, ${tm.age}, patient MAAN`,
+                            `${tm.prenom}, ${tm.age}, MAAN patient`,
+                          )}
                           loading="lazy"
                           width={768}
                           height={768}
@@ -123,7 +140,7 @@ export function Temoignages() {
                           </span>
                         </span>
                         <span className="absolute bottom-3 left-3 rounded-full bg-background/85 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-clay backdrop-blur">
-                          Témoignage vidéo
+                          {t("Témoignage vidéo", "Video testimonial")}
                         </span>
                       </button>
                     )}
@@ -132,19 +149,19 @@ export function Temoignages() {
 
                 <span className="font-display text-4xl leading-none text-clay/40">“</span>
                 <p className="mt-2 flex-1 text-pretty text-[15px] leading-relaxed text-foreground/90">
-                  {t.texte}
+                  {tm.texte}
                 </p>
                 <div className="mt-6 flex items-center gap-3 border-t border-border pt-4">
                   <img
-                    src={t.photo}
-                    alt={`Portrait de ${t.prenom}`}
+                    src={tm.photo}
+                    alt={t(`Portrait de ${tm.prenom}`, `Portrait of ${tm.prenom}`)}
                     loading="lazy"
                     width={768}
                     height={768}
                     className="size-10 rounded-full object-cover"
                   />
                   <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                    {t.prenom} · {t.age} · {t.domaine}
+                    {tm.prenom} · {tm.age} · {tm.domaine}
                   </p>
                 </div>
               </article>

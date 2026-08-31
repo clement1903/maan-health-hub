@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
 /* ---------------------------------- Types --------------------------------- */
 
@@ -33,30 +34,41 @@ export type FollowUp = {
   order_id: string | null;
 };
 
-const kindLabels: Record<string, string> = {
-  ordonnance: "Ordonnance",
-  compte_rendu: "Compte rendu médical",
-  facture: "Facture",
-  conseil: "Conseils de traitement",
-};
+function useKindLabels(): Record<string, string> {
+  const { t } = useI18n();
+  return {
+    ordonnance: t("Ordonnance", "Prescription"),
+    compte_rendu: t("Compte rendu médical", "Medical report"),
+    facture: t("Facture", "Invoice"),
+    conseil: t("Conseils de traitement", "Treatment advice"),
+  };
+}
 
-export const followUpTopics = [
-  { key: "suivi_traitement", label: "Suivi de traitement" },
-  { key: "ajustement", label: "Ajustement de dosage" },
-  { key: "renouvellement", label: "Renouvellement d'ordonnance" },
-  { key: "effets", label: "Effets indésirables" },
-];
+export function useFollowUpTopics() {
+  const { t } = useI18n();
+  return [
+    { key: "suivi_traitement", label: t("Suivi de traitement", "Treatment follow-up") },
+    { key: "ajustement", label: t("Ajustement de dosage", "Dosage adjustment") },
+    { key: "renouvellement", label: t("Renouvellement d'ordonnance", "Prescription renewal") },
+    { key: "effets", label: t("Effets indésirables", "Side effects") },
+  ];
+}
 
-const followUpStatus: Record<string, string> = {
-  planifie: "Planifié",
-  confirme: "Confirmé",
-  termine: "Terminé",
-  annule: "Annulé",
-};
+function useFollowUpStatus(): Record<string, string> {
+  const { t } = useI18n();
+  return {
+    planifie: t("Planifié", "Scheduled"),
+    confirme: t("Confirmé", "Confirmed"),
+    termine: t("Terminé", "Completed"),
+    annule: t("Annulé", "Cancelled"),
+  };
+}
 
 /* -------------------------------- Documents ------------------------------- */
 
 export function DocumentsPanel({ userId }: { userId: string }) {
+  const { t, lang } = useI18n();
+  const kindLabels = useKindLabels();
   const documents = useQuery({
     queryKey: ["documents", userId],
     queryFn: async (): Promise<PatientDocument[]> => {
@@ -70,19 +82,25 @@ export function DocumentsPanel({ userId }: { userId: string }) {
   });
 
   const list = documents.data ?? [];
+  const locale = lang === "en" ? "en-US" : "fr-FR";
 
   return (
     <div className="mt-10">
-      <h2 className="font-section text-2xl font-medium tracking-tight">Mes documents</h2>
+      <h2 className="font-section text-2xl font-medium tracking-tight">{t("Mes documents", "My documents")}</h2>
       <p className="mt-2 max-w-[60ch] text-pretty text-sm text-muted">
-        Ordonnances, comptes rendus et conseils déposés par l'équipe médicale. Ces documents restent
-        privés et ne sont accessibles que depuis votre espace connecté.
+        {t(
+          "Ordonnances, comptes rendus et conseils déposés par l'équipe médicale. Ces documents restent privés et ne sont accessibles que depuis votre espace connecté.",
+          "Prescriptions, reports and advice shared by the medical team. These documents remain private and are only accessible from your signed-in space.",
+        )}
       </p>
 
       <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
         {list.length === 0 && (
           <p className="text-sm text-muted">
-            Aucun document pour le moment. Ils apparaîtront ici après la décision médicale.
+            {t(
+              "Aucun document pour le moment. Ils apparaîtront ici après la décision médicale.",
+              "No documents yet. They will appear here after the medical decision.",
+            )}
           </p>
         )}
         {list.map((d) => (
@@ -92,7 +110,7 @@ export function DocumentsPanel({ userId }: { userId: string }) {
                 {kindLabels[d.kind] ?? d.kind}
               </span>
               <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                {new Date(d.issued_at).toLocaleDateString("fr-FR")}
+                {new Date(d.issued_at).toLocaleDateString(locale)}
               </span>
             </div>
             <h3 className="mt-3 text-sm font-medium">{d.title}</h3>
@@ -112,6 +130,7 @@ export function DocumentsPanel({ userId }: { userId: string }) {
 /* --------------------------------- Messages -------------------------------- */
 
 export function MessagesPanel({ userId }: { userId: string }) {
+  const { t, lang } = useI18n();
   const qc = useQueryClient();
   const [body, setBody] = useState("");
   const [topic, setTopic] = useState("ordonnance");
@@ -133,8 +152,9 @@ export function MessagesPanel({ userId }: { userId: string }) {
   const send = useMutation({
     mutationFn: async () => {
       const text = body.trim();
-      if (!text) throw new Error("Votre message est vide.");
-      if (text.length > 4000) throw new Error("Message trop long (4000 caractères maximum).");
+      if (!text) throw new Error(t("Votre message est vide.", "Your message is empty."));
+      if (text.length > 4000)
+        throw new Error(t("Message trop long (4000 caractères maximum).", "Message too long (4000 characters maximum)."));
       const { error: err } = await supabase.from("messages").insert({
         user_id: userId,
         sender_id: userId,
@@ -149,24 +169,34 @@ export function MessagesPanel({ userId }: { userId: string }) {
       setError(null);
       qc.invalidateQueries({ queryKey: ["messages", userId] });
     },
-    onError: (e) => setError(e instanceof Error ? e.message : "Envoi impossible."),
+    onError: (e) => setError(e instanceof Error ? e.message : t("Envoi impossible.", "Unable to send.")),
   });
 
   const list = messages.data ?? [];
+  const locale = lang === "en" ? "en-US" : "fr-FR";
+
+  const topicButtons: [string, string][] = [
+    ["ordonnance", t("Ordonnance", "Prescription")],
+    ["ajustement", t("Ajustement", "Adjustment")],
+    ["renouvellement", t("Renouvellement", "Renewal")],
+    ["general", t("Autre", "Other")],
+  ];
 
   return (
     <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-12">
       <section className="lg:col-span-7">
-        <h2 className="font-section text-2xl font-medium tracking-tight">Messagerie sécurisée</h2>
+        <h2 className="font-section text-2xl font-medium tracking-tight">{t("Messagerie sécurisée", "Secure messaging")}</h2>
         <p className="mt-2 max-w-[54ch] text-pretty text-sm text-muted">
-          Échangez avec l'équipe médicale sur votre ordonnance, un ajustement de dosage ou un
-          renouvellement. Conversation privée, jamais accessible publiquement.
+          {t(
+            "Échangez avec l'équipe médicale sur votre ordonnance, un ajustement de dosage ou un renouvellement. Conversation privée, jamais accessible publiquement.",
+            "Exchange with the medical team about your prescription, a dosage adjustment or a renewal. Private conversation, never publicly accessible.",
+          )}
         </p>
 
         <div className="mt-6 max-h-[420px] space-y-3 overflow-y-auto rounded-2xl border border-border bg-cream p-5">
           {list.length === 0 && (
             <p className="text-sm text-muted">
-              Aucun message. Posez votre première question ci-dessous.
+              {t("Aucun message. Posez votre première question ci-dessous.", "No messages yet. Ask your first question below.")}
             </p>
           )}
           {list.map((m) => (
@@ -186,8 +216,8 @@ export function MessagesPanel({ userId }: { userId: string }) {
                   m.sender_role === "patient" ? "text-cream/70" : "text-muted",
                 )}
               >
-                {m.sender_role === "patient" ? "Vous" : "Équipe médicale"} ·{" "}
-                {new Date(m.created_at).toLocaleString("fr-FR")}
+                {m.sender_role === "patient" ? t("Vous", "You") : t("Équipe médicale", "Medical team")} ·{" "}
+                {new Date(m.created_at).toLocaleString(locale)}
               </p>
             </div>
           ))}
@@ -201,16 +231,11 @@ export function MessagesPanel({ userId }: { userId: string }) {
           }}
         >
           <div className="flex flex-wrap gap-2">
-            {[
-              ["ordonnance", "Ordonnance"],
-              ["ajustement", "Ajustement"],
-              ["renouvellement", "Renouvellement"],
-              ["general", "Autre"],
-            ].map(([k, label]) => (
+            {topicButtons.map(([k, label]) => (
               <button
                 key={k}
                 type="button"
-                onClick={() => setTopic(k!)}
+                onClick={() => setTopic(k)}
                 className={cn(
                   "rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-all duration-400 ease-[var(--ease)]",
                   topic === k
@@ -227,7 +252,7 @@ export function MessagesPanel({ userId }: { userId: string }) {
             maxLength={4000}
             value={body}
             onChange={(e) => setBody(e.target.value)}
-            placeholder="Décrivez votre question pour le médecin…"
+            placeholder={t("Décrivez votre question pour le médecin…", "Describe your question for the doctor…")}
             className="w-full resize-none rounded-xl border border-border bg-cream px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted/60 focus:border-clay"
           />
           {error && <p className="text-sm text-clay">{error}</p>}
@@ -236,18 +261,28 @@ export function MessagesPanel({ userId }: { userId: string }) {
             disabled={send.isPending}
             className="rounded-full bg-clay px-6 py-3 text-sm font-medium text-cream transition-all duration-300 hover:bg-clay-deep disabled:opacity-60"
           >
-            {send.isPending ? "Envoi…" : "Envoyer au médecin"}
+            {send.isPending ? t("Envoi…", "Sending…") : t("Envoyer au médecin", "Send to the doctor")}
           </button>
         </form>
       </section>
 
       <aside className="lg:col-span-5">
         <div className="rounded-2xl border border-border bg-cream p-6">
-          <h3 className="font-section text-lg font-medium tracking-tight">Confidentialité</h3>
+          <h3 className="font-section text-lg font-medium tracking-tight">{t("Confidentialité", "Privacy")}</h3>
           <ul className="mt-4 space-y-3 text-sm text-muted">
-            <li>Les messages sont rattachés à votre compte et lisibles uniquement par vous et l'équipe médicale.</li>
-            <li>Aucune donnée de santé n'est envoyée par e-mail ou SMS : les notifications restent neutres.</li>
-            <li>En cas d'urgence, contactez le 15 ou votre médecin traitant.</li>
+            <li>
+              {t(
+                "Les messages sont rattachés à votre compte et lisibles uniquement par vous et l'équipe médicale.",
+                "Messages are linked to your account and readable only by you and the medical team.",
+              )}
+            </li>
+            <li>
+              {t(
+                "Aucune donnée de santé n'est envoyée par e-mail ou SMS : les notifications restent neutres.",
+                "No health data is ever sent by email or SMS: notifications remain neutral.",
+              )}
+            </li>
+            <li>{t("En cas d'urgence, contactez le 15 ou votre médecin traitant.", "In an emergency, call 15 or contact your treating physician.")}</li>
           </ul>
         </div>
       </aside>
@@ -264,6 +299,9 @@ export function FollowUpPanel({
   userId: string;
   orderId?: string | null;
 }) {
+  const { t, lang } = useI18n();
+  const followUpTopics = useFollowUpTopics();
+  const followUpStatus = useFollowUpStatus();
   const qc = useQueryClient();
   const [date, setDate] = useState("");
   const [topic, setTopic] = useState(followUpTopics[0]!.key);
@@ -289,10 +327,10 @@ export function FollowUpPanel({
 
   const create = useMutation({
     mutationFn: async () => {
-      if (!date) throw new Error("Choisissez une date de suivi.");
+      if (!date) throw new Error(t("Choisissez une date de suivi.", "Choose a follow-up date."));
       const when = new Date(date);
       if (Number.isNaN(when.getTime()) || when.getTime() < Date.now())
-        throw new Error("La date doit être dans le futur.");
+        throw new Error(t("La date doit être dans le futur.", "The date must be in the future."));
       const { error: err } = await supabase.from("follow_ups").insert({
         user_id: userId,
         order_id: orderId ?? null,
@@ -308,7 +346,7 @@ export function FollowUpPanel({
       setError(null);
       qc.invalidateQueries({ queryKey: ["follow_ups", userId] });
     },
-    onError: (e) => setError(e instanceof Error ? e.message : "Planification impossible."),
+    onError: (e) => setError(e instanceof Error ? e.message : t("Planification impossible.", "Unable to schedule.")),
   });
 
   const cancel = useMutation({
@@ -323,13 +361,16 @@ export function FollowUpPanel({
   });
 
   const list = followUps.data ?? [];
+  const locale = lang === "en" ? "en-US" : "fr-FR";
 
   return (
     <div className="mt-8 rounded-[20px] border border-border bg-background p-7">
-      <h3 className="font-section text-xl font-medium tracking-tight">Planifier mon suivi</h3>
+      <h3 className="font-section text-xl font-medium tracking-tight">{t("Planifier mon suivi", "Schedule my follow-up")}</h3>
       <p className="mt-2 max-w-[60ch] text-pretty text-sm text-muted">
-        Choisissez un créneau pour faire le point avec un médecin : tolérance, efficacité,
-        ajustement ou renouvellement. Vous recevez un rappel discret.
+        {t(
+          "Choisissez un créneau pour faire le point avec un médecin : tolérance, efficacité, ajustement ou renouvellement. Vous recevez un rappel discret.",
+          "Choose a time slot to check in with a doctor: tolerance, effectiveness, adjustment or renewal. You will receive a discreet reminder.",
+        )}
       </p>
 
       <form
@@ -341,7 +382,7 @@ export function FollowUpPanel({
       >
         <label className="block">
           <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-            Date et heure
+            {t("Date et heure", "Date and time")}
           </span>
           <input
             type="datetime-local"
@@ -353,23 +394,23 @@ export function FollowUpPanel({
         </label>
         <label className="block">
           <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-            Sujet
+            {t("Sujet", "Topic")}
           </span>
           <select
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             className="mt-2 w-full rounded-xl border border-border bg-cream px-4 py-3 text-sm outline-none focus:border-clay"
           >
-            {followUpTopics.map((t) => (
-              <option key={t.key} value={t.key}>
-                {t.label}
+            {followUpTopics.map((tItem) => (
+              <option key={tItem.key} value={tItem.key}>
+                {tItem.label}
               </option>
             ))}
           </select>
         </label>
         <label className="block sm:col-span-2">
           <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-            Note pour le médecin (optionnel)
+            {t("Note pour le médecin (optionnel)", "Note for the doctor (optional)")}
           </span>
           <textarea
             rows={2}
@@ -377,7 +418,7 @@ export function FollowUpPanel({
             value={note}
             onChange={(e) => setNote(e.target.value)}
             className="mt-2 w-full resize-none rounded-xl border border-border bg-cream px-4 py-3 text-sm outline-none placeholder:text-muted/60 focus:border-clay"
-            placeholder="Ex. tolérance, effets ressentis, question de dosage"
+            placeholder={t("Ex. tolérance, effets ressentis, question de dosage", "E.g. tolerance, side effects, dosage question")}
           />
         </label>
         {error && <p className="text-sm text-clay sm:col-span-2">{error}</p>}
@@ -387,19 +428,19 @@ export function FollowUpPanel({
             disabled={create.isPending}
             className="rounded-full bg-clay px-6 py-3 text-sm font-medium text-cream transition-all duration-300 hover:bg-clay-deep disabled:opacity-60"
           >
-            {create.isPending ? "Planification…" : "Planifier ce suivi"}
+            {create.isPending ? t("Planification…", "Scheduling…") : t("Planifier ce suivi", "Schedule this follow-up")}
           </button>
         </div>
       </form>
 
       <div className="mt-6 space-y-3 border-t border-border pt-5">
-        {list.length === 0 && <p className="text-sm text-muted">Aucun suivi planifié.</p>}
+        {list.length === 0 && <p className="text-sm text-muted">{t("Aucun suivi planifié.", "No follow-up scheduled.")}</p>}
         {list.map((f) => (
           <div key={f.id} className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <p className="text-sm font-medium">
-                {new Date(f.scheduled_for).toLocaleString("fr-FR")} ·{" "}
-                {followUpTopics.find((t) => t.key === f.topic)?.label ?? f.topic}
+                {new Date(f.scheduled_for).toLocaleString(locale)} ·{" "}
+                {followUpTopics.find((tItem) => tItem.key === f.topic)?.label ?? f.topic}
               </p>
               {f.note && <p className="text-sm text-muted">{f.note}</p>}
             </div>
@@ -413,7 +454,7 @@ export function FollowUpPanel({
                   onClick={() => cancel.mutate(f.id)}
                   className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted underline underline-offset-4 hover:text-foreground"
                 >
-                  Annuler
+                  {t("Annuler", "Cancel")}
                 </button>
               )}
             </div>
@@ -427,6 +468,7 @@ export function FollowUpPanel({
 /* ----------------------------- Préférences -------------------------------- */
 
 export function NotificationPreferences({ userId }: { userId: string }) {
+  const { t } = useI18n();
   const qc = useQueryClient();
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState(true);
@@ -470,10 +512,12 @@ export function NotificationPreferences({ userId }: { userId: string }) {
 
   return (
     <div className="mt-8 rounded-[20px] border border-border bg-cream p-7">
-      <h3 className="font-section text-xl font-medium tracking-tight">Notifications discrètes</h3>
+      <h3 className="font-section text-xl font-medium tracking-tight">{t("Notifications discrètes", "Discreet notifications")}</h3>
       <p className="mt-2 max-w-[60ch] text-pretty text-sm text-muted">
-        Vous êtes prévenu à chaque changement d'étape, à l'expédition et avant chaque suivi. Les
-        messages ne mentionnent jamais le traitement ni la spécialité concernée.
+        {t(
+          "Vous êtes prévenu à chaque changement d'étape, à l'expédition et avant chaque suivi. Les messages ne mentionnent jamais le traitement ni la spécialité concernée.",
+          "You are notified at each step change, at shipping, and before each follow-up. Messages never mention the treatment or specialty concerned.",
+        )}
       </p>
 
       <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -484,7 +528,7 @@ export function NotificationPreferences({ userId }: { userId: string }) {
             onChange={(e) => setEmail(e.target.checked)}
             className="h-4 w-4 accent-[var(--color-clay)]"
           />
-          Recevoir les mises à jour par e-mail
+          {t("Recevoir les mises à jour par e-mail", "Receive updates by email")}
         </label>
         <label className="flex items-center gap-3 text-sm">
           <input
@@ -493,18 +537,18 @@ export function NotificationPreferences({ userId }: { userId: string }) {
             onChange={(e) => setSms(e.target.checked)}
             className="h-4 w-4 accent-[var(--color-clay)]"
           />
-          Recevoir les mises à jour par SMS
+          {t("Recevoir les mises à jour par SMS", "Receive updates by SMS")}
         </label>
         <label className="block sm:col-span-2">
           <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-            Numéro de mobile (pour les SMS)
+            {t("Numéro de mobile (pour les SMS)", "Mobile number (for SMS)")}
           </span>
           <input
             type="tel"
             value={phone}
             maxLength={20}
             onChange={(e) => setPhone(e.target.value)}
-            placeholder="+33 6 12 34 56 78"
+            placeholder={t("+33 6 12 34 56 78", "+1 555 123 4567")}
             className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none placeholder:text-muted/60 focus:border-clay"
           />
         </label>
@@ -517,11 +561,11 @@ export function NotificationPreferences({ userId }: { userId: string }) {
           disabled={save.isPending}
           className="rounded-full border border-clay px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-clay transition-colors hover:bg-clay hover:text-cream disabled:opacity-60"
         >
-          {save.isPending ? "Enregistrement…" : "Enregistrer mes préférences"}
+          {save.isPending ? t("Enregistrement…", "Saving…") : t("Enregistrer mes préférences", "Save my preferences")}
         </button>
         {saved && (
           <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-clay">
-            Préférences enregistrées
+            {t("Préférences enregistrées", "Preferences saved")}
           </span>
         )}
       </div>
@@ -531,12 +575,17 @@ export function NotificationPreferences({ userId }: { userId: string }) {
 
 /* ------------------------------ Notifications ----------------------------- */
 
-const notificationChannelLabels: Record<string, string> = {
-  email: "E-mail",
-  sms: "SMS",
-};
+function useNotificationChannelLabels(): Record<string, string> {
+  const { t } = useI18n();
+  return {
+    email: t("E-mail", "Email"),
+    sms: t("SMS", "SMS"),
+  };
+}
 
 export function NotificationsFeed({ userId }: { userId: string }) {
+  const { t, lang } = useI18n();
+  const notificationChannelLabels = useNotificationChannelLabels();
   const notifications = useQuery({
     queryKey: ["notifications", userId],
     queryFn: async () => {
@@ -550,15 +599,20 @@ export function NotificationsFeed({ userId }: { userId: string }) {
     },
   });
 
+  const locale = lang === "en" ? "en-US" : "fr-FR";
+
   return (
     <section className="mt-6 rounded-[20px] border border-border bg-background p-6">
-      <h3 className="font-section text-lg font-medium tracking-tight">Notifications</h3>
+      <h3 className="font-section text-lg font-medium tracking-tight">{t("Notifications", "Notifications")}</h3>
       <p className="mt-1 text-sm text-muted">
-        Chaque changement de statut déclenche un message discret, sans mention du traitement.
+        {t(
+          "Chaque changement de statut déclenche un message discret, sans mention du traitement.",
+          "Every status change triggers a discreet message, without mentioning the treatment.",
+        )}
       </p>
       <div className="mt-5 space-y-3">
         {(notifications.data ?? []).length === 0 && (
-          <p className="text-sm text-muted">Aucune notification pour le moment.</p>
+          <p className="text-sm text-muted">{t("Aucune notification pour le moment.", "No notifications yet.")}</p>
         )}
         {(notifications.data ?? []).map((n) => (
           <article key={n.id} className="rounded-2xl border border-border bg-cream p-4">
@@ -570,7 +624,7 @@ export function NotificationsFeed({ userId }: { userId: string }) {
             </div>
             <p className="mt-1 text-sm text-muted">{n.body}</p>
             <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
-              {new Date(n.created_at).toLocaleString("fr-FR")}
+              {new Date(n.created_at).toLocaleString(locale)}
             </p>
           </article>
         ))}

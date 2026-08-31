@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
 type ImageZoomProps = {
   src: string;
@@ -28,6 +29,7 @@ export function ImageZoom({
   height = 768,
   children,
 }: ImageZoomProps) {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -65,7 +67,7 @@ export function ImageZoom({
         type="button"
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
-        aria-label={`Agrandir la photo : ${alt}`}
+        aria-label={t(`Agrandir la photo : ${alt}`, `Enlarge the photo: ${alt}`)}
         className={cn(
           "group/zoom relative block w-full cursor-zoom-in overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           className,
@@ -86,7 +88,7 @@ export function ImageZoom({
           aria-hidden
           className="pointer-events-none absolute bottom-4 right-4 rounded-full border border-border bg-background/90 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted opacity-0 backdrop-blur transition-opacity duration-300 group-hover/zoom:opacity-100 group-focus-visible/zoom:opacity-100"
         >
-          Agrandir
+          {t("Agrandir", "Enlarge")}
         </span>
         {children}
       </button>
@@ -118,7 +120,7 @@ export function ImageZoom({
                     onClick={close}
                     className="shrink-0 rounded-full border border-border px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-muted transition-colors hover:border-clay/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay"
                   >
-                    Fermer
+                    {t("Fermer", "Close")}
                   </button>
                 </div>
               </div>
