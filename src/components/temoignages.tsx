@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, Facebook, Linkedin, Link2, Play, Share2, Twitter } from "lucide-react";
+import { Play } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
 import { cn } from "@/lib/utils";
