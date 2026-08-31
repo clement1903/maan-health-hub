@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ShieldCheck, Lock, UserX } from "lucide-react";
 
 import medecin1 from "@/assets/medecin-1.jpg";
 import medecin2 from "@/assets/medecin-2.jpg";
