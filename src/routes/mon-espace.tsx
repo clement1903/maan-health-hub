@@ -1,10 +1,16 @@
-import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+
+import { supabase } from "@/integrations/supabase/client";
 
 import { PatientProvider } from "@/lib/patient/store";
-import { PatientBottomNav, PatientTopNav, ScenarioSwitcher } from "@/components/patient/patient-nav";
+import { PatientBottomNav, PatientTopNav } from "@/components/patient/patient-nav";
 
 export const Route = createFileRoute("/mon-espace")({
   ssr: false,
+  beforeLoad: async () => {
+    const { data, error } = await supabase.auth.getUser();
+    if (error || !data.user) throw redirect({ to: "/auth" });
+  },
   head: () => ({
     meta: [
       { title: "Mon espace — MAAN" },
@@ -32,7 +38,6 @@ function PatientLayout() {
       <div className="min-h-screen bg-background pb-24 md:pb-16">
         <PatientTopNav />
         <main className="pt-8">
-          <ScenarioSwitcher />
           <div className="mx-auto max-w-5xl px-5">
             <Outlet />
           </div>
