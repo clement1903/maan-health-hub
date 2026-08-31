@@ -10,8 +10,6 @@ import consultationImg from "@/assets/etape-consultation.jpg";
 import pharmacieImg from "@/assets/parcours-pharmacie.jpg";
 import livraisonImg from "@/assets/etape-livraison.jpg";
 import suiviImg from "@/assets/parcours-suivi.jpg";
-import heroPoster from "@/assets/hero-poster.jpg";
-import explicationVideo from "@/assets/parcours-explication.mp4.asset.json";
 
 export const Route = createFileRoute("/parcours")({
   head: () => ({
@@ -97,24 +95,12 @@ function ParcoursPage() {
             </Reveal>
 
             <Reveal delay={120} className="mt-12">
-              <div className="relative aspect-video w-full overflow-hidden rounded-[28px] shadow-[0_60px_140px_-70px_var(--foreground)]">
-                <video
-                  src={explicationVideo.url}
-                  poster={heroPoster}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="h-full w-full object-cover"
-                  aria-label={t(
-                    "Vidéo du parcours : questionnaire, consultation en ligne, préparation, livraison et suivi",
-                    "Journey video: questionnaire, online consultation, preparation, delivery and follow-up",
-                  )}
-                />
-                <span className="pointer-events-none absolute bottom-5 left-5 rounded-full bg-background/85 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-clay backdrop-blur-sm">
-                  {t("Cinq étapes, aucun détour", "Five steps, no detours")}
-                </span>
-              </div>
+              <p className="mx-auto max-w-2xl text-pretty text-lg leading-relaxed text-muted">
+                {t(
+                  "Questionnaire médical en ligne, consultation avec un médecin certifié, préparation en pharmacie agréée et suivi personnalisé.",
+                  "Online medical questionnaire, consultation with a certified doctor, preparation at a licensed pharmacy and personalized follow-up.",
+                )}
+              </p>
             </Reveal>
           </header>
 
