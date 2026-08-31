@@ -1,9 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
 import { useI18n } from "@/lib/i18n";
-import { cn } from "@/lib/utils";
 import { usePatient } from "@/lib/patient/store";
-import { tr } from "@/lib/patient/types";
 
 type Item = { to: string; label: string; short: string; icon: string; badge?: number };
 
