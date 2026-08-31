@@ -147,7 +147,6 @@ export function Temoignages() {
                     {t.prenom} · {t.age} · {t.domaine}
                   </p>
                 </div>
-                <PartageTemoignage t={t} />
               </article>
             </Reveal>
           ))}
