@@ -5,7 +5,9 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
 import { ProduitCarrousel } from "@/components/produit-carrousel";
-import { getDomaine, getSoins, prixAbonnement, type Produit } from "@/data/soins";
+import { getDomaine, getSoins, loc, prixAbonnement, type Produit } from "@/data/soins";
+import { getDomaineDetails, locSuffix } from "@/data/domaine-details";
+import { CountUp } from "@/components/count-up";
 import { useI18n } from "@/lib/i18n";
 import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { cn } from "@/lib/utils";
@@ -304,13 +306,84 @@ function DomainePage() {
           </div>
         </section>
 
+        {(() => {
+          const details = getDomaineDetails(domaine.slug);
+          if (!details) return null;
+          return (
+            <>
+              <section className="border-b border-border bg-cream">
+                <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
+                  <Reveal className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
+                    <div className="lg:col-span-5">
+                      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
+                        {t("Le sujet", "The topic")}
+                      </p>
+                      <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
+                        {t("Comprendre le problème", "Understanding the issue")}
+                      </h2>
+                    </div>
+                    <div className="lg:col-span-7">
+                      <p className="max-w-[60ch] text-pretty leading-relaxed text-muted">
+                        {loc(details.probleme, lang)}
+                      </p>
+                      <ul className="mt-6 space-y-2">
+                        {domaine.indications.map((ind) => (
+                          <li key={ind} className="flex items-start gap-3 text-sm">
+                            <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
+                            <span className="text-pretty">{ind}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </Reveal>
+                </div>
+              </section>
+
+              <section className="border-b border-border">
+                <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
+                  <Reveal>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
+                      {t("Les chiffres", "The numbers")}
+                    </p>
+                    <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
+                      {t("Vous n'êtes pas seul.", "You are not alone.")}
+                    </h2>
+                  </Reveal>
+                  <div className="mt-10 grid gap-5 sm:grid-cols-3">
+                    {details.chiffres.map((c, i) => (
+                      <Reveal
+                        key={i}
+                        delay={i * 90}
+                        className="rounded-[20px] border border-border bg-cream p-7"
+                      >
+                        <CountUp
+                          to={c.value}
+                          prefix={c.prefix ?? ""}
+                          suffix={locSuffix(c, lang)}
+                          className="font-display text-4xl font-semibold tracking-tight text-clay lg:text-5xl"
+                        />
+                        <p className="mt-3 text-sm leading-relaxed text-muted">
+                          {loc(c.label, lang)}
+                        </p>
+                      </Reveal>
+                    ))}
+                  </div>
+                  <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+                    {loc(details.source, lang)}
+                  </p>
+                </div>
+              </section>
+            </>
+          );
+        })()}
+
         <section className="bg-cream">
 
 
           <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
             <Reveal>
               <h2 className="font-section text-3xl font-medium tracking-tight lg:text-4xl">
-                {t("Traitements possibles", "Possible treatments")}
+                {t("Les médicaments", "The medications")}
               </h2>
               <p className="mt-3 max-w-[60ch] text-pretty text-sm text-muted">
                 {t(
