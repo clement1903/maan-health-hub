@@ -32,7 +32,7 @@ function BentoCard({ card }: { card: Card }) {
             ? t("Revenir au recto de la carte", "Flip the card back")
             : t("Retourner la carte pour lire la description", "Flip the card to read the description")
         }
-        className="group relative block h-full w-full text-left [transform-style:preserve-3d]"
+        className="group grid h-full w-full text-left [transform-style:preserve-3d]"
         style={{
           transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
           transition: "transform 650ms var(--ease)",
@@ -41,7 +41,7 @@ function BentoCard({ card }: { card: Card }) {
         {/* RECTO */}
         <span
           className={cn(
-            "absolute inset-0 flex overflow-hidden rounded-[28px] p-6 shadow-[0_20px_50px_-40px_var(--foreground)] transition-shadow duration-500 [backface-visibility:hidden] lg:p-8",
+            "col-start-1 row-start-1 flex h-full w-full overflow-hidden rounded-[28px] p-6 shadow-[0_20px_50px_-40px_var(--foreground)] transition-shadow duration-500 [backface-visibility:hidden] lg:p-8",
             "group-hover:shadow-[0_50px_100px_-45px_var(--foreground)]",
           )}
           style={{ background: card.gradient }}
