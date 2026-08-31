@@ -41,6 +41,7 @@ function BentoCard({ card }: { card: Card }) {
     <Link
       to="/soins/$domaine"
       params={{ domaine: card.slug }}
+      search={{ produit: undefined }}
       onMouseMove={onMove}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={reset}
@@ -160,7 +161,7 @@ export function Bento3D() {
     },
   ];
 
-  const [large, ...rest] = cards;
+  const [large, second, third, fourth] = cards as [Card, Card, Card, Card];
 
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
@@ -168,12 +169,12 @@ export function Bento3D() {
         <BentoCard card={large} />
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
-        {rest.slice(0, 2).map((c) => (
+        {[second, third].map((c) => (
           <BentoCard key={c.slug} card={c} />
         ))}
       </div>
       <div className="lg:col-span-12">
-        <BentoCard card={rest[2]} />
+        <BentoCard card={fourth} />
       </div>
     </div>
   );
