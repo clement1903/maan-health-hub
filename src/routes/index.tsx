@@ -19,6 +19,7 @@ import { Magnetic, Tilt } from "@/components/magnetic";
 import { Marquee } from "@/components/marquee";
 import { CountUp } from "@/components/count-up";
 import { SoinsShowcase, type Soin } from "@/components/soins-showcase";
+import { Bento3D } from "@/components/bento-3d";
 
 
 import { ParcoursStepper, type Etape } from "@/components/parcours-stepper";
@@ -487,6 +488,11 @@ function Home() {
               </div>
             </Reveal>
             <Reveal delay={60}>
+              <div className="mt-10">
+                <Bento3D />
+              </div>
+            </Reveal>
+            <Reveal delay={80}>
               <SoinsShowcase soins={soins} />
             </Reveal>
           </div>

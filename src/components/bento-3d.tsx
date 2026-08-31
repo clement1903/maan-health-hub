@@ -3,38 +3,30 @@ import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
 
-import img3dSexual from "@/assets/3d-sexual.png";
-import img3dWeight from "@/assets/3d-weight.png";
-import img3dHair from "@/assets/3d-hair.png";
-import img3dSkin from "@/assets/3d-skin.png";
-
 type Card = {
   slug: string;
   title: string;
   accent: string;
   cta: string;
-  img: string;
-  alt: string;
   gradient: string;
   large?: boolean;
-  delay: number;
 };
 
-/** Carte 3D : le visuel produit flotte et suit la souris sur deux axes. */
+/** Carte du bento : inclinaison 3D au survol, sans visuel produit. */
 function BentoCard({ card }: { card: Card }) {
-  const [tilt, setTilt] = useState({ rx: 0, ry: 0, x: 0, y: 0 });
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
   const [hover, setHover] = useState(false);
 
   const onMove = (e: React.MouseEvent) => {
     const r = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width - 0.5;
     const py = (e.clientY - r.top) / r.height - 0.5;
-    setTilt({ rx: -py * 10, ry: px * 14, x: px * 26, y: py * 20 });
+    setTilt({ rx: -py * 10, ry: px * 14 });
   };
 
   const reset = () => {
     setHover(false);
-    setTilt({ rx: 0, ry: 0, x: 0, y: 0 });
+    setTilt({ rx: 0, ry: 0 });
   };
 
   return (
@@ -88,24 +80,6 @@ function BentoCard({ card }: { card: Card }) {
         </span>
       </div>
 
-      <img
-        src={card.img}
-        alt={card.alt}
-        loading="lazy"
-        width={1024}
-        height={1024}
-        className={cn(
-          "pointer-events-none absolute select-none drop-shadow-[0_35px_45px_rgba(0,0,0,0.25)]",
-          card.large
-            ? "-bottom-6 -right-4 w-[62%] max-w-[340px]"
-            : "-bottom-8 -right-6 w-[52%] max-w-[210px]",
-        )}
-        style={{
-          transform: `translate3d(${tilt.x}px, ${tilt.y}px, 90px) rotate(${hover ? -4 : 0}deg) scale(${hover ? 1.08 : 1})`,
-          transition: "transform 600ms var(--ease)",
-          animation: `floaty ${card.large ? 7 : 6}s ease-in-out ${card.delay}s infinite`,
-        }}
-      />
     </Link>
   );
 }
@@ -119,45 +93,33 @@ export function Bento3D() {
       title: t("Perdez du poids, durablement.", "Lose weight, for good."),
       accent: t("Poids", "Weight"),
       cta: t("Voir les traitements", "See treatments"),
-      img: img3dWeight,
-      alt: t("Stylo injecteur médical en 3D", "3D medical injection pen"),
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--amber) 40%, var(--cream)), color-mix(in oklab, var(--clay) 22%, var(--cream)))",
       large: true,
-      delay: 0,
     },
     {
       slug: "sexuel",
       title: t("Retrouvez confiance au lit.", "Get your confidence back."),
       accent: t("Santé sexuelle", "Sexual health"),
       cta: t("Découvrir", "Discover"),
-      img: img3dSexual,
-      alt: t("Comprimé bleu en rendu 3D", "3D render of a blue tablet"),
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--sand) 70%, var(--cream)), var(--cream))",
-      delay: 0.6,
     },
     {
       slug: "cheveux",
       title: t("Gardez vos cheveux.", "Keep your hair."),
       accent: t("Cheveux", "Hair"),
       cta: t("Découvrir", "Discover"),
-      img: img3dHair,
-      alt: t("Comprimés et pipette en rendu 3D", "3D render of tablets and a dropper"),
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--clay) 16%, var(--cream)), var(--cream))",
-      delay: 1.2,
     },
     {
       slug: "peau",
       title: t("Une peau nette.", "Clear, calm skin."),
       accent: t("Peau", "Skin"),
       cta: t("Découvrir", "Discover"),
-      img: img3dSkin,
-      alt: t("Tube de crème en rendu 3D", "3D render of a cream tube"),
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--amber) 22%, var(--cream)), var(--cream))",
-      delay: 1.8,
     },
   ];
 
