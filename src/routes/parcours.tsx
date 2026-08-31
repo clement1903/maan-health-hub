@@ -10,8 +10,6 @@ import consultationImg from "@/assets/etape-consultation.jpg";
 import pharmacieImg from "@/assets/parcours-pharmacie.jpg";
 import livraisonImg from "@/assets/etape-livraison.jpg";
 import suiviImg from "@/assets/parcours-suivi.jpg";
-import heroPoster from "@/assets/hero-poster.jpg";
-import explicationVideo from "@/assets/parcours-explication.mp4.asset.json";
 
 export const Route = createFileRoute("/parcours")({
   head: () => ({
