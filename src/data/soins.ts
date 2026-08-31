@@ -124,11 +124,15 @@ export const domaines: Domaine[] = [
       },
       {
         q: "Le traitement agit-il sans désir sexuel ?",
-        r: "Non. Les inhibiteurs de la PDE5 nécessitent une stimulation sexuelle pour produire leur effet.",
+        r: "Non. Les inhibiteurs de la PDE5 nécessitent une stimulation sexuelle pour produire leur effet. La dapoxétine agit sur le timing de l'éjaculation, pas sur l'érection elle-même.",
       },
       {
         q: "Puis-je le prendre avec un traitement cardiaque ?",
         r: "Certains traitements cardiaques, en particulier les dérivés nitrés, sont incompatibles. Indiquez-les dans le questionnaire.",
+      },
+      {
+        q: "Quelle différence entre les troubles de l'érection et l'éjaculation précoce ?",
+        r: "L'érection concerne la rigidité et le maintien du pénis, l'éjaculation concerne le contrôle du moment de l'éjaculation. Les deux peuvent coexister. Le médecin oriente vers le traitement adapté après évaluation.",
       },
     ],
   },
