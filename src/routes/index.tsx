@@ -475,7 +475,7 @@ function Home() {
                   {t("Nos soins", "Our treatments")}
                 </p>
                 <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-                  {t("Comment peut-on vous accompagner ?", "How can we support you?")}
+                  {t("Qu'est-ce qui vous préoccupe ?", "What is concerning you?")}
                 </h2>
               </div>
             </Reveal>
