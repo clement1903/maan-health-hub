@@ -8,6 +8,7 @@ import { ProduitCarrousel } from "@/components/produit-carrousel";
 import { getDomaine, getSoins, loc, prixAbonnement, type Produit } from "@/data/soins";
 import { getDomaineDetails, locSuffix } from "@/data/domaine-details";
 import { CountUp } from "@/components/count-up";
+import { Floating3D } from "@/components/floating-3d";
 import { useI18n } from "@/lib/i18n";
 import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { cn } from "@/lib/utils";
@@ -290,18 +291,27 @@ function DomainePage() {
                   </li>
                 </ol>
               </nav>
-              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-                {domaine.tag}
-              </p>
-              <h1 className="mt-4 text-balance font-display text-4xl font-medium leading-[1.05] tracking-tight lg:text-5xl">
-                {domaine.titre}
-              </h1>
-              <p className="mt-5 max-w-[60ch] text-pretty text-muted">
-                {t(
-                  "Découvrez chaque traitement en détail : photo, mode d'action, précautions et suivi. Informations indicatives — la décision appartient au médecin qui évalue votre dossier.",
-                  "Discover each treatment in detail: photo, how it works, precautions and follow-up. Indicative information — the decision belongs to the doctor reviewing your file.",
-                )}
-              </p>
+              <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+                <div className="lg:col-span-8">
+                  <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
+                    {domaine.tag}
+                  </p>
+                  <h1 className="mt-4 text-balance font-display text-4xl font-medium leading-[1.05] tracking-tight lg:text-5xl">
+                    {domaine.titre}
+                  </h1>
+                  <p className="mt-5 max-w-[60ch] text-pretty text-muted">
+                    {t(
+                      "Découvrez chaque traitement en détail : photo, mode d'action, précautions et suivi. Informations indicatives — la décision appartient au médecin qui évalue votre dossier.",
+                      "Discover each treatment in detail: photo, how it works, precautions and follow-up. Indicative information — the decision belongs to the doctor reviewing your file.",
+                    )}
+                  </p>
+                </div>
+                <Floating3D
+                  domaine={domaine.slug}
+                  alt={t(`Visuel 3D — ${domaine.tag}`, `3D visual — ${domaine.tag}`)}
+                  className="mx-auto hidden w-full max-w-[260px] lg:col-span-4 lg:block"
+                />
+              </div>
             </Reveal>
           </div>
         </section>
