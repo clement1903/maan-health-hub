@@ -57,7 +57,7 @@ export const domaines: Domaine[] = [
     produits: [
       {
         nom: "Viagra",
-        prix: "54 € / mois",
+        prix: "13,50 € / comprimé",
         molecule: "Sildénafil",
         image: produitViagra,
         alt: "Boîte de Viagra (sildénafil 50 mg, Pfizer) et plaquette de comprimés bleus en losange, traitement de l'érection sur ordonnance",
@@ -69,7 +69,7 @@ export const domaines: Domaine[] = [
       },
       {
         nom: "Sildénafil (générique)",
-        prix: "29 € / mois",
+        prix: "4,90 € / comprimé",
         molecule: "Sildénafil",
         image: produitSildenafil,
         alt: "Boîte et plaquette de comprimés de sildénafil générique, traitement de l'érection sur ordonnance",
@@ -81,7 +81,7 @@ export const domaines: Domaine[] = [
       },
       {
         nom: "Cialis",
-        prix: "62 € / mois",
+        prix: "15,50 € / comprimé",
         molecule: "Tadalafil",
         image: produitCialis,
         alt: "Boîte de Cialis (tadalafil 10 mg, Eli Lilly) et plaquette de comprimés jaunes, traitement de l'érection longue durée sur ordonnance",
@@ -93,7 +93,7 @@ export const domaines: Domaine[] = [
       },
       {
         nom: "Tadalafil (générique)",
-        prix: "34 € / mois",
+        prix: "5,90 € / comprimé",
         molecule: "Tadalafil",
         image: produitTadalafil,
         alt: "Boîte et plaquette de comprimés de tadalafil générique, traitement de l'érection longue durée sur ordonnance",
@@ -192,7 +192,7 @@ export const domaines: Domaine[] = [
     ],
     produits: [
       {
-        nom: "Inhibiteur de la 5-alpha-réductase",
+        nom: "Finastéride",
         prixUnite: 29,
         prixMensuel: 24,
         prix: "24 € / mois",
@@ -206,7 +206,7 @@ export const domaines: Domaine[] = [
           "Effets sexuels possibles, généralement réversibles à l'arrêt. Contre-indiqué chez la femme enceinte ; ne pas manipuler les comprimés cassés.",
       },
       {
-        nom: "Vasodilatateur topique",
+        nom: "Minoxidil",
         prixUnite: 24,
         prixMensuel: 19,
         prix: "19 € / mois",
