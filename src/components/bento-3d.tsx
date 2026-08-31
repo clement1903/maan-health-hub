@@ -13,21 +13,21 @@ type Card = {
   delay: number;
 };
 
-/** Carte 3D : le visuel produit flotte et suit la souris sur deux axes. */
+/** Carte du bento : inclinaison 3D au survol, sans visuel produit. */
 function BentoCard({ card }: { card: Card }) {
-  const [tilt, setTilt] = useState({ rx: 0, ry: 0, x: 0, y: 0 });
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
   const [hover, setHover] = useState(false);
 
   const onMove = (e: React.MouseEvent) => {
     const r = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width - 0.5;
     const py = (e.clientY - r.top) / r.height - 0.5;
-    setTilt({ rx: -py * 10, ry: px * 14, x: px * 26, y: py * 20 });
+    setTilt({ rx: -py * 10, ry: px * 14 });
   };
 
   const reset = () => {
     setHover(false);
-    setTilt({ rx: 0, ry: 0, x: 0, y: 0 });
+    setTilt({ rx: 0, ry: 0 });
   };
 
   return (
