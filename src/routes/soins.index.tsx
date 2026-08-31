@@ -3,7 +3,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { getSoins, type Domaine, type Produit } from "@/data/soins";
 import { Reveal } from "@/components/reveal";
+import { Floating3D } from "@/components/floating-3d";
 import { ImageZoom } from "@/components/image-zoom";
+
+const i3dDelay: Record<string, number> = {
+  sexuel: 0,
+  poids: 0.7,
+  cheveux: 1.4,
+  peau: 2.1,
+};
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { useI18n } from "@/lib/i18n";
