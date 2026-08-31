@@ -22,6 +22,8 @@ import { SoinsShowcase, type Soin } from "@/components/soins-showcase";
 import { ParcoursStepper, type Etape } from "@/components/parcours-stepper";
 import { MedecinsSection } from "@/components/medecins-section";
 import { Temoignages } from "@/components/temoignages";
+import { MotFondateur } from "@/components/mot-fondateur";
+
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { useScrollY } from "@/hooks/use-reveal";
