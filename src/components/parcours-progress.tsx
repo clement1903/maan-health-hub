@@ -52,9 +52,11 @@ export const etapesDetaillees: EtapeDetaillee[] = [
 export function ParcoursProgress({
   etapes,
   activeIndex,
+  scrollSignal,
 }: {
   etapes: EtapeDetaillee[];
   activeIndex?: number;
+  scrollSignal?: number;
 }) {
   const refs = useRef<Array<HTMLLIElement | null>>([]);
   const [reached, setReached] = useState(0);
@@ -79,6 +81,13 @@ export function ParcoursProgress({
     setReached((prev) => Math.max(prev, activeIndex + 1));
   }, [activeIndex]);
 
+  useEffect(() => {
+    if (!scrollSignal || activeIndex === undefined) return;
+    const el = refs.current[activeIndex];
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [scrollSignal, activeIndex]);
+
   const pct = Math.round((reached / etapes.length) * 100);
 
 
@@ -102,34 +111,47 @@ export function ParcoursProgress({
       <ol className="relative space-y-4 border-l border-border pl-8">
         {etapes.map((e, i) => {
           const done = reached > i;
+          const current = activeIndex === i;
           return (
             <li
               key={e.n}
               data-idx={i}
+              aria-current={current ? "step" : undefined}
               ref={(el) => {
                 refs.current[i] = el;
               }}
               className={cn(
-                "relative rounded-[20px] border border-border bg-background p-7 transition-all duration-700 ease-[var(--ease)]",
-                done
+                "relative rounded-[20px] border bg-background p-7 transition-all duration-700 ease-[var(--ease)]",
+                current
+                  ? "border-clay opacity-100 shadow-[0_34px_80px_-50px_var(--foreground)] ring-1 ring-clay/35 lg:scale-[1.015]"
+                  : "border-border",
+                done && !current
                   ? "opacity-100 shadow-[0_28px_70px_-55px_var(--foreground)]"
-                  : "opacity-60",
+                  : current
+                    ? ""
+                    : "opacity-60",
               )}
             >
               <span
                 className={cn(
                   "absolute -left-[2.6rem] top-7 grid h-8 w-8 place-items-center rounded-full border font-mono text-xs transition-all duration-700 ease-[var(--ease)]",
-                  done
+                  done || current
                     ? "border-clay bg-clay text-cream"
                     : "border-border bg-background text-muted",
+                  current ? "scale-110 shadow-[0_0_0_6px_color-mix(in_oklab,var(--clay)_18%,transparent)]" : "",
                 )}
               >
                 {e.n}
               </span>
               <div className="flex flex-wrap items-baseline justify-between gap-3">
                 <h3 className="font-section text-xl font-medium tracking-tight">{e.title}</h3>
-                <span className="rounded-full border border-border px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-clay">
-                  {e.duree}
+                <span
+                  className={cn(
+                    "rounded-full border px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] transition-colors duration-500",
+                    current ? "border-clay bg-clay text-cream" : "border-border text-clay",
+                  )}
+                >
+                  {current ? "Étape en cours" : e.duree}
                 </span>
               </div>
               <p className="mt-2 max-w-[60ch] text-pretty text-sm text-muted">{e.desc}</p>

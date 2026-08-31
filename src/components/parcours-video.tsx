@@ -16,10 +16,12 @@ export function ParcoursVideo({
   src,
   poster,
   onChapterChange,
+  onChapterSelect,
 }: {
   src: string;
   poster: string;
   onChapterChange?: (index: number) => void;
+  onChapterSelect?: (index: number) => void;
 }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [active, setActive] = useState(0);
@@ -34,6 +36,7 @@ export function ParcoursVideo({
     if (!v) return;
     v.currentTime = chapitres[i]!.start + 0.05;
     setActive(i);
+    onChapterSelect?.(i);
     void v.play().catch(() => undefined);
   };
 
