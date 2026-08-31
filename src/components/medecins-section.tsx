@@ -73,8 +73,8 @@ const buildGaranties = (t: (fr: string, en: string) => string) => [
   {
     t: t("Identité vérifiée", "Verified identity"),
     d: t(
-      "Chaque médecin est inscrit à l'Ordre et son numéro RPPS est contrôlé avant tout accès aux dossiers.",
-      "Every doctor is registered with the Medical Board and their RPPS number is checked before any file access.",
+      "Chaque médecin est certifié BIG : son numéro d'enregistrement est contrôlé avant tout accès aux dossiers.",
+      "Every doctor is BIG certified: their registration number is checked before any file access.",
     ),
   },
   {
