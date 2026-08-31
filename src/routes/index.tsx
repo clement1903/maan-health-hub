@@ -70,6 +70,7 @@ const soins: Soin[] = [
       "Traitements sur ordonnance uniquement",
       "Renouvellement suivi et ajustable",
     ],
+    slug: "sexuel",
   },
   {
     n: "02",
@@ -83,6 +84,7 @@ const soins: Soin[] = [
       "Suivi mensuel avec votre médecin",
       "Conseils nutrition inclus",
     ],
+    slug: "poids",
   },
   {
     n: "03",
