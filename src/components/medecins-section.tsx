@@ -125,8 +125,8 @@ export function MedecinsSection() {
           </p>
         </Reveal>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-12">
-          <div className="flex flex-col gap-2 lg:col-span-5">
+        <div className="mt-10 flex flex-col gap-6 lg:flex-row">
+          <div className="flex flex-col gap-2 lg:w-5/12">
             {medecins.map((doc, i) => (
               <button
                 key={doc.nom}
@@ -170,46 +170,48 @@ export function MedecinsSection() {
             ))}
           </div>
 
-          <div className="rounded-[20px] border border-border bg-background p-7 lg:col-span-7">
-            <div className="flex items-center gap-4">
-              <img
-                src={m.photo}
-                alt={t(`Portrait du ${m.nom}`, `Portrait of ${m.nom}`)}
-                loading="lazy"
-                width={800}
-                height={800}
-                className="h-16 w-16 rounded-full object-cover"
-              />
-              <div>
-                <p className="font-display text-xl font-medium tracking-tight">{m.nom}</p>
-                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                  {m.role}
-                </p>
-                <p className="mt-1 inline-flex items-center gap-1.5 rounded-full border border-clay/30 bg-cream px-2.5 py-0.5 font-mono text-[10px] tracking-[0.08em] text-clay">
-                  {t("Certifié BIG", "BIG certified")} · {m.big}
-                </p>
+          <div className="lg:relative lg:w-7/12">
+            <div className="rounded-[20px] border border-border bg-background p-7 lg:absolute lg:bottom-0 lg:left-0 lg:right-0">
+              <div className="flex items-center gap-4">
+                <img
+                  src={m.photo}
+                  alt={t(`Portrait du ${m.nom}`, `Portrait of ${m.nom}`)}
+                  loading="lazy"
+                  width={800}
+                  height={800}
+                  className="h-16 w-16 rounded-full object-cover"
+                />
+                <div>
+                  <p className="font-display text-xl font-medium tracking-tight">{m.nom}</p>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                    {m.role}
+                  </p>
+                  <p className="mt-1 inline-flex items-center gap-1.5 rounded-full border border-clay/30 bg-cream px-2.5 py-0.5 font-mono text-[10px] tracking-[0.08em] text-clay">
+                    {t("Certifié BIG", "BIG certified")} · {m.big}
+                  </p>
+                </div>
               </div>
+              <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.16em] text-clay">
+                {t("Son approche", "Their approach")}
+              </p>
+              <p
+                key={m.nom}
+                className="mt-3 animate-[rise_0.5s_var(--ease)_both] text-pretty font-display text-xl font-medium leading-snug tracking-tight"
+              >
+                « {m.approche} »
+              </p>
+              <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+                {t("Qualifications", "Qualifications")}
+              </p>
+              <ul className="mt-3 space-y-2">
+                {m.qualifications.map((q) => (
+                  <li key={q} className="flex items-start gap-3 text-sm text-muted">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
+                    {q}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.16em] text-clay">
-              {t("Son approche", "Their approach")}
-            </p>
-            <p
-              key={m.nom}
-              className="mt-3 animate-[rise_0.5s_var(--ease)_both] text-pretty font-display text-xl font-medium leading-snug tracking-tight"
-            >
-              « {m.approche} »
-            </p>
-            <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-              {t("Qualifications", "Qualifications")}
-            </p>
-            <ul className="mt-3 space-y-2">
-              {m.qualifications.map((q) => (
-                <li key={q} className="flex items-start gap-3 text-sm text-muted">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
-                  {q}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
 
