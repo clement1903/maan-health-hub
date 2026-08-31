@@ -5,7 +5,7 @@
  */
 
 import { supabase } from "@/integrations/supabase/client";
-import { journeyStages } from "./types";
+import { journeyStages, statusHuman } from "./types";
 import type {
   ActionPriority,
   Bi,

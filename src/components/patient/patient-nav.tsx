@@ -3,7 +3,6 @@ import { Link } from "@tanstack/react-router";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { usePatient } from "@/lib/patient/store";
-import { scenarioKeys, scenarioLabels } from "@/lib/patient/demo";
 import { tr } from "@/lib/patient/types";
 
 type Item = { to: string; label: string; short: string; icon: string; badge?: number };
@@ -100,37 +99,5 @@ export function PatientBottomNav() {
         ))}
       </ul>
     </nav>
-  );
-}
-
-/** Sélecteur de scénario — outil de développement uniquement. */
-export function ScenarioSwitcher() {
-  const { scenario, setScenario } = usePatient();
-  const { lang, t } = useI18n();
-  if (!import.meta.env.DEV) return null;
-
-  return (
-    <div className="mx-auto mb-6 max-w-5xl px-5">
-      <div className="flex flex-wrap items-center gap-2 rounded-[18px] border border-dashed border-border bg-background/70 p-3">
-        <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-          {t("Démo · scénario", "Demo · scenario")}
-        </span>
-        {scenarioKeys.map((k) => (
-          <button
-            key={k}
-            type="button"
-            onClick={() => setScenario(k)}
-            title={tr(scenarioLabels[k], lang)}
-            className={cn(
-              "rounded-full px-3 py-1.5 font-mono text-[11px] transition-colors",
-              scenario === k ? "bg-clay text-cream" : "border border-border text-muted hover:text-foreground",
-            )}
-          >
-            {k}
-          </button>
-        ))}
-        <span className="ml-auto text-[11px] text-muted">{tr(scenarioLabels[scenario], lang)}</span>
-      </div>
-    </div>
   );
 }
