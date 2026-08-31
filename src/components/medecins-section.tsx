@@ -213,17 +213,25 @@ export function MedecinsSection() {
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {garanties.map((g, i) => (
-            <Reveal
-              key={g.t}
-              delay={i * 80}
-              className="rounded-[16px] border border-border bg-background/60 p-6"
-            >
-              <p className="text-sm font-medium">{g.t}</p>
-              <p className="mt-1 text-pretty text-sm text-muted">{g.d}</p>
-            </Reveal>
-          ))}
+        <div className="mt-10 grid grid-cols-1 divide-y divide-border/40 md:grid-cols-3 md:divide-x md:divide-y-0">
+          {garanties.map((g, i) => {
+            const Icon = g.icon;
+            return (
+              <Reveal
+                key={g.t}
+                delay={i * 80}
+                className="flex flex-col items-start px-2 py-6 first:pl-0 last:pr-0 md:items-center md:px-6 md:py-0"
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-background/70 text-clay">
+                  <Icon className="h-5 w-5" strokeWidth={1.5} />
+                </span>
+                <p className="mt-4 text-sm font-medium">{g.t}</p>
+                <p className="mt-1 max-w-[34ch] text-pretty text-sm text-muted md:text-center">
+                  {g.d}
+                </p>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
