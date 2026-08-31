@@ -20,7 +20,7 @@ export const etapesDetaillees: EtapeDetaillee[] = [
   },
   {
     n: "2",
-    title: "Décision médicale",
+    title: "Consultation médicale",
     duree: "sous 24 h",
     desc: "Un médecin évalue votre dossier et décide.",
     micro: ["Lecture par un médecin", "Précisions si besoin", "Décision notifiée"],
@@ -34,7 +34,7 @@ export const etapesDetaillees: EtapeDetaillee[] = [
   },
   {
     n: "4",
-    title: "Livraison",
+    title: "Livraison discrète",
     duree: "24 à 48 h",
     desc: "À domicile ou en point relais, discrètement.",
     micro: ["Suivi transporteur", "Colis sans mention", "Sans signature de contenu"],
