@@ -252,7 +252,7 @@ export async function fetchPatientData(userId: string): Promise<PatientData> {
 
   const first = journeys[0];
   const headline: Bi = first
-    ? { fr: "Votre espace MAAN est à jour.", en: "Your MAAN space is up to date." }
+    ? statusHuman[first.status]
     : {
         fr: "Commencez une évaluation pour ouvrir votre premier parcours.",
         en: "Start an assessment to open your first journey.",
