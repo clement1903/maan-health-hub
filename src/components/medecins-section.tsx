@@ -77,6 +77,7 @@ const buildGaranties = (t: (fr: string, en: string) => string) => [
       "Chaque médecin est certifié BIG : son numéro d'enregistrement est contrôlé avant tout accès aux dossiers.",
       "Every doctor is BIG certified: their registration number is checked before any file access.",
     ),
+    icon: ShieldCheck,
   },
   {
     t: t("Secret médical", "Medical confidentiality"),
@@ -84,6 +85,7 @@ const buildGaranties = (t: (fr: string, en: string) => string) => [
       "Vos réponses sont couvertes par le secret médical et ne sont lisibles que par le praticien en charge de votre dossier.",
       "Your answers are protected by medical confidentiality and can only be read by the practitioner handling your file.",
     ),
+    icon: Lock,
   },
   {
     t: t("Liberté de refus", "Freedom to decline"),
@@ -91,6 +93,7 @@ const buildGaranties = (t: (fr: string, en: string) => string) => [
       "Un médecin peut refuser une demande, demander des précisions ou vous orienter vers une consultation physique.",
       "A doctor may decline a request, ask for further details, or refer you to an in-person consultation.",
     ),
+    icon: UserX,
   },
 ];
 
