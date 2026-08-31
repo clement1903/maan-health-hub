@@ -38,57 +38,54 @@ const blocs = [
     id: "prescription",
     tag: "Prescription",
     title: "Aucun médicament sans ordonnance",
-    intro:
-      "MAAN ne vend pas de médicament en libre accès. Chaque demande est évaluée individuellement par un médecin agréé.",
+    intro: "Chaque demande est évaluée par un médecin agréé, jamais vendue en libre accès.",
     points: [
-      "Les médecins qui interviennent sont inscrits à l'Ordre et exercent sous leur propre responsabilité.",
-      "La prescription peut être refusée, modifiée ou conditionnée à un examen complémentaire.",
-      "L'ordonnance délivrée est un document officiel : vous pouvez l'utiliser dans la pharmacie de votre choix.",
-      "Le renouvellement fait l'objet d'une nouvelle évaluation médicale, jamais d'une reconduction automatique.",
+      "Médecins inscrits à l'Ordre",
+      "Prescription possible, ajustée ou refusée",
+      "Ordonnance valable dans toute pharmacie",
+      "Renouvellement réévalué à chaque fois",
     ],
   },
   {
     id: "donnees",
     tag: "Données de santé",
     title: "Vos réponses restent confidentielles",
-    intro:
-      "Les informations que vous transmettez sont des données de santé. Elles sont traitées avec le niveau de protection correspondant.",
+    intro: "Vos informations sont traitées comme des données de santé.",
     points: [
-      "Chiffrement en transit et au repos, hébergement des données en Europe.",
-      "Accès limité à l'équipe médicale et à la pharmacie chargée de préparer votre traitement.",
-      "Aucune revente, aucun partage publicitaire, aucun profilage commercial à partir de votre dossier médical.",
-      "Droit d'accès, de rectification, de portabilité et de suppression exerçable à tout moment depuis votre espace patient.",
+      "Chiffrées, hébergées en Europe",
+      "Accès limité au médecin et à la pharmacie",
+      "Aucune revente, aucune publicité",
+      "Suppression possible à tout moment",
     ],
   },
   {
     id: "expedition",
-    tag: "Expédition à domicile",
+    tag: "Expédition",
     title: "Un colis neutre, préparé en pharmacie",
-    intro:
-      "La préparation et l'expédition sont assurées par une pharmacie partenaire agréée, jamais par MAAN directement.",
+    intro: "La préparation et l'envoi sont assurés par une pharmacie partenaire agréée.",
     points: [
-      "Emballage neutre : ni contenu, ni marque, ni mention thérapeutique visible à l'extérieur.",
-      "Livraison en 24 à 48 h à votre adresse ou en point relais, avec suivi affiché dans votre espace patient.",
-      "Chaîne de conservation respectée, notice et conseils de prise inclus dans le colis.",
-      "En cas d'incident de livraison, la pharmacie assure le remplacement selon la réglementation en vigueur.",
+      "Emballage sans mention visible",
+      "Livraison en 24 à 48 h, domicile ou relais",
+      "Suivi dans votre espace patient",
+      "Notice incluse dans le colis",
     ],
   },
   {
     id: "medical",
     tag: "Information médicale",
     title: "Aucune décision automatisée",
-    intro:
-      "Les informations présentées sur ce site sont fournies à titre indicatif et ne remplacent pas un avis médical.",
+    intro: "Les informations du site sont indicatives et ne remplacent pas un avis médical.",
     points: [
-      "Les médicaments présentés sont disponibles sur ordonnance uniquement : aucun traitement n'est vendu ni délivré sans prescription d'un médecin.",
-      "Les posologies affichées sont indicatives ; seul le médecin fixe la dose adaptée à votre situation.",
-      "Le questionnaire médical ne constitue ni un diagnostic, ni une prescription. Vos réponses sont transmises telles quelles à un médecin indépendant, seul habilité à décider si un traitement est approprié, si des informations complémentaires sont nécessaires, ou s'il n'est pas adapté.",
-      "Aucune décision n'est automatisée. Répondez avec précision et sincérité : la qualité de l'évaluation en dépend.",
-      "Lisez toujours la notice et signalez tout effet indésirable à votre médecin ou à la pharmacie qui vous a dispensé le médicament.",
-      "En cas d'urgence, contactez le 15 ou le 112.",
+      "Traitements sur ordonnance uniquement",
+      "Posologies affichées à titre indicatif",
+      "Le questionnaire n'est ni diagnostic, ni prescription",
+      "Seul le médecin décide, jamais un algorithme",
+      "Lisez la notice, signalez tout effet indésirable",
+      "Urgence : 15 ou 112",
     ],
   },
 ];
+
 
 const icones: Record<string, React.ReactNode> = {
   prescription: (
@@ -152,8 +149,8 @@ function ConformitePage() {
                 Votre ordonnance, vos données, votre colis.
               </h1>
               <p className="mt-6 max-w-[54ch] text-pretty text-lg text-muted">
-                Quatre engagements concrets, écrits sans détour : la prescription reste médicale,
-                vos données restent confidentielles, et l'expédition reste discrète.
+                Quatre engagements clairs : prescription médicale, données confidentielles,
+                livraison discrète.
               </p>
             </Reveal>
 
@@ -252,8 +249,7 @@ function ConformitePage() {
         <section className="border-t border-border bg-sand">
           <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-6 py-14 lg:flex-row lg:items-center lg:justify-between">
             <p className="max-w-[60ch] text-pretty text-sm text-muted">
-              Une question sur le traitement de votre dossier ? Le détail du circuit — questionnaire,
-              validation de prescription, livraison — est décrit étape par étape.
+              Envie de voir le détail du circuit, étape par étape ?
             </p>
             <Link
               to="/parcours"
