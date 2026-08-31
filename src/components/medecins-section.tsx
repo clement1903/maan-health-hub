@@ -125,8 +125,8 @@ export function MedecinsSection() {
           </p>
         </Reveal>
 
-        <div className="mt-10 flex flex-col gap-6 lg:flex-row">
-          <div className="flex flex-col gap-2 lg:w-5/12">
+        <div className="mt-10 flex flex-col gap-6 lg:flex-row lg:items-stretch">
+          <div className="flex flex-col gap-4 lg:w-5/12">
             {medecins.map((doc, i) => (
               <button
                 key={doc.nom}
@@ -134,7 +134,7 @@ export function MedecinsSection() {
                 onClick={() => setActive(i)}
                 aria-pressed={active === i}
                 className={cn(
-                  "group cursor-pointer rounded-[16px] border border-border bg-background/60 p-4 text-left transition-all duration-500 ease-[var(--ease)] hover:bg-background",
+                  "group cursor-pointer rounded-[16px] border border-border bg-background/60 p-5 text-left transition-all duration-500 ease-[var(--ease)] hover:bg-background",
                   active === i &&
                     "border-clay bg-background shadow-[0_24px_60px_-45px_var(--foreground)]",
                 )}
@@ -150,7 +150,7 @@ export function MedecinsSection() {
                     width={800}
                     height={800}
                     className={cn(
-                      "h-14 w-14 shrink-0 rounded-full object-cover transition-all duration-500 ease-[var(--ease)]",
+                      "h-16 w-16 shrink-0 rounded-full object-cover transition-all duration-500 ease-[var(--ease)]",
                       active === i
                         ? "ring-2 ring-clay ring-offset-2 ring-offset-background"
                         : "grayscale group-hover:grayscale-0",
@@ -170,8 +170,8 @@ export function MedecinsSection() {
             ))}
           </div>
 
-          <div className="lg:relative lg:w-7/12">
-            <div className="rounded-[20px] border border-border bg-background p-7 lg:absolute lg:bottom-0 lg:left-0 lg:right-0">
+          <div className="lg:w-7/12">
+            <div className="flex h-full flex-col rounded-[20px] border border-border bg-background p-6">
               <div className="flex items-center gap-4">
                 <img
                   src={m.photo}
@@ -191,19 +191,19 @@ export function MedecinsSection() {
                   </p>
                 </div>
               </div>
-              <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.16em] text-clay">
+              <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.16em] text-clay">
                 {t("Son approche", "Their approach")}
               </p>
               <p
                 key={m.nom}
-                className="mt-3 animate-[rise_0.5s_var(--ease)_both] text-pretty font-display text-xl font-medium leading-snug tracking-tight"
+                className="mt-2 animate-[rise_0.5s_var(--ease)_both] text-pretty font-display text-xl font-medium leading-snug tracking-tight"
               >
                 « {m.approche} »
               </p>
               <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
                 {t("Qualifications", "Qualifications")}
               </p>
-              <ul className="mt-3 space-y-2">
+              <ul className="mt-2 space-y-1.5">
                 {m.qualifications.map((q) => (
                   <li key={q} className="flex items-start gap-3 text-sm text-muted">
                     <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
