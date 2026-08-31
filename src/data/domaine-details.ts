@@ -1,8 +1,9 @@
-import type { Bi } from "@/data/soins";
+import type { Bi, Lang } from "@/data/soins";
+import { loc } from "@/data/soins";
 
 export type ChiffreMarche = {
   value: number;
-  suffix?: string;
+  suffix?: Bi;
   prefix?: string;
   label: Bi;
 };
@@ -25,7 +26,7 @@ export const domaineDetails: Record<string, DomaineDetails> = {
     chiffres: [
       {
         value: 52,
-        suffix: "%",
+        suffix: { fr: " %", en: "%" },
         label: {
           fr: "des hommes de 40 à 70 ans connaissent des troubles de l'érection",
           en: "of men aged 40–70 experience erectile difficulties",
@@ -33,7 +34,7 @@ export const domaineDetails: Record<string, DomaineDetails> = {
       },
       {
         value: 30,
-        suffix: "%",
+        suffix: { fr: " %", en: "%" },
         label: {
           fr: "des hommes sont touchés par l'éjaculation précoce, tous âges confondus",
           en: "of men are affected by premature ejaculation, across all ages",
@@ -41,11 +42,10 @@ export const domaineDetails: Record<string, DomaineDetails> = {
       },
       {
         value: 1,
-        suffix: " / 3",
-        prefix: "",
+        suffix: { fr: " / 3", en: " in 3" },
         label: {
           fr: "homme seulement en parle à un professionnel de santé",
-          en: "in 3 men only ever mentions it to a health professional",
+          en: "men only ever mention it to a health professional",
         },
       },
     ],
@@ -62,7 +62,7 @@ export const domaineDetails: Record<string, DomaineDetails> = {
     chiffres: [
       {
         value: 47,
-        suffix: "%",
+        suffix: { fr: " %", en: "%" },
         label: {
           fr: "des hommes adultes sont en surpoids ou en situation d'obésité",
           en: "of adult men are overweight or living with obesity",
@@ -70,7 +70,7 @@ export const domaineDetails: Record<string, DomaineDetails> = {
       },
       {
         value: 17,
-        suffix: "%",
+        suffix: { fr: " %", en: "%" },
         label: {
           fr: "vivent avec une obésité, en hausse continue depuis 20 ans",
           en: "live with obesity, rising steadily over 20 years",
@@ -78,7 +78,7 @@ export const domaineDetails: Record<string, DomaineDetails> = {
       },
       {
         value: 80,
-        suffix: "%",
+        suffix: { fr: " %", en: "%" },
         label: {
           fr: "reprennent du poids après un régime seul, sans suivi médical",
           en: "regain weight after dieting alone, without medical follow-up",
@@ -98,7 +98,7 @@ export const domaineDetails: Record<string, DomaineDetails> = {
     chiffres: [
       {
         value: 70,
-        suffix: "%",
+        suffix: { fr: " %", en: "%" },
         label: {
           fr: "des hommes connaîtront une chute de cheveux au cours de leur vie",
           en: "of men will experience hair loss during their lifetime",
@@ -106,7 +106,7 @@ export const domaineDetails: Record<string, DomaineDetails> = {
       },
       {
         value: 25,
-        suffix: "%",
+        suffix: { fr: " %", en: "%" },
         label: {
           fr: "voient les premiers signes avant 30 ans",
           en: "notice the first signs before the age of 30",
@@ -114,7 +114,7 @@ export const domaineDetails: Record<string, DomaineDetails> = {
       },
       {
         value: 50,
-        suffix: "%",
+        suffix: { fr: " %", en: "%" },
         label: {
           fr: "des hommes de plus de 50 ans sont visiblement dégarnis",
           en: "of men over 50 have visibly thinning hair",
@@ -134,7 +134,7 @@ export const domaineDetails: Record<string, DomaineDetails> = {
     chiffres: [
       {
         value: 40,
-        suffix: "%",
+        suffix: { fr: " %", en: "%" },
         label: {
           fr: "des adultes déclarent des poussées d'acné après 25 ans",
           en: "of adults report acne flare-ups after the age of 25",
@@ -142,15 +142,15 @@ export const domaineDetails: Record<string, DomaineDetails> = {
       },
       {
         value: 1,
-        suffix: " / 2",
+        suffix: { fr: " / 2", en: " in 2" },
         label: {
           fr: "homme souffre d'irritations chroniques liées au rasage",
-          en: "in 2 men suffers from chronic shaving-related irritation",
+          en: "men suffer from chronic shaving-related irritation",
         },
       },
       {
         value: 3,
-        suffix: t3Suffix,
+        suffix: { fr: " mois", en: " months" },
         label: {
           fr: "d'attente moyenne avant une première consultation dermatologique",
           en: "average wait before a first dermatology consultation",
@@ -164,9 +164,11 @@ export const domaineDetails: Record<string, DomaineDetails> = {
   },
 };
 
-// Suffixe localisé pour le chiffre « 3 mois » (déclaré ici pour rester simple).
-const t3Suffix = "";
-
 export function getDomaineDetails(slug: string): DomaineDetails | undefined {
   return domaineDetails[slug];
+}
+
+/** Suffixe localisé d'un chiffre. */
+export function locSuffix(c: ChiffreMarche, lang: Lang): string {
+  return c.suffix ? loc(c.suffix, lang) : "";
 }
