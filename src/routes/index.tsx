@@ -28,6 +28,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { useScrollY } from "@/hooks/use-reveal";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -324,9 +325,9 @@ function Home() {
           <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 py-16 lg:grid-cols-12 lg:py-24">
             <div className="lg:col-span-6">
               <h1 className="animate-[rise_0.6s_var(--ease)_0.08s_both] text-balance font-display text-5xl font-medium leading-[1.03] tracking-tight lg:text-6xl">
-                Consultez un médecin en ligne.{" "}
+                {t("Consultez un médecin en ligne.", "Consult a doctor online.")}{" "}
                 <span className="relative inline-block">
-                  <span className="relative z-10">Recevez votre traitement à domicile.</span>
+                  <span className="relative z-10">{t("Recevez votre traitement à domicile.", "Get your treatment delivered at home.")}</span>
                   <span className="absolute inset-x-0 bottom-1 z-0 h-3 origin-left animate-[rise_0.8s_var(--ease)_0.5s_both] rounded-sm bg-amber/35" />
                 </span>
               </h1>
@@ -336,7 +337,7 @@ function Home() {
                     to="/questionnaire"
                     className="group inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep hover:shadow-[0_18px_40px_-18px_var(--clay)]"
                   >
-                    Commencer une consultation
+                    {t("Commencer une consultation", "Start a consultation")}
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>
@@ -346,7 +347,7 @@ function Home() {
                   href="#parcours"
                   className="font-medium text-foreground underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
                 >
-                  Voir le parcours
+                  {t("Voir le parcours", "See how it works")}
                 </a>
               </div>
               <div className="mt-6 grid animate-[rise_0.6s_var(--ease)_0.32s_both] grid-cols-1 gap-3 sm:grid-cols-2">
@@ -358,8 +359,8 @@ function Home() {
                     </svg>
                   </div>
                   <div className="flex min-w-0 flex-col">
-                    <span className="text-[13px] font-semibold leading-tight text-foreground">Consultation 100% gratuite</span>
-                    <span className="text-[11px] text-muted">et sans engagement</span>
+                    <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Consultation 100% gratuite", "100% free consultation")}</span>
+                    <span className="text-[11px] text-muted">{t("et sans engagement", "and no commitment")}</span>
                   </div>
                 </div>
 
@@ -371,8 +372,8 @@ function Home() {
                     </svg>
                   </div>
                   <div className="flex min-w-0 flex-col">
-                    <span className="text-[13px] font-semibold leading-tight text-foreground">Traitement et suivi médical</span>
-                    <span className="text-[11px] text-muted">personnalisés</span>
+                    <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Traitement et suivi médical", "Treatment and medical follow-up")}</span>
+                    <span className="text-[11px] text-muted">{t("personnalisés", "personalised")}</span>
                   </div>
                 </div>
 
@@ -386,8 +387,8 @@ function Home() {
                     </svg>
                   </div>
                   <div className="flex min-w-0 flex-col">
-                    <span className="text-[13px] font-semibold leading-tight text-foreground">Livraison</span>
-                    <span className="text-[11px] text-muted">discrète</span>
+                    <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Livraison", "Delivery")}</span>
+                    <span className="text-[11px] text-muted">{t("discrète", "discreet")}</span>
                   </div>
                 </div>
 
@@ -399,8 +400,8 @@ function Home() {
                     </svg>
                   </div>
                   <div className="flex min-w-0 flex-col">
-                    <span className="text-[13px] font-semibold leading-tight text-foreground">Données chiffrées</span>
-                    <span className="text-[11px] text-muted">et confidentielles</span>
+                    <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Données chiffrées", "Encrypted data")}</span>
+                    <span className="text-[11px] text-muted">{t("et confidentielles", "and confidential")}</span>
                   </div>
                 </div>
               </div>
@@ -412,7 +413,7 @@ function Home() {
                     className="font-display text-2xl font-medium tracking-tight text-clay"
                   />
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                    Dossiers accompagnés
+                    {t("Dossiers accompagnés", "Cases supported")}
                   </p>
                 </div>
                 <div className="text-center">
@@ -422,7 +423,7 @@ function Home() {
                     className="font-display text-2xl font-medium tracking-tight text-clay"
                   />
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                    Réponse médicale
+                    {t("Réponse médicale", "Medical answer")}
                   </p>
                 </div>
                 <div className="text-center">
@@ -431,7 +432,7 @@ function Home() {
                     className="font-display text-2xl font-medium tracking-tight text-clay"
                   />
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                    Spécialités
+                    {t("Spécialités", "Specialties")}
                   </p>
                 </div>
               </div>
@@ -465,10 +466,10 @@ function Home() {
             <Reveal className="flex flex-wrap items-end justify-between gap-6">
               <div>
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-                  Nos soins
+                  {t("Nos soins", "Our treatments")}
                 </p>
                 <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-                  Comment peut-on vous accompagner ?
+                  {t("Comment peut-on vous accompagner ?", "How can we support you?")}
                 </h2>
               </div>
             </Reveal>
@@ -482,10 +483,10 @@ function Home() {
         <section id="parcours" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16 lg:py-24">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-              Le parcours
+              {t("Le parcours", "How it works")}
             </p>
             <h2 className="mt-3 max-w-[24ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-              Quatre étapes, sans déplacement.
+              {t("Quatre étapes, sans déplacement.", "Four steps, without leaving home.")}
             </h2>
           </Reveal>
           <Reveal delay={80}>
@@ -504,10 +505,10 @@ function Home() {
         <section id="faq" className="mx-auto max-w-4xl scroll-mt-24 px-6 py-16 lg:py-24">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-              Questions
+              {t("Questions", "Questions")}
             </p>
             <h2 className="mt-3 font-section text-3xl font-medium tracking-tight lg:text-4xl">
-              Avant de commencer
+              {t("Avant de commencer", "Before you start")}
             </h2>
           </Reveal>
           <div className="mt-8 divide-y divide-border border-y border-border">
@@ -553,17 +554,17 @@ function Home() {
           <div className="relative mx-auto flex max-w-6xl flex-col items-start gap-8 px-6 py-16 lg:flex-row lg:items-center lg:justify-between lg:py-24">
             <div>
               <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-cream/70">
-                Prêt quand vous l'êtes
+                {t("Prêt quand vous l'êtes", "Ready when you are")}
               </p>
               <h2 className="mt-3 max-w-[22ch] text-balance font-section text-4xl font-medium tracking-tight lg:text-5xl">
-                Commencer votre consultation aujourd'hui.
+                {t("Commencer votre consultation aujourd'hui.", "Start your consultation today.")}
               </h2>
             </div>
             <Link
               to="/questionnaire"
               className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-cream px-7 py-4 text-sm font-medium text-foreground transition-all duration-300 hover:gap-3 hover:bg-sand"
             >
-              Démarrer en 3 minutes
+              {t("Démarrer en 3 minutes", "Start in 3 minutes")}
               <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </Link>
           </div>
