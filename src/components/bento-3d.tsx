@@ -10,7 +10,6 @@ type Card = {
   cta: string;
   gradient: string;
   large?: boolean;
-  delay: number;
 };
 
 /** Carte du bento : inclinaison 3D au survol, sans visuel produit. */
