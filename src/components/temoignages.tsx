@@ -70,13 +70,9 @@ export function Temoignages() {
               Témoignages
             </p>
             <h2 className="mt-3 max-w-[24ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-              Ils en parlent, en vidéo.
+              Ces hommes, ils parlent de MAAN.
             </h2>
           </div>
-          <p className="max-w-[36ch] text-pretty text-sm text-muted">
-            Témoignages filmés et recueillis avec l'accord des patients. Aucune donnée de santé
-            identifiable n'est partagée.
-          </p>
         </Reveal>
 
         <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
