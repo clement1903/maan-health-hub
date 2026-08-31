@@ -7,6 +7,7 @@ import { QuestionnaireRunner } from "@/components/questionnaire/runner";
 import { findDefinitionBySlug, questionnaireDefinitions } from "@/lib/questionnaire/definitions";
 import type { Answers, SubmissionPayload } from "@/lib/questionnaire/types";
 import { supabase } from "@/integrations/supabase/client";
+import { defaultStages, domainConditions, domainTitles } from "@/lib/patient/api";
 import { useAuth } from "@/hooks/use-auth";
 import { useI18n } from "@/lib/i18n";
 
@@ -199,7 +200,7 @@ function QuestionnairePage() {
       .eq("user_id", user.id);
 
     setSubmitting(false);
-    navigate({ to: "/espace-patient" });
+    navigate({ to: "/mon-espace" });
   };
 
   return (
