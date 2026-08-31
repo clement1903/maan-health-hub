@@ -84,7 +84,6 @@ export function Temoignages() {
           {temoignages.map((t, i) => (
             <Reveal key={t.prenom} delay={i * 80} className="h-full">
               <article
-                id={`temoignage-${t.id}`}
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
                 className={cn(
