@@ -96,7 +96,6 @@ export function Bento3D() {
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--amber) 40%, var(--cream)), color-mix(in oklab, var(--clay) 22%, var(--cream)))",
       large: true,
-      delay: 0,
     },
     {
       slug: "sexuel",
@@ -105,7 +104,6 @@ export function Bento3D() {
       cta: t("Découvrir", "Discover"),
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--sand) 70%, var(--cream)), var(--cream))",
-      delay: 0.6,
     },
     {
       slug: "cheveux",
@@ -114,7 +112,6 @@ export function Bento3D() {
       cta: t("Découvrir", "Discover"),
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--clay) 16%, var(--cream)), var(--cream))",
-      delay: 1.2,
     },
     {
       slug: "peau",
@@ -123,7 +120,6 @@ export function Bento3D() {
       cta: t("Découvrir", "Discover"),
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--amber) 22%, var(--cream)), var(--cream))",
-      delay: 1.8,
     },
   ];
 
