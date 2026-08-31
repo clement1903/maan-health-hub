@@ -196,9 +196,8 @@ function ConformitePage() {
         <section className="mx-auto max-w-6xl px-6 py-16 lg:py-24">
           <div className="space-y-6">
             {blocs.map((b, i) => (
+              <div key={b.id} id={b.id} className="scroll-mt-24">
               <Reveal
-                key={b.id}
-                id={b.id}
                 delay={i * 60}
                 className="group scroll-mt-24 overflow-hidden rounded-3xl border border-border bg-cream transition-all duration-500 hover:border-clay/40 hover:shadow-[0_28px_60px_-46px_rgba(0,0,0,0.55)]"
               >
@@ -245,6 +244,7 @@ function ConformitePage() {
                   </ul>
                 </div>
               </Reveal>
+              </div>
             ))}
           </div>
         </section>
