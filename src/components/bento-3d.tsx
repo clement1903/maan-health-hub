@@ -102,10 +102,11 @@ function BentoCard({ card }: { card: Card }) {
   );
 }
 
-export function Bento3D({ soins }: { soins: Soin[] }) {
+export function Bento3D({ soins = [] }: { soins?: Soin[] }) {
   const { t } = useI18n();
 
-  const descOf = (slug: string) => soins.find((s) => s.slug === slug)?.desc ?? "";
+  const descOf = (slug: string) =>
+    (Array.isArray(soins) ? soins : []).find((s) => s.slug === slug)?.desc ?? "";
 
   const cards: Card[] = [
     {
