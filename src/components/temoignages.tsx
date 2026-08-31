@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Play } from "lucide-react";
+import { Check, Facebook, Linkedin, Link2, Play, Share2, Twitter } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
 import { cn } from "@/lib/utils";
@@ -12,6 +12,7 @@ import video1 from "@/assets/temoignage-1.mp4.asset.json";
 import video2 from "@/assets/temoignage-2.mp4.asset.json";
 
 type Temoignage = {
+  id: string;
   prenom: string;
   age: string;
   domaine: string;
@@ -20,8 +21,112 @@ type Temoignage = {
   video?: string;
 };
 
+function PartageTemoignage({ t }: { t: Temoignage }) {
+  const [copie, setCopie] = useState(false);
+
+  const lien = () =>
+    typeof window === "undefined"
+      ? `/#temoignage-${t.id}`
+      : `${window.location.origin}/#temoignage-${t.id}`;
+
+  const texte = `« ${t.texte} » — ${t.prenom}, ${t.age} · MAAN`;
+
+  const ouvrir = (url: string) =>
+    window.open(url, "_blank", "noopener,noreferrer,width=620,height=640");
+
+  const partageNatif = async () => {
+    const url = lien();
+    if (typeof navigator !== "undefined" && navigator.share) {
+      try {
+        await navigator.share({ title: "Témoignage MAAN", text: texte, url });
+        return;
+      } catch {
+        /* partage annulé */
+      }
+    }
+    await copier();
+  };
+
+  const copier = async () => {
+    try {
+      await navigator.clipboard.writeText(lien());
+      setCopie(true);
+      window.setTimeout(() => setCopie(false), 2000);
+    } catch {
+      /* presse-papiers indisponible */
+    }
+  };
+
+  const boutonClass =
+    "grid size-8 place-items-center rounded-full border border-border text-muted transition-colors duration-300 hover:border-clay hover:text-clay focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay";
+
+  return (
+    <div className="mt-4 flex items-center gap-2">
+      <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+        Partager
+      </span>
+      <button
+        type="button"
+        onClick={partageNatif}
+        className={boutonClass}
+        aria-label={`Partager le témoignage de ${t.prenom}`}
+      >
+        <Share2 className="size-3.5" aria-hidden="true" />
+      </button>
+      <button
+        type="button"
+        onClick={() =>
+          ouvrir(
+            `https://twitter.com/intent/tweet?text=${encodeURIComponent(texte)}&url=${encodeURIComponent(lien())}`,
+          )
+        }
+        className={boutonClass}
+        aria-label={`Partager le témoignage de ${t.prenom} sur X (Twitter)`}
+      >
+        <Twitter className="size-3.5" aria-hidden="true" />
+      </button>
+      <button
+        type="button"
+        onClick={() =>
+          ouvrir(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(lien())}`)
+        }
+        className={boutonClass}
+        aria-label={`Partager le témoignage de ${t.prenom} sur Facebook`}
+      >
+        <Facebook className="size-3.5" aria-hidden="true" />
+      </button>
+      <button
+        type="button"
+        onClick={() =>
+          ouvrir(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(lien())}`)
+        }
+        className={boutonClass}
+        aria-label={`Partager le témoignage de ${t.prenom} sur LinkedIn`}
+      >
+        <Linkedin className="size-3.5" aria-hidden="true" />
+      </button>
+      <button
+        type="button"
+        onClick={copier}
+        className={boutonClass}
+        aria-label={`Copier le lien du témoignage de ${t.prenom}`}
+      >
+        {copie ? (
+          <Check className="size-3.5 text-clay" aria-hidden="true" />
+        ) : (
+          <Link2 className="size-3.5" aria-hidden="true" />
+        )}
+      </button>
+      <span role="status" aria-live="polite" className="sr-only">
+        {copie ? "Lien copié dans le presse-papiers" : ""}
+      </span>
+    </div>
+  );
+}
+
 const temoignages: Temoignage[] = [
   {
+    id: "thomas",
     prenom: "Thomas",
     age: "38 ans",
     domaine: "Sexual Management",
@@ -31,6 +136,7 @@ const temoignages: Temoignage[] = [
     video: video1.url,
   },
   {
+    id: "karim",
     prenom: "Karim",
     age: "45 ans",
     domaine: "Weight Management",
@@ -40,6 +146,7 @@ const temoignages: Temoignage[] = [
     video: video2.url,
   },
   {
+    id: "romain",
     prenom: "Romain",
     age: "31 ans",
     domaine: "Hair Management",
@@ -48,6 +155,7 @@ const temoignages: Temoignage[] = [
     photo: temoin3,
   },
   {
+    id: "nicolas",
     prenom: "Nicolas",
     age: "52 ans",
     domaine: "Skin Management",
@@ -79,6 +187,7 @@ export function Temoignages() {
           {temoignages.map((t, i) => (
             <Reveal key={t.prenom} delay={i * 80} className="h-full">
               <article
+                id={`temoignage-${t.id}`}
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
                 className={cn(
@@ -142,6 +251,7 @@ export function Temoignages() {
                     {t.prenom} · {t.age} · {t.domaine}
                   </p>
                 </div>
+                <PartageTemoignage t={t} />
               </article>
             </Reveal>
           ))}
