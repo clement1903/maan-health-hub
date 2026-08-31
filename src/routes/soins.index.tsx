@@ -98,25 +98,34 @@ function DomaineSection({ domaine: d }: { domaine: Domaine }) {
     <>
       <Reveal>
         <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">{d.tag}</p>
-        <div className="mt-3 flex flex-wrap items-center gap-5">
-          <h2 className="font-section text-3xl font-medium tracking-tight lg:text-4xl">
-            {d.titre}
-          </h2>
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls={`domaine-info-${d.slug}`}
-            className="group inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted transition-all duration-300 hover:border-clay/50 hover:text-foreground"
-          >
-            {open ? t("Réduire", "Collapse") : t("En savoir plus", "Learn more")}
-            <span
-              aria-hidden
-              className={`font-mono text-clay transition-transform duration-500 ease-[var(--ease)] ${open ? "rotate-45" : ""}`}
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-5">
+          <div className="flex flex-wrap items-center gap-5">
+            <h2 className="font-section text-3xl font-medium tracking-tight lg:text-4xl">
+              {d.titre}
+            </h2>
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-controls={`domaine-info-${d.slug}`}
+              className="group inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted transition-all duration-300 hover:border-clay/50 hover:text-foreground"
             >
-              +
-            </span>
-          </button>
+              {open ? t("Réduire", "Collapse") : t("En savoir plus", "Learn more")}
+              <span
+                aria-hidden
+                className={`font-mono text-clay transition-transform duration-500 ease-[var(--ease)] ${open ? "rotate-45" : ""}`}
+              >
+                +
+              </span>
+            </button>
+          </div>
+          <Floating3D
+            domaine={d.slug}
+            alt=""
+            halo={false}
+            delay={i3dDelay[d.slug] ?? 0}
+            className="hidden w-24 md:block lg:w-32"
+          />
         </div>
       </Reveal>
 
