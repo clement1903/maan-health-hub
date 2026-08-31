@@ -3,8 +3,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
+import { ParcoursQuestionnairePreview } from "@/components/parcours-questionnaire-preview";
 import { useI18n } from "@/lib/i18n";
-import questionnaireImg from "@/assets/parcours-consultation.jpg";
+
 import consultationImg from "@/assets/etape-consultation.jpg";
 import pharmacieImg from "@/assets/parcours-pharmacie.jpg";
 import livraisonImg from "@/assets/etape-livraison.jpg";
@@ -128,28 +129,44 @@ function ParcoursPage() {
                 </h2>
                 <p className="mt-6 max-w-[42ch] text-pretty text-lg leading-relaxed text-muted">
                   {t(
-                    "Un questionnaire médical précis, en quelques minutes.",
-                    "A precise medical questionnaire, in a few minutes.",
+                    "Quelques minutes pour permettre au médecin de comprendre votre situation.",
+                    "A few minutes so the doctor can understand your situation.",
                   )}
                 </p>
-                <ul className="mt-8 space-y-3">
-                  <Marker>{t("Confidentialité totale", "Complete confidentiality")}</Marker>
-                  <Marker>{t("Questions ciblées", "Targeted questions")}</Marker>
+                <ul className="mt-8 space-y-4">
+                  <Marker>
+                    <span className="flex flex-col">
+                      <span>{t("3–5 minutes", "3–5 minutes")}</span>
+                      <span className="text-sm font-normal text-muted">
+                        {t("Questionnaire adapté à vos réponses", "A questionnaire that adapts to your answers")}
+                      </span>
+                    </span>
+                  </Marker>
+                  <Marker>
+                    <span className="flex flex-col">
+                      <span>{t("Confidentiel", "Confidential")}</span>
+                      <span className="text-sm font-normal text-muted">
+                        {t("Vos informations restent protégées", "Your information stays protected")}
+                      </span>
+                    </span>
+                  </Marker>
+                  <Marker>
+                    <span className="flex flex-col">
+                      <span>{t("Pensé pour le médecin", "Built for the doctor")}</span>
+                      <span className="text-sm font-normal text-muted">
+                        {t(
+                          "Votre dossier est structuré avant son analyse",
+                          "Your file is structured before their review",
+                        )}
+                      </span>
+                    </span>
+                  </Marker>
                 </ul>
               </Reveal>
               <Reveal delay={100} className="order-1 md:order-2">
-                <div className="group aspect-[4/5] overflow-hidden rounded-[2.5rem]">
-                  <img
-                    src={questionnaireImg}
-                    alt={t(
-                      "Questionnaire médical rempli en ligne sur un bureau",
-                      "Medical questionnaire completed online at a desk",
-                    )}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-[1200ms] ease-[var(--ease)] group-hover:scale-[1.04]"
-                  />
-                </div>
+                <ParcoursQuestionnairePreview />
               </Reveal>
+
             </section>
 
             {/* 02 */}
