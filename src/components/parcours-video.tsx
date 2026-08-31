@@ -24,7 +24,6 @@ export function ParcoursVideo({
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [playing, setPlaying] = useState(true);
 
   useEffect(() => {
     onChapterChange?.(active);
@@ -51,8 +50,6 @@ export function ParcoursVideo({
           playsInline
           aria-label="Vidéo explicative du parcours : questionnaire, décision médicale, préparation en pharmacie, livraison et suivi"
           className="aspect-[5/3] w-full object-cover"
-          onPlay={() => setPlaying(true)}
-          onPause={() => setPlaying(false)}
           onTimeUpdate={(e) => {
             const v = e.currentTarget;
             const d = v.duration || 10;
