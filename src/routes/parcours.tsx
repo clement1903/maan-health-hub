@@ -71,6 +71,7 @@ const details = [
 
 function ParcoursPage() {
   const [chapitre, setChapitre] = useState(0);
+  const [scrollSignal, setScrollSignal] = useState(0);
 
   return (
     <div className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
