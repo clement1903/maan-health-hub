@@ -81,6 +81,13 @@ export function ParcoursProgress({
     setReached((prev) => Math.max(prev, activeIndex + 1));
   }, [activeIndex]);
 
+  useEffect(() => {
+    if (!scrollSignal || activeIndex === undefined) return;
+    const el = refs.current[activeIndex];
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [scrollSignal, activeIndex]);
+
   const pct = Math.round((reached / etapes.length) * 100);
 
 
