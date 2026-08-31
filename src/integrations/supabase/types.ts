@@ -14,6 +14,133 @@ export type Database = {
   }
   public: {
     Tables: {
+      care_journeys: {
+        Row: {
+          condition_en: string
+          condition_fr: string
+          created_at: string
+          delivery: Json | null
+          doctor_id: string | null
+          domain: string
+          follow_up: Json
+          id: string
+          order_id: string | null
+          photos_enabled: boolean
+          plan: Json | null
+          progress: Json | null
+          questionnaire_id: string | null
+          stage_index: number
+          stages: Json
+          status: string
+          title: string
+          treatment: Json | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          condition_en?: string
+          condition_fr?: string
+          created_at?: string
+          delivery?: Json | null
+          doctor_id?: string | null
+          domain?: string
+          follow_up?: Json
+          id?: string
+          order_id?: string | null
+          photos_enabled?: boolean
+          plan?: Json | null
+          progress?: Json | null
+          questionnaire_id?: string | null
+          stage_index?: number
+          stages?: Json
+          status?: string
+          title: string
+          treatment?: Json | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          condition_en?: string
+          condition_fr?: string
+          created_at?: string
+          delivery?: Json | null
+          doctor_id?: string | null
+          domain?: string
+          follow_up?: Json
+          id?: string
+          order_id?: string | null
+          photos_enabled?: boolean
+          plan?: Json | null
+          progress?: Json | null
+          questionnaire_id?: string | null
+          stage_index?: number
+          stages?: Json
+          status?: string
+          title?: string
+          treatment?: Json | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "care_journeys_doctor_id_fkey"
+            columns: ["doctor_id"]
+            isOneToOne: false
+            referencedRelation: "doctors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "care_journeys_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "care_journeys_questionnaire_id_fkey"
+            columns: ["questionnaire_id"]
+            isOneToOne: false
+            referencedRelation: "questionnaires"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      doctors: {
+        Row: {
+          active: boolean
+          big: string | null
+          created_at: string
+          id: string
+          name: string
+          photo_url: string | null
+          role_en: string
+          role_fr: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          big?: string | null
+          created_at?: string
+          id?: string
+          name: string
+          photo_url?: string | null
+          role_en?: string
+          role_fr?: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          big?: string | null
+          created_at?: string
+          id?: string
+          name?: string
+          photo_url?: string | null
+          role_en?: string
+          role_fr?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       documents: {
         Row: {
           created_at: string
@@ -101,6 +228,200 @@ export type Database = {
             columns: ["order_id"]
             isOneToOne: false
             referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      journey_actions: {
+        Row: {
+          created_at: string
+          cta_en: string
+          cta_fr: string
+          desc_en: string
+          desc_fr: string
+          done: boolean
+          due_en: string | null
+          due_fr: string | null
+          id: string
+          journey_id: string | null
+          priority: string
+          target: string
+          title_en: string
+          title_fr: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          cta_en?: string
+          cta_fr?: string
+          desc_en?: string
+          desc_fr?: string
+          done?: boolean
+          due_en?: string | null
+          due_fr?: string | null
+          id?: string
+          journey_id?: string | null
+          priority?: string
+          target?: string
+          title_en: string
+          title_fr: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          cta_en?: string
+          cta_fr?: string
+          desc_en?: string
+          desc_fr?: string
+          done?: boolean
+          due_en?: string | null
+          due_fr?: string | null
+          id?: string
+          journey_id?: string | null
+          priority?: string
+          target?: string
+          title_en?: string
+          title_fr?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "journey_actions_journey_id_fkey"
+            columns: ["journey_id"]
+            isOneToOne: false
+            referencedRelation: "care_journeys"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      journey_measurements: {
+        Row: {
+          created_at: string
+          id: string
+          journey_id: string
+          kind: string
+          recorded_at: string
+          user_id: string
+          value: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          journey_id: string
+          kind?: string
+          recorded_at?: string
+          user_id: string
+          value: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          journey_id?: string
+          kind?: string
+          recorded_at?: string
+          user_id?: string
+          value?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "journey_measurements_journey_id_fkey"
+            columns: ["journey_id"]
+            isOneToOne: false
+            referencedRelation: "care_journeys"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      journey_messages: {
+        Row: {
+          author: string
+          author_name: string | null
+          body_en: string
+          body_fr: string
+          created_at: string
+          id: string
+          journey_id: string | null
+          read_at: string | null
+          request: Json | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          author: string
+          author_name?: string | null
+          body_en: string
+          body_fr: string
+          created_at?: string
+          id?: string
+          journey_id?: string | null
+          read_at?: string | null
+          request?: Json | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          author?: string
+          author_name?: string | null
+          body_en?: string
+          body_fr?: string
+          created_at?: string
+          id?: string
+          journey_id?: string | null
+          read_at?: string | null
+          request?: Json | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "journey_messages_journey_id_fkey"
+            columns: ["journey_id"]
+            isOneToOne: false
+            referencedRelation: "care_journeys"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      journey_photos: {
+        Row: {
+          created_at: string
+          id: string
+          journey_id: string
+          label_en: string
+          label_fr: string
+          src: string | null
+          taken_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          journey_id: string
+          label_en?: string
+          label_fr?: string
+          src?: string | null
+          taken_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          journey_id?: string
+          label_en?: string
+          label_fr?: string
+          src?: string | null
+          taken_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "journey_photos_journey_id_fkey"
+            columns: ["journey_id"]
+            isOneToOne: false
+            referencedRelation: "care_journeys"
             referencedColumns: ["id"]
           },
         ]
@@ -304,6 +625,47 @@ export type Database = {
             columns: ["questionnaire_id"]
             isOneToOne: false
             referencedRelation: "questionnaires"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      patient_notifications: {
+        Row: {
+          created_at: string
+          id: string
+          journey_id: string | null
+          read: boolean
+          title_en: string
+          title_fr: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          journey_id?: string | null
+          read?: boolean
+          title_en: string
+          title_fr: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          journey_id?: string | null
+          read?: boolean
+          title_en?: string
+          title_fr?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "patient_notifications_journey_id_fkey"
+            columns: ["journey_id"]
+            isOneToOne: false
+            referencedRelation: "care_journeys"
             referencedColumns: ["id"]
           },
         ]
