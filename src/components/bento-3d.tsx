@@ -81,24 +81,6 @@ function BentoCard({ card }: { card: Card }) {
         </span>
       </div>
 
-      <img
-        src={card.img}
-        alt={card.alt}
-        loading="lazy"
-        width={1024}
-        height={1024}
-        className={cn(
-          "pointer-events-none absolute select-none drop-shadow-[0_35px_45px_rgba(0,0,0,0.25)]",
-          card.large
-            ? "-bottom-6 -right-4 w-[62%] max-w-[340px]"
-            : "-bottom-8 -right-6 w-[52%] max-w-[210px]",
-        )}
-        style={{
-          transform: `translate3d(${tilt.x}px, ${tilt.y}px, 90px) rotate(${hover ? -4 : 0}deg) scale(${hover ? 1.08 : 1})`,
-          transition: "transform 600ms var(--ease)",
-          animation: `floaty ${card.large ? 7 : 6}s ease-in-out ${card.delay}s infinite`,
-        }}
-      />
     </Link>
   );
 }
