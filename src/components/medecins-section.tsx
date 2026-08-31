@@ -115,8 +115,8 @@ export function MedecinsSection() {
           </h2>
           <p className="mt-4 max-w-[56ch] text-pretty text-muted">
             {t(
-              "Les praticiens qui évaluent votre dossier sont des médecins agréés, inscrits à l'Ordre et tenus au secret médical.",
-              "The practitioners who review your file are licensed doctors, registered with the Medical Board and bound by medical confidentiality.",
+              "Les praticiens qui évaluent votre dossier sont des médecins certifiés BIG, vérifiables dans le registre officiel et tenus au secret médical.",
+              "The practitioners who review your file are BIG-certified doctors, verifiable in the official register and bound by medical confidentiality.",
             )}
           </p>
         </Reveal>
