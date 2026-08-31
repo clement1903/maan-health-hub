@@ -13,6 +13,7 @@ type Medecin = {
   photo: string;
   role: string;
   specialite: string;
+  big: string;
   approche: string;
   qualifications: string[];
 };
@@ -23,6 +24,7 @@ const buildMedecins = (t: (fr: string, en: string) => string): Medecin[] => [
     photo: medecin1,
     role: t("Médecin généraliste", "General practitioner"),
     specialite: "Sexual & Weight Management",
+    big: "19912345678",
     approche: t(
       "Poser les bonnes questions avant de prescrire. Un traitement n'a de sens que s'il s'inscrit dans une situation médicale précise.",
       "Ask the right questions before prescribing. A treatment only makes sense if it fits a precise medical situation.",
@@ -38,6 +40,7 @@ const buildMedecins = (t: (fr: string, en: string) => string): Medecin[] => [
     photo: medecin2,
     role: t("Dermatologue", "Dermatologist"),
     specialite: "Skin & Hair Management",
+    big: "19923456789",
     approche: t(
       "Les résultats visibles demandent du temps. Je préfère annoncer un calendrier réaliste plutôt qu'une promesse.",
       "Visible results take time. I prefer setting a realistic timeline rather than a promise.",
@@ -53,6 +56,7 @@ const buildMedecins = (t: (fr: string, en: string) => string): Medecin[] => [
     photo: medecin3,
     role: t("Médecin généraliste", "General practitioner"),
     specialite: "Sexual Management",
+    big: "19934567890",
     approche: t(
       "Aucun jugement, aucune gêne. La consultation à distance permet souvent de parler plus librement de sujets intimes.",
       "No judgment, no embarrassment. Remote consultations often make it easier to speak freely about intimate topics.",
@@ -69,8 +73,8 @@ const buildGaranties = (t: (fr: string, en: string) => string) => [
   {
     t: t("Identité vérifiée", "Verified identity"),
     d: t(
-      "Chaque médecin est inscrit à l'Ordre et son numéro RPPS est contrôlé avant tout accès aux dossiers.",
-      "Every doctor is registered with the Medical Board and their RPPS number is checked before any file access.",
+      "Chaque médecin est certifié BIG : son numéro d'enregistrement est contrôlé avant tout accès aux dossiers.",
+      "Every doctor is BIG certified: their registration number is checked before any file access.",
     ),
   },
   {
@@ -111,8 +115,8 @@ export function MedecinsSection() {
           </h2>
           <p className="mt-4 max-w-[56ch] text-pretty text-muted">
             {t(
-              "Les praticiens qui évaluent votre dossier sont des médecins agréés, inscrits à l'Ordre et tenus au secret médical.",
-              "The practitioners who review your file are licensed doctors, registered with the Medical Board and bound by medical confidentiality.",
+              "Les praticiens qui évaluent votre dossier sont des médecins certifiés BIG, vérifiables dans le registre officiel et tenus au secret médical.",
+              "The practitioners who review your file are BIG-certified doctors, verifiable in the official register and bound by medical confidentiality.",
             )}
           </p>
         </Reveal>
@@ -153,6 +157,9 @@ export function MedecinsSection() {
                     <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
                       {doc.role} · {doc.specialite}
                     </p>
+                    <p className="mt-0.5 font-mono text-[10px] tracking-[0.08em] text-clay">
+                      BIG {doc.big}
+                    </p>
                   </div>
                 </div>
               </button>
@@ -173,6 +180,9 @@ export function MedecinsSection() {
                 <p className="font-display text-xl font-medium tracking-tight">{m.nom}</p>
                 <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
                   {m.role}
+                </p>
+                <p className="mt-1 inline-flex items-center gap-1.5 rounded-full border border-clay/30 bg-cream px-2.5 py-0.5 font-mono text-[10px] tracking-[0.08em] text-clay">
+                  {t("Certifié BIG", "BIG certified")} · {m.big}
                 </p>
               </div>
             </div>
