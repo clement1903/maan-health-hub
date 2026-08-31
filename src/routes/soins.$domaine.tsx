@@ -271,7 +271,7 @@ function DomainePage() {
                       to="/soins"
                       className="transition-colors hover:text-clay"
                     >
-                      {t("Nos soins", "Our treatments")}
+                      {t("Nos programmes", "Our programmes")}
                     </Link>
                   </li>
                   <li aria-hidden="true" className="text-border">/</li>
@@ -301,8 +301,8 @@ function DomainePage() {
                   </h1>
                   <p className="mt-5 max-w-[60ch] text-pretty text-muted">
                     {t(
-                      "Découvrez chaque traitement en détail : photo, mode d'action, précautions et suivi. Informations indicatives — la décision appartient au médecin qui évalue votre dossier.",
-                      "Discover each treatment in detail: photo, how it works, precautions and follow-up. Indicative information — the decision belongs to the doctor reviewing your file.",
+                      "Ce programme commence par une consultation en ligne avec un médecin agréé. Les informations ci-dessous présentent les options thérapeutiques possibles ; seul le médecin qui examine votre dossier peut décider si une prescription est appropriée.",
+                      "This programme starts with an online consultation with a licensed doctor. The information below presents possible therapeutic options; only the doctor reviewing your file can decide whether a prescription is appropriate.",
                     )}
                   </p>
                 </div>
@@ -393,12 +393,12 @@ function DomainePage() {
           <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
             <Reveal>
               <h2 className="font-section text-3xl font-medium tracking-tight lg:text-4xl">
-                {t("Les médicaments", "The medications")}
+                {t("Les options thérapeutiques", "Therapeutic options")}
               </h2>
               <p className="mt-3 max-w-[60ch] text-pretty text-sm text-muted">
                 {t(
-                  "Ces informations sont données à titre indicatif. Seul le médecin qui étudie votre dossier fixe la molécule, le dosage et la durée.",
-                  "This information is given for guidance only. Only the doctor reviewing your file sets the molecule, dosage and duration.",
+                  "Ces options ne sont pas disponibles en libre accès. Elles sont présentées pour vous informer ; seul le médecin qui étudie votre dossier fixe la molécule, le dosage et la durée après votre consultation en ligne.",
+                  "These options are not available over the counter. They are presented for information only; only the doctor reviewing your file sets the molecule, dosage and duration after your online consultation.",
                 )}
               </p>
             </Reveal>
