@@ -24,6 +24,7 @@ const buildMedecins = (t: (fr: string, en: string) => string): Medecin[] => [
     photo: medecin1,
     role: t("Médecin généraliste", "General practitioner"),
     specialite: "Sexual & Weight Management",
+    big: "19912345678",
     approche: t(
       "Poser les bonnes questions avant de prescrire. Un traitement n'a de sens que s'il s'inscrit dans une situation médicale précise.",
       "Ask the right questions before prescribing. A treatment only makes sense if it fits a precise medical situation.",
@@ -39,6 +40,7 @@ const buildMedecins = (t: (fr: string, en: string) => string): Medecin[] => [
     photo: medecin2,
     role: t("Dermatologue", "Dermatologist"),
     specialite: "Skin & Hair Management",
+    big: "19923456789",
     approche: t(
       "Les résultats visibles demandent du temps. Je préfère annoncer un calendrier réaliste plutôt qu'une promesse.",
       "Visible results take time. I prefer setting a realistic timeline rather than a promise.",
@@ -54,6 +56,7 @@ const buildMedecins = (t: (fr: string, en: string) => string): Medecin[] => [
     photo: medecin3,
     role: t("Médecin généraliste", "General practitioner"),
     specialite: "Sexual Management",
+    big: "19934567890",
     approche: t(
       "Aucun jugement, aucune gêne. La consultation à distance permet souvent de parler plus librement de sujets intimes.",
       "No judgment, no embarrassment. Remote consultations often make it easier to speak freely about intimate topics.",
