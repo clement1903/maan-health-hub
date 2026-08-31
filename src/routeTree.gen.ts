@@ -20,6 +20,7 @@ import { Route as ParcoursRouteImport } from './routes/parcours'
 import { Route as StatistiquesRouteImport } from './routes/statistiques'
 import { Route as MonEspaceIndexRouteImport } from './routes/mon-espace.index'
 import { Route as MonEspaceMessagesRouteImport } from './routes/mon-espace.messages'
+import { Route as MonEspaceSuiviRouteImport } from './routes/mon-espace.suivi'
 import { Route as QuestionnaireIndexRouteImport } from './routes/questionnaire.index'
 import { Route as QuestionnaireSlugRouteImport } from './routes/questionnaire.$slug'
 import { Route as SoinsIndexRouteImport } from './routes/soins.index'
@@ -82,6 +83,11 @@ const MonEspaceMessagesRoute = MonEspaceMessagesRouteImport.update({
   path: '/messages',
   getParentRoute: () => MonEspaceRoute,
 } as any)
+const MonEspaceSuiviRoute = MonEspaceSuiviRouteImport.update({
+  id: '/suivi',
+  path: '/suivi',
+  getParentRoute: () => MonEspaceRoute,
+} as any)
 const QuestionnaireIndexRoute = QuestionnaireIndexRouteImport.update({
   id: '/questionnaire/',
   path: '/questionnaire/',
@@ -124,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
   '/mon-espace/messages': typeof MonEspaceMessagesRoute
+  '/mon-espace/suivi': typeof MonEspaceSuiviRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
   '/mon-espace/': typeof MonEspaceIndexRoute
@@ -142,6 +149,7 @@ export interface FileRoutesByTo {
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
   '/mon-espace/messages': typeof MonEspaceMessagesRoute
+  '/mon-espace/suivi': typeof MonEspaceSuiviRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
   '/mon-espace': typeof MonEspaceIndexRoute
@@ -162,6 +170,7 @@ export interface FileRoutesById {
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
   '/mon-espace/messages': typeof MonEspaceMessagesRoute
+  '/mon-espace/suivi': typeof MonEspaceSuiviRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
   '/mon-espace/': typeof MonEspaceIndexRoute
@@ -183,6 +192,7 @@ export interface FileRouteTypes {
     | '/parcours'
     | '/statistiques'
     | '/mon-espace/messages'
+    | '/mon-espace/suivi'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
     | '/mon-espace/'
@@ -201,6 +211,7 @@ export interface FileRouteTypes {
     | '/parcours'
     | '/statistiques'
     | '/mon-espace/messages'
+    | '/mon-espace/suivi'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
     | '/mon-espace'
@@ -220,6 +231,7 @@ export interface FileRouteTypes {
     | '/parcours'
     | '/statistiques'
     | '/mon-espace/messages'
+    | '/mon-espace/suivi'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
     | '/mon-espace/'
@@ -324,6 +336,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MonEspaceMessagesRouteImport
       parentRoute: typeof MonEspaceRoute
     }
+    '/mon-espace/suivi': {
+      id: '/mon-espace/suivi'
+      path: '/suivi'
+      fullPath: '/mon-espace/suivi'
+      preLoaderRoute: typeof MonEspaceSuiviRouteImport
+      parentRoute: typeof MonEspaceRoute
+    }
     '/questionnaire/': {
       id: '/questionnaire/'
       path: '/questionnaire'
@@ -371,6 +390,7 @@ declare module '@tanstack/react-router' {
 
 interface MonEspaceRouteChildren {
   MonEspaceMessagesRoute: typeof MonEspaceMessagesRoute
+  MonEspaceSuiviRoute: typeof MonEspaceSuiviRoute
   MonEspaceIndexRoute: typeof MonEspaceIndexRoute
   MonEspaceSoinsJourneyIdRoute: typeof MonEspaceSoinsJourneyIdRoute
   MonEspaceSoinsIndexRoute: typeof MonEspaceSoinsIndexRoute
@@ -378,6 +398,7 @@ interface MonEspaceRouteChildren {
 
 const MonEspaceRouteChildren: MonEspaceRouteChildren = {
   MonEspaceMessagesRoute: MonEspaceMessagesRoute,
+  MonEspaceSuiviRoute: MonEspaceSuiviRoute,
   MonEspaceIndexRoute: MonEspaceIndexRoute,
   MonEspaceSoinsJourneyIdRoute: MonEspaceSoinsJourneyIdRoute,
   MonEspaceSoinsIndexRoute: MonEspaceSoinsIndexRoute,
