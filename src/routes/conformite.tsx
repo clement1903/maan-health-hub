@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/conformite")({
   head: () => ({
@@ -33,59 +34,78 @@ export const Route = createFileRoute("/conformite")({
   component: ConformitePage,
 });
 
-const blocs = [
-  {
-    id: "prescription",
-    tag: "Prescription",
-    title: "Aucun médicament sans ordonnance",
-    intro: "Chaque demande est évaluée par un médecin agréé, jamais vendue en libre accès.",
-    points: [
-      "Médecins inscrits à l'Ordre",
-      "Prescription possible, ajustée ou refusée",
-      "Ordonnance valable dans toute pharmacie",
-      "Renouvellement réévalué à chaque fois",
-    ],
-  },
-  {
-    id: "donnees",
-    tag: "Données de santé",
-    title: "Vos réponses restent confidentielles",
-    intro: "Vos informations sont traitées comme des données de santé.",
-    points: [
-      "Chiffrées, hébergées en Europe",
-      "Accès limité au médecin et à la pharmacie",
-      "Aucune revente, aucune publicité",
-      "Suppression possible à tout moment",
-    ],
-  },
-  {
-    id: "expedition",
-    tag: "Expédition",
-    title: "Un colis neutre, préparé en pharmacie",
-    intro: "La préparation et l'envoi sont assurés par une pharmacie partenaire agréée.",
-    points: [
-      "Emballage sans mention visible",
-      "Livraison en 24 à 48 h, domicile ou relais",
-      "Suivi dans votre espace patient",
-      "Notice incluse dans le colis",
-    ],
-  },
-  {
-    id: "medical",
-    tag: "Information médicale",
-    title: "Aucune décision automatisée",
-    intro: "Les informations du site sont indicatives et ne remplacent pas un avis médical.",
-    points: [
-      "Traitements sur ordonnance uniquement",
-      "Posologies affichées à titre indicatif",
-      "Le questionnaire n'est ni diagnostic, ni prescription",
-      "Seul le médecin décide, jamais un algorithme",
-      "Lisez la notice, signalez tout effet indésirable",
-      "Urgence : 15 ou 112",
-    ],
-  },
-];
-
+function buildBlocs(t: (fr: string, en: string) => string) {
+  return [
+    {
+      id: "prescription",
+      tag: t("Prescription", "Prescription"),
+      title: t("Aucun médicament sans ordonnance", "No medication without a prescription"),
+      intro: t(
+        "Chaque demande est évaluée par un médecin agréé, jamais vendue en libre accès.",
+        "Every request is reviewed by a licensed physician, never sold over the counter.",
+      ),
+      points: [
+        t("Médecins inscrits à l'Ordre", "Physicians registered with the Medical Board"),
+        t("Prescription possible, ajustée ou refusée", "Prescription may be issued, adjusted, or declined"),
+        t("Ordonnance valable dans toute pharmacie", "Prescription valid at any pharmacy"),
+        t("Renouvellement réévalué à chaque fois", "Renewals reassessed every time"),
+      ],
+    },
+    {
+      id: "donnees",
+      tag: t("Données de santé", "Health data"),
+      title: t("Vos réponses restent confidentielles", "Your answers remain confidential"),
+      intro: t(
+        "Vos informations sont traitées comme des données de santé.",
+        "Your information is handled as protected health data.",
+      ),
+      points: [
+        t("Chiffrées, hébergées en Europe", "Encrypted and hosted in Europe"),
+        t("Accès limité au médecin et à la pharmacie", "Access limited to the physician and the pharmacy"),
+        t("Aucune revente, aucune publicité", "No resale, no advertising use"),
+        t("Suppression possible à tout moment", "Deletion available at any time"),
+      ],
+    },
+    {
+      id: "expedition",
+      tag: t("Expédition", "Shipping"),
+      title: t("Un colis neutre, préparé en pharmacie", "A discreet parcel, prepared at a pharmacy"),
+      intro: t(
+        "La préparation et l'envoi sont assurés par une pharmacie partenaire agréée.",
+        "Preparation and dispatch are handled by a licensed partner pharmacy.",
+      ),
+      points: [
+        t("Emballage sans mention visible", "Packaging with no visible markings"),
+        t("Livraison en 24 à 48 h, domicile ou relais", "Delivery within 24 to 48 hours, home or pickup point"),
+        t("Suivi dans votre espace patient", "Tracking available in your patient portal"),
+        t("Notice incluse dans le colis", "Package leaflet included"),
+      ],
+    },
+    {
+      id: "medical",
+      tag: t("Information médicale", "Medical information"),
+      title: t("Aucune décision automatisée", "No automated decision-making"),
+      intro: t(
+        "Les informations du site sont indicatives et ne remplacent pas un avis médical.",
+        "The information on this site is for guidance only and does not replace medical advice.",
+      ),
+      points: [
+        t("Traitements sur ordonnance uniquement", "Prescription-only treatments"),
+        t("Posologies affichées à titre indicatif", "Dosages shown for reference only"),
+        t(
+          "Le questionnaire n'est ni diagnostic, ni prescription",
+          "The questionnaire is neither a diagnosis nor a prescription",
+        ),
+        t("Seul le médecin décide, jamais un algorithme", "Only the physician decides, never an algorithm"),
+        t(
+          "Lisez la notice, signalez tout effet indésirable",
+          "Read the package leaflet and report any adverse effect",
+        ),
+        t("Urgence : 15 ou 112", "Emergency: 15 or 112"),
+      ],
+    },
+  ];
+}
 
 const icones: Record<string, React.ReactNode> = {
   prescription: (
@@ -117,14 +137,19 @@ const icones: Record<string, React.ReactNode> = {
   ),
 };
 
-const reperes = [
-  { valeur: "100 %", label: "Ordonnances signées par un médecin" },
-  { valeur: "UE", label: "Hébergement des données de santé" },
-  { valeur: "24-48 h", label: "Expédition en colis neutre" },
-  { valeur: "0", label: "Décision automatisée" },
-];
+function buildReperes(t: (fr: string, en: string) => string) {
+  return [
+    { valeur: "100 %", label: t("Ordonnances signées par un médecin", "Prescriptions signed by a physician") },
+    { valeur: "UE", label: t("Hébergement des données de santé", "Health data hosting") },
+    { valeur: "24-48 h", label: t("Expédition en colis neutre", "Discreet parcel shipping") },
+    { valeur: "0", label: t("Décision automatisée", "Automated decisions") },
+  ];
+}
 
 function ConformitePage() {
+  const { t } = useI18n();
+  const blocs = buildBlocs(t);
+  const reperes = buildReperes(t);
   return (
     <div className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
       <SiteHeader />
@@ -143,19 +168,21 @@ function ConformitePage() {
             <Reveal>
               <span className="inline-flex items-center gap-2 rounded-full border border-border bg-cream/70 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-clay backdrop-blur">
                 <span className="h-1.5 w-1.5 rounded-full bg-clay" />
-                Conformité & confidentialité
+                {t("Conformité & confidentialité", "Compliance & privacy")}
               </span>
               <h1 className="mt-6 max-w-[22ch] text-balance font-display text-4xl font-medium leading-[1.02] tracking-tight lg:text-6xl">
-                Votre ordonnance, vos données, votre colis.
+                {t("Votre ordonnance, vos données, votre colis.", "Your prescription, your data, your parcel.")}
               </h1>
               <p className="mt-6 max-w-[54ch] text-pretty text-lg text-muted">
-                Quatre engagements clairs : prescription médicale, données confidentielles,
-                livraison discrète.
+                {t(
+                  "Quatre engagements clairs : prescription médicale, données confidentielles, livraison discrète.",
+                  "Four clear commitments: medical prescription, confidential data, discreet delivery.",
+                )}
               </p>
             </Reveal>
 
             <Reveal delay={120}>
-              <nav aria-label="Sections de la page" className="mt-10 flex flex-wrap gap-2.5">
+              <nav aria-label={t("Sections de la page", "Page sections")} className="mt-10 flex flex-wrap gap-2.5">
                 {blocs.map((b) => (
                   <a
                     key={b.id}
@@ -249,13 +276,13 @@ function ConformitePage() {
         <section className="border-t border-border bg-sand">
           <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-6 py-14 lg:flex-row lg:items-center lg:justify-between">
             <p className="max-w-[60ch] text-pretty text-sm text-muted">
-              Envie de voir le détail du circuit, étape par étape ?
+              {t("Envie de voir le détail du circuit, étape par étape ?", "Want to see the full process, step by step?")}
             </p>
             <Link
               to="/parcours"
               className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep"
             >
-              Voir le parcours
+              {t("Voir le parcours", "See the journey")}
               <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </Link>
           </div>

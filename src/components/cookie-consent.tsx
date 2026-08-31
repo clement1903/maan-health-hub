@@ -8,29 +8,43 @@ import {
   type ConsentRecord,
 } from "@/lib/cookie-consent";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
-const categories = [
-  {
-    key: "necessaires" as const,
-    titre: "Strictement nécessaires",
-    desc: "Session de connexion, sécurité, mémorisation de votre choix de cookies. Sans eux le site ne fonctionne pas.",
-    lock: true,
-  },
-  {
-    key: "mesure" as const,
-    titre: "Mesure d'audience",
-    desc: "Statistiques agrégées de fréquentation pour améliorer les parcours. Aucune donnée de santé n'y est associée.",
-    lock: false,
-  },
-  {
-    key: "marketing" as const,
-    titre: "Marketing",
-    desc: "Mesure de l'efficacité de nos campagnes. Désactivé par défaut, jamais lié à votre dossier médical.",
-    lock: false,
-  },
-];
+function buildCategories(t: (fr: string, en: string) => string) {
+  return [
+    {
+      key: "necessaires" as const,
+      titre: t("Strictement nécessaires", "Strictly necessary"),
+      desc: t(
+        "Session de connexion, sécurité, mémorisation de votre choix de cookies. Sans eux le site ne fonctionne pas.",
+        "Login session, security, and remembering your cookie choice. Without them the site does not function.",
+      ),
+      lock: true,
+    },
+    {
+      key: "mesure" as const,
+      titre: t("Mesure d'audience", "Audience measurement"),
+      desc: t(
+        "Statistiques agrégées de fréquentation pour améliorer les parcours. Aucune donnée de santé n'y est associée.",
+        "Aggregated traffic statistics to improve user journeys. No health data is ever associated with them.",
+      ),
+      lock: false,
+    },
+    {
+      key: "marketing" as const,
+      titre: t("Marketing", "Marketing"),
+      desc: t(
+        "Mesure de l'efficacité de nos campagnes. Désactivé par défaut, jamais lié à votre dossier médical.",
+        "Measures the effectiveness of our campaigns. Disabled by default, never linked to your medical record.",
+      ),
+      lock: false,
+    },
+  ];
+}
 
 export function CookieConsent() {
+  const { t } = useI18n();
+  const categories = buildCategories(t);
   const [visible, setVisible] = useState(false);
   const [panel, setPanel] = useState(false);
   const [mesure, setMesure] = useState(false);
@@ -66,21 +80,22 @@ export function CookieConsent() {
     <div
       role="dialog"
       aria-modal="false"
-      aria-label="Gestion des cookies"
+      aria-label={t("Gestion des cookies", "Cookie management")}
       className="fixed inset-x-0 bottom-0 z-[60] px-4 pb-4 sm:px-6 sm:pb-6"
     >
       <div className="mx-auto max-w-3xl overflow-hidden rounded-[20px] border border-border bg-cream shadow-[0_30px_80px_-40px_var(--foreground)]">
         <div className="p-6 sm:p-7">
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-clay">Cookies</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-clay">{t("Cookies", "Cookies")}</p>
           <h2 className="mt-2 font-section text-xl font-medium tracking-tight">
-            Vous choisissez ce que nous mesurons.
+            {t("Vous choisissez ce que nous mesurons.", "You choose what we measure.")}
           </h2>
           <p className="mt-2 text-pretty text-sm text-muted">
-            Nous utilisons des cookies strictement nécessaires au fonctionnement du site. Les autres
-            catégories restent désactivées tant que vous ne les acceptez pas. Aucune donnée de santé
-            n'est utilisée à des fins publicitaires.{" "}
+            {t(
+              "Nous utilisons des cookies strictement nécessaires au fonctionnement du site. Les autres catégories restent désactivées tant que vous ne les acceptez pas. Aucune donnée de santé n'est utilisée à des fins publicitaires.",
+              "We use cookies strictly necessary for the site to function. Other categories remain disabled until you accept them. No health data is ever used for advertising purposes.",
+            )}{" "}
             <Link to="/cookies" className="underline decoration-clay/50 underline-offset-4">
-              Politique des cookies
+              {t("Politique des cookies", "Cookie policy")}
             </Link>
             .
           </p>
@@ -139,14 +154,14 @@ export function CookieConsent() {
               onClick={() => save({ mesure: true, marketing: true })}
               className="rounded-full bg-clay px-5 py-3 text-sm font-medium text-cream transition-colors hover:bg-clay-deep"
             >
-              Tout accepter
+              {t("Tout accepter", "Accept all")}
             </button>
             <button
               type="button"
               onClick={() => save({ mesure: false, marketing: false })}
               className="rounded-full border border-border px-5 py-3 text-sm font-medium transition-colors hover:border-clay/40"
             >
-              Tout refuser
+              {t("Tout refuser", "Reject all")}
             </button>
             {panel ? (
               <button
@@ -154,7 +169,7 @@ export function CookieConsent() {
                 onClick={() => save({ mesure, marketing })}
                 className="rounded-full border border-clay/40 px-5 py-3 text-sm font-medium text-clay transition-colors hover:bg-sand"
               >
-                Enregistrer mes choix
+                {t("Enregistrer mes choix", "Save my choices")}
               </button>
             ) : (
               <button
@@ -162,7 +177,7 @@ export function CookieConsent() {
                 onClick={() => setPanel(true)}
                 className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted underline decoration-clay/40 underline-offset-4 transition-colors hover:text-foreground"
               >
-                Personnaliser
+                {t("Personnaliser", "Customize")}
               </button>
             )}
           </div>

@@ -9,13 +9,10 @@ import { useIsAdmin } from "@/hooks/use-role";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { dispatchNotifications } from "@/lib/notifications.functions";
-import {
-  orderSteps,
-  orderStatusLabels,
-  questionnaireStatusLabels,
-} from "@/lib/order-status";
+import { orderSteps } from "@/lib/order-status";
 import { domaines } from "@/data/soins";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -71,7 +68,28 @@ type Notification = {
   created_at: string;
 };
 
+function buildOrderStatusLabels(t: (fr: string, en: string) => string): Record<string, string> {
+  return {
+    en_attente_validation: t("En attente de validation médicale", "Awaiting medical validation"),
+    prescription_validee: t("Prescription validée", "Prescription validated"),
+    en_preparation: t("En préparation en pharmacie", "Being prepared at the pharmacy"),
+    expedie: t("Expédiée", "Shipped"),
+    livre: t("Livrée", "Delivered"),
+    refuse: t("Demande non retenue", "Request not accepted"),
+  };
+}
+
+function buildQuestionnaireStatusLabels(t: (fr: string, en: string) => string): Record<string, string> {
+  return {
+    soumis: t("Questionnaire soumis", "Questionnaire submitted"),
+    en_revue: t("En revue médicale", "Under medical review"),
+    prescrit: t("Prescription délivrée", "Prescription issued"),
+    refuse: t("Non éligible", "Not eligible"),
+  };
+}
+
 function AdminPage() {
+  const { t } = useI18n();
   const navigate = useNavigate();
   const { user, loading } = useAuth();
   const { data: isAdmin, isLoading: roleLoading } = useIsAdmin(user?.id);
@@ -86,14 +104,16 @@ function AdminPage() {
       <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-14">
         {loading || roleLoading || !user ? (
           <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
-            Vérification des accès…
+            {t("Vérification des accès…", "Checking access…")}
           </p>
         ) : !isAdmin ? (
           <div className="rounded-[20px] border border-border bg-cream p-8">
-            <h1 className="font-display text-2xl font-medium tracking-tight">Accès réservé</h1>
+            <h1 className="font-display text-2xl font-medium tracking-tight">{t("Accès réservé", "Restricted access")}</h1>
             <p className="mt-3 max-w-[52ch] text-pretty text-sm text-muted">
-              Cet espace est réservé aux administrateurs MAAN. Si vous devez y accéder, demandez
-              l'attribution du rôle administrateur à votre compte.
+              {t(
+                "Cet espace est réservé aux administrateurs MAAN. Si vous devez y accéder, demandez l'attribution du rôle administrateur à votre compte.",
+                "This area is reserved for MAAN administrators. If you need access, ask for the administrator role to be granted to your account.",
+              )}
             </p>
           </div>
         ) : (
@@ -106,6 +126,7 @@ function AdminPage() {
 }
 
 function AdminConsole() {
+  const { t } = useI18n();
   const qc = useQueryClient();
   const [tab, setTab] = useState<"questionnaires" | "commandes" | "notifications">(
     "questionnaires",
@@ -164,10 +185,16 @@ function AdminConsole() {
   const send = useMutation({
     mutationFn: () => dispatch({ data: undefined }),
     onSuccess: (r) => {
-      setFlash(`${r.sent} envoyée(s), ${r.skipped} ignorée(s), ${r.failed} en échec.`);
+      setFlash(
+        t(
+          `${r.sent} envoyée(s), ${r.skipped} ignorée(s), ${r.failed} en échec.`,
+          `${r.sent} sent, ${r.skipped} skipped, ${r.failed} failed.`,
+        ),
+      );
       qc.invalidateQueries({ queryKey: ["admin", "notifications"] });
     },
-    onError: (e) => setFlash(e instanceof Error ? e.message : "Erreur d'envoi."),
+    onError: (e) =>
+      setFlash(e instanceof Error ? e.message : t("Erreur d'envoi.", "Sending error.")),
   });
 
   const profileFor = (id: string) => profiles.data?.find((p) => p.id === id);
@@ -177,9 +204,9 @@ function AdminConsole() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-            Espace administrateur
+            {t("Espace administrateur", "Administrator area")}
           </p>
-          <h1 className="mt-3 font-display text-4xl font-medium tracking-tight">Console MAAN</h1>
+          <h1 className="mt-3 font-display text-4xl font-medium tracking-tight">{t("Console MAAN", "MAAN console")}</h1>
         </div>
         <button
           type="button"
@@ -187,7 +214,7 @@ function AdminConsole() {
           disabled={send.isPending}
           className="rounded-full bg-clay px-5 py-3 text-sm font-medium text-cream transition-colors hover:bg-clay-deep disabled:opacity-60"
         >
-          {send.isPending ? "Envoi…" : "Envoyer les notifications en attente"}
+          {send.isPending ? t("Envoi…", "Sending…") : t("Envoyer les notifications en attente", "Send pending notifications")}
         </button>
       </div>
       {flash && <p className="mt-3 text-sm text-clay">{flash}</p>}
@@ -195,9 +222,9 @@ function AdminConsole() {
       <div className="mt-8 flex w-full max-w-xl rounded-full border border-border p-1 font-mono text-[11px] uppercase tracking-[0.12em]">
         {(
           [
-            ["questionnaires", "Questionnaires"],
-            ["commandes", "Commandes & expédition"],
-            ["notifications", "Notifications"],
+            ["questionnaires", t("Questionnaires", "Questionnaires")],
+            ["commandes", t("Commandes & expédition", "Orders & shipping")],
+            ["notifications", t("Notifications", "Notifications")],
           ] as const
         ).map(([k, label]) => (
           <button
@@ -240,8 +267,10 @@ function QuestionnairesAdmin({
   list: AdminQuestionnaire[];
   profileFor: (id: string) => Profile | undefined;
 }) {
+  const { t } = useI18n();
   const qc = useQueryClient();
   const [open, setOpen] = useState<string | null>(null);
+  const questionnaireStatusLabels = buildQuestionnaireStatusLabels(t);
 
   const setStatus = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: string }) => {
@@ -252,7 +281,7 @@ function QuestionnairesAdmin({
   });
 
   if (list.length === 0) {
-    return <p className="mt-10 text-sm text-muted">Aucun questionnaire pour le moment.</p>;
+    return <p className="mt-10 text-sm text-muted">{t("Aucun questionnaire pour le moment.", "No questionnaire yet.")}</p>;
   }
 
   return (
@@ -269,7 +298,7 @@ function QuestionnairesAdmin({
                   {dom?.tag ?? q.category}
                 </p>
                 <h3 className="mt-1 font-section text-xl font-medium tracking-tight">
-                  {p?.full_name || p?.email || "Patient"}
+                  {p?.full_name || p?.email || t("Patient", "Patient")}
                 </h3>
                 <p className="text-sm text-muted">{p?.email}</p>
               </div>
@@ -290,7 +319,7 @@ function QuestionnairesAdmin({
                   onClick={() => setOpen(expanded ? null : q.id)}
                   className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted underline decoration-clay/40 underline-offset-4"
                 >
-                  {expanded ? "Masquer" : "Réponses"}
+                  {expanded ? t("Masquer", "Hide") : t("Réponses", "Answers")}
                 </button>
               </div>
             </div>
@@ -322,6 +351,8 @@ function OrdersAdmin({
   profileFor: (id: string) => Profile | undefined;
   onChanged: () => void;
 }) {
+  const { t } = useI18n();
+  const orderStatusLabels = buildOrderStatusLabels(t);
   const update = useMutation({
     mutationFn: async ({
       id,
@@ -337,7 +368,7 @@ function OrdersAdmin({
   });
 
   if (list.length === 0) {
-    return <p className="mt-10 text-sm text-muted">Aucune commande pour le moment.</p>;
+    return <p className="mt-10 text-sm text-muted">{t("Aucune commande pour le moment.", "No order yet.")}</p>;
   }
 
   return (
@@ -355,7 +386,7 @@ function OrdersAdmin({
                   {o.treatment}
                 </h3>
                 <p className="text-sm text-muted">
-                  {p?.full_name || "Patient"} · {p?.email}
+                  {p?.full_name || t("Patient", "Patient")} · {p?.email}
                 </p>
               </div>
               <span className="rounded-full border border-clay/30 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-clay">
@@ -366,7 +397,7 @@ function OrdersAdmin({
             <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
               <label className="block">
                 <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                  État
+                  {t("État", "Status")}
                 </span>
                 <select
                   value={o.status}
@@ -383,7 +414,7 @@ function OrdersAdmin({
               </label>
               <label className="block">
                 <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                  Transporteur
+                  {t("Transporteur", "Carrier")}
                 </span>
                 <input
                   defaultValue={o.carrier ?? ""}
@@ -397,7 +428,7 @@ function OrdersAdmin({
               </label>
               <label className="block">
                 <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                  Numéro de suivi
+                  {t("Numéro de suivi", "Tracking number")}
                 </span>
                 <input
                   defaultValue={o.tracking_number ?? ""}
@@ -411,7 +442,10 @@ function OrdersAdmin({
               </label>
             </div>
             <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-              Chaque changement d'état crée un événement de suivi et une notification patient.
+              {t(
+                "Chaque changement d'état crée un événement de suivi et une notification patient.",
+                "Every status change creates a tracking event and a patient notification.",
+              )}
             </p>
           </article>
         );
@@ -421,8 +455,9 @@ function OrdersAdmin({
 }
 
 function NotificationsAdmin({ list }: { list: Notification[] }) {
+  const { t, lang } = useI18n();
   if (list.length === 0) {
-    return <p className="mt-10 text-sm text-muted">Aucune notification.</p>;
+    return <p className="mt-10 text-sm text-muted">{t("Aucune notification.", "No notification.")}</p>;
   }
   return (
     <div className="mt-10 divide-y divide-border border-y border-border">
@@ -437,7 +472,7 @@ function NotificationsAdmin({ list }: { list: Notification[] }) {
             {n.status}
           </span>
           <span className="font-mono text-[10px] text-muted sm:col-span-1">
-            {new Date(n.created_at).toLocaleDateString("fr-FR")}
+            {new Date(n.created_at).toLocaleDateString(lang === "en" ? "en-US" : "fr-FR")}
           </span>
         </div>
       ))}

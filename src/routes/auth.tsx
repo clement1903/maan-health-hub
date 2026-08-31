@@ -8,6 +8,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -43,6 +44,7 @@ const credentials = z.object({
 });
 
 function AuthPage() {
+  const { t } = useI18n();
   const navigate = useNavigate();
   const { user, loading } = useAuth();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
@@ -64,7 +66,14 @@ function AuthPage() {
 
     const parsed = credentials.safeParse({ email, password, fullName });
     if (!parsed.success) {
-      setError(parsed.error.issues[0]?.message ?? "Champs invalides");
+      const issue = parsed.error.issues[0]?.message;
+      if (issue === "Adresse e-mail invalide") {
+        setError(t("Adresse e-mail invalide", "Invalid email address"));
+      } else if (issue === "8 caractères minimum") {
+        setError(t("8 caractères minimum", "8 characters minimum"));
+      } else {
+        setError(t("Champs invalides", "Invalid fields"));
+      }
       return;
     }
 
@@ -80,7 +89,12 @@ function AuthPage() {
           },
         });
         if (err) throw err;
-        setNotice("Compte créé. Vérifiez votre boîte mail si une confirmation est demandée.");
+        setNotice(
+          t(
+            "Compte créé. Vérifiez votre boîte mail si une confirmation est demandée.",
+            "Account created. Check your inbox if a confirmation is required.",
+          ),
+        );
       } else {
         const { error: err } = await supabase.auth.signInWithPassword({
           email: parsed.data.email,
@@ -89,7 +103,9 @@ function AuthPage() {
         if (err) throw err;
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Une erreur est survenue");
+      setError(
+        err instanceof Error ? err.message : t("Une erreur est survenue", "An error occurred"),
+      );
     } finally {
       setBusy(false);
     }
@@ -101,7 +117,7 @@ function AuthPage() {
       redirect_uri: window.location.origin,
     });
     if (result.error) {
-      setError("La connexion Google a échoué. Réessayez.");
+      setError(t("La connexion Google a échoué. Réessayez.", "Google sign-in failed. Please try again."));
       return;
     }
     if (result.redirected) return;
@@ -112,13 +128,17 @@ function AuthPage() {
     <div className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
       <SiteHeader />
       <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-6 py-16">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">Espace patient</p>
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
+          {t("Espace patient", "Patient area")}
+        </p>
         <h1 className="mt-3 font-display text-3xl font-medium tracking-tight">
-          {mode === "signin" ? "Se connecter" : "Créer un compte"}
+          {mode === "signin" ? t("Se connecter", "Sign in") : t("Créer un compte", "Create an account")}
         </h1>
         <p className="mt-2 text-pretty text-sm text-muted">
-          Votre espace regroupe votre questionnaire, l'avis du médecin et le suivi de votre
-          commande.
+          {t(
+            "Votre espace regroupe votre questionnaire, l'avis du médecin et le suivi de votre commande.",
+            "Your space brings together your questionnaire, the doctor's assessment, and your order tracking.",
+          )}
         </p>
 
         <div className="mt-8 flex rounded-full border border-border p-1 font-mono text-[11px] uppercase tracking-[0.14em]">
@@ -132,7 +152,7 @@ function AuthPage() {
                 mode === m ? "bg-clay text-cream" : "text-muted hover:text-foreground",
               )}
             >
-              {m === "signin" ? "Connexion" : "Inscription"}
+              {m === "signin" ? t("Connexion", "Sign in") : t("Inscription", "Sign up")}
             </button>
           ))}
         </div>
@@ -140,7 +160,7 @@ function AuthPage() {
         <form onSubmit={onSubmit} className="mt-6 space-y-4">
           {mode === "signup" && (
             <Field
-              label="Nom complet"
+              label={t("Nom complet", "Full name")}
               value={fullName}
               onChange={setFullName}
               type="text"
@@ -148,14 +168,14 @@ function AuthPage() {
             />
           )}
           <Field
-            label="E-mail"
+            label={t("E-mail", "Email")}
             value={email}
             onChange={setEmail}
             type="email"
             autoComplete="email"
           />
           <Field
-            label="Mot de passe"
+            label={t("Mot de passe", "Password")}
             value={password}
             onChange={setPassword}
             type="password"
@@ -170,12 +190,17 @@ function AuthPage() {
             disabled={busy}
             className="w-full rounded-full bg-clay py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:bg-clay-deep disabled:opacity-60"
           >
-            {busy ? "Un instant…" : mode === "signin" ? "Se connecter" : "Créer mon compte"}
+            {busy
+              ? t("Un instant…", "One moment…")
+              : mode === "signin"
+                ? t("Se connecter", "Sign in")
+                : t("Créer mon compte", "Create my account")}
           </button>
         </form>
 
         <div className="my-6 flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-          <span className="h-px flex-1 bg-border" /> ou <span className="h-px flex-1 bg-border" />
+          <span className="h-px flex-1 bg-border" /> {t("ou", "or")}{" "}
+          <span className="h-px flex-1 bg-border" />
         </div>
 
         <button
@@ -183,14 +208,16 @@ function AuthPage() {
           onClick={onGoogle}
           className="w-full rounded-full border border-border bg-cream py-3.5 text-sm font-medium transition-all duration-300 hover:border-clay/40"
         >
-          Continuer avec Google
+          {t("Continuer avec Google", "Continue with Google")}
         </button>
 
         <p className="mt-8 text-center text-xs text-muted">
-          En continuant, vous acceptez le traitement confidentiel de vos données de santé décrit
-          dans la{" "}
+          {t(
+            "En continuant, vous acceptez le traitement confidentiel de vos données de santé décrit dans la",
+            "By continuing, you accept the confidential handling of your health data described in the",
+          )}{" "}
           <Link to="/conformite" className="underline decoration-clay/50 underline-offset-4">
-            page conformité
+            {t("page conformité", "compliance page")}
           </Link>
           .
         </p>
@@ -213,6 +240,7 @@ function Field({
   type: string;
   autoComplete?: string;
 }) {
+  const { t } = useI18n();
   const isPassword = type === "password";
   const [visible, setVisible] = useState(false);
   const inputType = isPassword && visible ? "text" : type;
@@ -236,7 +264,11 @@ function Field({
           <button
             type="button"
             onClick={() => setVisible((v) => !v)}
-            aria-label={visible ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+            aria-label={
+              visible
+                ? t("Masquer le mot de passe", "Hide password")
+                : t("Afficher le mot de passe", "Show password")
+            }
             aria-pressed={visible}
             className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-muted transition-colors hover:text-clay"
           >
