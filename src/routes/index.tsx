@@ -227,7 +227,7 @@ function Home() {
     staleTime: 60_000,
   });
   const condensed = scrollY > 40;
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const { t } = useI18n();
   const soins = buildSoins(t);
   const faq = buildFaq(t);
