@@ -9,10 +9,6 @@ import soinSexual from "@/assets/soin-sexual.jpg";
 import soinWeight from "@/assets/soin-weight.jpg";
 import soinHair from "@/assets/soin-hair.jpg";
 import soinSkin from "@/assets/soin-skin.jpg";
-import etapeQuestionnaire from "@/assets/etape-questionnaire.jpg";
-import etapeConsultation from "@/assets/etape-consultation.jpg";
-import etapeLivraison from "@/assets/etape-livraison.jpg";
-import etapeSuivi from "@/assets/etape-suivi.jpg";
 
 import { Reveal } from "@/components/reveal";
 import { Magnetic, Tilt } from "@/components/magnetic";
@@ -148,77 +144,6 @@ const buildSoins = (t: T): Soin[] => [
       t("Des résultats visibles, un suivi régulier", "Visible results, regular follow-up"),
     ],
     slug: "peau",
-  },
-];
-
-const buildEtapes = (t: T): Etape[] => [
-  {
-    n: "1",
-    title: t("Questionnaire", "Questionnaire"),
-    desc: t(
-      "Un questionnaire médical rigoureux, en quelques minutes, à votre rythme.",
-      "A thorough medical questionnaire, in a few minutes, at your own pace.",
-    ),
-    detail: t(
-      "Antécédents, traitements en cours, mode de vie : chaque réponse guide le médecin. Vous pouvez l'interrompre et le reprendre à tout moment.",
-      "Medical history, current treatments, lifestyle: every answer guides the doctor. You can pause and resume at any time.",
-    ),
-    img: etapeQuestionnaire,
-    alt: t(
-      "Homme remplissant le questionnaire médical MAAN sur son téléphone",
-      "Man filling in the MAAN medical questionnaire on his phone",
-    ),
-  },
-  {
-    n: "2",
-    title: t("Consultation médicale en ligne", "Online medical consultation"),
-    desc: t(
-      "Un médecin agréé analyse votre profil en ligne et délivre une ordonnance si elle est justifiée.",
-      "A licensed doctor reviews your profile online and issues a prescription when justified.",
-    ),
-    detail: t(
-      "Réponse sous 24 h ouvrées. Le médecin peut demander des précisions, refuser un traitement ou vous orienter vers une consultation physique.",
-      "Answer within 24 working hours. The doctor may ask for details, decline a treatment or refer you to an in-person consultation.",
-    ),
-    img: etapeConsultation,
-    alt: t(
-      "Médecin agréé analysant un dossier patient sur son ordinateur",
-      "Licensed doctor reviewing a patient file on a computer",
-    ),
-  },
-  {
-    n: "3",
-    title: t("Livraison discrète", "Discreet delivery"),
-    desc: t(
-      "La pharmacie partenaire expédie votre traitement dans un emballage neutre.",
-      "The partner pharmacy ships your treatment in neutral packaging.",
-    ),
-    detail: t(
-      "Colis sans mention de contenu ni de marque, suivi en temps réel, livré chez vous ou en point relais sous 24 à 48 h.",
-      "Parcel with no mention of contents or brand, real-time tracking, delivered to your home or a pickup point within 24 to 48 hours.",
-    ),
-    img: etapeLivraison,
-    alt: t(
-      "Colis neutre sans mention remis devant la porte d'un domicile",
-      "Neutral unbranded parcel left at a front door",
-    ),
-  },
-  {
-    n: "4",
-    title: t("Suivi", "Follow-up"),
-    desc: t(
-      "Le médecin reste joignable pour ajuster, renouveler ou arrêter votre traitement.",
-      "The doctor stays reachable to adjust, renew or stop your treatment.",
-    ),
-    detail: t(
-      "Point de suivi après une semaine, signalement des effets indésirables depuis votre espace patient et décisions médicales tracées dans votre dossier.",
-      "Check-in after one week, side-effect reporting from your patient area and medical decisions recorded in your file.",
-    ),
-    img: etapeSuivi,
-    alt: t(
-      "Homme détendu consultant son message de suivi médical sur son téléphone",
-      "Relaxed man reading his medical follow-up message on his phone",
-    ),
   },
 ];
 
