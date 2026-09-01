@@ -66,6 +66,15 @@ export function ParcoursMorph() {
   const [p, setP] = useState(0);
   const [reduced, setReduced] = useState(false);
   const [scale, setScale] = useState(1);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => setInView(entry?.isIntersecting ?? false));
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
     const m = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -124,9 +133,11 @@ export function ParcoursMorph() {
     t("la maison.", "home."),
     t("la plage.", "the beach."),
     t("le bureau.", "the office."),
-    t("le train.", "the train."),
-    t("l'étranger.", "abroad."),
-    t("partout.", "anywhere."),
+    t("le canapé.", "the sofa."),
+    t("votre lit.", "your bed."),
+    t("la montagne.", "the mountains."),
+    t("votre hôtel.", "your hotel."),
+    t("où vous voulez.", "anywhere you like."),
   ];
 
   const texts = [
@@ -191,7 +202,12 @@ export function ParcoursMorph() {
             <br />
             <span className="text-muted">
               {t("En ligne. Depuis ", "Online. From ")}
-              <Typewriter words={placeWords} className="text-clay" />
+              <Typewriter
+                words={placeWords}
+                active={inView}
+                reducedFallback={t("chez vous.", "home.")}
+                className="text-clay"
+              />
             </span>
           </h2>
 
@@ -799,6 +815,11 @@ function ParcoursStatic() {
       </p>
       <h2 className="mt-3 font-section text-3xl font-medium tracking-tight lg:text-4xl">
         {t("Quatre étapes. Sans déplacement.", "Four steps. Without leaving home.")}
+        <br />
+        <span className="text-muted">
+          {t("En ligne. Depuis ", "Online. From ")}
+          <span className="text-clay">{t("chez vous.", "home.")}</span>
+        </span>
       </h2>
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((i) => (
