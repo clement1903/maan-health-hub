@@ -6,8 +6,9 @@ import skin02 from "@/assets/skin/skin-campaign-02b.jpg";
 
 /**
  * Hero « diptyque photographique » de la page Skin Management.
- * Deux photographies éditoriales, une copy très courte, une micro-animation
- * d'apparition (~1,8 s) puis plus aucun mouvement.
+ * Une seule scène plein écran : les deux photographies côte à côte,
+ * la révélation et le CTA viennent se superposer en fondu,
+ * comme la campagne Weight Management.
  */
 export function SkinHeroCampaign() {
   const { t } = useI18n();
@@ -17,8 +18,8 @@ export function SkinHeroCampaign() {
     const timers = [
       window.setTimeout(() => setStep(1), 120),
       window.setTimeout(() => setStep(2), 700),
-      window.setTimeout(() => setStep(3), 1300),
-      window.setTimeout(() => setStep(4), 1800),
+      window.setTimeout(() => setStep(3), 1600),
+      window.setTimeout(() => setStep(4), 2200),
     ];
     return () => timers.forEach(window.clearTimeout);
   }, []);
@@ -29,9 +30,9 @@ export function SkinHeroCampaign() {
     }`;
 
   return (
-    <section className="bg-[#100c09] text-[#f3ece2]">
-      {/* DIPTYQUE */}
-      <div className="grid grid-cols-1 md:grid-cols-[1.15fr_1fr]">
+    <section className="relative min-h-[100svh] overflow-hidden bg-[#100c09] text-[#f3ece2]">
+      {/* DIPTYQUE PLEIN ÉCRAN */}
+      <div className="grid min-h-[100svh] grid-cols-1 md:grid-cols-[1.15fr_1fr]">
         {/* IMAGE 01 */}
         <figure className={`relative ${fade(step >= 1)}`}>
           <img
@@ -42,13 +43,13 @@ export function SkinHeroCampaign() {
             )}
             width={1280}
             height={1600}
-            className="h-[58vh] w-full object-cover md:h-[82vh]"
+            className="h-[50svh] w-full object-cover md:h-[100svh]"
           />
           <span
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(16,12,9,0.45)_0%,transparent_35%,rgba(16,12,9,0.75)_100%)]"
+            className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(16,12,9,0.45)_0%,transparent_35%,rgba(16,12,9,0.55)_100%)]"
           />
-          <figcaption className="absolute inset-x-0 bottom-0 p-6 md:p-10">
+          <figcaption className="absolute inset-x-0 top-[12%] p-6 md:p-10">
             <p className="font-display text-4xl font-medium leading-[0.95] tracking-tight md:text-6xl lg:text-7xl">
               {t("Pour deux ?", "Table for two?")}
             </p>
@@ -65,14 +66,13 @@ export function SkinHeroCampaign() {
             )}
             width={1280}
             height={1600}
-            loading="lazy"
-            className="h-[58vh] w-full object-cover md:h-[82vh]"
+            className="h-[50svh] w-full object-cover md:h-[100svh]"
           />
           <span
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(16,12,9,0.35)_0%,transparent_35%,rgba(16,12,9,0.78)_100%)]"
+            className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(16,12,9,0.35)_0%,transparent_35%,rgba(16,12,9,0.6)_100%)]"
           />
-          <figcaption className="absolute inset-x-0 bottom-0 p-6 md:p-10">
+          <figcaption className="absolute inset-x-0 top-[12%] p-6 md:p-10">
             <p className="font-display text-4xl font-medium leading-[0.95] tracking-tight md:text-6xl lg:text-7xl">
               {t("Non,", "No,")}
               <br />
@@ -82,9 +82,16 @@ export function SkinHeroCampaign() {
         </figure>
       </div>
 
-      {/* RÉVÉLATION */}
-      <div className="bg-cream text-foreground">
-        <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+      {/* VOILE DE FUSION + RÉVÉLATION (superposés, même écran) */}
+      <span
+        aria-hidden
+        className={`pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-[linear-gradient(180deg,transparent_0%,rgba(16,12,9,0.88)_55%,#100c09_100%)] transition-opacity duration-1000 ${
+          step >= 3 ? "opacity-100" : "opacity-0"
+        }`}
+      />
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-0">
+        <div className="mx-auto max-w-6xl px-6 pb-14 md:pb-20">
           <p
             className={`text-balance font-display text-4xl font-medium leading-[1] tracking-tight md:text-6xl lg:text-7xl ${fade(
               step >= 3,
@@ -92,20 +99,22 @@ export function SkinHeroCampaign() {
           >
             {t("Il s'est invité tout seul.", "It invited itself.")}
           </p>
-          <p className={`mt-5 text-lg text-muted md:text-xl ${fade(step >= 4)}`}>
+          <p
+            className={`mt-4 text-lg text-[#f3ece2]/70 md:text-xl ${fade(step >= 4)}`}
+          >
             {t("Ça arrive.", "It happens.")}
           </p>
 
           <div
-            className={`mt-10 flex flex-wrap items-center gap-6 ${fade(step >= 4)}`}
+            className={`pointer-events-auto mt-8 flex flex-wrap items-center gap-6 ${fade(step >= 4)}`}
           >
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#f3ece2]/60">
               MAAN · {t("Skin Management", "Skin Management")}
             </p>
             <Link
               to="/questionnaire/$slug"
               params={{ slug: "peau" }}
-              className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm text-background transition-colors hover:bg-clay"
+              className="inline-flex items-center gap-2 rounded-full bg-[#f3ece2] px-6 py-3 text-sm text-[#100c09] transition-colors hover:bg-clay hover:text-[#f3ece2]"
             >
               {t("Commencer la consultation", "Start consultation")}
               <span aria-hidden>→</span>
