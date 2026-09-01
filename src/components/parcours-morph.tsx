@@ -315,7 +315,11 @@ function MorphObject({ p, g }: { p: number; g: Stage }) {
       {/* couche matière : papier crème → écran sombre → kraft → verre */}
       <div
         className="absolute inset-0 border border-border bg-cream"
-        style={{ borderRadius: g.r, boxShadow: "0 60px 120px -60px var(--foreground)" }}
+        style={{
+          borderRadius: g.r,
+          boxShadow: "0 60px 120px -60px var(--foreground)",
+          opacity: 1 - kraft,
+        }}
       />
       <div
         className="absolute inset-0 bg-[var(--foreground)]"
