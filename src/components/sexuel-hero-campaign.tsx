@@ -14,6 +14,10 @@ import elevatorPoster from "@/assets/sexuel/elevator-down-poster.jpg";
  * apparaît sur la fin, comme un punchline de pub premium.
  */
 
+// Repères temporels (en secondes de lecture vidéo)
+const T_TITLE = 9.1; // « Ça devait monter. » — après la réaction de l'homme
+const T_SUB = 9.5; // « Ça arrive. »
+const T_BRAND = 9.8; // MAAN — Sexual Management + CTA
 const HOLD_AFTER_END_MS = 5000; // on laisse la dernière scène respirer
 const RESTART_FADE_MS = 700;
 
@@ -26,10 +30,15 @@ export function SexuelHeroCampaign() {
   const [phase, setPhase] = useState<Phase>(0);
   const [restarting, setRestarting] = useState(false);
 
+  const handleTimeUpdate = useCallback(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const time = v.currentTime;
+    setPhase(time >= T_BRAND ? 3 : time >= T_SUB ? 2 : time >= T_TITLE ? 1 : 0);
+  }, []);
+
   const handleEnded = useCallback(() => {
-    setPhase(1);
-    window.setTimeout(() => setPhase(2), 400);
-    window.setTimeout(() => setPhase(3), 800);
+    setPhase(3);
     // On tient la chute quelques secondes, puis on relance en douceur.
     restartTimer.current = window.setTimeout(() => {
       const v = videoRef.current;
@@ -72,6 +81,7 @@ export function SexuelHeroCampaign() {
           muted
           playsInline
           preload="auto"
+          onTimeUpdate={handleTimeUpdate}
           onEnded={handleEnded}
         />
       </div>
