@@ -5,7 +5,7 @@ import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 import elevatorAsset from "@/assets/sexuel/elevator-down-campaign.mp4.asset.json";
-import elevatorPoster from "@/assets/sexuel/elevator-down-poster.jpg";
+import elevatorPoster from "@/assets/sexuel/elevator-down-poster.asset.json";
 
 /**
  * Micro-campagne cinématographique — Sexual Management.
@@ -15,9 +15,11 @@ import elevatorPoster from "@/assets/sexuel/elevator-down-poster.jpg";
  */
 
 // Repères temporels (en secondes de lecture vidéo)
-const T_TITLE = 9.1; // « Ça devait monter. » — après la réaction de l'homme
-const T_SUB = 9.5; // « Ça arrive. »
-const T_BRAND = 9.8; // MAAN — Sexual Management + CTA
+// La vidéo se termine sur le visage surpris de l'homme (~9,15 s) —
+// le texte de campagne apparaît en surimpression sur ce dernier plan.
+const T_TITLE = 7.6; // « Ça devait monter. » — sur le gros plan du visage
+const T_SUB = 8.1; // « Ça arrive. »
+const T_BRAND = 8.6; // MAAN — Sexual Management + CTA
 const HOLD_AFTER_END_MS = 5000; // on laisse la dernière scène respirer
 const RESTART_FADE_MS = 700;
 
@@ -76,7 +78,7 @@ export function SexuelHeroCampaign() {
           ref={videoRef}
           className="h-full w-full object-cover"
           src={elevatorAsset.url}
-          poster={elevatorPoster}
+          poster={elevatorPoster.url}
           autoPlay
           muted
           playsInline
