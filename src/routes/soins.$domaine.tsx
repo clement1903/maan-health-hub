@@ -440,7 +440,7 @@ function DomainePage() {
                       : "border-border bg-background text-muted hover:border-clay/40 hover:text-foreground",
                   )}
                 >
-                  {p.molecule}
+                  {p.nom}
                 </button>
               ))}
             </div>
