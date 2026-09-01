@@ -8,7 +8,7 @@ import { ProduitCarrousel } from "@/components/produit-carrousel";
 import { getDomaine, getSoins, loc, prixAbonnement, type Produit } from "@/data/soins";
 import { getDomaineDetails, locSuffix } from "@/data/domaine-details";
 import { CountUp } from "@/components/count-up";
-import { Floating3D } from "@/components/floating-3d";
+import { ProduitFloating3D } from "@/components/produit-floating-3d";
 import { useI18n } from "@/lib/i18n";
 import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { HairCampaign } from "@/components/hair-campaign";
@@ -443,15 +443,25 @@ function DomainePage() {
                 key={produit.id}
                 className="animate-[rise_0.5s_var(--ease)_both] rounded-[24px] border border-border bg-background p-8 lg:col-span-5 lg:p-10"
               >
-                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-clay">
-                  {produit.molecule}
-                </p>
-                <h3 className="mt-2 font-section text-2xl font-medium tracking-tight">
-                  {produit.nom}
-                </h3>
-                <span className="mt-4 inline-block rounded-full border border-clay/40 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-clay">
-                  {t("Ordonnance", "Prescription")}
-                </span>
+                <div className="flex items-start justify-between gap-4">
+                  <div className="min-w-0">
+                    <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-clay">
+                      {produit.molecule}
+                    </p>
+                    <h3 className="mt-2 font-section text-2xl font-medium tracking-tight">
+                      {produit.nom}
+                    </h3>
+                    <span className="mt-4 inline-block rounded-full border border-clay/40 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-clay">
+                      {t("Ordonnance", "Prescription")}
+                    </span>
+                  </div>
+                  <ProduitFloating3D
+                    produitId={produit.id}
+                    alt={produit.nom}
+                    className="-mt-2 w-24 sm:w-28"
+                  />
+                </div>
+
                 <dl className="mt-7 grid gap-5 text-sm">
                   <div>
                     <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
