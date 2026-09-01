@@ -3,6 +3,7 @@ import { useI18n } from "@/lib/i18n";
 import { Reveal } from "@/components/reveal";
 import { useScrollY } from "@/hooks/use-reveal";
 import weightHeroMuseum from "@/assets/weight/weight-hero-museum.jpg";
+import weightHeroMuseumEn from "@/assets/weight/weight-hero-museum-en.jpg";
 
 /**
  * Hero éditorial « musée » de la page Weight Management.
