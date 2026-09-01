@@ -19,10 +19,17 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-6 py-12">
         <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
           <div className="max-w-[36ch]">
-            <span className="font-display text-2xl font-semibold tracking-tight">MAAN</span>
-            <p className="mt-3 text-pretty text-sm text-muted">
-              {t("Des soins pensés pour les hommes.", "Care designed for men.")}
-            </p>
+            <div className="flex items-baseline gap-3">
+              <span className="relative inline-block">
+                <span className="relative z-10 font-display text-2xl font-semibold tracking-tight">
+                  MAAN
+                </span>
+                <span className="absolute inset-x-0 bottom-1 z-0 h-2 rounded-sm bg-amber/35" />
+              </span>
+              <span className="whitespace-nowrap font-signature text-2xl leading-none text-clay">
+                {t("Des soins pensés pour les hommes", "Care designed for men")}
+              </span>
+            </div>
             <LanguageSwitcher className="mt-5" />
           </div>
           <div className="grid grid-cols-2 gap-8 font-mono text-[11px] uppercase tracking-[0.12em] text-muted sm:grid-cols-3">
