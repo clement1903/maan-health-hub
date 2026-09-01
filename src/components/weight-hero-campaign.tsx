@@ -32,8 +32,8 @@ export function WeightHeroCampaign() {
 
       {/* PHOTO full-bleed — occupe toute la place disponible */}
       <div
-        className="absolute inset-0 will-change-transform"
-        style={{ transform: `translateY(${imgShift}px)` }}
+        className="absolute -inset-y-16 inset-x-0 will-change-transform"
+        style={{ transform: `translateY(${imgShift * 0.35}px)` }}
       >
         <img
           src={weightHeroMuseum}
@@ -44,7 +44,7 @@ export function WeightHeroCampaign() {
           width={1536}
           height={1024}
           className="h-full w-full object-cover"
-          style={{ objectPosition: "center bottom" }}
+          style={{ objectPosition: "center 72%" }}
         />
         {/* dégradé qui « absorbe » la photo dans le fond à gauche */}
         <span
