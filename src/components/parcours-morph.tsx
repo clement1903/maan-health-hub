@@ -170,7 +170,7 @@ export function ParcoursMorph() {
     <section id="parcours" ref={wrapRef} className="relative scroll-mt-24 bg-background">
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
         {/* En-tête discret */}
-        <div className="mx-auto w-full max-w-6xl px-6 pt-8">
+        <div className="mx-auto w-full max-w-6xl px-6 pt-24 lg:pt-28">
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
             {t("Le parcours", "How it works")}
           </p>
@@ -204,7 +204,7 @@ export function ParcoursMorph() {
         {/* Scène */}
         <div className="relative flex-1">
           {/* Texte de l'étape */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-4 z-20 mx-auto max-w-6xl px-6 lg:bottom-10 lg:max-w-[420px] lg:left-0 lg:right-auto lg:top-1/2 lg:-translate-y-1/2">
+          <div className="pointer-events-none absolute inset-x-0 bottom-4 z-20 px-6 lg:inset-x-auto lg:bottom-auto lg:left-[max(24px,calc(50%-600px))] lg:top-1/2 lg:w-[420px] lg:-translate-y-1/2">
             <div className="relative h-[150px] lg:h-[220px]">
               {texts.map((tx) => (
                 <div
@@ -718,7 +718,7 @@ function FinalOverlay({ p }: { p: number }) {
   if (o < 0.01) return null;
   return (
     <div
-      className="absolute inset-x-0 bottom-6 z-30 mx-auto max-w-6xl px-6 lg:bottom-auto lg:left-0 lg:right-auto lg:top-1/2 lg:max-w-[420px] lg:-translate-y-1/2"
+      className="absolute inset-x-0 bottom-6 z-30 px-6 lg:inset-x-auto lg:bottom-auto lg:left-[max(24px,calc(50%-600px))] lg:top-1/2 lg:w-[420px] lg:-translate-y-1/2"
       style={{ opacity: o, transform: `translateY(${(1 - o) * 12}px)` }}
     >
       <p className="font-display text-3xl tracking-tight">MAAN</p>
