@@ -41,9 +41,9 @@ const STAGES: Stage[] = [
 
 function geometry(p: number): Stage {
   let i = 0;
-  while (i < STAGES.length - 2 && p > STAGES[i + 1].p) i++;
-  const a = STAGES[i];
-  const b = STAGES[i + 1];
+  while (i < STAGES.length - 2 && p > (STAGES[i + 1] as Stage).p) i++;
+  const a = STAGES[i] as Stage;
+  const b = STAGES[i + 1] as Stage;
   const t = ease(clamp((p - a.p) / (b.p - a.p)));
   return {
     p,
@@ -390,7 +390,7 @@ function QuestionnaireScreen({ p, radius }: { p: number; radius: number }) {
   const local = seg(p, 0.05, 0.28);
   const idx = Math.min(questions.length - 1, Math.floor(local * questions.length));
   const inner = (local * questions.length) % 1;
-  const q = questions[idx];
+  const q = questions[idx] as (typeof questions)[number];
   const selected = inner > 0.45;
   const leaving = inner > 0.82 ? (inner - 0.82) / 0.18 : 0;
 
