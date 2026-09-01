@@ -104,7 +104,7 @@ export function SexuelHeroCampaign() {
               phase >= 1 ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
             )}
           >
-            {t("Ça devait monter.", "It was supposed to go up.")}
+            {t("Ça devait monter ?", "It was supposed to go up?")}
           </h2>
 
           <p
@@ -113,7 +113,7 @@ export function SexuelHeroCampaign() {
               phase >= 2 ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
             )}
           >
-            {t("Ça arrive.", "It happens.")}
+            {t("Et oui… ça peut arriver.", "And yes… it can happen.")}
           </p>
 
           <div
