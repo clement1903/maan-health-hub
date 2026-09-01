@@ -272,12 +272,7 @@ function DomainePage() {
         {domaine.slug === "cheveux" && <HairHeroCampaign />}
         {domaine.slug === "poids" && <WeightHeroCampaign />}
 
-        {domaine.slug === "cheveux" && (
-          <>
-            <HairHeroCampaign />
-            <HairCampaign />
-          </>
-        )}
+        {domaine.slug === "cheveux" && <HairCampaign />}
 
         {domaine.slug === "poids" && <WeightHeroCampaign />}
 
