@@ -14,7 +14,6 @@ export function SiteHeader() {
   const nav = [
     { to: "/parcours", label: t("Parcours", "How it works") },
     { to: "/conformite", label: t("Conformité", "Compliance") },
-    { to: "/mon-espace", label: t("Mon espace", "My area") },
     { to: "/espace-patient", label: t("Espace patient", "Patient area") },
   ];
 
