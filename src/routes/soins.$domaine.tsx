@@ -318,7 +318,12 @@ function DomainePage() {
           </div>
         </section>
 
-        {domaine.slug === "cheveux" && <HairCampaign />}
+        {domaine.slug === "cheveux" && (
+          <>
+            <HairHeroScroll />
+            <HairCampaign />
+          </>
+        )}
 
         {(() => {
 
