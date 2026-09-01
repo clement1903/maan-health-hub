@@ -11,7 +11,7 @@ import weightHeroMuseumEn from "@/assets/weight/weight-hero-museum-en.jpg";
  * multi-couches, plaque flottante — le jean devient le décor du titre.
  */
 export function WeightHeroCampaign() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const y = useScrollY();
 
   // Légères translations pilotées par le scroll (parallaxe douce)
