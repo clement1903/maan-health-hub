@@ -13,6 +13,7 @@ import { useI18n } from "@/lib/i18n";
 import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { HairCampaign } from "@/components/hair-campaign";
 import { HairHeroCampaign } from "@/components/hair-hero-campaign";
+import { WeightHeroCampaign } from "@/components/weight-hero-campaign";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/soins/$domaine")({
@@ -321,6 +322,8 @@ function DomainePage() {
           </>
         )}
 
+        {domaine.slug === "poids" && <WeightHeroCampaign />}
+
         {(() => {
 
           const details = getDomaineDetails(domaine.slug);
@@ -393,7 +396,7 @@ function DomainePage() {
           );
         })()}
 
-        <section className="bg-cream">
+        <section id="medicaments" className="scroll-mt-24 bg-cream">
 
 
           <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
