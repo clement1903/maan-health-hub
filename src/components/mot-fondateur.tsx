@@ -71,6 +71,7 @@ export function MotFondateur() {
                   "Clement Losi, founder of MAAN",
                 )}
                 duration={2.4}
+                delay={2900}
               />
             </p>
 
