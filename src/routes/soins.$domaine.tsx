@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createFileRoute, notFound, Link } from "@tanstack/react-router";
+import { createFileRoute, notFound, Link, useNavigate } from "@tanstack/react-router";
 
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -194,6 +194,7 @@ function DomainePage() {
 
 export function DomaineView({ slug, produitId }: { slug: string; produitId: string | null }) {
   const { t, lang } = useI18n();
+  const navigate = useNavigate();
   const domaine = getDomaine(slug, lang) ?? getDomaine(slug, "fr")!;
   const produitSearch = produitId ?? undefined;
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -357,11 +358,13 @@ export function DomaineView({ slug, produitId }: { slug: string; produitId: stri
               aria-label={t("Traitements de la spécialité", "Treatments in this specialty")}
             >
               {domaine.produits.map((p, i) => (
-                <Link
+                <button
                   key={p.id}
-                  to="/soins/$domaine/$produit"
-                  params={{ domaine: domaine.slug, produit: p.id }}
-                  onClick={() => setActiveProduit(i)}
+                  type="button"
+                  onClick={() => {
+                    setActiveProduit(i);
+                    navigate({ to: ".", search: (prev) => ({ ...prev, produit: p.id }), resetScroll: false });
+                  }}
                   aria-current={activeProduit === i ? "page" : undefined}
                   className={cn(
                     "rounded-full border px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-all duration-500 ease-[var(--ease)]",
@@ -371,7 +374,7 @@ export function DomaineView({ slug, produitId }: { slug: string; produitId: stri
                   )}
                 >
                   {p.nom}
-                </Link>
+                </button>
               ))}
             </nav>
 
