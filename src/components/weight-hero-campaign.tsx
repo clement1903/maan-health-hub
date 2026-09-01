@@ -44,19 +44,20 @@ export function WeightHeroCampaign() {
           width={1536}
           height={1024}
           className="h-full w-full object-cover"
-          style={{ objectPosition: "center 72%" }}
+          style={{ objectPosition: "center bottom" }}
         />
         {/* dégradé qui « absorbe » la photo dans le fond à gauche */}
         <span
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,#120e0a_18%,rgba(18,14,10,0.55)_40%,transparent_60%)]"
         />
-        {/* fondu des bords pour fondre la photo dans le fond marron */}
+        {/* fondu des bords : haut et côtés uniquement pour ne pas masquer la plaque */}
         <span
           aria-hidden
           className="pointer-events-none absolute inset-0"
           style={{
-            boxShadow: "inset 0 0 120px 80px #120e0a",
+            background:
+              "linear-gradient(180deg, #120e0a 0%, transparent 18%), linear-gradient(90deg, #120e0a 0%, transparent 12%, transparent 88%, #120e0a 100%)",
           }}
         />
       </div>
