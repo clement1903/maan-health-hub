@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { ShieldCheck, Lock, Scale, ArrowRight, Check } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ShieldCheck, Lock, Scale, Check } from "lucide-react";
 
 import medecin1 from "@/assets/medecin-1.jpg";
 import medecin2 from "@/assets/medecin-2.jpg";
@@ -13,29 +13,26 @@ import { useI18n } from "@/lib/i18n";
  * Données de démonstration.
  * Les numéros BIG ci-dessous sont fictifs et doivent être remplacés par
  * les données des vrais médecins partenaires.
- * `video` est prévu pour accueillir plus tard une micro-vidéo portrait.
  */
 type Medecin = {
   id: string;
   nom: string;
-  prenom: string;
   photo: string;
-  video?: string;
   role: string;
   specialite: string;
   big: string;
   approche: string;
   qualifications: string[];
+  gradient: string;
 };
 
 const buildMedecins = (t: (fr: string, en: string) => string): Medecin[] => [
   {
     id: "antoine-lemoine",
     nom: "Dr Antoine Lemoine",
-    prenom: "Antoine",
     photo: medecin1,
     role: t("Médecin généraliste", "General practitioner"),
-    specialite: "Sexual & Weight Management",
+    specialite: t("Sexuel & Poids", "Sexual & Weight"),
     big: "19912345678",
     approche: t(
       "Poser les bonnes questions avant de prescrire. Un traitement n'a de sens que s'il s'inscrit dans une situation médicale précise.",
@@ -46,14 +43,15 @@ const buildMedecins = (t: (fr: string, en: string) => string): Medecin[] => [
       t("12 ans de pratique en cabinet", "12 years of practice in private clinics"),
       t("DU nutrition et métabolisme", "Postgraduate diploma in nutrition and metabolism"),
     ],
+    gradient:
+      "linear-gradient(135deg, color-mix(in oklab, var(--amber) 40%, var(--cream)), color-mix(in oklab, var(--clay) 22%, var(--cream)))",
   },
   {
     id: "marion-badel",
     nom: "Dr Marion Badel",
-    prenom: "Marion",
     photo: medecin2,
     role: t("Dermatologue", "Dermatologist"),
-    specialite: "Skin & Hair Management",
+    specialite: t("Peau & Cheveux", "Skin & Hair"),
     big: "19923456789",
     approche: t(
       "Les résultats visibles demandent du temps. Je préfère annoncer un calendrier réaliste plutôt qu'une promesse.",
@@ -64,14 +62,15 @@ const buildMedecins = (t: (fr: string, en: string) => string): Medecin[] => [
       t("Praticienne hospitalière pendant 8 ans", "Hospital practitioner for 8 years"),
       t("Formée à l'expertise dermatologique à distance", "Trained in remote dermatological assessment"),
     ],
+    gradient:
+      "linear-gradient(135deg, color-mix(in oklab, var(--sand) 70%, var(--cream)), var(--cream))",
   },
   {
     id: "serge-renard",
     nom: "Dr Serge Renard",
-    prenom: "Serge",
     photo: medecin3,
     role: t("Médecin généraliste", "General practitioner"),
-    specialite: "Sexual Management",
+    specialite: t("Santé sexuelle", "Sexual health"),
     big: "19934567890",
     approche: t(
       "Aucun jugement, aucune gêne. La consultation à distance permet souvent de parler plus librement de sujets intimes.",
@@ -82,6 +81,8 @@ const buildMedecins = (t: (fr: string, en: string) => string): Medecin[] => [
       t("DU sexologie médicale", "Postgraduate diploma in medical sexology"),
       t("Membre d'un réseau de soins masculins", "Member of a men's healthcare network"),
     ],
+    gradient:
+      "linear-gradient(135deg, color-mix(in oklab, var(--clay) 16%, var(--cream)), var(--cream))",
   },
 ];
 
@@ -148,43 +149,148 @@ function MaskLine({
   );
 }
 
-export function MedecinsSection() {
+/**
+ * Carte médecin — même langage que les cartes « Nos soins » :
+ * recto teinté, verso foncé, retournement au clic.
+ */
+function MedecinCard({ medecin }: { medecin: Medecin }) {
   const { t } = useI18n();
-  const reduced = useReducedMotion();
-  const { ref: sectionRef, shown } = useReveal<HTMLElement>(0.15);
-  const [active, setActive] = useState(0);
+  const [flipped, setFlipped] = useState(false);
   const [verified, setVerified] = useState(false);
-  const medecins = buildMedecins(t);
-  const garanties = buildGaranties(t);
-  const m = medecins[active]!;
 
-  const cardsRef = useRef<Array<HTMLButtonElement | null>>([]);
-  const columnRef = useRef<HTMLDivElement | null>(null);
-  const [lineTop, setLineTop] = useState<number | null>(null);
-
-  // Position de la fine ligne terracotta entre les deux colonnes (desktop).
+  // Le ✓ BIG apparaît peu après le retournement.
   useEffect(() => {
-    const update = () => {
-      const card = cardsRef.current[active];
-      const col = columnRef.current;
-      if (!card || !col) return;
-      setLineTop(card.offsetTop + card.offsetHeight / 2);
-    };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, [active, medecins.length]);
-
-  // Micro-interaction BIG : le ✓ apparaît peu après la sélection.
-  useEffect(() => {
-    setVerified(false);
-    if (reduced) {
-      setVerified(true);
+    if (!flipped) {
+      setVerified(false);
       return;
     }
     const id = window.setTimeout(() => setVerified(true), 420);
     return () => window.clearTimeout(id);
-  }, [active, reduced]);
+  }, [flipped]);
+
+  return (
+    <div className="min-h-[320px] [perspective:1200px] lg:min-h-[360px]">
+      <button
+        type="button"
+        onClick={() => setFlipped((f) => !f)}
+        aria-pressed={flipped}
+        aria-label={
+          flipped
+            ? t("Revenir au recto de la carte", "Flip the card back")
+            : t(
+                `Retourner la carte pour découvrir le ${medecin.nom}`,
+                `Flip the card to meet ${medecin.nom}`,
+              )
+        }
+        className="group grid h-full w-full text-left [transform-style:preserve-3d]"
+        style={{
+          transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+          transition: "transform 650ms var(--ease)",
+        }}
+      >
+        {/* RECTO */}
+        <span
+          className={cn(
+            "col-start-1 row-start-1 flex h-full w-full overflow-hidden rounded-[28px] p-6 shadow-[0_20px_50px_-40px_var(--foreground)] transition-shadow duration-500 [backface-visibility:hidden] lg:p-8",
+            "group-hover:shadow-[0_50px_100px_-45px_var(--foreground)]",
+          )}
+          style={{ background: medecin.gradient }}
+        >
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.55),transparent_65%)] opacity-70 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
+          />
+          <span className="relative z-10 flex w-full flex-col justify-between">
+            <span>
+              <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-clay-deep/70">
+                {medecin.specialite}
+              </span>
+              <span className="mt-3 flex items-center gap-4">
+                <img
+                  src={medecin.photo}
+                  alt={t(`Portrait du ${medecin.nom}`, `Portrait of ${medecin.nom}`)}
+                  loading="lazy"
+                  width={800}
+                  height={800}
+                  className="h-14 w-14 shrink-0 rounded-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]"
+                />
+                <span className="block text-balance font-section text-2xl font-medium leading-[1.05] tracking-tight text-foreground lg:text-[1.7rem]">
+                  {medecin.nom}
+                </span>
+              </span>
+              <span className="mt-3 block font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/55">
+                {medecin.role} · BIG {medecin.big}
+              </span>
+            </span>
+            <span className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-foreground/80 transition-all duration-300 group-hover:gap-3 group-hover:text-foreground">
+              {t("Retourner la carte", "Flip the card")}
+              <span aria-hidden="true" className="transition-transform duration-500 group-hover:rotate-180">⟳</span>
+            </span>
+          </span>
+        </span>
+
+        {/* VERSO */}
+        <span
+          aria-hidden={!flipped}
+          className="col-start-1 row-start-1 flex h-full w-full overflow-hidden rounded-[28px] bg-foreground shadow-[0_20px_50px_-40px_var(--foreground)] [backface-visibility:hidden] [transform:rotateY(180deg)]"
+        >
+          <span className="flex w-full items-stretch gap-4 p-5 lg:gap-5 lg:p-6">
+            <span className="relative z-10 flex min-w-0 flex-1 flex-col justify-between gap-4 py-1 pl-1 lg:py-2 lg:pl-2">
+              <span>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-cream/25 px-2.5 py-0.5 font-mono text-[10px] tracking-[0.08em] text-cream/80">
+                  {t("Certifié BIG", "BIG certified")} · {medecin.big}
+                  <Check
+                    aria-hidden
+                    strokeWidth={2}
+                    className={cn(
+                      "h-3 w-3 text-clay transition-[opacity,transform] duration-500 ease-[var(--ease)]",
+                      verified ? "scale-100 opacity-100" : "scale-75 opacity-0",
+                    )}
+                  />
+                  <span className="sr-only">{t("Identité vérifiable", "Verifiable identity")}</span>
+                </span>
+                <span className="mt-3 block font-mono text-[10px] uppercase tracking-[0.2em] text-cream/60">
+                  {t("Son approche", "Their approach")}
+                </span>
+                <span className="mt-2 block text-pretty font-display text-[15px] font-medium leading-snug tracking-tight text-cream/95 lg:text-base">
+                  « {medecin.approche} »
+                </span>
+              </span>
+              <span>
+                <span className="block font-mono text-[10px] uppercase tracking-[0.16em] text-cream/50">
+                  {t("Qualifications", "Qualifications")}
+                </span>
+                <span className="mt-2 block space-y-1.5">
+                  {medecin.qualifications.map((q) => (
+                    <span key={q} className="flex items-start gap-2.5 text-[13px] text-cream/75">
+                      <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
+                      {q}
+                    </span>
+                  ))}
+                </span>
+              </span>
+            </span>
+            <img
+              src={medecin.photo}
+              alt={t(`Portrait du ${medecin.nom}`, `Portrait of ${medecin.nom}`)}
+              loading="lazy"
+              width={320}
+              height={400}
+              className="pointer-events-none w-20 shrink-0 self-stretch rounded-2xl object-cover sm:w-24 lg:w-28"
+            />
+          </span>
+        </span>
+      </button>
+    </div>
+  );
+}
+
+export function MedecinsSection() {
+  const { t } = useI18n();
+  const reduced = useReducedMotion();
+  const { ref: sectionRef, shown } = useReveal<HTMLElement>(0.15);
+  const medecins = buildMedecins(t);
+  const garanties = buildGaranties(t);
 
   const seq = (ms: number) => (reduced ? "0ms" : `${ms}ms`);
 
@@ -244,181 +350,16 @@ export function MedecinsSection() {
           )}
         </p>
 
-        <div className="relative mt-10 flex flex-col gap-6 lg:flex-row lg:items-stretch">
-          {/* Colonne cartes */}
-          <div
-            ref={columnRef}
-            role="tablist"
-            aria-orientation="vertical"
-            aria-label={t("Choisir un médecin", "Choose a doctor")}
-            className="relative flex flex-col gap-4 lg:w-5/12"
-          >
-            {medecins.map((doc, i) => {
-              const isActive = active === i;
-              return (
-                <button
-                  key={doc.id}
-                  ref={(el) => {
-                    cardsRef.current[i] = el;
-                  }}
-                  type="button"
-                  role="tab"
-                  id={`medecin-tab-${doc.id}`}
-                  aria-selected={isActive}
-                  aria-controls="medecin-profil"
-                  tabIndex={isActive ? 0 : -1}
-                  onClick={() => setActive(i)}
-                  onKeyDown={(e) => {
-                    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
-                      e.preventDefault();
-                      const n = (i + 1) % medecins.length;
-                      setActive(n);
-                      cardsRef.current[n]?.focus();
-                    }
-                    if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
-                      e.preventDefault();
-                      const n = (i - 1 + medecins.length) % medecins.length;
-                      setActive(n);
-                      cardsRef.current[n]?.focus();
-                    }
-                  }}
-                  style={{ transitionDelay: shown ? seq(640 + i * 130) : "0ms" }}
-                  className={cn(
-                    "group relative cursor-pointer rounded-[16px] border border-border bg-background/60 p-5 text-left",
-                    "transition-[opacity,transform,border-color,background-color,box-shadow] duration-300 ease-out",
-                    "outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-2 focus-visible:ring-offset-cream",
-                    shown ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
-                    !reduced && "hover:-translate-y-[3px]",
-                    "hover:border-clay/45 hover:bg-background hover:shadow-[0_18px_40px_-40px_var(--foreground)]",
-                    isActive &&
-                      "border-clay bg-background shadow-[0_24px_60px_-45px_var(--foreground)]",
-                  )}
-                >
-                  {/* marqueur non chromatique de sélection */}
-                  <span
-                    aria-hidden
-                    className={cn(
-                      "absolute left-0 top-5 bottom-5 w-[2px] origin-top rounded-full bg-clay transition-transform duration-300 ease-out",
-                      isActive ? "scale-y-100" : "scale-y-0",
-                    )}
-                  />
-                  <div className="flex items-center gap-4">
-                    <img
-                      src={doc.photo}
-                      alt={t(
-                        `Portrait du ${doc.nom}, ${doc.role.toLowerCase()}`,
-                        `Portrait of ${doc.nom}, ${doc.role.toLowerCase()}`,
-                      )}
-                      loading="lazy"
-                      width={800}
-                      height={800}
-                      className={cn(
-                        "h-16 w-16 shrink-0 rounded-full object-cover transition-[filter,transform,opacity] duration-300 ease-out",
-                        isActive
-                          ? "scale-[1.03] opacity-100 ring-2 ring-clay ring-offset-2 ring-offset-background [filter:grayscale(0)]"
-                          : "opacity-90 [filter:grayscale(0.75)] group-hover:scale-[1.03] group-hover:opacity-100 group-hover:[filter:grayscale(0)]",
-                      )}
-                    />
-                    <div>
-                      <p className="font-display text-lg font-medium tracking-tight">{doc.nom}</p>
-                      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                        {doc.role} · {doc.specialite}
-                      </p>
-                      <p className="mt-0.5 font-mono text-[10px] tracking-[0.08em] text-clay">
-                        BIG {doc.big}
-                      </p>
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
-
-            {/* Fine ligne terracotta vers le profil (desktop uniquement) */}
-            {lineTop !== null ? (
-              <span
-                aria-hidden
-                style={{ top: lineTop }}
-                className={cn(
-                  "pointer-events-none absolute left-full hidden h-px w-6 origin-left bg-clay/50 transition-[top,transform,opacity] duration-500 ease-[var(--ease)] lg:block",
-                  shown ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0",
-                )}
-              />
-            ) : null}
-          </div>
-
-          {/* Profil détaillé */}
-          <div
-            style={{ transitionDelay: seq(1000) }}
-            className={cn(
-              "transition-[opacity,transform] duration-700 ease-[var(--ease)] lg:w-7/12",
-              shown ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
-            )}
-          >
-            <div
-              id="medecin-profil"
-              role="tabpanel"
-              aria-labelledby={`medecin-tab-${m.id}`}
-              className="flex h-full flex-col rounded-[20px] border border-border bg-background p-6"
-            >
-              <div key={m.id} className="flex h-full flex-col">
-                <div
-                  className={cn(
-                    "flex items-center gap-4",
-                    !reduced && "animate-[rise_0.4s_var(--ease)_both]",
-                  )}
-                >
-                  <MedecinPortrait medecin={m} reduced={reduced} t={t} />
-                  <div>
-                    <p className="font-display text-xl font-medium tracking-tight">{m.nom}</p>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                      {m.role} · {m.specialite}
-                    </p>
-                    <p className="mt-1 inline-flex items-center gap-1.5 rounded-full border border-clay/30 bg-cream px-2.5 py-0.5 font-mono text-[10px] tracking-[0.08em] text-clay">
-                      {t("Certifié BIG", "BIG certified")} · {m.big}
-                      <Check
-                        aria-hidden
-                        strokeWidth={2}
-                        className={cn(
-                          "h-3 w-3 transition-[opacity,transform] duration-500 ease-[var(--ease)]",
-                          verified ? "scale-100 opacity-100" : "scale-75 opacity-0",
-                        )}
-                      />
-                      <span className="sr-only">{t("Identité vérifiable", "Verifiable identity")}</span>
-                    </p>
-                  </div>
-                </div>
-
-                <div
-                  style={{ animationDelay: reduced ? "0ms" : "90ms" }}
-                  className={cn(!reduced && "animate-[rise_0.45s_var(--ease)_both]")}
-                >
-                  <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.16em] text-clay">
-                    {t("Son approche", "Their approach")}
-                  </p>
-                  <p className="mt-2 text-pretty font-display text-xl font-medium leading-snug tracking-tight">
-                    « {m.approche} »
-                  </p>
-                </div>
-
-                <div
-                  style={{ animationDelay: reduced ? "0ms" : "160ms" }}
-                  className={cn(!reduced && "animate-[rise_0.45s_var(--ease)_both]")}
-                >
-                  <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-                    {t("Qualifications", "Qualifications")}
-                  </p>
-                  <ul className="mt-2 space-y-1.5">
-                    {m.qualifications.map((q) => (
-                      <li key={q} className="flex items-start gap-3 text-sm text-muted">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
-                        {q}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div
+          style={{ transitionDelay: seq(640) }}
+          className={cn(
+            "mt-10 grid grid-cols-1 gap-4 transition-[opacity,transform] duration-700 ease-[var(--ease)] sm:grid-cols-2 lg:grid-cols-3",
+            shown ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
+          )}
+        >
+          {medecins.map((doc) => (
+            <MedecinCard key={doc.id} medecin={doc} />
+          ))}
         </div>
 
         <div className="mt-10 grid grid-cols-1 divide-y divide-border/40 md:grid-cols-3 md:divide-x md:divide-y-0">
@@ -428,65 +369,6 @@ export function MedecinsSection() {
         </div>
       </div>
     </section>
-  );
-}
-
-function MedecinPortrait({
-  medecin,
-  reduced,
-  t,
-}: {
-  medecin: Medecin;
-  reduced: boolean;
-  t: (fr: string, en: string) => string;
-}) {
-  const [playing, setPlaying] = useState(false);
-  const hasVideo = Boolean(medecin.video);
-
-  useEffect(() => setPlaying(false), [medecin.id]);
-
-  return (
-    <div className="group/portrait relative shrink-0">
-      <button
-        type="button"
-        disabled={!hasVideo}
-        onClick={() => hasVideo && setPlaying(true)}
-        aria-label={
-          hasVideo
-            ? t(`Rencontrer le ${medecin.nom}`, `Meet ${medecin.nom}`)
-            : t(`Portrait du ${medecin.nom}`, `Portrait of ${medecin.nom}`)
-        }
-        className="block overflow-hidden rounded-full outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-default"
-      >
-        {playing && medecin.video ? (
-          <video
-            src={medecin.video}
-            autoPlay
-            playsInline
-            controls
-            className="h-16 w-16 rounded-full object-cover"
-          />
-        ) : (
-          <img
-            src={medecin.photo}
-            alt={t(`Portrait du ${medecin.nom}`, `Portrait of ${medecin.nom}`)}
-            loading="lazy"
-            width={800}
-            height={800}
-            className={cn(
-              "h-16 w-16 rounded-full object-cover transition-transform duration-300 ease-out",
-              !reduced && "group-hover/portrait:scale-[1.04]",
-            )}
-          />
-        )}
-      </button>
-      {hasVideo ? (
-        <span className="pointer-events-none absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 whitespace-nowrap rounded-full border border-clay/30 bg-cream px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.12em] text-clay opacity-0 transition-opacity duration-300 group-hover/portrait:opacity-100">
-          {t(`Rencontrer le Dr ${medecin.prenom}`, `Meet Dr ${medecin.prenom}`)}
-          <ArrowRight aria-hidden className="ml-1 inline h-3 w-3" />
-        </span>
-      ) : null}
-    </div>
   );
 }
 
