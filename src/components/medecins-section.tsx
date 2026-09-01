@@ -221,8 +221,14 @@ function MedecinCard({ medecin }: { medecin: Medecin }) {
               <span className="mt-3 block font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/55">
                 {medecin.role} · BIG {medecin.big}
               </span>
+              <span className="mt-5 block font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/60">
+                {t("Son approche", "Their approach")}
+              </span>
+              <span className="mt-2 block max-w-[34ch] text-pretty font-display text-[15px] font-medium leading-snug tracking-tight text-foreground/90 lg:text-base">
+                « {medecin.approche} »
+              </span>
             </span>
-            <span className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-foreground/80 transition-all duration-300 group-hover:gap-3 group-hover:text-foreground">
+            <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-foreground/80 transition-all duration-300 group-hover:gap-3 group-hover:text-foreground">
               {t("Retourner la carte", "Flip the card")}
               <span aria-hidden="true" className="transition-transform duration-500 group-hover:rotate-180">⟳</span>
             </span>
@@ -234,50 +240,36 @@ function MedecinCard({ medecin }: { medecin: Medecin }) {
           aria-hidden={!flipped}
           className="col-start-1 row-start-1 flex h-full w-full overflow-hidden rounded-[28px] bg-foreground shadow-[0_20px_50px_-40px_var(--foreground)] [backface-visibility:hidden] [transform:rotateY(180deg)]"
         >
-          <span className="flex w-full items-stretch gap-4 p-5 lg:gap-5 lg:p-6">
-            <span className="relative z-10 flex min-w-0 flex-1 flex-col justify-between gap-4 py-1 pl-1 lg:py-2 lg:pl-2">
-              <span>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-cream/25 px-2.5 py-0.5 font-mono text-[10px] tracking-[0.08em] text-cream/80">
-                  {t("Certifié BIG", "BIG certified")} · {medecin.big}
-                  <Check
-                    aria-hidden
-                    strokeWidth={2}
-                    className={cn(
-                      "h-3 w-3 text-clay transition-[opacity,transform] duration-500 ease-[var(--ease)]",
-                      verified ? "scale-100 opacity-100" : "scale-75 opacity-0",
-                    )}
-                  />
-                  <span className="sr-only">{t("Identité vérifiable", "Verifiable identity")}</span>
-                </span>
-                <span className="mt-3 block font-mono text-[10px] uppercase tracking-[0.2em] text-cream/60">
-                  {t("Son approche", "Their approach")}
-                </span>
-                <span className="mt-2 block text-pretty font-display text-[15px] font-medium leading-snug tracking-tight text-cream/95 lg:text-base">
-                  « {medecin.approche} »
-                </span>
+          <span className="flex w-full flex-col justify-between gap-4 p-6 lg:p-8">
+            <span>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-cream/25 px-2.5 py-0.5 font-mono text-[10px] tracking-[0.08em] text-cream/80">
+                {t("Certifié BIG", "BIG certified")} · {medecin.big}
+                <Check
+                  aria-hidden
+                  strokeWidth={2}
+                  className={cn(
+                    "h-3 w-3 text-clay transition-[opacity,transform] duration-500 ease-[var(--ease)]",
+                    verified ? "scale-100 opacity-100" : "scale-75 opacity-0",
+                  )}
+                />
+                <span className="sr-only">{t("Identité vérifiable", "Verifiable identity")}</span>
               </span>
-              <span>
-                <span className="block font-mono text-[10px] uppercase tracking-[0.16em] text-cream/50">
-                  {t("Qualifications", "Qualifications")}
-                </span>
-                <span className="mt-2 block space-y-1.5">
-                  {medecin.qualifications.map((q) => (
-                    <span key={q} className="flex items-start gap-2.5 text-[13px] text-cream/75">
-                      <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
-                      {q}
-                    </span>
-                  ))}
-                </span>
+              <span className="mt-5 block font-mono text-[10px] uppercase tracking-[0.16em] text-cream/50">
+                {t("Qualifications", "Qualifications")}
+              </span>
+              <span className="mt-2 block space-y-2">
+                {medecin.qualifications.map((q) => (
+                  <span key={q} className="flex items-start gap-2.5 text-[13px] text-cream/75">
+                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
+                    {q}
+                  </span>
+                ))}
               </span>
             </span>
-            <img
-              src={medecin.photo}
-              alt={t(`Portrait du ${medecin.nom}`, `Portrait of ${medecin.nom}`)}
-              loading="lazy"
-              width={320}
-              height={400}
-              className="pointer-events-none w-20 shrink-0 self-stretch rounded-2xl object-cover sm:w-24 lg:w-28"
-            />
+            <span className="inline-flex items-center gap-2 text-sm font-medium text-cream/70 transition-all duration-300 group-hover:gap-3 group-hover:text-cream">
+              {t("Retourner la carte", "Flip the card")}
+              <span aria-hidden="true" className="transition-transform duration-500 group-hover:-rotate-180">⟳</span>
+            </span>
           </span>
         </span>
       </button>
