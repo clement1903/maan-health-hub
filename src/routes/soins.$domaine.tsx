@@ -194,6 +194,7 @@ function DomainePage() {
 
 export function DomaineView({ slug, produitId }: { slug: string; produitId: string | null }) {
   const { t, lang } = useI18n();
+  const navigate = useNavigate();
   const domaine = getDomaine(slug, lang) ?? getDomaine(slug, "fr")!;
   const produitSearch = produitId ?? undefined;
   const [openFaq, setOpenFaq] = useState<number | null>(0);
