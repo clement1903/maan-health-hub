@@ -175,12 +175,12 @@ export function HairHeroCampaign({ variant = "A" }: { variant?: CampaignVariant 
         <div className="absolute inset-x-0 bottom-0 z-10">
           <div className="mx-auto max-w-6xl px-6 pb-12 lg:pb-16">
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">Hair Management</p>
-            <h1
+            <h2
               key={String(step) + variant}
               className="mt-5 max-w-[20ch] animate-fade-in text-balance font-section text-[2.4rem] font-medium leading-[0.98] tracking-tight lg:text-[4.4rem]"
             >
               {headline}
-            </h1>
+            </h2>
 
             <div
               className={cn(
@@ -200,12 +200,6 @@ export function HairHeroCampaign({ variant = "A" }: { variant?: CampaignVariant 
                   {t("Découvrir les solutions", "Discover the options")}
                   <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </Link>
-                <a
-                  href="#comprendre"
-                  className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted transition-colors hover:text-foreground"
-                >
-                  {t("En savoir plus", "Learn more")}
-                </a>
               </div>
             </div>
           </div>
