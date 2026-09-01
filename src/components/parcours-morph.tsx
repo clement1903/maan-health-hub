@@ -652,37 +652,6 @@ function ConsultationScreen({ p }: { p: number }) {
   );
 }
 
-function ColisSurface() {
-  const { t } = useI18n();
-  return (
-    <div className="relative h-full w-full">
-      {/* rabats + ruban kraft */}
-      <div className="absolute inset-x-0 top-1/2 h-[10px] -translate-y-1/2 bg-[oklch(0.72_0.07_64)]/70" />
-      <div className="absolute inset-y-0 left-1/2 w-[7px] -translate-x-1/2 bg-[oklch(0.72_0.07_64)]/45" />
-      {/* étiquette logistique neutre */}
-      <div className="absolute left-6 top-6 w-[128px] rounded-[4px] bg-cream/95 px-2.5 py-2 shadow-[0_10px_24px_-18px_var(--foreground)]">
-        <div className="h-1 w-10 bg-foreground/70" />
-        <div className="mt-1.5 space-y-1">
-          <div className="h-[3px] w-full bg-foreground/25" />
-          <div className="h-[3px] w-4/5 bg-foreground/20" />
-          <div className="h-[3px] w-3/5 bg-foreground/15" />
-        </div>
-        <div className="mt-2 flex gap-[2px]">
-          {Array.from({ length: 22 }).map((_, i) => (
-            <span
-              key={i}
-              className="block h-4 bg-foreground/70"
-              style={{ width: i % 3 === 0 ? 2 : 1 }}
-            />
-          ))}
-        </div>
-      </div>
-      <p className="absolute bottom-5 right-6 font-mono text-[9px] uppercase tracking-[0.16em] text-[oklch(0.36_0.04_60)]">
-        {t("Colis standard", "Standard parcel")}
-      </p>
-    </div>
-  );
-}
 
 function SuiviScreen({ p, radius }: { p: number; radius: number }) {
   const { t } = useI18n();
