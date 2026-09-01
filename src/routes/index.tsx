@@ -22,7 +22,7 @@ import type { Soin } from "@/components/soins-showcase";
 import { Bento3D } from "@/components/bento-3d";
 
 
-import { ParcoursStepper, type Etape } from "@/components/parcours-stepper";
+import { ParcoursMorph } from "@/components/parcours-morph";
 import { MedecinsSection } from "@/components/medecins-section";
 import { Temoignages } from "@/components/temoignages";
 import { MotFondateur } from "@/components/mot-fondateur";
@@ -305,7 +305,6 @@ function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const { t } = useI18n();
   const soins = buildSoins(t);
-  const etapes = buildEtapes(t);
   const faq = buildFaq(t);
   const marqueeItems = buildMarquee(t);
 
