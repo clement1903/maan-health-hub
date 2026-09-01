@@ -42,7 +42,7 @@ export function WeightHeroCampaign() {
           width={1536}
           height={1024}
           className="h-full w-full object-cover"
-          style={{ objectPosition: "center bottom" }}
+          style={{ objectPosition: "center 22%" }}
         />
         {/* dégradé qui « absorbe » la photo dans le fond à gauche */}
         <span
