@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ShieldCheck, Lock, Scale, ArrowRight, Check } from "lucide-react";
 
 import medecin1 from "@/assets/medecin-1.jpg";
@@ -163,7 +163,7 @@ export function MedecinsSection() {
   const [lineTop, setLineTop] = useState<number | null>(null);
 
   // Position de la fine ligne terracotta entre les deux colonnes (desktop).
-  useLayoutEffect(() => {
+  useEffect(() => {
     const update = () => {
       const card = cardsRef.current[active];
       const col = columnRef.current;
@@ -187,11 +187,6 @@ export function MedecinsSection() {
   }, [active, reduced]);
 
   const seq = (ms: number) => (reduced ? "0ms" : `${ms}ms`);
-  const rise = (delay: number) =>
-    cn(
-      "transition-[opacity,transform] duration-700 ease-[var(--ease)]",
-      shown ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
-    ) + ` [transition-delay:${delay}ms]`;
 
   return (
     <section
