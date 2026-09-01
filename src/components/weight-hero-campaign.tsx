@@ -89,12 +89,14 @@ export function WeightHeroCampaign() {
                 {t("Découvrir Weight Management", "Discover Weight Management")}
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </Link>
-              <a
-                href="#medicaments"
-                className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#f3ece2]/80 underline decoration-clay/60 decoration-2 underline-offset-[8px] transition-all hover:decoration-clay"
+              <Link
+                to="/questionnaire/$slug"
+                params={{ slug: "poids" }}
+                className="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-[#f3ece2]/80 underline decoration-clay/60 decoration-2 underline-offset-[8px] transition-all hover:decoration-clay"
               >
-                {t("En savoir plus", "Learn more")}
-              </a>
+                {t("Commencer la consultation", "Start consultation")}
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </Link>
             </div>
           </Reveal>
         </div>
