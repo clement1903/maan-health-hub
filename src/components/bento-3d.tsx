@@ -70,27 +70,39 @@ function BentoCard({ card }: { card: Card }) {
         {/* VERSO */}
         <span
           aria-hidden={!flipped}
-          className="col-start-1 row-start-1 flex h-full w-full overflow-hidden rounded-[28px] bg-foreground p-6 shadow-[0_20px_50px_-40px_var(--foreground)] [backface-visibility:hidden] [transform:rotateY(180deg)] lg:p-8"
+          className="col-start-1 row-start-1 flex h-full w-full overflow-hidden rounded-[28px] bg-foreground shadow-[0_20px_50px_-40px_var(--foreground)] [backface-visibility:hidden] [transform:rotateY(180deg)]"
         >
-          <span className="relative z-10 flex w-full flex-col justify-between gap-6">
-            <span>
-              <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-cream/60">
-                {card.accent}
+          <span className="flex w-full items-stretch gap-4 p-4 lg:gap-5 lg:p-5">
+            <span className="relative z-10 flex min-w-0 flex-1 flex-col justify-between gap-4 py-1 pl-1 lg:py-2 lg:pl-2">
+              <span>
+                <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-cream/60">
+                  {card.accent}
+                </span>
+                <span className="mt-3 block text-pretty text-[13px] leading-relaxed text-cream/90 lg:text-sm">
+                  {card.desc}
+                </span>
               </span>
-              <span className="mt-3 block max-w-[46ch] text-pretty text-[13px] leading-relaxed text-cream/90 lg:text-sm">
-                {card.desc}
-              </span>
+              <Link
+                to="/soins/$domaine"
+                params={{ domaine: card.slug }}
+                search={{ produit: undefined }}
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex w-fit items-center gap-2 rounded-full bg-cream px-4 py-2 text-[13px] font-medium text-foreground transition-all duration-300 hover:gap-3"
+              >
+                {card.cta}
+                <span aria-hidden="true">→</span>
+              </Link>
             </span>
-            <Link
-              to="/soins/$domaine"
-              params={{ domaine: card.slug }}
-              search={{ produit: undefined }}
-              onClick={(e) => e.stopPropagation()}
-              className="inline-flex w-fit items-center gap-2 rounded-full bg-cream px-5 py-2.5 text-sm font-medium text-foreground transition-all duration-300 hover:gap-3"
-            >
-              {card.cta}
-              <span aria-hidden="true">→</span>
-            </Link>
+            {card.img && (
+              <img
+                src={card.img}
+                alt={card.alt}
+                loading="lazy"
+                width={320}
+                height={400}
+                className="pointer-events-none w-20 shrink-0 self-stretch rounded-2xl object-cover sm:w-24 lg:w-28"
+              />
+            )}
           </span>
         </span>
       </button>
