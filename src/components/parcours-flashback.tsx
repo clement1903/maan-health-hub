@@ -234,8 +234,8 @@ export function ParcoursFlashback() {
   }
 
   const activeIndex = bounds.findIndex((b, i) => p < b.end || i === shots.length - 1);
-  const activeShot = shots[Math.max(0, activeIndex)];
-  const finalPhase = smooth(clamp01((p - bounds[shots.length - 1].start - 0.02) / 0.08));
+  const activeShot = shots[Math.max(0, activeIndex)]!;
+  const finalPhase = smooth(clamp01((p - bounds[shots.length - 1]!.start - 0.02) / 0.08));
 
   if (reduced) {
     return (
@@ -286,7 +286,7 @@ export function ParcoursFlashback() {
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-foreground">
         {/* Le film */}
         {shots.map((s, i) => {
-          const { start, end } = bounds[i];
+          const { start, end } = bounds[i]!;
           const span = end - start;
           const local = clamp01((p - start) / span);
           const fadeIn = smooth(clamp01((p - start) / (span * 0.22)));
@@ -325,7 +325,7 @@ export function ParcoursFlashback() {
         {/* Overlays HTML */}
         {shots.map((s, i) => {
           if (!s.title) return null;
-          const { start, end } = bounds[i];
+          const { start, end } = bounds[i]!;
           const span = end - start;
           const local = clamp01((p - start) / span);
           const isLast = i === shots.length - 1;
