@@ -14,7 +14,6 @@ export function SiteHeader() {
   const nav = [
     { to: "/parcours", label: t("Parcours", "How it works") },
     { to: "/conformite", label: t("Conformité", "Compliance") },
-    { to: "/mon-espace", label: t("Mon espace", "My area") },
     { to: "/espace-patient", label: t("Espace patient", "Patient area") },
   ];
 
@@ -51,6 +50,13 @@ export function SiteHeader() {
           </span>
         </Link>
         <nav className="hidden items-center gap-8 font-mono text-[11px] uppercase tracking-[0.15em] text-muted lg:flex">
+          <Link
+            to="/"
+            activeProps={{ className: "text-foreground" }}
+            className="relative py-1 transition-colors hover:text-foreground after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-clay after:transition-transform after:duration-500 after:ease-[var(--ease)] hover:after:scale-x-100"
+          >
+            {t("Accueil", "Home")}
+          </Link>
           <div className="group relative">
             <button
               type="button"
@@ -106,7 +112,7 @@ export function SiteHeader() {
             to="/espace-patient"
             className="group relative overflow-hidden rounded-full bg-clay px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:bg-clay-deep"
           >
-            <span className="relative z-10">{t("Démarrer", "Get started")}</span>
+            <span className="relative z-10">{t("Se connecter", "Sign in")}</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-cream/25 to-transparent transition-transform duration-700 ease-[var(--ease)] group-hover:translate-x-full" />
           </Link>
         </div>
