@@ -26,6 +26,7 @@ export function HighlightText({ text, keywords, className }: HighlightTextProps)
       // On active les mots dans l'ordre d'apparition dans le texte.
       pending.sort((a, b) => (orderRef.current.get(a) ?? 0) - (orderRef.current.get(b) ?? 0));
       const next = pending[0];
+      if (!next) return;
       pendingRef.current.delete(next);
       setVisible((prev) => new Set([...prev, next]));
 
