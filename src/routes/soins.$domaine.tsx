@@ -15,6 +15,8 @@ import { HairCampaign } from "@/components/hair-campaign";
 import { HairHeroCampaign } from "@/components/hair-hero-campaign";
 import { WeightHeroCampaign } from "@/components/weight-hero-campaign";
 import { SexuelHeroCampaign } from "@/components/sexuel-hero-campaign";
+import { SkinHeroCampaign } from "@/components/skin-hero-campaign";
+
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/soins/$domaine")({
@@ -266,7 +268,9 @@ function DomainePage() {
       <SiteHeader />
       <main className="flex-1">
         {domaine.slug === "sexuel" && <SexuelHeroCampaign />}
-        {domaine.slug !== "sexuel" && (
+        {domaine.slug === "peau" && <SkinHeroCampaign />}
+        {domaine.slug !== "sexuel" && domaine.slug !== "peau" && (
+
         <section className="border-b border-border">
           <div className="mx-auto max-w-6xl px-6 py-14 lg:py-16">
             <Reveal>
