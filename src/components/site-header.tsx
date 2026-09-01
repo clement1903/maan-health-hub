@@ -75,13 +75,8 @@ export function SiteHeader() {
                     search={{ produit: undefined }}
                     className="group/item flex items-center justify-between gap-3 rounded-[12px] px-4 py-3 transition-colors duration-300 hover:bg-cream"
                   >
-                    <span className="min-w-0">
-                      <span className="block text-[11px] uppercase tracking-[0.14em] text-foreground">
-                        {d.titre}
-                      </span>
-                      <span className="mt-0.5 block font-sans text-xs normal-case tracking-normal text-muted">
-                        {d.tag}
-                      </span>
+                    <span className="min-w-0 text-[11px] uppercase tracking-[0.14em] text-foreground">
+                      {d.titre}
                     </span>
                     <span
                       aria-hidden
