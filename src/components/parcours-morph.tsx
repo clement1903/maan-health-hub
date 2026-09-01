@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Mic, Video, PhoneOff, Check, Bell } from "lucide-react";
 import medecinVisio from "@/assets/parcours-medecin-visio.jpg";
 import patientVisio from "@/assets/temoin-1.jpg";
+import colisKraft from "@/assets/colis-kraft.png";
 import { useI18n } from "@/lib/i18n";
 import { Typewriter } from "@/components/typewriter";
 import { cn } from "@/lib/utils";
@@ -321,15 +322,23 @@ function MorphObject({ p, g }: { p: number; g: Stage }) {
         style={{ borderRadius: g.r, opacity: clamp(shellDark + phoneShell * 0.96) }}
       />
       <div
-        className="absolute inset-0"
-        style={{
-          borderRadius: g.r,
-          opacity: kraft,
-          background:
-            "repeating-linear-gradient(102deg, oklch(0.78 0.055 68) 0 3px, oklch(0.755 0.06 66) 3px 6px)",
-          boxShadow: "inset 0 -40px 60px -40px oklch(0.5 0.06 60)",
-        }}
-      />
+        className="absolute inset-0 overflow-hidden"
+        style={{ borderRadius: g.r, opacity: kraft }}
+      >
+        <img
+          src={colisKraft}
+          alt=""
+          aria-hidden
+          width={1024}
+          height={1024}
+          loading="lazy"
+          className="h-full w-full object-cover"
+          style={{
+            transform: `scale(${1.12 + kraft * 0.06})`,
+            filter: "drop-shadow(0 30px 40px oklch(0.35 0.04 60 / 0.25))",
+          }}
+        />
+      </div>
       {/* reflet très discret */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -356,10 +365,6 @@ function MorphObject({ p, g }: { p: number; g: Stage }) {
         <ConsultationScreen p={p} />
       </Layer>
 
-      {/* 03 — colis */}
-      <Layer o={band(p, 0.8, 0.84, 0.9, 0.93)}>
-        <ColisSurface />
-      </Layer>
 
       {/* 04 — espace patient */}
       <Layer o={band(p, 0.94, 0.965, 1.02, 1.03)}>
@@ -647,37 +652,6 @@ function ConsultationScreen({ p }: { p: number }) {
   );
 }
 
-function ColisSurface() {
-  const { t } = useI18n();
-  return (
-    <div className="relative h-full w-full">
-      {/* rabats + ruban kraft */}
-      <div className="absolute inset-x-0 top-1/2 h-[10px] -translate-y-1/2 bg-[oklch(0.72_0.07_64)]/70" />
-      <div className="absolute inset-y-0 left-1/2 w-[7px] -translate-x-1/2 bg-[oklch(0.72_0.07_64)]/45" />
-      {/* étiquette logistique neutre */}
-      <div className="absolute left-6 top-6 w-[128px] rounded-[4px] bg-cream/95 px-2.5 py-2 shadow-[0_10px_24px_-18px_var(--foreground)]">
-        <div className="h-1 w-10 bg-foreground/70" />
-        <div className="mt-1.5 space-y-1">
-          <div className="h-[3px] w-full bg-foreground/25" />
-          <div className="h-[3px] w-4/5 bg-foreground/20" />
-          <div className="h-[3px] w-3/5 bg-foreground/15" />
-        </div>
-        <div className="mt-2 flex gap-[2px]">
-          {Array.from({ length: 22 }).map((_, i) => (
-            <span
-              key={i}
-              className="block h-4 bg-foreground/70"
-              style={{ width: i % 3 === 0 ? 2 : 1 }}
-            />
-          ))}
-        </div>
-      </div>
-      <p className="absolute bottom-5 right-6 font-mono text-[9px] uppercase tracking-[0.16em] text-[oklch(0.36_0.04_60)]">
-        {t("Colis standard", "Standard parcel")}
-      </p>
-    </div>
-  );
-}
 
 function SuiviScreen({ p, radius }: { p: number; radius: number }) {
   const { t } = useI18n();
