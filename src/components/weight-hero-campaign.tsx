@@ -47,6 +47,12 @@ export function WeightHeroCampaign() {
                 width={1536}
                 height={1024}
                 className="aspect-[3/2] w-full object-cover"
+                style={{
+                  maskImage:
+                    "linear-gradient(90deg, transparent 0%, #120e0a 8%, #120e0a 92%, transparent 100%), linear-gradient(180deg, transparent 0%, #120e0a 6%, #120e0a 94%, transparent 100%)",
+                  WebkitMaskImage:
+                    "linear-gradient(90deg, transparent 0%, #120e0a 8%, #120e0a 92%, transparent 100%), linear-gradient(180deg, transparent 0%, #120e0a 6%, #120e0a 94%, transparent 100%)",
+                }}
               />
               {/* dégradé qui « absorbe » la photo dans le fond à gauche */}
               <span
