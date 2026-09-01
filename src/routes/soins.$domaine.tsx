@@ -256,6 +256,7 @@ function DomainePage() {
   const domaine = getDomaine(domaineFr.slug, lang) ?? domaineFr;
   const { produit: produitSearch } = Route.useSearch();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [cardTilt, setCardTilt] = useState({ rx: 0, ry: 0 });
   const [activeProduit, setActiveProduit] = useState(() => {
     const idx = domaine.produits.findIndex((p) => p.id === produitSearch);
     return idx >= 0 ? idx : 0;
@@ -469,6 +470,7 @@ function DomainePage() {
                     produitId={produit.id}
                     alt={produit.nom}
                     className="-mt-2 w-24 sm:w-28"
+                    tilt={cardTilt}
                   />
                 </div>
 
