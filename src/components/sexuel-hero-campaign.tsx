@@ -15,9 +15,9 @@ import elevatorPoster from "@/assets/sexuel/elevator-down-poster.jpg";
  */
 
 // Repères temporels (en secondes de lecture vidéo)
-const T_TITLE = 8.0; // « Ça devait monter. » — après la pause sur le RDC
-const T_SUB = 9.0; // « Ça arrive. »
-const T_BRAND = 9.6; // MAAN — Sexual Management + CTA
+const T_TITLE = 9.1; // « Ça devait monter. » — après la réaction de l'homme
+const T_SUB = 9.5; // « Ça arrive. »
+const T_BRAND = 9.8; // MAAN — Sexual Management + CTA
 const HOLD_AFTER_END_MS = 5000; // on laisse la dernière scène respirer
 const RESTART_FADE_MS = 700;
 
