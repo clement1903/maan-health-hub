@@ -61,7 +61,7 @@ export function ProduitFloating3D({
         loading="lazy"
         width={768}
         height={768}
-        className="relative w-full select-none drop-shadow-[0_24px_28px_rgba(0,0,0,0.18)]"
+        className="relative w-full select-none drop-shadow-[0_14px_22px_rgba(0,0,0,0.16)]"
         style={{
           transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
           transition: "transform 600ms var(--ease)",
