@@ -58,19 +58,6 @@ export function WeightHeroCampaign() {
                 className="pointer-events-none absolute inset-0 rounded-[24px] ring-1 ring-inset ring-[#f3ece2]/10"
               />
 
-              {/* plaque de musée flottante, posée sur le cadre */}
-              <div
-                aria-hidden
-                className="absolute -bottom-5 right-6 rotate-[-2deg] rounded-lg border border-[#f3ece2]/15 bg-[#120e0a]/85 px-4 py-2.5 shadow-[0_20px_40px_-20px_rgba(0,0,0,0.9)] backdrop-blur-md lg:-right-5"
-                style={{ transform: `translateY(${-textShift * 0.6}px) rotate(-2deg)` }}
-              >
-                <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-clay">
-                  {t("Pièce n° 01 — collection personnelle", "Item n° 01 — personal collection")}
-                </p>
-                <p className="mt-1 font-section text-sm italic text-[#f3ece2]/85">
-                  {t("Dernière apparition : été 2022", "Last seen: summer 2022")}
-                </p>
-              </div>
             </figure>
           </Reveal>
 
