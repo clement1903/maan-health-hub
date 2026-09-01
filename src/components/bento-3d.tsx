@@ -37,6 +37,7 @@ function BentoCard({ card }: { card: Card }) {
         style={{
           transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
           transition: "transform 650ms var(--ease)",
+          willChange: "transform",
         }}
       >
         {/* RECTO */}
