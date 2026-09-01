@@ -107,7 +107,7 @@ export function SkinHeroCampaign() {
               params={{ slug: "peau" }}
               className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm text-background transition-colors hover:bg-clay"
             >
-              {t("En parler", "Let's talk")}
+              {t("Commencer la consultation", "Start consultation")}
               <span aria-hidden>→</span>
             </Link>
           </div>

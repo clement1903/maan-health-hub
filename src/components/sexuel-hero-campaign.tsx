@@ -131,7 +131,7 @@ export function SexuelHeroCampaign() {
               params={{ slug: "sexuel" }}
               className="group inline-flex items-center gap-2 text-sm font-medium text-[#f3ece2] transition-colors hover:text-clay"
             >
-              {t("En parler", "Talk about it")}
+              {t("Commencer la consultation", "Start consultation")}
               <span
                 aria-hidden
                 className="transition-transform duration-300 group-hover:translate-x-1"
