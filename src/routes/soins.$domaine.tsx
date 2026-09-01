@@ -187,10 +187,14 @@ function DomaineIntrouvable() {
 }
 
 function DomainePage() {
-  const { domaine: domaineFr } = Route.useLoaderData();
+  const { domaine: domaineFr, produit } = Route.useLoaderData();
+  return <DomaineView slug={domaineFr.slug} produitId={produit?.id ?? null} />;
+}
+
+export function DomaineView({ slug, produitId }: { slug: string; produitId: string | null }) {
   const { t, lang } = useI18n();
-  const domaine = getDomaine(domaineFr.slug, lang) ?? domaineFr;
-  const { produit: produitSearch } = Route.useSearch();
+  const domaine = getDomaine(slug, lang) ?? getDomaine(slug, "fr")!;
+  const produitSearch = produitId ?? undefined;
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [productMotion, setProductMotion] = useState({ x: 0, y: 0, rx: 0, ry: 0 });
   const [activeProduit, setActiveProduit] = useState(() => {
@@ -199,6 +203,7 @@ function DomainePage() {
   });
   const produit = domaine.produits[activeProduit] ?? domaine.produits[0]!;
   const produitSeul = domaine.produits.some((p) => p.id === produitSearch);
+
 
   return (
     <div className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
