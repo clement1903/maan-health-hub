@@ -91,12 +91,6 @@ export function SiteHeader() {
                     </span>
                   </Link>
                 ))}
-                <Link
-                  to="/soins"
-                  className="mt-1 block rounded-[12px] border-t border-transparent px-4 py-3 text-[10px] uppercase tracking-[0.14em] text-clay transition-colors duration-300 hover:bg-cream"
-                >
-                  {t("Tous nos soins", "All our treatments")} →
-                </Link>
               </div>
             </div>
           </div>
