@@ -46,7 +46,7 @@ function BentoCard({ card }: { card: Card }) {
             "col-start-1 row-start-1 flex h-full w-full overflow-hidden rounded-[28px] p-6 shadow-[0_20px_50px_-40px_var(--foreground)] transition-shadow duration-500 [backface-visibility:hidden] lg:p-8",
             "group-hover:shadow-[0_50px_100px_-45px_var(--foreground)]",
           )}
-          style={{ background: card.gradient }}
+          style={{ background: card.gradient, transform: "translateZ(1px)" }}
         >
           <span
             aria-hidden="true"
