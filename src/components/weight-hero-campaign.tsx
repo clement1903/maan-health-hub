@@ -86,14 +86,6 @@ export function WeightHeroCampaign() {
                 params={{ slug: "poids" }}
                 className="group inline-flex items-center gap-2 rounded-full bg-clay px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.16em] text-cream shadow-[0_20px_40px_-18px_rgba(196,120,84,0.7)] transition-all duration-300 hover:brightness-110"
               >
-                {t("Découvrir Weight Management", "Discover Weight Management")}
-                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-              </Link>
-              <Link
-                to="/questionnaire/$slug"
-                params={{ slug: "poids" }}
-                className="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-[#f3ece2]/80 underline decoration-clay/60 decoration-2 underline-offset-[8px] transition-all hover:decoration-clay"
-              >
                 {t("Commencer la consultation", "Start consultation")}
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </Link>
