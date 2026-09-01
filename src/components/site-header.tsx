@@ -52,11 +52,10 @@ export function SiteHeader() {
         </Link>
         <nav className="hidden items-center gap-8 font-mono text-[11px] uppercase tracking-[0.15em] text-muted lg:flex">
           <div className="group relative">
-            <Link
-              to="/soins"
-              activeProps={{ className: "text-foreground" }}
+            <button
+              type="button"
               aria-haspopup="true"
-              className="relative inline-flex items-center gap-1.5 py-4 transition-colors hover:text-foreground after:absolute after:bottom-3 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-clay after:transition-transform after:duration-500 after:ease-[var(--ease)] hover:after:scale-x-100"
+              className="relative inline-flex cursor-default items-center gap-1.5 py-4 uppercase tracking-[0.15em] transition-colors group-hover:text-foreground"
             >
               {t("Soins", "Treatments")}
               <span
@@ -65,7 +64,7 @@ export function SiteHeader() {
               >
                 ▼
               </span>
-            </Link>
+            </button>
             <div className="invisible absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 translate-y-2 pt-0 opacity-0 transition-all duration-300 ease-[var(--ease)] group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
               <div className="overflow-hidden rounded-[18px] border border-border bg-background p-2 shadow-[0_30px_70px_-45px_var(--foreground)]">
                 {domaines.map((d) => (
@@ -92,12 +91,6 @@ export function SiteHeader() {
                     </span>
                   </Link>
                 ))}
-                <Link
-                  to="/soins"
-                  className="mt-1 block rounded-[12px] border-t border-transparent px-4 py-3 text-[10px] uppercase tracking-[0.14em] text-clay transition-colors duration-300 hover:bg-cream"
-                >
-                  {t("Tous nos soins", "All our treatments")} →
-                </Link>
               </div>
             </div>
           </div>

@@ -429,7 +429,8 @@ function DomainePage() {
             {produitSeul && (
               <div className="mt-6">
                 <Link
-                  to="/soins"
+                  to="."
+                  search={{ produit: undefined }}
                   className="text-sm font-medium underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
                 >
                   {t("← Retour", "← Back")}
