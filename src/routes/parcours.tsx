@@ -232,7 +232,7 @@ function ParcoursPage() {
               <span className="text-clay">{t("commence maintenant.", "starts now.")}</span>
             </h2>
           </Reveal>
-          <Reveal delay={120} className="mt-12 flex flex-col items-center gap-6">
+          <Reveal delay={120} className="mt-12">
             <Link
               to="/questionnaire"
               className="group inline-flex items-center gap-2 rounded-full bg-clay px-12 py-6 text-lg font-medium text-cream transition-all duration-500 ease-[var(--ease)] hover:gap-4 hover:bg-clay-deep"
@@ -240,7 +240,6 @@ function ParcoursPage() {
               {t("Commencer mon évaluation", "Start my assessment")}
               <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
             </Link>
-            <Eyebrow>{t("Quelques minutes · Sans engagement", "A few minutes · No commitment")}</Eyebrow>
           </Reveal>
         </section>
       </main>
