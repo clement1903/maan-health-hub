@@ -308,12 +308,8 @@ function DomainePage() {
                     )}
                   </p>
                 </div>
-                <Floating3D
-                  domaine={domaine.slug}
-                  alt={t(`Visuel 3D — ${domaine.tag}`, `3D visual — ${domaine.tag}`)}
-                  className="mx-auto hidden w-full max-w-[260px] lg:col-span-4 lg:block"
-                />
               </div>
+
             </Reveal>
           </div>
         </section>
