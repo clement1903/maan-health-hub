@@ -495,20 +495,8 @@ function Home() {
           </div>
         </section>
 
-        {/* PARCOURS */}
-        <section id="parcours" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16 lg:py-24">
-          <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-              {t("Le parcours", "How it works")}
-            </p>
-            <h2 className="mt-3 max-w-[24ch] text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
-              {t("Quatre étapes, sans déplacement.", "Four steps, without leaving home.")}
-            </h2>
-          </Reveal>
-          <Reveal delay={80}>
-            <ParcoursStepper etapes={etapes} />
-          </Reveal>
-        </section>
+        {/* PARCOURS — métamorphose 3D pilotée par le scroll */}
+        <ParcoursMorph />
 
         <MedecinsSection />
 
