@@ -359,7 +359,7 @@ export function DomaineView({ slug, produitId }: { slug: string; produitId: stri
               {domaine.produits.map((p, i) => (
                 <Link
                   key={p.id}
-                  to="/soins/$domaine_/$produit"
+                  to="/soins/$domaine/$produit"
                   params={{ domaine: domaine.slug, produit: p.id }}
                   onClick={() => setActiveProduit(i)}
                   aria-current={activeProduit === i ? "page" : undefined}
