@@ -365,10 +365,6 @@ function MorphObject({ p, g }: { p: number; g: Stage }) {
         <ConsultationScreen p={p} />
       </Layer>
 
-      {/* 03 — colis */}
-      <Layer o={band(p, 0.8, 0.84, 0.9, 0.93)}>
-        <ColisSurface />
-      </Layer>
 
       {/* 04 — espace patient */}
       <Layer o={band(p, 0.94, 0.965, 1.02, 1.03)}>
