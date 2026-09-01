@@ -47,17 +47,19 @@ export function WeightHeroCampaign() {
                 width={1536}
                 height={1024}
                 className="aspect-[3/2] w-full object-cover"
-                style={{
-                  maskImage:
-                    "linear-gradient(90deg, transparent 0%, #120e0a 8%, #120e0a 92%, transparent 100%), linear-gradient(180deg, transparent 0%, #120e0a 6%, #120e0a 94%, transparent 100%)",
-                  WebkitMaskImage:
-                    "linear-gradient(90deg, transparent 0%, #120e0a 8%, #120e0a 92%, transparent 100%), linear-gradient(180deg, transparent 0%, #120e0a 6%, #120e0a 94%, transparent 100%)",
-                }}
               />
               {/* dégradé qui « absorbe » la photo dans le fond à gauche */}
               <span
                 aria-hidden
                 className="pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,#120e0a_4%,rgba(18,14,10,0.55)_26%,transparent_52%)]"
+              />
+              {/* fondu des bords pour fondre la photo dans le fond marron */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  boxShadow: "inset 0 0 120px 80px #120e0a",
+                }}
               />
             </figure>
           </Reveal>
