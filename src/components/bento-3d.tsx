@@ -10,7 +10,6 @@ type Card = {
   accent: string;
   cta: string;
   gradient: string;
-  large?: boolean;
   desc: string;
 };
 
@@ -21,7 +20,7 @@ function BentoCard({ card }: { card: Card }) {
 
   return (
     <div
-      className={cn("min-h-[220px] [perspective:1200px]", card.large && "min-h-[340px] lg:min-h-[380px]")}
+      className="min-h-[260px] [perspective:1200px] lg:min-h-[300px]"
     >
       <button
         type="button"
@@ -55,12 +54,7 @@ function BentoCard({ card }: { card: Card }) {
               <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-clay-deep/70">
                 {card.accent}
               </span>
-              <span
-                className={cn(
-                  "mt-2 block max-w-[12ch] text-balance font-section font-medium leading-[1.05] tracking-tight text-foreground",
-                  card.large ? "text-3xl lg:text-4xl" : "text-2xl",
-                )}
-              >
+              <span className="mt-2 block max-w-[14ch] text-balance font-section text-2xl font-medium leading-[1.05] tracking-tight text-foreground lg:text-[1.7rem]">
                 {card.title}
               </span>
             </span>
@@ -81,7 +75,7 @@ function BentoCard({ card }: { card: Card }) {
               <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-cream/60">
                 {card.accent}
               </span>
-              <span className="mt-3 block max-w-[46ch] text-pretty text-sm leading-relaxed text-cream/90 lg:text-[15px]">
+              <span className="mt-3 block max-w-[46ch] text-pretty text-[13px] leading-relaxed text-cream/90 lg:text-sm">
                 {card.desc}
               </span>
             </span>
@@ -116,7 +110,6 @@ export function Bento3D({ soins = [] }: { soins?: Soin[] }) {
       cta: t("Voir les traitements", "See treatments"),
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--amber) 40%, var(--cream)), color-mix(in oklab, var(--clay) 22%, var(--cream)))",
-      large: true,
       desc: descOf("poids"),
     },
     {
@@ -148,21 +141,11 @@ export function Bento3D({ soins = [] }: { soins?: Soin[] }) {
     },
   ];
 
-  const [large, second, third, fourth] = cards as [Card, Card, Card, Card];
-
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
-      <div className="lg:col-span-7">
-        <BentoCard card={large} />
-      </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
-        {[second, third].map((c) => (
-          <BentoCard key={c.slug} card={c} />
-        ))}
-      </div>
-      <div className="lg:col-span-12">
-        <BentoCard card={fourth} />
-      </div>
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      {cards.map((c) => (
+        <BentoCard key={c.slug} card={c} />
+      ))}
     </div>
   );
 }
