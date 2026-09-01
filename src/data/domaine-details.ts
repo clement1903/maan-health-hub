@@ -11,6 +11,8 @@ export type ChiffreMarche = {
 export type DomaineDetails = {
   /** Description empathique du problème de santé, affichée en haut de la page dédiée. */
   probleme: Bi;
+  /** Mots-clés à souligner au scroll dans le texte du problème. */
+  motsCles: Bi[];
   /** Quelques chiffres de marché / de prévalence, affichés entre la description et les médicaments. */
   chiffres: ChiffreMarche[];
   /** Note de source commune. */
