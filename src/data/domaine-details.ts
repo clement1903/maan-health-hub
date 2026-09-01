@@ -11,6 +11,8 @@ export type ChiffreMarche = {
 export type DomaineDetails = {
   /** Description empathique du problème de santé, affichée en haut de la page dédiée. */
   probleme: Bi;
+  /** Mots-clés à souligner au scroll dans le texte du problème. */
+  motsCles: Bi[];
   /** Quelques chiffres de marché / de prévalence, affichés entre la description et les médicaments. */
   chiffres: ChiffreMarche[];
   /** Note de source commune. */
@@ -23,6 +25,15 @@ export const domaineDetails: Record<string, DomaineDetails> = {
       fr: "Pannes d'érection, éjaculation précoce, baisse de désir : ces difficultés touchent la grande majorité des hommes à un moment de leur vie. Le plus souvent, elles ne sont ni définitives ni irréversibles — elles traduisent un stress, une fatigue ou un facteur médical identifiable. Pourtant, la gêne retarde la consultation de plusieurs années en moyenne. Une évaluation en ligne, discrète et sérieuse, permet d'agir tôt.",
       en: "Erectile difficulties, premature ejaculation, loss of desire: these issues affect the vast majority of men at some point in their lives. Most of the time they are neither permanent nor irreversible — they signal stress, fatigue or an identifiable medical factor. Yet embarrassment delays consultation by several years on average. A discreet, rigorous online evaluation allows you to act early.",
     },
+    motsCles: [
+      { fr: "Pannes d'érection", en: "Erectile difficulties" },
+      { fr: "éjaculation précoce", en: "premature ejaculation" },
+      { fr: "baisse de désir", en: "loss of desire" },
+      { fr: "stress", en: "stress" },
+      { fr: "fatigue", en: "fatigue" },
+      { fr: "facteur médical identifiable", en: "identifiable medical factor" },
+      { fr: "évaluation en ligne", en: "online evaluation" },
+    ],
     chiffres: [
       {
         value: 52,
@@ -59,6 +70,16 @@ export const domaineDetails: Record<string, DomaineDetails> = {
       fr: "Le surpoids n'est pas une question de volonté : métabolisme, hormones, sommeil et environnement pèsent lourd dans la balance. Les régimes seuls échouent le plus souvent parce qu'ils ne traitent pas ces mécanismes. Un accompagnement médical, associant si nécessaire un traitement validé cliniquement, change durablement la donne.",
       en: "Being overweight is not a question of willpower: metabolism, hormones, sleep and environment weigh heavily. Diets alone most often fail because they don't address these mechanisms. Medical support, combined when needed with a clinically validated treatment, durably changes the outcome.",
     },
+    motsCles: [
+      { fr: "surpoids", en: "overweight" },
+      { fr: "métabolisme", en: "metabolism" },
+      { fr: "hormones", en: "hormones" },
+      { fr: "sommeil", en: "sleep" },
+      { fr: "environnement", en: "environment" },
+      { fr: "régimes", en: "Diets" },
+      { fr: "accompagnement médical", en: "Medical support" },
+      { fr: "traitement validé cliniquement", en: "clinically validated treatment" },
+    ],
     chiffres: [
       {
         value: 47,
@@ -95,6 +116,13 @@ export const domaineDetails: Record<string, DomaineDetails> = {
       fr: "La chute de cheveux commence souvent bien plus tôt qu'on ne le pense — dès 20 ou 25 ans — et elle est avant tout hormonale et héréditaire. Plus elle est prise tôt, plus elle se freine efficacement : un cheveu perdu depuis longtemps ne repousse pas, mais un cheveu affaibli peut être sauvé. Les traitements de référence existent et sont bien documentés.",
       en: "Hair loss often starts much earlier than expected — as early as 20 or 25 — and is above all hormonal and hereditary. The earlier it is addressed, the more effectively it can be slowed: a long-lost hair will not regrow, but a weakened hair can be saved. Reference treatments exist and are well documented.",
     },
+    motsCles: [
+      { fr: "chute de cheveux", en: "Hair loss" },
+      { fr: "hormonale", en: "hormonal" },
+      { fr: "héréditaire", en: "hereditary" },
+      { fr: "cheveu affaibli", en: "weakened hair" },
+      { fr: "traitements de référence", en: "Reference treatments" },
+    ],
     chiffres: [
       {
         value: 70,
@@ -131,6 +159,14 @@ export const domaineDetails: Record<string, DomaineDetails> = {
       fr: "Acné persistante, irritations au rasage, rougeurs, vieillissement cutané : la peau des hommes est plus épaisse et plus grasse, et elle est rarement traitée avec les bons actifs. Les hommes consultent peu les dermatologues et attendent longtemps avant d'agir — alors que des traitements simples et efficaces existent sur prescription.",
       en: "Persistent acne, shaving irritation, redness, skin ageing: men's skin is thicker and oilier, and it is rarely treated with the right active ingredients. Men seldom see dermatologists and wait a long time before acting — even though simple, effective prescription treatments exist.",
     },
+    motsCles: [
+      { fr: "Acné persistante", en: "Persistent acne" },
+      { fr: "irritations au rasage", en: "shaving irritation" },
+      { fr: "rougeurs", en: "redness" },
+      { fr: "vieillissement cutané", en: "skin ageing" },
+      { fr: "bons actifs", en: "right active ingredients" },
+      { fr: "traitements simples et efficaces", en: "simple, effective treatments" },
+    ],
     chiffres: [
       {
         value: 40,
