@@ -3,6 +3,7 @@ import { useI18n } from "@/lib/i18n";
 import { Reveal } from "@/components/reveal";
 import { useScrollY } from "@/hooks/use-reveal";
 import weightHeroMuseum from "@/assets/weight/weight-hero-museum.jpg";
+import weightHeroMuseumEn from "@/assets/weight/weight-hero-museum-en.jpg";
 
 /**
  * Hero éditorial « musée » de la page Weight Management.
@@ -10,7 +11,7 @@ import weightHeroMuseum from "@/assets/weight/weight-hero-museum.jpg";
  * multi-couches, plaque flottante — le jean devient le décor du titre.
  */
 export function WeightHeroCampaign() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const y = useScrollY();
 
   // Légères translations pilotées par le scroll (parallaxe douce)
@@ -33,7 +34,7 @@ export function WeightHeroCampaign() {
       {/* PHOTO full-bleed — occupe toute la place disponible */}
       <div className="absolute inset-0">
         <img
-          src={weightHeroMuseum}
+          src={lang === "en" ? weightHeroMuseumEn : weightHeroMuseum}
           alt={t(
             "Un jean plié exposé comme une œuvre d'art sur un socle de musée, avec une plaque gravée « Jean, 2019 — Dernière apparition connue : été 2022 ».",
             "A folded pair of jeans displayed like an artwork on a museum pedestal, with an engraved plaque reading 'Jeans, 2019 — Last seen: summer 2022'.",
