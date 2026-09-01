@@ -266,7 +266,9 @@ function DomainePage() {
       <SiteHeader />
       <main className="flex-1">
         {domaine.slug === "sexuel" && <SexuelHeroCampaign />}
-        {domaine.slug !== "sexuel" && (
+        {domaine.slug === "peau" && <SkinHeroCampaign />}
+        {domaine.slug !== "sexuel" && domaine.slug !== "peau" && (
+
         <section className="border-b border-border">
           <div className="mx-auto max-w-6xl px-6 py-14 lg:py-16">
             <Reveal>
