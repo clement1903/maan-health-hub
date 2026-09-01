@@ -116,6 +116,8 @@ export function Bento3D({ soins = [] }: { soins?: Soin[] }) {
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--amber) 40%, var(--cream)), color-mix(in oklab, var(--clay) 22%, var(--cream)))",
       desc: descOf("poids"),
+      img: imgOf("poids"),
+      alt: altOf("poids"),
     },
     {
       slug: "sexuel",
@@ -125,6 +127,8 @@ export function Bento3D({ soins = [] }: { soins?: Soin[] }) {
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--sand) 70%, var(--cream)), var(--cream))",
       desc: descOf("sexuel"),
+      img: imgOf("sexuel"),
+      alt: altOf("sexuel"),
     },
     {
       slug: "cheveux",
@@ -134,6 +138,8 @@ export function Bento3D({ soins = [] }: { soins?: Soin[] }) {
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--clay) 16%, var(--cream)), var(--cream))",
       desc: descOf("cheveux"),
+      img: imgOf("cheveux"),
+      alt: altOf("cheveux"),
     },
     {
       slug: "peau",
@@ -143,6 +149,8 @@ export function Bento3D({ soins = [] }: { soins?: Soin[] }) {
       gradient:
         "linear-gradient(135deg, color-mix(in oklab, var(--amber) 22%, var(--cream)), var(--cream))",
       desc: descOf("peau"),
+      img: imgOf("peau"),
+      alt: altOf("peau"),
     },
   ];
 
