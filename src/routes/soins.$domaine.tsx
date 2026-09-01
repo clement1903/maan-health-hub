@@ -276,8 +276,6 @@ function DomainePage() {
 
         {domaine.slug === "cheveux" && <HairCampaign />}
 
-        {domaine.slug === "poids" && <WeightHeroCampaign />}
-
         {(() => {
 
           const details = getDomaineDetails(domaine.slug);
