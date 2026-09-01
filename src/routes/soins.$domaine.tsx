@@ -11,7 +11,7 @@ import { CountUp } from "@/components/count-up";
 import { Floating3D } from "@/components/floating-3d";
 import { useI18n } from "@/lib/i18n";
 import { MedicalDisclaimer } from "@/components/medical-disclaimer";
-import { HairJourney } from "@/components/hair-journey";
+import { HairCampaign } from "@/components/hair-campaign";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/soins/$domaine")({
@@ -317,7 +317,7 @@ function DomainePage() {
           </div>
         </section>
 
-        {domaine.slug === "cheveux" && <HairJourney />}
+        {domaine.slug === "cheveux" && <HairCampaign />}
 
         {(() => {
 
