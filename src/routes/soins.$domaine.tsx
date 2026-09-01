@@ -348,16 +348,29 @@ function DomainePage() {
                       <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
                         {t("Comprendre le problème", "Understanding the issue")}
                       </h2>
+                      {/* Grand astérisque décoratif en lévitation */}
+                      <span
+                        aria-hidden="true"
+                        className="mt-8 hidden select-none font-display text-7xl leading-none text-clay/25 animate-[floaty_5s_ease-in-out_infinite] lg:block"
+                      >
+                        ✳
+                      </span>
                     </div>
                     <div className="lg:col-span-7">
                       <p className="max-w-[60ch] text-pretty leading-relaxed text-muted">
                         {loc(details.probleme, lang)}
                       </p>
-                      <ul className="mt-6 space-y-2">
-                        {domaine.indications.map((ind) => (
-                          <li key={ind} className="flex items-start gap-3 text-sm">
-                            <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
-                            <span className="text-pretty">{ind}</span>
+                      {/* Chips interactives */}
+                      <ul className="mt-7 flex flex-wrap gap-2.5">
+                        {domaine.indications.map((ind, i) => (
+                          <li key={ind}>
+                            <Reveal
+                              delay={120 + i * 90}
+                              className="group inline-flex cursor-default items-center gap-2.5 rounded-full border border-border bg-background px-4 py-2.5 text-sm transition-all duration-400 ease-[var(--ease)] hover:-translate-y-0.5 hover:border-clay hover:bg-clay hover:text-cream hover:shadow-[0_14px_30px_-14px_var(--clay)]"
+                            >
+                              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-clay transition-colors duration-300 group-hover:bg-cream" />
+                              <span className="text-pretty">{ind}</span>
+                            </Reveal>
                           </li>
                         ))}
                       </ul>
@@ -380,18 +393,53 @@ function DomainePage() {
                     {details.chiffres.map((c, i) => (
                       <Reveal
                         key={i}
-                        delay={i * 90}
-                        className="rounded-[20px] border border-border bg-cream p-7"
+                        delay={i * 120}
+                        className="group relative overflow-hidden rounded-[24px] p-7 transition-all duration-500 ease-[var(--ease)] hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-30px_var(--foreground)] lg:p-8"
+                        // Teinte personnalisée par carte, façon bento
+                        // (rotation des trois gradients signature du site)
                       >
-                        <CountUp
-                          to={c.value}
-                          prefix={c.prefix ?? ""}
-                          suffix={locSuffix(c, lang)}
-                          className="font-display text-4xl font-semibold tracking-tight text-clay lg:text-5xl"
+                        <span
+                          aria-hidden="true"
+                          className="absolute inset-0"
+                          style={{
+                            background: [
+                              "linear-gradient(135deg, color-mix(in oklab, var(--amber) 34%, var(--cream)), var(--cream))",
+                              "linear-gradient(135deg, color-mix(in oklab, var(--sand) 78%, var(--cream)), var(--cream))",
+                              "linear-gradient(135deg, color-mix(in oklab, var(--clay) 18%, var(--cream)), var(--cream))",
+                            ][i % 3],
+                          }}
                         />
-                        <p className="mt-3 text-sm leading-relaxed text-muted">
-                          {loc(c.label, lang)}
-                        </p>
+                        <span
+                          aria-hidden="true"
+                          className="pointer-events-none absolute -right-10 -top-12 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.6),transparent_65%)] opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"
+                        />
+                        <span className="relative z-10 block">
+                          <span className="flex items-start justify-between">
+                            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-clay-deep/60">
+                              {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <span
+                              aria-hidden="true"
+                              className="text-lg text-clay/40 transition-transform duration-500 group-hover:rotate-45 group-hover:scale-125"
+                            >
+                              ↗
+                            </span>
+                          </span>
+                          <CountUp
+                            to={c.value}
+                            prefix={c.prefix ?? ""}
+                            suffix={locSuffix(c, lang)}
+                            className="mt-4 block font-display text-5xl font-semibold tracking-tight text-clay-deep transition-transform duration-500 ease-[var(--ease)] group-hover:scale-[1.04] group-hover:origin-left lg:text-6xl"
+                          />
+                          {/* Barre qui se remplit au survol */}
+                          <span
+                            aria-hidden="true"
+                            className="mt-4 block h-[3px] w-full origin-left scale-x-[0.18] rounded-full bg-clay transition-transform duration-700 ease-[var(--ease)] group-hover:scale-x-100"
+                          />
+                          <span className="mt-4 block text-pretty text-sm leading-relaxed text-foreground/70">
+                            {loc(c.label, lang)}
+                          </span>
+                        </span>
                       </Reveal>
                     ))}
                   </div>
