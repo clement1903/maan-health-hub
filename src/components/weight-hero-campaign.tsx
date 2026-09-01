@@ -102,64 +102,6 @@ export function WeightHeroCampaign() {
         </div>
       </div>
 
-      {/* ruban de garanties */}
-      <div className="relative border-t border-[#f3ece2]/10 bg-[#f3ece2] text-[#1c1712]">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-8 px-6 py-10 lg:grid-cols-4">
-          {(
-            [
-              {
-                icon: "✚",
-                titre: t("Prise en charge médicale", "Medical care"),
-                texte: t(
-                  "Un accompagnement sécurisé et personnalisé.",
-                  "Safe, personalised support.",
-                ),
-              },
-              {
-                icon: "◍",
-                titre: t("Accompagnement personnalisé", "Personal coaching"),
-                texte: t(
-                  "Un suivi adapté à votre quotidien.",
-                  "Follow-up adapted to your daily life.",
-                ),
-              },
-              {
-                icon: "❧",
-                titre: t("Résultats durables", "Lasting results"),
-                texte: t(
-                  "Des solutions efficaces sur le long terme.",
-                  "Solutions that work over the long term.",
-                ),
-              },
-              {
-                icon: "⛨",
-                titre: t("Discrétion totale", "Total discretion"),
-                texte: t(
-                  "Votre parcours, en toute confidentialité.",
-                  "Your journey, in complete confidentiality.",
-                ),
-              },
-            ] as const
-          ).map((g) => (
-            <div key={g.titre} className="flex items-start gap-4">
-              <span
-                aria-hidden
-                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-clay/40 text-lg text-clay"
-              >
-                {g.icon}
-              </span>
-              <div>
-                <p className="font-mono text-[10px] uppercase leading-snug tracking-[0.14em]">
-                  {g.titre}
-                </p>
-                <p className="mt-1.5 text-sm leading-relaxed text-[#1c1712]/65">
-                  {g.texte}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
