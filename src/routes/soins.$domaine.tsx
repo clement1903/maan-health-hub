@@ -12,7 +12,7 @@ import { Floating3D } from "@/components/floating-3d";
 import { useI18n } from "@/lib/i18n";
 import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { HairCampaign } from "@/components/hair-campaign";
-import { HairHeroScroll } from "@/components/hair-hero-scroll";
+import { HairHeroCampaign } from "@/components/hair-hero-campaign";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/soins/$domaine")({
@@ -320,7 +320,7 @@ function DomainePage() {
 
         {domaine.slug === "cheveux" && (
           <>
-            <HairHeroScroll />
+            <HairHeroCampaign />
             <HairCampaign />
           </>
         )}
