@@ -78,7 +78,7 @@ export function SexuelHeroCampaign() {
           ref={videoRef}
           className="h-full w-full object-cover"
           src={elevatorAsset.url}
-          poster={elevatorPoster}
+          poster={elevatorPoster.url}
           autoPlay
           muted
           playsInline
