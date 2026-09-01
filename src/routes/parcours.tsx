@@ -3,39 +3,32 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Reveal } from "@/components/reveal";
-import { Marquee } from "@/components/marquee";
-import { ParcoursQuestionnairePreview } from "@/components/parcours-questionnaire-preview";
+import { ParcoursFlashback } from "@/components/parcours-flashback";
 import { useI18n } from "@/lib/i18n";
-import { useScrollY } from "@/hooks/use-reveal";
-
-import consultationImg from "@/assets/etape-consultation.jpg";
-import pharmacieImg from "@/assets/parcours-pharmacie.jpg";
-import livraisonImg from "@/assets/etape-livraison.jpg";
-import suiviImg from "@/assets/parcours-suivi.jpg";
-import patientImg from "@/assets/parcours-patient.jpg";
 
 export const Route = createFileRoute("/parcours")({
   head: () => ({
     meta: [
-      { title: "Parcours d'accès aux traitements — MAAN" },
+      { title: "Comment ça marche — Le parcours MAAN étape par étape" },
       {
         name: "description",
         content:
-          "Questionnaire médical, validation de la prescription par un médecin agréé, préparation en pharmacie et livraison discrète à domicile : le parcours MAAN étape par étape.",
+          "Remontez le parcours : livraison discrète, pharmacie, prescription, décision médicale et évaluation en ligne. Le parcours MAAN raconté à l'envers, étape par étape.",
       },
       { property: "og:type", content: "article" },
-      { property: "og:title", content: "Parcours d'accès aux traitements — MAAN" },
+      { property: "og:title", content: "Comment ça marche — Le parcours MAAN étape par étape" },
       {
         property: "og:description",
         content:
-          "Trois étapes claires : questionnaire, validation de prescription, livraison à domicile.",
+          "Évaluation en ligne, décision médicale, pharmacie, livraison discrète : découvrez comment un traitement arrive jusqu'à vous.",
       },
       { property: "og:url", content: "/parcours" },
-      { name: "twitter:title", content: "Parcours d'accès aux traitements — MAAN" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Comment ça marche — Le parcours MAAN" },
       {
         name: "twitter:description",
         content:
-          "Questionnaire, validation de prescription et livraison : le parcours MAAN étape par étape.",
+          "Le parcours MAAN raconté à l'envers : de la livraison jusqu'à la première question.",
       },
     ],
     links: [{ rel: "canonical", href: "/parcours" }],
@@ -47,9 +40,31 @@ export const Route = createFileRoute("/parcours")({
           "@type": "HowTo",
           name: "Accéder à un traitement avec MAAN",
           step: [
-            { "@type": "HowToStep", name: "Questionnaire médical", text: "Vous répondez à un questionnaire médical détaillé sur votre situation, vos antécédents et vos traitements en cours." },
-            { "@type": "HowToStep", name: "Validation de la prescription", text: "Un médecin agréé évalue votre dossier et délivre une ordonnance si un traitement est justifié." },
-            { "@type": "HowToStep", name: "Préparation et livraison", text: "La pharmacie partenaire prépare votre traitement et l'expédie dans un colis neutre." },
+            {
+              "@type": "HowToStep",
+              name: "Évaluation en ligne",
+              text: "Vous répondez à quelques questions sur votre situation, vos antécédents et vos traitements en cours.",
+            },
+            {
+              "@type": "HowToStep",
+              name: "Décision médicale",
+              text: "Un médecin examine votre dossier et détermine si un traitement est médicalement adapté.",
+            },
+            {
+              "@type": "HowToStep",
+              name: "Prescription",
+              text: "Si un traitement est justifié, le médecin délivre une prescription.",
+            },
+            {
+              "@type": "HowToStep",
+              name: "Pharmacie",
+              text: "Une pharmacie prépare et délivre le traitement prescrit.",
+            },
+            {
+              "@type": "HowToStep",
+              name: "Livraison",
+              text: "Le traitement est expédié dans un colis neutre, généralement sous 48 h après la prescription.",
+            },
           ],
         }),
       },
@@ -58,36 +73,9 @@ export const Route = createFileRoute("/parcours")({
   component: ParcoursPage,
 });
 
-function Eyebrow({ children, light }: { children: React.ReactNode; light?: boolean }) {
+function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <span
-      className={`block font-mono text-[10px] uppercase tracking-[0.28em] ${
-        light ? "text-cream/60" : "text-muted"
-      }`}
-    >
-      {children}
-    </span>
-  );
-}
-
-function Marker({ children }: { children: React.ReactNode }) {
-  return (
-    <li className="flex items-center gap-3 text-sm font-medium text-foreground">
-      <span className="h-1.5 w-1.5 rounded-full bg-clay" />
-      {children}
-    </li>
-  );
-}
-
-/** Grand numéro d'étape fantôme, en filigrane derrière le contenu. */
-function GhostNumber({ children, light }: { children: string; light?: boolean }) {
-  return (
-    <span
-      aria-hidden
-      className={`pointer-events-none absolute -top-16 left-0 select-none font-display text-[10rem] font-light italic leading-none md:-top-24 md:text-[16rem] ${
-        light ? "text-cream/[0.07]" : "text-clay/[0.08]"
-      }`}
-    >
+    <span className="block font-mono text-[10px] uppercase tracking-[0.28em] text-muted">
       {children}
     </span>
   );
@@ -95,304 +83,164 @@ function GhostNumber({ children, light }: { children: string; light?: boolean })
 
 function ParcoursPage() {
   const { t } = useI18n();
-  const scrollY = useScrollY();
+
+  const acteurs = [
+    {
+      role: t("MAAN", "MAAN"),
+      titre: t("Votre parcours et votre accompagnement.", "Your journey and your follow-up."),
+      texte: t(
+        "Nous organisons l'évaluation, la mise en relation avec un médecin, le suivi et la logistique. Nous ne prescrivons pas.",
+        "We organise the assessment, the connection with a doctor, the follow-up and the logistics. We do not prescribe.",
+      ),
+    },
+    {
+      role: t("Médecin", "Doctor"),
+      titre: t("La décision médicale.", "The medical decision."),
+      texte: t(
+        "Un médecin indépendant examine votre dossier et décide, seul, si un traitement est adapté à votre situation.",
+        "An independent doctor reviews your file and decides, alone, whether a treatment suits your situation.",
+      ),
+    },
+    {
+      role: t("Pharmacie", "Pharmacy"),
+      titre: t("La préparation et la délivrance.", "Preparation and dispensing."),
+      texte: t(
+        "Une pharmacie agréée prépare le traitement prescrit, contrôle la délivrance et l'expédie dans un colis neutre.",
+        "A licensed pharmacy prepares the prescribed treatment, checks the dispensing and ships it in an unmarked parcel.",
+      ),
+    },
+  ];
+
+  const faq = [
+    {
+      q: t("Est-ce qu'un traitement est garanti ?", "Is a treatment guaranteed?"),
+      a: t(
+        "Non. Le médecin peut estimer qu'aucun traitement n'est adapté, ou demander des informations complémentaires.",
+        "No. The doctor may decide that no treatment is appropriate, or ask for further information.",
+      ),
+    },
+    {
+      q: t("En combien de temps est-ce livré ?", "How long does delivery take?"),
+      a: t(
+        "Généralement sous 48 h après la prescription, selon la disponibilité en pharmacie et le transporteur.",
+        "Usually within 48 h of the prescription, depending on pharmacy availability and the carrier.",
+      ),
+    },
+    {
+      q: t("Que voit-on sur le colis ?", "What can be seen on the parcel?"),
+      a: t(
+        "Rien. Emballage neutre, sans mention du traitement, de la pathologie ni du domaine de soin.",
+        "Nothing. Unmarked packaging, with no mention of the treatment, the condition or the care area.",
+      ),
+    },
+    {
+      q: t("Puis-je échanger avec le médecin ensuite ?", "Can I talk to the doctor afterwards?"),
+      a: t(
+        "Oui, depuis votre espace patient : ajustement, renouvellement ou arrêt du traitement.",
+        "Yes, from your patient portal: adjustment, renewal or stopping the treatment.",
+      ),
+    },
+  ];
 
   return (
     <div className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
       <SiteHeader />
 
       <main className="flex-1">
-        {/* Hero — plein écran, photo en parallaxe */}
-        <header className="relative flex min-h-[92vh] items-center overflow-hidden">
-          <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-14 px-6 py-24 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
-            <Reveal className="relative z-10">
-              <span className="inline-block rounded-full border border-border px-3 py-1">
-                <Eyebrow>{t("Le parcours MAAN", "The MAAN journey")}</Eyebrow>
-              </span>
-              <h1 className="mt-10 text-balance font-display text-7xl font-light italic leading-[0.92] tracking-tight md:text-9xl">
-                {t("La santé,", "Health,")}
-                <br />
-                <span className="text-clay">{t("redéfinie.", "redefined.")}</span>
-              </h1>
-              <p className="mt-12 max-w-[42ch] text-pretty border-l-2 border-clay/40 pl-6 font-display text-2xl font-light italic leading-snug text-foreground/80 md:text-[1.7rem]">
-                {t(
-                  "« Je repoussais ce rendez-vous depuis deux ans. Ici, tout s'est fait sans avoir à le dire à voix haute. »",
-                  "\"I had been putting off this appointment for two years. Here, everything happened without having to say it out loud.\"",
-                )}
-              </p>
-              <p className="mt-6 pl-6 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
-                Thomas · {t("38 ans · patient MAAN depuis 2025", "38 · MAAN patient since 2025")}
-              </p>
-            </Reveal>
-            <Reveal delay={140} className="relative">
-              <figure>
-                <div className="group relative aspect-[4/5] overflow-hidden rounded-[2.5rem]">
-                  <img
-                    src={patientImg}
-                    alt={t(
-                      "Thomas, patient MAAN, chez lui au matin",
-                      "Thomas, MAAN patient, at home in the morning",
-                    )}
-                    width={1024}
-                    height={1280}
-                    fetchPriority="high"
-                    style={{ transform: `translateY(${scrollY * 0.08}px) scale(1.12)` }}
-                    className="h-full w-full object-cover will-change-transform"
-                  />
-                  <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] ring-1 ring-inset ring-foreground/5" />
-                </div>
-                <figcaption className="mt-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
-                  <span>{t("Amsterdam, 7 h 42", "Amsterdam, 7:42 am")}</span>
-                  <span>{t("Histoire vraie", "A true story")}</span>
-                </figcaption>
-              </figure>
-            </Reveal>
-          </div>
-          {/* Indicateur de scroll */}
-          <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 md:flex">
-            <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted">
-              {t("Défiler", "Scroll")}
-            </span>
-            <span className="relative h-14 w-px overflow-hidden bg-border">
-              <span
-                className="absolute left-0 top-0 h-6 w-px bg-clay"
-                style={{ animation: "rise 1.8s var(--ease) infinite alternate" }}
-              />
-            </span>
-          </div>
-        </header>
+        <h1 className="sr-only">
+          {t(
+            "Comment ça marche : le parcours MAAN, de l'évaluation à la livraison",
+            "How it works: the MAAN journey, from assessment to delivery",
+          )}
+        </h1>
 
-        {/* Marquee */}
-        <Marquee
-          items={[
-            t("Questionnaire en ligne", "Online questionnaire"),
-            t("Médecins certifiés BIG", "BIG-certified doctors"),
-            t("Pharmacie agréée", "Licensed pharmacy"),
-            t("Livraison 24–48 h", "24–48 h delivery"),
-            t("Suivi médical continu", "Ongoing medical follow-up"),
-          ]}
-        />
+        {/* LE FILM — rembobinage contrôlé au scroll */}
+        <ParcoursFlashback />
 
-        {/* 01 — Bilan */}
-        <section className="relative overflow-hidden py-32 lg:py-44">
-          <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-16 px-6 md:grid-cols-2 md:gap-24">
-            <Reveal className="relative order-2 md:order-1">
-              <GhostNumber>01</GhostNumber>
-              <div className="relative">
-                <Eyebrow>{t("01 — Bilan", "01 — Assessment")}</Eyebrow>
-                <h2 className="mt-6 text-balance font-section text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
-                  {t("Tout commence par une écoute.", "It starts with listening.")}
-                </h2>
-                <p className="mt-6 max-w-[42ch] text-pretty text-lg leading-relaxed text-muted">
-                  {t(
-                    "Quelques minutes pour permettre au médecin de comprendre votre situation.",
-                    "A few minutes so the doctor can understand your situation.",
-                  )}
-                </p>
-                <ul className="mt-10 space-y-5">
-                  <Marker>
-                    <span className="flex flex-col">
-                      <span>{t("3–5 minutes", "3–5 minutes")}</span>
-                      <span className="text-sm font-normal text-muted">
-                        {t("Questionnaire adapté à vos réponses", "A questionnaire that adapts to your answers")}
-                      </span>
-                    </span>
-                  </Marker>
-                  <Marker>
-                    <span className="flex flex-col">
-                      <span>{t("Confidentiel", "Confidential")}</span>
-                      <span className="text-sm font-normal text-muted">
-                        {t("Vos informations restent protégées", "Your information stays protected")}
-                      </span>
-                    </span>
-                  </Marker>
-                  <Marker>
-                    <span className="flex flex-col">
-                      <span>{t("Pensé pour le médecin", "Built for the doctor")}</span>
-                      <span className="text-sm font-normal text-muted">
-                        {t(
-                          "Votre dossier est structuré avant son analyse",
-                          "Your file is structured before their review",
-                        )}
-                      </span>
-                    </span>
-                  </Marker>
-                </ul>
-              </div>
-            </Reveal>
-            <Reveal delay={120} className="order-1 md:order-2">
-              <div className="transition-transform duration-700 ease-[var(--ease)] hover:-translate-y-2 hover:rotate-[0.5deg]">
-                <ParcoursQuestionnairePreview />
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* 02 — Expertise : section sombre immersive */}
-        <section className="relative overflow-hidden bg-foreground py-32 text-cream lg:py-44">
-          <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-16 px-6 md:grid-cols-2 md:gap-24">
-            <Reveal>
-              <div className="group relative aspect-[4/5] overflow-hidden rounded-[2.5rem]">
-                <img
-                  src={consultationImg}
-                  alt={t(
-                    "Médecin agréé examinant un dossier patient en ligne",
-                    "Licensed doctor reviewing a patient file online",
-                  )}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-[1600ms] ease-[var(--ease)] group-hover:scale-[1.06]"
-                />
-                <div className="absolute inset-x-6 bottom-6 flex items-center justify-between rounded-2xl bg-foreground/60 px-5 py-4 backdrop-blur-md">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-cream/80">
-                    {t("Consultation en ligne", "Online consultation")}
-                  </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-clay">
-                    {t("Gratuite · Sans engagement", "Free · No commitment")}
-                  </span>
-                </div>
-              </div>
-            </Reveal>
-            <Reveal delay={120} className="relative">
-              <GhostNumber light>02</GhostNumber>
-              <div className="relative">
-                <Eyebrow light>{t("02 — Expertise", "02 — Expertise")}</Eyebrow>
-                <h2 className="mt-6 text-balance font-section text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
-                  {t("La décision d'un médecin.", "A doctor's decision.")}
-                </h2>
-                <p className="mt-6 max-w-[42ch] text-pretty text-lg leading-relaxed text-cream/70">
-                  {t(
-                    "Consultation médicale en ligne, gratuite et sans engagement.",
-                    "Online medical consultation, free and with no commitment.",
-                  )}
-                </p>
-                <ul className="mt-10 space-y-4">
-                  <li className="flex items-center gap-3 text-sm font-medium">
-                    <span className="h-1.5 w-1.5 rounded-full bg-clay" />
-                    {t("Médecins certifiés BIG", "BIG-certified doctors")}
-                  </li>
-                  <li className="flex items-center gap-3 text-sm font-medium">
-                    <span className="h-1.5 w-1.5 rounded-full bg-clay" />
-                    {t("Réponse sous 24 h", "Response within 24 h")}
-                  </li>
-                </ul>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* 03 + 04 — cartes qui s'ouvrent au survol */}
-        <section className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-8 px-6 py-32 lg:py-44 md:grid-cols-2">
+        {/* Retour au calme */}
+        <section className="mx-auto w-full max-w-6xl px-6 py-28 lg:py-40">
           <Reveal>
-            <div className="group flex h-full flex-col justify-between overflow-hidden rounded-[2.5rem] bg-sand p-10 transition-all duration-700 ease-[var(--ease)] hover:shadow-[0_50px_100px_-50px_var(--foreground)] lg:p-12">
-              <div>
-                <Eyebrow>{t("03 — Préparation", "03 — Preparation")}</Eyebrow>
-                <h3 className="mt-6 font-section text-3xl font-semibold tracking-tight md:text-4xl">
-                  {t("Pharmacie agréée.", "Licensed pharmacy.")}
-                </h3>
-                <p className="mt-4 text-pretty text-base text-muted">
-                  {t(
-                    "Contrôle pharmaceutique, notice incluse.",
-                    "Pharmaceutical check, instructions included.",
-                  )}
-                </p>
-              </div>
-              <div className="mt-10 h-48 overflow-hidden rounded-2xl transition-all duration-700 ease-[var(--ease)] group-hover:h-64">
-                <img
-                  src={pharmacieImg}
-                  alt={t(
-                    "Préparation d'un traitement en pharmacie partenaire",
-                    "Treatment prepared at a partner pharmacy",
-                  )}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-[1400ms] ease-[var(--ease)] group-hover:scale-[1.05]"
-                />
-              </div>
-            </div>
+            <Eyebrow>{t("Qui fait quoi ?", "Who does what?")}</Eyebrow>
+            <h2 className="mt-6 max-w-[24ch] text-balance font-section text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+              {t("Trois rôles, clairement séparés.", "Three roles, clearly separated.")}
+            </h2>
           </Reveal>
-          <Reveal delay={120}>
-            <div className="group flex h-full flex-col justify-between overflow-hidden rounded-[2.5rem] bg-cream p-10 transition-all duration-700 ease-[var(--ease)] hover:shadow-[0_50px_100px_-50px_var(--foreground)] lg:p-12">
-              <div>
-                <Eyebrow>{t("04 — Expédition", "04 — Shipping")}</Eyebrow>
-                <h3 className="mt-6 font-section text-3xl font-semibold tracking-tight md:text-4xl">
-                  {t("Colis neutre.", "Unmarked parcel.")}
-                </h3>
-                <p className="mt-4 text-pretty text-base text-muted">
-                  {t(
-                    "Livré sous 24 à 48 h, sans aucune mention extérieure.",
-                    "Delivered within 24 to 48 h, with nothing written outside.",
-                  )}
-                </p>
-              </div>
-              <div className="mt-10 h-48 overflow-hidden rounded-2xl transition-all duration-700 ease-[var(--ease)] group-hover:h-64">
-                <img
-                  src={livraisonImg}
-                  alt={t(
-                    "Colis neutre livré à domicile",
-                    "Unmarked parcel delivered at home",
-                  )}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-[1400ms] ease-[var(--ease)] group-hover:scale-[1.05]"
-                />
-              </div>
-            </div>
-          </Reveal>
+          <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-[2rem] bg-border md:grid-cols-3">
+            {acteurs.map((a, i) => (
+              <Reveal key={a.role} delay={i * 110}>
+                <div className="flex h-full flex-col bg-background p-10">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-clay">
+                    {a.role}
+                  </span>
+                  <h3 className="mt-6 font-section text-xl font-semibold leading-snug">{a.titre}</h3>
+                  <p className="mt-4 text-pretty text-base leading-relaxed text-muted">{a.texte}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </section>
 
-        {/* 05 — Suivi : image plein cadre avec texte en surimpression */}
-        <section className="relative overflow-hidden">
-          <div className="relative h-[80vh] min-h-[560px] w-full">
-            <img
-              src={suiviImg}
-              alt={t(
-                "Homme suivant son traitement au quotidien",
-                "Man following his treatment day to day",
-              )}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/30 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 pb-20">
-              <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-6 text-center text-cream">
-                <Reveal>
-                  <Eyebrow light>{t("05 — Accompagnement", "05 — Follow-up")}</Eyebrow>
-                  <h2 className="mx-auto mt-6 max-w-3xl text-balance font-display text-5xl font-light italic tracking-tight md:text-7xl">
-                    {t("Un suivi qui dure.", "Care that keeps going.")}
-                  </h2>
-                </Reveal>
-                <Reveal delay={120}>
-                  <p className="mx-auto mt-8 max-w-[46ch] text-pretty text-xl text-cream/80">
-                    {t(
-                      "Ajustement, renouvellement ou arrêt : votre médecin reste joignable depuis votre espace patient.",
-                      "Adjust, renew or stop: your doctor stays reachable from your patient portal.",
-                    )}
-                  </p>
-                </Reveal>
-              </div>
-            </div>
+        {/* Confidentialité */}
+        <section className="bg-sand py-28 lg:py-36">
+          <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-6 md:grid-cols-[1fr_1.1fr] md:items-end">
+            <Reveal>
+              <Eyebrow>{t("Confidentialité", "Privacy")}</Eyebrow>
+              <h2 className="mt-6 text-balance font-display text-4xl font-light italic leading-tight md:text-6xl">
+                {t("Personne n'a besoin de le savoir.", "Nobody needs to know.")}
+              </h2>
+            </Reveal>
+            <Reveal delay={120}>
+              <ul className="space-y-5">
+                {[
+                  t("Colis neutre, sans mention extérieure.", "Unmarked parcel, nothing written outside."),
+                  t("Données de santé chiffrées et accès restreint.", "Health data encrypted, access restricted."),
+                  t("Échanges avec le médecin dans un espace privé.", "Doctor exchanges inside a private space."),
+                ].map((line) => (
+                  <li key={line} className="flex items-start gap-3 text-base leading-relaxed text-foreground">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
           </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="mx-auto w-full max-w-4xl px-6 py-28 lg:py-36">
+          <Reveal>
+            <Eyebrow>{t("Questions fréquentes", "Frequently asked")}</Eyebrow>
+          </Reveal>
+          <dl className="mt-12 divide-y divide-border border-y border-border">
+            {faq.map((f, i) => (
+              <Reveal key={f.q} delay={i * 80}>
+                <div className="grid grid-cols-1 gap-3 py-8 md:grid-cols-[1fr_1.2fr] md:gap-10">
+                  <dt className="font-section text-lg font-semibold leading-snug">{f.q}</dt>
+                  <dd className="text-pretty leading-relaxed text-muted">{f.a}</dd>
+                </div>
+              </Reveal>
+            ))}
+          </dl>
         </section>
 
         {/* CTA final */}
-        <section className="flex flex-col items-center px-6 py-32 lg:py-44">
+        <section className="flex flex-col items-center px-6 pb-32 lg:pb-44">
           <Reveal>
-            <h2 className="text-balance text-center font-display text-6xl font-light italic tracking-tight md:text-8xl">
+            <h2 className="text-balance text-center font-display text-5xl font-light italic tracking-tight md:text-7xl">
               {t("Votre parcours", "Your journey")}
               <br />
-              <span className="text-clay">{t("commence ici.", "starts here.")}</span>
+              <span className="text-clay">{t("commence maintenant.", "starts now.")}</span>
             </h2>
           </Reveal>
-          <Reveal delay={120} className="mt-14 flex flex-col items-center gap-8">
+          <Reveal delay={120} className="mt-12 flex flex-col items-center gap-6">
             <Link
-              to="/espace-patient"
-              className="group inline-flex items-center gap-2 rounded-full bg-clay px-12 py-6 text-lg font-medium text-cream transition-all duration-500 ease-[var(--ease)] hover:scale-[1.03] hover:gap-4 hover:bg-clay-deep hover:shadow-[0_30px_60px_-20px_var(--clay)]"
+              to="/questionnaire"
+              className="group inline-flex items-center gap-2 rounded-full bg-clay px-12 py-6 text-lg font-medium text-cream transition-all duration-500 ease-[var(--ease)] hover:gap-4 hover:bg-clay-deep"
             >
-              {t("Ouvrir mon espace patient", "Open my patient portal")}
+              {t("Commencer mon évaluation", "Start my assessment")}
               <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
             </Link>
-            <span className="font-signature text-3xl text-muted">
-              {t("Bienvenue chez MAAN.", "Welcome to MAAN.")}
-            </span>
-            <Eyebrow>{t("Discrétion garantie", "Discretion guaranteed")}</Eyebrow>
+            <Eyebrow>{t("Quelques minutes · Sans engagement", "A few minutes · No commitment")}</Eyebrow>
           </Reveal>
         </section>
       </main>
