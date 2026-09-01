@@ -317,6 +317,7 @@ function DomainePage() {
             </Reveal>
           </div>
         </section>
+        )}
 
         {domaine.slug === "cheveux" && (
           <>
