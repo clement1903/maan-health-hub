@@ -28,7 +28,7 @@ export function SiteHeader() {
     >
       <div
         className={cn(
-          "mx-auto flex max-w-6xl items-center justify-between px-6 transition-all duration-500 ease-[var(--ease)]",
+          "mx-auto flex max-w-6xl items-center justify-between gap-10 px-6 transition-all duration-500 ease-[var(--ease)]",
           condensed ? "py-3" : "py-5",
         )}
       >
@@ -61,7 +61,7 @@ export function SiteHeader() {
             <button
               type="button"
               aria-haspopup="true"
-              className="relative inline-flex cursor-default items-center gap-1.5 py-4 uppercase tracking-[0.15em] transition-colors group-hover:text-foreground"
+              className="relative inline-flex cursor-default items-center gap-1.5 py-1 uppercase tracking-[0.15em] transition-colors group-hover:text-foreground after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-clay after:transition-transform after:duration-500 after:ease-[var(--ease)] group-hover:after:scale-x-100"
             >
               {t("Soins", "Treatments")}
               <span
