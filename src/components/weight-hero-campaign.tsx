@@ -46,12 +46,12 @@ export function WeightHeroCampaign() {
                 )}
                 width={1536}
                 height={1024}
-                className="aspect-[3/2] w-full rounded-[24px] object-cover shadow-[0_60px_120px_-60px_rgba(0,0,0,0.9)]"
+                className="aspect-[3/2] w-full object-cover"
               />
               {/* dégradé qui « absorbe » la photo dans le fond à gauche */}
               <span
                 aria-hidden
-                className="pointer-events-none absolute inset-0 rounded-[24px] bg-[linear-gradient(100deg,#120e0a_4%,rgba(18,14,10,0.55)_26%,transparent_52%)]"
+                className="pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,#120e0a_4%,rgba(18,14,10,0.55)_26%,transparent_52%)]"
               />
             </figure>
           </Reveal>
