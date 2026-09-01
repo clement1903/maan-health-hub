@@ -120,7 +120,17 @@ export function ParcoursMorph() {
 
   const active = p < 0.44 ? 0 : p < 0.72 ? 1 : p < 0.9 ? 2 : 3;
 
+  const placeWords = [
+    t("la maison.", "home."),
+    t("la plage.", "the beach."),
+    t("le bureau.", "the office."),
+    t("le train.", "the train."),
+    t("l'étranger.", "abroad."),
+    t("partout.", "anywhere."),
+  ];
+
   const texts = [
+
     {
       k: "01",
       eyebrow: `01 — ${t("Questionnaire", "Questionnaire")}`,
