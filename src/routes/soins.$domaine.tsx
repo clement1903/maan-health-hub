@@ -256,7 +256,7 @@ function DomainePage() {
   const domaine = getDomaine(domaineFr.slug, lang) ?? domaineFr;
   const { produit: produitSearch } = Route.useSearch();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [cardTilt, setCardTilt] = useState({ rx: 0, ry: 0 });
+  const [productMotion, setProductMotion] = useState({ x: 0, y: 0, rx: 0, ry: 0 });
   const [activeProduit, setActiveProduit] = useState(() => {
     const idx = domaine.produits.findIndex((p) => p.id === produitSearch);
     return idx >= 0 ? idx : 0;
@@ -402,13 +402,18 @@ function DomainePage() {
 
           <div
             className="mx-auto max-w-6xl px-6 py-16 lg:py-20"
-            onMouseMove={(e) => {
+            onPointerMove={(e) => {
               const r = e.currentTarget.getBoundingClientRect();
               const px = (e.clientX - r.left) / r.width - 0.5;
               const py = (e.clientY - r.top) / r.height - 0.5;
-              setCardTilt({ rx: -py * 22, ry: px * 30 });
+              setProductMotion({
+                x: px * 70,
+                y: py * 44,
+                rx: -py * 18,
+                ry: px * 24,
+              });
             }}
-            onMouseLeave={() => setCardTilt({ rx: 0, ry: 0 })}
+            onPointerLeave={() => setProductMotion({ x: 0, y: 0, rx: 0, ry: 0 })}
           >
             <Reveal>
               <h2 className="font-section text-3xl font-medium tracking-tight lg:text-4xl">
@@ -472,7 +477,7 @@ function DomainePage() {
                     produitId={produit.id}
                     alt={produit.nom}
                     className="-mt-2 w-24 sm:w-28"
-                    tilt={cardTilt}
+                    motion={productMotion}
                   />
                 </div>
 

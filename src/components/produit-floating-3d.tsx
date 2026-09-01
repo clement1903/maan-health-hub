@@ -27,22 +27,22 @@ export const produit3dImages: Record<string, string> = {
   metronidazole: imgMetronidazole,
 };
 
-export type Tilt = { rx: number; ry: number };
+export type ProductMotion = { x: number; y: number; rx: number; ry: number };
 
 export function ProduitFloating3D({
   produitId,
   alt,
   className,
-  tilt: externalTilt,
+  motion: externalMotion,
 }: {
   produitId: string;
   alt: string;
   className?: string;
-  /** Tilt piloté par le parent (ex. souris sur toute la carte). */
-  tilt?: Tilt;
+  /** Déplacement et inclinaison pilotés par la souris sur toute la rubrique. */
+  motion?: ProductMotion;
 }) {
   const src = produit3dImages[produitId];
-  const [innerTilt, setInnerTilt] = useState<Tilt>({ rx: 0, ry: 0 });
+  const [innerMotion, setInnerMotion] = useState<ProductMotion>({ x: 0, y: 0, rx: 0, ry: 0 });
   // Rotation complète à chaque montage (clic sur « sélectionner » remonte le composant via key).
   const [spin, setSpin] = useState(0);
   useEffect(() => {
@@ -52,23 +52,27 @@ export function ProduitFloating3D({
 
   if (!src) return null;
 
-  const tilt = externalTilt ?? innerTilt;
+  const motion = externalMotion ?? innerMotion;
 
   return (
     <div
       className={cn("relative isolate shrink-0", className)}
       style={{ perspective: "800px" }}
-      onMouseMove={
-        externalTilt
+      onPointerMove={
+        externalMotion
           ? undefined
           : (e) => {
               const r = e.currentTarget.getBoundingClientRect();
               const px = (e.clientX - r.left) / r.width - 0.5;
               const py = (e.clientY - r.top) / r.height - 0.5;
-              setInnerTilt({ rx: -py * 14, ry: px * 18 });
+               setInnerMotion({ x: px * 34, y: py * 24, rx: -py * 12, ry: px * 16 });
             }
       }
-      onMouseLeave={externalTilt ? undefined : () => setInnerTilt({ rx: 0, ry: 0 })}
+      onPointerLeave={
+        externalMotion
+          ? undefined
+          : () => setInnerMotion({ x: 0, y: 0, rx: 0, ry: 0 })
+      }
       aria-hidden="true"
     >
       <span className="pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--amber)_38%,transparent),transparent_70%)] blur-2xl" />
@@ -87,7 +91,7 @@ export function ProduitFloating3D({
             transformStyle: "preserve-3d",
           }}
         >
-          {/* Image : tilt souris en temps réel, transition très courte */}
+          {/* Image : suit réellement la souris, avec un léger tilt 3D secondaire. */}
           <img
             src={src}
             alt={alt}
@@ -96,11 +100,11 @@ export function ProduitFloating3D({
             height={768}
             className="relative w-full select-none drop-shadow-[0_14px_22px_rgba(0,0,0,0.16)]"
             style={{
-              transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
+              transform: `translate3d(${motion.x}px, ${motion.y}px, 28px) rotateX(${motion.rx}deg) rotateY(${motion.ry}deg)`,
               transition:
-                tilt.rx === 0 && tilt.ry === 0
-                  ? "transform 600ms var(--ease)"
-                  : "transform 90ms linear",
+                motion.x === 0 && motion.y === 0
+                  ? "transform 650ms var(--ease)"
+                  : "transform 110ms ease-out",
               willChange: "transform",
             }}
           />
