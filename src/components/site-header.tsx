@@ -112,7 +112,7 @@ export function SiteHeader() {
             to="/espace-patient"
             className="group relative overflow-hidden rounded-full bg-clay px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:bg-clay-deep"
           >
-            <span className="relative z-10">{t("Démarrer", "Get started")}</span>
+            <span className="relative z-10">{t("Se connecter", "Sign in")}</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-cream/25 to-transparent transition-transform duration-700 ease-[var(--ease)] group-hover:translate-x-full" />
           </Link>
         </div>
