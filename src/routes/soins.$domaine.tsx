@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 
 import { SiteHeader } from "@/components/site-header";
@@ -18,6 +18,7 @@ import { WeightHeroCampaign } from "@/components/weight-hero-campaign";
 import { SexuelHeroCampaign } from "@/components/sexuel-hero-campaign";
 import { SkinHeroCampaign } from "@/components/skin-hero-campaign";
 
+import { buildDomaineHead } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/soins/$domaine")({
@@ -42,74 +43,9 @@ export const Route = createFileRoute("/soins/$domaine")({
         ],
       };
     }
-    const d = loaderData.domaine;
-    const p = loaderData.produit;
-    const title = p
-      ? `${p.nom} (${p.molecule}) — ${d.tag} | MAAN`
-      : `${d.titre} — ${d.tag} | MAAN`;
-    const description = p
-      ? `${p.nom} (${p.molecule}) : ${p.forme}. Prix et posologie, précautions et prix. Évaluation par un médecin — délivré uniquement sur ordonnance.`
-      : d.chapo;
-    const url = p
-      ? `/soins/${params.domaine}?produit=${encodeURIComponent(p.id)}`
-      : `/soins/${params.domaine}`;
-    const scripts: Array<{ type: string; children: string }> = [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: d.faq.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.r },
-          })),
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Nos soins", item: "/soins" },
-            { "@type": "ListItem", position: 2, name: d.tag, item: `/soins/${params.domaine}` },
-            ...(p
-              ? [{ "@type": "ListItem", position: 3, name: p.nom, item: url }]
-              : []),
-          ],
-        }),
-      },
-    ];
-    if (p) {
-      scripts.push({
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Product",
-          name: `${p.nom} (${p.molecule})`,
-          description,
-          category: d.titre,
-          ...(p.prix ? { offers: { "@type": "Offer", priceCurrency: "EUR", availability: "https://schema.org/PreOrder", description: `Prix : ${p.prix} — délivré uniquement sur ordonnance après évaluation médicale.` } } : {}),
-        }),
-      });
-    }
-    return {
-      meta: [
-        { title },
-        { name: "description", content: description },
-        { property: "og:type", content: p ? "product" : "article" },
-        { property: "og:title", content: title },
-        { property: "og:description", content: description },
-        { property: "og:url", content: url },
-        { name: "twitter:card", content: "summary" },
-        { name: "twitter:title", content: title },
-        { name: "twitter:description", content: description },
-      ],
-      links: [{ rel: "canonical", href: url }],
-      scripts,
-    };
+    return buildDomaineHead(params.domaine, loaderData.produit?.id ?? null);
   },
+
   notFoundComponent: DomaineIntrouvable,
   component: DomainePage,
 });
@@ -252,10 +188,14 @@ function DomaineIntrouvable() {
 }
 
 function DomainePage() {
-  const { domaine: domaineFr } = Route.useLoaderData();
+  const { domaine: domaineFr, produit } = Route.useLoaderData();
+  return <DomaineView slug={domaineFr.slug} produitId={produit?.id ?? null} />;
+}
+
+export function DomaineView({ slug, produitId }: { slug: string; produitId: string | null }) {
   const { t, lang } = useI18n();
-  const domaine = getDomaine(domaineFr.slug, lang) ?? domaineFr;
-  const { produit: produitSearch } = Route.useSearch();
+  const domaine = getDomaine(slug, lang) ?? getDomaine(slug, "fr")!;
+  const produitSearch = produitId ?? undefined;
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [productMotion, setProductMotion] = useState({ x: 0, y: 0, rx: 0, ry: 0 });
   const [activeProduit, setActiveProduit] = useState(() => {
@@ -263,7 +203,11 @@ function DomainePage() {
     return idx >= 0 ? idx : 0;
   });
   const produit = domaine.produits[activeProduit] ?? domaine.produits[0]!;
-  const produitSeul = domaine.produits.some((p) => p.id === produitSearch);
+  useEffect(() => {
+    const idx = domaine.produits.findIndex((p) => p.id === produitSearch);
+    if (idx >= 0) setActiveProduit(idx);
+  }, [produitSearch, domaine.slug]);
+
 
   return (
     <div className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
@@ -408,25 +352,17 @@ function DomainePage() {
                 {t("Les médicaments", "The medications")}
               </h2>
             </Reveal>
-            {produitSeul && (
-              <div className="mt-6">
+            <nav
+              className="mt-8 flex flex-wrap gap-2"
+              aria-label={t("Traitements de la spécialité", "Treatments in this specialty")}
+            >
+              {domaine.produits.map((p, i) => (
                 <Link
-                  to="."
-                  search={{ produit: undefined }}
-                  className="text-sm font-medium underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
-                >
-                  {t("← Retour", "← Back")}
-                </Link>
-              </div>
-            )}
-            <div className="mt-8 flex flex-wrap gap-2">
-              {!produitSeul &&
-                domaine.produits.map((p, i) => (
-                <button
                   key={p.id}
-                  type="button"
+                  to="/soins/$domaine/$produit"
+                  params={{ domaine: domaine.slug, produit: p.id }}
                   onClick={() => setActiveProduit(i)}
-                  aria-pressed={activeProduit === i}
+                  aria-current={activeProduit === i ? "page" : undefined}
                   className={cn(
                     "rounded-full border px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-all duration-500 ease-[var(--ease)]",
                     activeProduit === i
@@ -435,9 +371,10 @@ function DomainePage() {
                   )}
                 >
                   {p.nom}
-                </button>
+                </Link>
               ))}
-            </div>
+            </nav>
+
 
             <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-12">
               <div
