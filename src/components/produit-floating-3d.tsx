@@ -77,20 +77,34 @@ export function ProduitFloating3D({
         className="relative"
         style={{ animation: "floaty 6.5s ease-in-out infinite" }}
       >
-        {/* Image : tilt souris + rotation de sélection */}
-        <img
-          src={src}
-          alt={alt}
-          loading="lazy"
-          width={768}
-          height={768}
-          className="relative w-full select-none drop-shadow-[0_14px_22px_rgba(0,0,0,0.16)]"
+        {/* Rotation de sélection (spin) sur un wrapper dédié : transition lente */}
+        <div
+          className="relative"
           style={{
-            transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry + spin}deg)`,
-            transition: "transform 550ms var(--ease)",
+            transform: `rotateY(${spin}deg)`,
+            transition: "transform 900ms var(--ease)",
             willChange: "transform",
+            transformStyle: "preserve-3d",
           }}
-        />
+        >
+          {/* Image : tilt souris en temps réel, transition très courte */}
+          <img
+            src={src}
+            alt={alt}
+            loading="lazy"
+            width={768}
+            height={768}
+            className="relative w-full select-none drop-shadow-[0_14px_22px_rgba(0,0,0,0.16)]"
+            style={{
+              transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
+              transition:
+                tilt.rx === 0 && tilt.ry === 0
+                  ? "transform 600ms var(--ease)"
+                  : "transform 90ms linear",
+              willChange: "transform",
+            }}
+          />
+        </div>
       </div>
     </div>
   );
