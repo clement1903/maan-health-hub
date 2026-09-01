@@ -1,7 +1,9 @@
 import fondateurPhoto from "@/assets/fondateur.jpg";
+import { HandwrittenSignature } from "@/components/handwritten-signature";
 import { Reveal } from "@/components/reveal";
 import { Tilt } from "@/components/magnetic";
 import { useI18n } from "@/lib/i18n";
+
 
 export function MotFondateur() {
   const { t } = useI18n();
