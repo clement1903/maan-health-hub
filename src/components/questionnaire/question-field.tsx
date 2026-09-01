@@ -376,7 +376,7 @@ export function QuestionField({ question, value, onChange, onAdvance, userId }: 
           </div>
           {imc ? (
             <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
-              Indice de masse corporelle indicatif : {imc}
+              Indice de masse corporelle : {imc}
             </p>
           ) : null}
         </div>

@@ -90,7 +90,7 @@ export const Route = createFileRoute("/soins/$domaine")({
           name: `${p.nom} (${p.molecule})`,
           description,
           category: d.titre,
-          ...(p.prix ? { offers: { "@type": "Offer", priceCurrency: "EUR", availability: "https://schema.org/PreOrder", description: `Prix indicatif : ${p.prix} — délivré uniquement sur ordonnance après évaluation médicale.` } } : {}),
+          ...(p.prix ? { offers: { "@type": "Offer", priceCurrency: "EUR", availability: "https://schema.org/PreOrder", description: `Prix : ${p.prix} — délivré uniquement sur ordonnance après évaluation médicale.` } } : {}),
         }),
       });
     }
@@ -130,7 +130,7 @@ function TarifsProduit({ produit }: { produit: Produit }) {
   return (
     <div className="mt-8 border-t border-border pt-6">
       <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-        {t("Prix indicatif", "Indicative price")}
+        {t("Prix", "Price")}
       </p>
       <div
         role="group"
@@ -409,7 +409,7 @@ function DomainePage() {
               </h2>
               <p className="mt-3 max-w-[60ch] text-pretty text-sm text-muted">
                 {t(
-                  "Ces informations sont données à titre indicatif. Seul le médecin qui étudie votre dossier fixe la molécule, le dosage et la durée.",
+                  "Seul le médecin qui étudie votre dossier fixe la molécule, le dosage et la durée.",
                   "This information is given for guidance only. Only the doctor reviewing your file sets the molecule, dosage and duration.",
                 )}
               </p>
@@ -490,7 +490,7 @@ function DomainePage() {
                   <div className="mt-8 flex items-end justify-between gap-4 border-t border-border pt-6">
                     <div>
                       <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                        {t("Prix indicatif", "Indicative price")}
+                        {t("Prix", "Price")}
                       </p>
                       <p className="mt-1 font-section text-3xl font-medium tracking-tight text-foreground">
                         {produit.prix}
