@@ -159,6 +159,14 @@ export const domaineDetails: Record<string, DomaineDetails> = {
       fr: "Acné persistante, irritations au rasage, rougeurs, vieillissement cutané : la peau des hommes est plus épaisse et plus grasse, et elle est rarement traitée avec les bons actifs. Les hommes consultent peu les dermatologues et attendent longtemps avant d'agir — alors que des traitements simples et efficaces existent sur prescription.",
       en: "Persistent acne, shaving irritation, redness, skin ageing: men's skin is thicker and oilier, and it is rarely treated with the right active ingredients. Men seldom see dermatologists and wait a long time before acting — even though simple, effective prescription treatments exist.",
     },
+    motsCles: [
+      { fr: "Acné persistante", en: "Persistent acne" },
+      { fr: "irritations au rasage", en: "shaving irritation" },
+      { fr: "rougeurs", en: "redness" },
+      { fr: "vieillissement cutané", en: "skin ageing" },
+      { fr: "bons actifs", en: "right active ingredients" },
+      { fr: "traitements simples et efficaces", en: "simple, effective treatments" },
+    ],
     chiffres: [
       {
         value: 40,
