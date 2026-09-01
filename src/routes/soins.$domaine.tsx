@@ -9,6 +9,7 @@ import { getDomaine, getSoins, loc, prixAbonnement, type Produit } from "@/data/
 import { getDomaineDetails, locSuffix } from "@/data/domaine-details";
 import { CountUp } from "@/components/count-up";
 import { ProduitFloating3D } from "@/components/produit-floating-3d";
+import { HighlightText } from "@/components/highlight-text";
 import { useI18n } from "@/lib/i18n";
 import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { HairCampaign } from "@/components/hair-campaign";
