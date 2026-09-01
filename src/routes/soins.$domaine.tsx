@@ -407,12 +407,6 @@ function DomainePage() {
               <h2 className="font-section text-3xl font-medium tracking-tight lg:text-4xl">
                 {t("Les médicaments", "The medications")}
               </h2>
-              <p className="mt-3 max-w-[60ch] text-pretty text-sm text-muted">
-                {t(
-                  "Seul le médecin qui étudie votre dossier fixe la molécule, le dosage et la durée.",
-                  "This information is given for guidance only. Only the doctor reviewing your file sets the molecule, dosage and duration.",
-                )}
-              </p>
             </Reveal>
             {produitSeul && (
               <div className="mt-6">
