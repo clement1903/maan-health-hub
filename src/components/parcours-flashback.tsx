@@ -360,7 +360,7 @@ export function ParcoursFlashback() {
                 ) : null}
                 {isLast ? (
                   <div
-                    className="pointer-events-auto mt-10 flex flex-col items-start gap-4"
+                    className="pointer-events-auto mt-10"
                     style={{ opacity: finalPhase, transform: `translate3d(0, ${(1 - finalPhase) * 14}px, 0)` }}
                   >
                     <Link
@@ -370,9 +370,6 @@ export function ParcoursFlashback() {
                       {t("Commencer mon évaluation", "Start my assessment")}
                       <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
                     </Link>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.26em] text-cream/50">
-                      {t("Quelques minutes · Sans engagement", "A few minutes · No commitment")}
-                    </span>
                   </div>
                 ) : null}
               </div>
