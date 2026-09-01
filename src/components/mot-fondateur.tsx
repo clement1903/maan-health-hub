@@ -33,8 +33,14 @@ export function MotFondateur() {
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
               {t("Le mot du fondateur", "A word from the founder")}
             </p>
-            <h2 className="mt-3 font-section text-3xl font-medium tracking-tight lg:text-4xl">
-              {t("On passe tous par là, un jour ou l’autre.", "We all go through this, sooner or later.")}
+            <h2 className="mt-3 text-3xl tracking-tight text-foreground lg:text-4xl">
+              <HandwrittenSignature
+                text={t(
+                  "On passe tous par là, un jour ou l’autre.",
+                  "We all go through this, sooner or later.",
+                )}
+                duration={3}
+              />
             </h2>
 
             <div className="mt-6 space-y-4 text-base leading-relaxed text-foreground/80">
@@ -65,6 +71,7 @@ export function MotFondateur() {
                   "Clement Losi, founder of MAAN",
                 )}
                 duration={2.4}
+                delay={2900}
               />
             </p>
 
