@@ -70,6 +70,16 @@ export const domaineDetails: Record<string, DomaineDetails> = {
       fr: "Le surpoids n'est pas une question de volonté : métabolisme, hormones, sommeil et environnement pèsent lourd dans la balance. Les régimes seuls échouent le plus souvent parce qu'ils ne traitent pas ces mécanismes. Un accompagnement médical, associant si nécessaire un traitement validé cliniquement, change durablement la donne.",
       en: "Being overweight is not a question of willpower: metabolism, hormones, sleep and environment weigh heavily. Diets alone most often fail because they don't address these mechanisms. Medical support, combined when needed with a clinically validated treatment, durably changes the outcome.",
     },
+    motsCles: [
+      { fr: "surpoids", en: "overweight" },
+      { fr: "métabolisme", en: "metabolism" },
+      { fr: "hormones", en: "hormones" },
+      { fr: "sommeil", en: "sleep" },
+      { fr: "environnement", en: "environment" },
+      { fr: "régimes", en: "Diets" },
+      { fr: "accompagnement médical", en: "Medical support" },
+      { fr: "traitement validé cliniquement", en: "clinically validated treatment" },
+    ],
     chiffres: [
       {
         value: 47,
