@@ -91,7 +91,7 @@ function buildBlocs(t: (fr: string, en: string) => string) {
       ),
       points: [
         t("Traitements sur ordonnance uniquement", "Prescription-only treatments"),
-        t("Posologies affichées à titre indicatif", "Dosages shown for reference only"),
+        t("Posologies affichées", "Dosages shown for reference only"),
         t(
           "Le questionnaire n'est ni diagnostic, ni prescription",
           "The questionnaire is neither a diagnosis nor a prescription",
