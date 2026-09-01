@@ -61,7 +61,9 @@ export function WeightHeroCampaign() {
       </div>
 
       {/* TEXTE — plongé dans la photo par chevauchement */}
-      <div className="relative z-10 mx-auto flex min-h-[70vh] max-w-6xl flex-col justify-center px-6 py-16 lg:min-h-[85vh] lg:py-24">
+      {/* Hauteur calée sur le ratio 3:2 de la photo (100vw / 1.5) :
+          l'image entière — plaque comprise — reste visible, sans recadrage. */}
+      <div className="relative z-10 mx-auto flex min-h-[70vh] max-w-6xl flex-col justify-center px-6 py-16 lg:min-h-[calc(100vw/1.5)] lg:py-24">
         <div
           className="max-w-xl will-change-transform"
           style={{ transform: `translateY(${-textShift}px)` }}
