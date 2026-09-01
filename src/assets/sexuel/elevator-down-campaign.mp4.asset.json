@@ -1,9 +1,11 @@
 {
   "version": 1,
-  "asset_id": "d6b2ca9c-f7d8-4300-8a4c-93b2768e0224",
+  "asset_id": "41ee1622-862d-4a83-b13e-bb0b89952bbf",
   "project_id": "c8060ba7-4f93-44a0-88f8-dae597568835",
-  "url": "/__l5e/assets-v1/d6b2ca9c-f7d8-4300-8a4c-93b2768e0224/elevator-down-campaign.mp4",
+  "url": "/__l5e/assets-v1/41ee1622-862d-4a83-b13e-bb0b89952bbf/elevator-down-campaign.mp4",
+  "r2_key": "a/v1/c8060ba7-4f93-44a0-88f8-dae597568835/41ee1622-862d-4a83-b13e-bb0b89952bbf/elevator-down-campaign.mp4",
   "original_filename": "elevator-down-campaign.mp4",
-  "size": 5801529,
-  "created_at": "2026-09-01T13:19:30Z"
+  "size": 2228901,
+  "content_type": "video/mp4",
+  "created_at": "2026-09-01T14:19:43Z"
 }
