@@ -44,6 +44,7 @@ export function WeightHeroCampaign() {
           width={1536}
           height={1024}
           className="h-full w-full object-cover"
+          style={{ objectPosition: "center 72%" }}
         />
         {/* dégradé qui « absorbe » la photo dans le fond à gauche */}
         <span
@@ -55,7 +56,7 @@ export function WeightHeroCampaign() {
           aria-hidden
           className="pointer-events-none absolute inset-0"
           style={{
-            boxShadow: "inset 0 0 160px 100px #120e0a",
+            boxShadow: "inset 0 0 120px 80px #120e0a",
           }}
         />
       </div>
