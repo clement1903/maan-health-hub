@@ -1,7 +1,9 @@
 import fondateurPhoto from "@/assets/fondateur.jpg";
+import { HandwrittenSignature } from "@/components/handwritten-signature";
 import { Reveal } from "@/components/reveal";
 import { Tilt } from "@/components/magnetic";
 import { useI18n } from "@/lib/i18n";
+
 
 export function MotFondateur() {
   const { t } = useI18n();
@@ -56,9 +58,16 @@ export function MotFondateur() {
               </p>
             </div>
 
-            <p className="mt-8 font-signature text-3xl text-clay">
-              {t("Le fondateur de MAAN", "The founder of MAAN")}
+            <p className="mt-8 text-2xl text-clay sm:text-3xl">
+              <HandwrittenSignature
+                text={t(
+                  "Clement Losi, fondateur de MAAN",
+                  "Clement Losi, founder of MAAN",
+                )}
+                duration={2.4}
+              />
             </p>
+
           </Reveal>
         </div>
       </div>
