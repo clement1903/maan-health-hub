@@ -4,8 +4,8 @@ import { Link } from "@tanstack/react-router";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-import elevatorAsset from "@/assets/sexuel/elevator-campaign.mp4.asset.json";
-import elevatorPoster from "@/assets/sexuel/elevator-poster.jpg";
+import elevatorAsset from "@/assets/sexuel/elevator-down-campaign.mp4.asset.json";
+import elevatorPoster from "@/assets/sexuel/elevator-down-poster.jpg";
 
 /**
  * Micro-campagne cinématographique — Sexual Management.
@@ -15,9 +15,9 @@ import elevatorPoster from "@/assets/sexuel/elevator-poster.jpg";
  */
 
 // Repères temporels (en secondes de lecture vidéo)
-const T_TITLE = 5.6; // « Ça devait monter. »
-const T_SUB = 6.7; // « Ça arrive. »
-const T_BRAND = 7.4; // MAAN — Sexual Management + CTA
+const T_TITLE = 8.0; // « Ça devait monter. » — après la pause sur le RDC
+const T_SUB = 9.0; // « Ça arrive. »
+const T_BRAND = 9.6; // MAAN — Sexual Management + CTA
 const HOLD_AFTER_END_MS = 5000; // on laisse la dernière scène respirer
 const RESTART_FADE_MS = 700;
 
