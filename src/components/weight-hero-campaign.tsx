@@ -53,11 +53,6 @@ export function WeightHeroCampaign() {
                 aria-hidden
                 className="pointer-events-none absolute inset-0 rounded-[24px] bg-[linear-gradient(100deg,#120e0a_4%,rgba(18,14,10,0.55)_26%,transparent_52%)]"
               />
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 rounded-[24px] ring-1 ring-inset ring-[#f3ece2]/10"
-              />
-
             </figure>
           </Reveal>
 
