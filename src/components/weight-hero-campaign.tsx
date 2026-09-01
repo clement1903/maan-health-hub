@@ -31,10 +31,7 @@ export function WeightHeroCampaign() {
       />
 
       {/* PHOTO full-bleed — occupe toute la place disponible */}
-      <div
-        className="absolute inset-0 will-change-transform"
-        style={{ transform: `translateY(${imgShift}px)` }}
-      >
+      <div className="absolute inset-0">
         <img
           src={weightHeroMuseum}
           alt={t(
