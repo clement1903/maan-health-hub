@@ -4,7 +4,9 @@ import { Mic, Video, PhoneOff, Check, Bell } from "lucide-react";
 import medecinVisio from "@/assets/parcours-medecin-visio.jpg";
 import patientVisio from "@/assets/temoin-1.jpg";
 import { useI18n } from "@/lib/i18n";
+import { Typewriter } from "@/components/typewriter";
 import { cn } from "@/lib/utils";
+
 
 /* ------------------------------------------------------------------ */
 /* helpers                                                             */
