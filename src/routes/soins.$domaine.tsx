@@ -316,7 +316,10 @@ function DomainePage() {
           </div>
         </section>
 
+        {domaine.slug === "cheveux" && <HairJourney />}
+
         {(() => {
+
           const details = getDomaineDetails(domaine.slug);
           if (!details) return null;
           return (
