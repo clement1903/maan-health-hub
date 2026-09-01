@@ -256,6 +256,7 @@ function DomainePage() {
   const domaine = getDomaine(domaineFr.slug, lang) ?? domaineFr;
   const { produit: produitSearch } = Route.useSearch();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [cardTilt, setCardTilt] = useState({ rx: 0, ry: 0 });
   const [activeProduit, setActiveProduit] = useState(() => {
     const idx = domaine.produits.findIndex((p) => p.id === produitSearch);
     return idx >= 0 ? idx : 0;
@@ -445,6 +446,13 @@ function DomainePage() {
               <div
                 key={produit.id}
                 className="animate-[rise_0.5s_var(--ease)_both] rounded-[24px] border border-border bg-background p-8 lg:col-span-5 lg:p-10"
+                onMouseMove={(e) => {
+                  const r = e.currentTarget.getBoundingClientRect();
+                  const px = (e.clientX - r.left) / r.width - 0.5;
+                  const py = (e.clientY - r.top) / r.height - 0.5;
+                  setCardTilt({ rx: -py * 16, ry: px * 22 });
+                }}
+                onMouseLeave={() => setCardTilt({ rx: 0, ry: 0 })}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
@@ -462,6 +470,7 @@ function DomainePage() {
                     produitId={produit.id}
                     alt={produit.nom}
                     className="-mt-2 w-24 sm:w-28"
+                    tilt={cardTilt}
                   />
                 </div>
 
