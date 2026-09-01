@@ -174,9 +174,15 @@ export function ParcoursMorph() {
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
             {t("Le parcours", "How it works")}
           </p>
-          <h2 className="mt-2 max-w-[20ch] text-balance font-section text-2xl font-medium tracking-tight lg:text-3xl">
+          <h2 className="mt-2 max-w-[24ch] text-balance font-section text-2xl font-medium tracking-tight lg:text-3xl">
             {t("Quatre étapes. Sans déplacement.", "Four steps. Without leaving home.")}
+            <br />
+            <span className="text-muted">
+              {t("En ligne. Depuis ", "Online. From ")}
+              <Typewriter words={placeWords} className="text-clay" />
+            </span>
           </h2>
+
 
           {/* Navigation ultra-discrète */}
           <div className="mt-5 hidden items-end gap-8 sm:flex">
