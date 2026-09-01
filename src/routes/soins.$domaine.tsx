@@ -348,25 +348,17 @@ export function DomaineView({ slug, produitId }: { slug: string; produitId: stri
                 {t("Les médicaments", "The medications")}
               </h2>
             </Reveal>
-            {produitSeul && (
-              <div className="mt-6">
+            <nav
+              className="mt-8 flex flex-wrap gap-2"
+              aria-label={t("Traitements de la spécialité", "Treatments in this specialty")}
+            >
+              {domaine.produits.map((p, i) => (
                 <Link
-                  to="."
-                  search={{ produit: undefined }}
-                  className="text-sm font-medium underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
-                >
-                  {t("← Retour", "← Back")}
-                </Link>
-              </div>
-            )}
-            <div className="mt-8 flex flex-wrap gap-2">
-              {!produitSeul &&
-                domaine.produits.map((p, i) => (
-                <button
                   key={p.id}
-                  type="button"
+                  to="/soins/$domaine/$produit"
+                  params={{ domaine: domaine.slug, produit: p.id }}
                   onClick={() => setActiveProduit(i)}
-                  aria-pressed={activeProduit === i}
+                  aria-current={activeProduit === i ? "page" : undefined}
                   className={cn(
                     "rounded-full border px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-all duration-500 ease-[var(--ease)]",
                     activeProduit === i
@@ -375,9 +367,10 @@ export function DomaineView({ slug, produitId }: { slug: string; produitId: stri
                   )}
                 >
                   {p.nom}
-                </button>
+                </Link>
               ))}
-            </div>
+            </nav>
+
 
             <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-12">
               <div
