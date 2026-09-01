@@ -43,7 +43,7 @@ export function ProduitCarrousel({ produit }: { produit: Produit }) {
         <div className="space-y-4">
           <p className="text-pretty">{produit.modeAction}</p>
           <p className="text-pretty text-sm text-muted">
-            {t("Posologie indicative", "Indicative dosage")} — {produit.posologie}
+            {t("Prix et posologie", "Indicative dosage")} — {produit.posologie}
           </p>
         </div>
       ),
