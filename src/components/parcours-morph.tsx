@@ -718,10 +718,10 @@ function FinalOverlay({ p }: { p: number }) {
   if (o < 0.01) return null;
   return (
     <div
-      className="absolute inset-x-0 bottom-6 z-30 px-6 lg:inset-x-auto lg:bottom-auto lg:left-[max(24px,calc(50%-600px))] lg:top-1/2 lg:w-[420px] lg:-translate-y-1/2"
+      className="absolute bottom-6 left-0 right-0 z-30 mx-auto max-w-6xl px-6 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2"
       style={{ opacity: o, transform: `translateY(${(1 - o) * 12}px)` }}
     >
-      <p className="font-display text-3xl tracking-tight">MAAN</p>
+      <div className="max-w-[420px]"><p className="font-display text-3xl tracking-tight">MAAN</p>
       <p className="mt-2 text-balance font-display text-xl text-muted">
         {t("Votre santé. Dans un seul endroit.", "Your health. In one place.")}
       </p>
@@ -731,6 +731,7 @@ function FinalOverlay({ p }: { p: number }) {
       >
         {t("Commencer mon évaluation", "Start my assessment")} <span aria-hidden="true">→</span>
       </Link>
+      </div>
     </div>
   );
 }
