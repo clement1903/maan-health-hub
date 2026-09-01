@@ -11,6 +11,7 @@ import { CountUp } from "@/components/count-up";
 import { Floating3D } from "@/components/floating-3d";
 import { useI18n } from "@/lib/i18n";
 import { MedicalDisclaimer } from "@/components/medical-disclaimer";
+import { HairJourney } from "@/components/hair-journey";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/soins/$domaine")({
