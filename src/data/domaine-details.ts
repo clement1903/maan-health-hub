@@ -25,6 +25,15 @@ export const domaineDetails: Record<string, DomaineDetails> = {
       fr: "Pannes d'érection, éjaculation précoce, baisse de désir : ces difficultés touchent la grande majorité des hommes à un moment de leur vie. Le plus souvent, elles ne sont ni définitives ni irréversibles — elles traduisent un stress, une fatigue ou un facteur médical identifiable. Pourtant, la gêne retarde la consultation de plusieurs années en moyenne. Une évaluation en ligne, discrète et sérieuse, permet d'agir tôt.",
       en: "Erectile difficulties, premature ejaculation, loss of desire: these issues affect the vast majority of men at some point in their lives. Most of the time they are neither permanent nor irreversible — they signal stress, fatigue or an identifiable medical factor. Yet embarrassment delays consultation by several years on average. A discreet, rigorous online evaluation allows you to act early.",
     },
+    motsCles: [
+      { fr: "Pannes d'érection", en: "Erectile difficulties" },
+      { fr: "éjaculation précoce", en: "premature ejaculation" },
+      { fr: "baisse de désir", en: "loss of desire" },
+      { fr: "stress", en: "stress" },
+      { fr: "fatigue", en: "fatigue" },
+      { fr: "facteur médical identifiable", en: "identifiable medical factor" },
+      { fr: "évaluation en ligne", en: "online evaluation" },
+    ],
     chiffres: [
       {
         value: 52,
