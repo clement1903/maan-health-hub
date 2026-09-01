@@ -58,9 +58,16 @@ export function MotFondateur() {
               </p>
             </div>
 
-            <p className="mt-8 font-signature text-3xl text-clay">
-              {t("Le fondateur de MAAN", "The founder of MAAN")}
+            <p className="mt-8 text-2xl text-clay sm:text-3xl">
+              <HandwrittenSignature
+                text={t(
+                  "Clement Losi, fondateur de MAAN",
+                  "Clement Losi, founder of MAAN",
+                )}
+                duration={2.4}
+              />
             </p>
+
           </Reveal>
         </div>
       </div>
