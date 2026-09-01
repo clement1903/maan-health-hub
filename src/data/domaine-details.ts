@@ -116,6 +116,13 @@ export const domaineDetails: Record<string, DomaineDetails> = {
       fr: "La chute de cheveux commence souvent bien plus tôt qu'on ne le pense — dès 20 ou 25 ans — et elle est avant tout hormonale et héréditaire. Plus elle est prise tôt, plus elle se freine efficacement : un cheveu perdu depuis longtemps ne repousse pas, mais un cheveu affaibli peut être sauvé. Les traitements de référence existent et sont bien documentés.",
       en: "Hair loss often starts much earlier than expected — as early as 20 or 25 — and is above all hormonal and hereditary. The earlier it is addressed, the more effectively it can be slowed: a long-lost hair will not regrow, but a weakened hair can be saved. Reference treatments exist and are well documented.",
     },
+    motsCles: [
+      { fr: "chute de cheveux", en: "Hair loss" },
+      { fr: "hormonale", en: "hormonal" },
+      { fr: "héréditaire", en: "hereditary" },
+      { fr: "cheveu affaibli", en: "weakened hair" },
+      { fr: "traitements de référence", en: "Reference treatments" },
+    ],
     chiffres: [
       {
         value: 70,
