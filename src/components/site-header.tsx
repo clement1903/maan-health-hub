@@ -28,7 +28,7 @@ export function SiteHeader() {
     >
       <div
         className={cn(
-          "mx-auto flex max-w-6xl items-center justify-between px-6 transition-all duration-500 ease-[var(--ease)]",
+          "mx-auto flex max-w-6xl items-center justify-between gap-10 px-6 transition-all duration-500 ease-[var(--ease)]",
           condensed ? "py-3" : "py-5",
         )}
       >
