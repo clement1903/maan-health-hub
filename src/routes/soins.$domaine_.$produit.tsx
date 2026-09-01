@@ -4,7 +4,7 @@ import { getDomaine } from "@/data/soins";
 import { buildDomaineHead } from "@/lib/seo";
 import { DomaineView } from "./soins.$domaine";
 
-export const Route = createFileRoute("/soins/$domaine/$produit")({
+export const Route = createFileRoute("/soins/$domaine_/$produit")({
   loader: ({ params }) => {
     const domaine = getDomaine(params.domaine);
     if (!domaine) throw notFound();
