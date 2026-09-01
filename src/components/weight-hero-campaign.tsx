@@ -71,7 +71,7 @@ export function WeightHeroCampaign() {
               Weight Management
             </p>
             <h1 className="mt-5 text-balance font-section text-4xl font-medium leading-[1.04] tracking-tight drop-shadow-[0_4px_24px_rgba(18,14,10,0.8)] lg:text-6xl">
-              {t("Vous le gardez toujours ?", "Do you still keep it?")}
+              {t("Toujours dans votre dressing ?", "Still in your closet?")}
             </h1>
             <p className="mt-6 font-section text-xl italic leading-snug text-[#f3ece2]/85 drop-shadow-[0_2px_16px_rgba(18,14,10,0.8)] lg:text-2xl">
               {t("Nous aussi, on connaît ce jean.", "We know those jeans too.")}
