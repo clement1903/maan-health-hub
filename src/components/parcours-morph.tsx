@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Mic, Video, PhoneOff, Check, Bell } from "lucide-react";
 import medecinVisio from "@/assets/parcours-medecin-visio.jpg";
 import patientVisio from "@/assets/temoin-1.jpg";
+import colisKraft from "@/assets/colis-kraft.png";
 import { useI18n } from "@/lib/i18n";
 import { Typewriter } from "@/components/typewriter";
 import { cn } from "@/lib/utils";
@@ -321,15 +322,23 @@ function MorphObject({ p, g }: { p: number; g: Stage }) {
         style={{ borderRadius: g.r, opacity: clamp(shellDark + phoneShell * 0.96) }}
       />
       <div
-        className="absolute inset-0"
-        style={{
-          borderRadius: g.r,
-          opacity: kraft,
-          background:
-            "repeating-linear-gradient(102deg, oklch(0.78 0.055 68) 0 3px, oklch(0.755 0.06 66) 3px 6px)",
-          boxShadow: "inset 0 -40px 60px -40px oklch(0.5 0.06 60)",
-        }}
-      />
+        className="absolute inset-0 overflow-hidden"
+        style={{ borderRadius: g.r, opacity: kraft }}
+      >
+        <img
+          src={colisKraft}
+          alt=""
+          aria-hidden
+          width={1024}
+          height={1024}
+          loading="lazy"
+          className="h-full w-full object-cover"
+          style={{
+            transform: `scale(${1.12 + kraft * 0.06})`,
+            filter: "drop-shadow(0 30px 40px oklch(0.35 0.04 60 / 0.25))",
+          }}
+        />
+      </div>
       {/* reflet très discret */}
       <div
         className="pointer-events-none absolute inset-0"
