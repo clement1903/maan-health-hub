@@ -304,22 +304,11 @@ function DomainePage() {
                     </div>
                     <div className="lg:col-span-7">
                       <p className="max-w-[60ch] text-pretty leading-relaxed text-muted">
-                        {loc(details.probleme, lang)}
+                        <HighlightText
+                          text={loc(details.probleme, lang)}
+                          keywords={details.motsCles.map((k) => loc(k, lang))}
+                        />
                       </p>
-                      {/* Chips interactives */}
-                      <ul className="mt-7 flex flex-wrap gap-2.5">
-                        {domaine.indications.map((ind, i) => (
-                          <li key={ind}>
-                            <Reveal
-                              delay={120 + i * 90}
-                              className="group inline-flex cursor-default items-center gap-2.5 rounded-full border border-border bg-background px-4 py-2.5 text-sm transition-all duration-400 ease-[var(--ease)] hover:-translate-y-0.5 hover:border-clay hover:bg-clay hover:text-cream hover:shadow-[0_14px_30px_-14px_var(--clay)]"
-                            >
-                              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-clay transition-colors duration-300 group-hover:bg-cream" />
-                              <span className="text-pretty">{ind}</span>
-                            </Reveal>
-                          </li>
-                        ))}
-                      </ul>
                     </div>
                   </Reveal>
                 </div>
