@@ -117,7 +117,7 @@ export const domainesData: DomaineData[] = [
         },
         forme: { fr: "Comprimé pelliculé, 25 / 50 / 100 mg", en: "Film-coated tablet, 25 / 50 / 100 mg" },
         posologie: {
-          fr: "Posologie indicative : 50 mg environ 1 heure avant le rapport, maximum une prise par 24 h. Le médecin ajuste la dose selon la tolérance.",
+          fr: "Prix et posologie : 50 mg environ 1 heure avant le rapport, maximum une prise par 24 h. Le médecin ajuste la dose selon la tolérance.",
           en: "Indicative dosage: 50 mg about 1 hour before intercourse, maximum one dose per 24 hours. The doctor adjusts the dose according to tolerance.",
         },
         precautions: {
@@ -145,7 +145,7 @@ export const domainesData: DomaineData[] = [
         },
         forme: { fr: "Comprimé pelliculé, 25 / 50 / 100 mg", en: "Film-coated tablet, 25 / 50 / 100 mg" },
         posologie: {
-          fr: "Posologie indicative : même principe actif et même schéma que la spécialité de référence, environ 1 heure avant le rapport.",
+          fr: "Prix et posologie : même principe actif et même schéma que la spécialité de référence, environ 1 heure avant le rapport.",
           en: "Indicative dosage: same active ingredient and same regimen as the reference brand, about 1 hour before intercourse.",
         },
         precautions: {
@@ -173,7 +173,7 @@ export const domainesData: DomaineData[] = [
         },
         forme: { fr: "Comprimé, 5 / 10 / 20 mg", en: "Tablet, 5 / 10 / 20 mg" },
         posologie: {
-          fr: "Posologie indicative : 10 mg avant l'activité, ou 5 mg par jour en schéma continu selon la prescription. Durée d'action jusqu'à 36 h.",
+          fr: "Prix et posologie : 10 mg avant l'activité, ou 5 mg par jour en schéma continu selon la prescription. Durée d'action jusqu'à 36 h.",
           en: "Indicative dosage: 10 mg before activity, or 5 mg per day continuously as prescribed. Duration of action up to 36 hours.",
         },
         precautions: {
@@ -201,7 +201,7 @@ export const domainesData: DomaineData[] = [
         },
         forme: { fr: "Comprimé, 5 / 10 / 20 mg", en: "Tablet, 5 / 10 / 20 mg" },
         posologie: {
-          fr: "Posologie indicative : même principe actif et mêmes schémas que la spécialité de référence, à la demande ou en continu.",
+          fr: "Prix et posologie : même principe actif et mêmes schémas que la spécialité de référence, à la demande ou en continu.",
           en: "Indicative dosage: same active ingredient and same regimens as the reference brand, on demand or continuously.",
         },
         precautions: {
@@ -293,7 +293,7 @@ export const domainesData: DomaineData[] = [
           en: "Subcutaneous injectable pen, one injection per week",
         },
         posologie: {
-          fr: "Posologie indicative : montée progressive sur plusieurs semaines (0,25 mg puis paliers), une injection hebdomadaire, dose ajustée par le médecin selon la tolérance digestive.",
+          fr: "Prix et posologie : montée progressive sur plusieurs semaines (0,25 mg puis paliers), une injection hebdomadaire, dose ajustée par le médecin selon la tolérance digestive.",
           en: "Indicative dosage: gradual increase over several weeks (0.25 mg then step-ups), one weekly injection, dose adjusted by the doctor according to digestive tolerance.",
         },
         precautions: {
@@ -329,7 +329,7 @@ export const domainesData: DomaineData[] = [
           en: "Subcutaneous injectable pen, one injection per week",
         },
         posologie: {
-          fr: "Posologie indicative : 0,25 mg par semaine pendant 4 semaines, puis augmentation progressive selon la décision du médecin.",
+          fr: "Prix et posologie : 0,25 mg par semaine pendant 4 semaines, puis augmentation progressive selon la décision du médecin.",
           en: "Indicative dosage: 0.25 mg per week for 4 weeks, then a gradual increase as decided by the doctor.",
         },
         precautions: {
@@ -412,7 +412,7 @@ export const domainesData: DomaineData[] = [
         },
         forme: { fr: "Comprimé 1 mg", en: "1 mg tablet" },
         posologie: {
-          fr: "Posologie indicative : un comprimé par jour, en continu. Les premiers effets s'évaluent après 3 à 6 mois.",
+          fr: "Prix et posologie : un comprimé par jour, en continu. Les premiers effets s'évaluent après 3 à 6 mois.",
           en: "Indicative dosage: one tablet per day, continuously. First effects are assessed after 3 to 6 months.",
         },
         precautions: {
@@ -442,7 +442,7 @@ export const domainesData: DomaineData[] = [
         },
         forme: { fr: "Solution ou mousse à application locale", en: "Topical solution or foam" },
         posologie: {
-          fr: "Posologie indicative : application matin et soir sur cuir chevelu sec, sur les zones concernées.",
+          fr: "Prix et posologie : application matin et soir sur cuir chevelu sec, sur les zones concernées.",
           en: "Indicative dosage: apply morning and evening on dry scalp, on the affected areas.",
         },
         precautions: {
@@ -516,7 +516,7 @@ export const domainesData: DomaineData[] = [
         },
         forme: { fr: "Crème 0,025 % à 0,05 %", en: "Cream 0.025% to 0.05%" },
         posologie: {
-          fr: "Posologie indicative : une application le soir, sur peau sèche, en commençant un soir sur deux pendant deux semaines.",
+          fr: "Prix et posologie : une application le soir, sur peau sèche, en commençant un soir sur deux pendant deux semaines.",
           en: "Indicative dosage: one application at night on dry skin, starting every other night for two weeks.",
         },
         precautions: {
@@ -546,7 +546,7 @@ export const domainesData: DomaineData[] = [
         },
         forme: { fr: "Gel ou crème", en: "Gel or cream" },
         posologie: {
-          fr: "Posologie indicative : une à deux applications par jour sur les zones atteintes, pendant plusieurs semaines.",
+          fr: "Prix et posologie : une à deux applications par jour sur les zones atteintes, pendant plusieurs semaines.",
           en: "Indicative dosage: one to two applications per day on affected areas, for several weeks.",
         },
         precautions: {

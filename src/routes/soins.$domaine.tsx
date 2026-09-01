@@ -48,7 +48,7 @@ export const Route = createFileRoute("/soins/$domaine")({
       ? `${p.nom} (${p.molecule}) — ${d.tag} | MAAN`
       : `${d.titre} — ${d.tag} | MAAN`;
     const description = p
-      ? `${p.nom} (${p.molecule}) : ${p.forme}. Posologie indicative, précautions et prix. Évaluation par un médecin — délivré uniquement sur ordonnance.`
+      ? `${p.nom} (${p.molecule}) : ${p.forme}. Prix et posologie, précautions et prix. Évaluation par un médecin — délivré uniquement sur ordonnance.`
       : d.chapo;
     const url = p
       ? `/soins/${params.domaine}?produit=${encodeURIComponent(p.id)}`
@@ -479,7 +479,7 @@ function DomainePage() {
                   </div>
                   <div>
                     <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                      {t("Posologie indicative", "Indicative dosage")}
+                      {t("Prix et posologie", "Indicative dosage")}
                     </dt>
                     <dd className="mt-1 text-pretty">{produit.posologie}</dd>
                   </div>
