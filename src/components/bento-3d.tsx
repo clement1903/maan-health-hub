@@ -37,6 +37,7 @@ function BentoCard({ card }: { card: Card }) {
         style={{
           transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
           transition: "transform 650ms var(--ease)",
+          willChange: "transform",
         }}
       >
         {/* RECTO */}
@@ -45,7 +46,7 @@ function BentoCard({ card }: { card: Card }) {
             "col-start-1 row-start-1 flex h-full w-full overflow-hidden rounded-[28px] p-6 shadow-[0_20px_50px_-40px_var(--foreground)] transition-shadow duration-500 [backface-visibility:hidden] lg:p-8",
             "group-hover:shadow-[0_50px_100px_-45px_var(--foreground)]",
           )}
-          style={{ background: card.gradient }}
+          style={{ background: card.gradient, transform: "translateZ(1px)" }}
         >
           <span
             aria-hidden="true"
@@ -70,7 +71,8 @@ function BentoCard({ card }: { card: Card }) {
         {/* VERSO */}
         <span
           aria-hidden={!flipped}
-          className="col-start-1 row-start-1 flex h-full w-full overflow-hidden rounded-[28px] bg-foreground shadow-[0_20px_50px_-40px_var(--foreground)] [backface-visibility:hidden] [transform:rotateY(180deg)]"
+          className="col-start-1 row-start-1 flex h-full w-full overflow-hidden rounded-[28px] bg-foreground shadow-[0_20px_50px_-40px_var(--foreground)] [backface-visibility:hidden]"
+          style={{ transform: "rotateY(180deg) translateZ(1px)" }}
         >
           <span className="flex w-full items-stretch gap-4 p-4 lg:gap-5 lg:p-5">
             <span className="relative z-10 flex min-w-0 flex-1 flex-col justify-between gap-4 py-1 pl-1 lg:py-2 lg:pl-2">
