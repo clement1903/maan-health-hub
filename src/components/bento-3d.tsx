@@ -11,6 +11,8 @@ type Card = {
   cta: string;
   gradient: string;
   desc: string;
+  img: string;
+  alt: string;
 };
 
 /** Carte du bento : se retourne au clic pour révéler la description au verso. */
@@ -99,8 +101,11 @@ function BentoCard({ card }: { card: Card }) {
 export function Bento3D({ soins = [] }: { soins?: Soin[] }) {
   const { t } = useI18n();
 
-  const descOf = (slug: string) =>
-    (Array.isArray(soins) ? soins : []).find((s) => s.slug === slug)?.desc ?? "";
+  const find = (slug: string) =>
+    (Array.isArray(soins) ? soins : []).find((s) => s.slug === slug);
+  const descOf = (slug: string) => find(slug)?.desc ?? "";
+  const imgOf = (slug: string) => find(slug)?.img ?? "";
+  const altOf = (slug: string) => find(slug)?.alt ?? "";
 
   const cards: Card[] = [
     {
