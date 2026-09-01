@@ -204,8 +204,8 @@ export function ParcoursMorph() {
         {/* Scène */}
         <div className="relative flex-1">
           {/* Texte de l'étape */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-4 z-20 px-6 lg:inset-x-auto lg:bottom-auto lg:left-[max(24px,calc(50%-600px))] lg:top-1/2 lg:w-[420px] lg:-translate-y-1/2">
-            <div className="relative h-[150px] lg:h-[220px]">
+          <div className="pointer-events-none absolute bottom-4 left-0 right-0 z-20 mx-auto max-w-6xl px-6 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2">
+            <div className="relative h-[150px] w-full max-w-[420px] lg:h-[240px]">
               {texts.map((tx) => (
                 <div
                   key={tx.k}
