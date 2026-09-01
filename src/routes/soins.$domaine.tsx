@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 
 import { SiteHeader } from "@/components/site-header";
@@ -18,6 +18,7 @@ import { WeightHeroCampaign } from "@/components/weight-hero-campaign";
 import { SexuelHeroCampaign } from "@/components/sexuel-hero-campaign";
 import { SkinHeroCampaign } from "@/components/skin-hero-campaign";
 
+import { buildDomaineHead } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/soins/$domaine")({
@@ -202,7 +203,10 @@ export function DomaineView({ slug, produitId }: { slug: string; produitId: stri
     return idx >= 0 ? idx : 0;
   });
   const produit = domaine.produits[activeProduit] ?? domaine.produits[0]!;
-  const produitSeul = domaine.produits.some((p) => p.id === produitSearch);
+  useEffect(() => {
+    const idx = domaine.produits.findIndex((p) => p.id === produitSearch);
+    if (idx >= 0) setActiveProduit(idx);
+  }, [produitSearch, domaine.slug]);
 
 
   return (
