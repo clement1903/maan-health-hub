@@ -363,10 +363,7 @@ export function DomaineView({ slug, produitId }: { slug: string; produitId: stri
                   type="button"
                   onClick={() => {
                     setActiveProduit(i);
-                    navigate(
-                      { to: ".", search: (prev) => ({ ...prev, produit: p.id }) },
-                      { resetScroll: false },
-                    );
+                    navigate({ to: ".", search: (prev) => ({ ...prev, produit: p.id }), resetScroll: false });
                   }}
                   aria-current={activeProduit === i ? "page" : undefined}
                   className={cn(
