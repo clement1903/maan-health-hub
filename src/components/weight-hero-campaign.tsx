@@ -73,9 +73,6 @@ export function WeightHeroCampaign() {
             <h1 className="mt-5 text-balance font-section text-4xl font-medium leading-[1.04] tracking-tight drop-shadow-[0_4px_24px_rgba(18,14,10,0.8)] lg:text-6xl">
               {t("Toujours dans votre dressing ?", "Still in your closet?")}
             </h1>
-            <p className="mt-6 font-section text-xl italic leading-snug text-[#f3ece2]/85 drop-shadow-[0_2px_16px_rgba(18,14,10,0.8)] lg:text-2xl">
-              {t("Nous aussi, on connaît ce jean.", "We know those jeans too.")}
-            </p>
             <span aria-hidden className="mt-7 block h-px w-12 bg-clay" />
             <p className="mt-6 max-w-[42ch] text-pretty leading-relaxed text-[#f3ece2]/75 drop-shadow-[0_2px_12px_rgba(18,14,10,0.8)]">
               {t(
