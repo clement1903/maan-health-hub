@@ -269,59 +269,8 @@ function DomainePage() {
       <main className="flex-1">
         {domaine.slug === "sexuel" && <SexuelHeroCampaign />}
         {domaine.slug === "peau" && <SkinHeroCampaign />}
-        {domaine.slug !== "sexuel" && domaine.slug !== "peau" && (
-
-        <section className="border-b border-border">
-          <div className="mx-auto max-w-6xl px-6 py-14 lg:py-16">
-            <Reveal>
-              <nav aria-label={t("Fil d'Ariane", "Breadcrumb")} className="mb-8">
-                <ol className="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
-                  <li>
-                    <Link
-                      to="/soins"
-                      className="transition-colors hover:text-clay"
-                    >
-                      {t("Nos soins", "Our treatments")}
-                    </Link>
-                  </li>
-                  <li aria-hidden="true" className="text-border">/</li>
-                  <li>
-                    <Link
-                      to="/soins/$domaine"
-                      params={{ domaine: domaine.slug }}
-                      search={{ produit: undefined }}
-                      className="transition-colors hover:text-clay"
-                    >
-                      {domaine.tag}
-                    </Link>
-                  </li>
-                  <li aria-hidden="true" className="text-border">/</li>
-                  <li aria-current="page" className="text-foreground">
-                    {produit.nom}
-                  </li>
-                </ol>
-              </nav>
-              <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
-                <div className="lg:col-span-8">
-                  <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-                    {domaine.tag}
-                  </p>
-                  <h1 className="mt-4 text-balance font-display text-4xl font-medium leading-[1.05] tracking-tight lg:text-5xl">
-                    {domaine.titre}
-                  </h1>
-                  <p className="mt-5 max-w-[60ch] text-pretty text-muted">
-                    {t(
-                      "Découvrez chaque traitement en détail : photo, mode d'action, précautions et suivi. Informations indicatives — la décision appartient au médecin qui évalue votre dossier.",
-                      "Discover each treatment in detail: photo, how it works, precautions and follow-up. Indicative information — the decision belongs to the doctor reviewing your file.",
-                    )}
-                  </p>
-                </div>
-              </div>
-
-            </Reveal>
-          </div>
-        </section>
-        )}
+        {domaine.slug === "cheveux" && <HairHeroCampaign />}
+        {domaine.slug === "poids" && <WeightHeroCampaign />}
 
         {domaine.slug === "cheveux" && (
           <>
