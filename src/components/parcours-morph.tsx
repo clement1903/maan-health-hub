@@ -111,7 +111,7 @@ export function ParcoursMorph() {
 
   const steps = [
     { n: "01", label: t("Questionnaire", "Questionnaire") },
-    { n: "02", label: t("Consultation", "Consultation") },
+    { n: "02", label: t("Consultation médicale en ligne", "Online medical consultation") },
     { n: "03", label: t("Livraison", "Delivery") },
     { n: "04", label: t("Suivi", "Follow-up") },
   ];
@@ -131,7 +131,7 @@ export function ParcoursMorph() {
     },
     {
       k: "02",
-      eyebrow: `02 — ${t("Consultation", "Consultation")}`,
+      eyebrow: `02 — ${t("Consultation médicale en ligne", "Online medical consultation")}`,
       title: t("Échangez avec un médecin en ligne.", "Talk with a doctor online."),
       sub: t(
         "Votre dossier est déjà préparé pour rendre la consultation simple et efficace.",
@@ -158,7 +158,7 @@ export function ParcoursMorph() {
         "Retrouvez votre suivi et vos échanges depuis votre espace patient.",
         "Find your follow-up and your messages in your patient space.",
       ),
-      o: band(p, 0.91, 0.95, 1.01, 1.02),
+      o: band(p, 0.91, 0.95, 0.96, 0.98),
     },
   ];
 
@@ -751,7 +751,7 @@ function ParcoursStatic() {
     },
     {
       n: "02",
-      title: t("Consultation", "Consultation"),
+      title: t("Consultation médicale en ligne", "Online medical consultation"),
       desc: t(
         "Votre dossier est transmis au médecin, vous échangez en ligne.",
         "Your file reaches the doctor, and you talk online.",
