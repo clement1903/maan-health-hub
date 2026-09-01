@@ -15,6 +15,8 @@ import { HairCampaign } from "@/components/hair-campaign";
 import { HairHeroCampaign } from "@/components/hair-hero-campaign";
 import { WeightHeroCampaign } from "@/components/weight-hero-campaign";
 import { SexuelHeroCampaign } from "@/components/sexuel-hero-campaign";
+import { SkinHeroCampaign } from "@/components/skin-hero-campaign";
+
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/soins/$domaine")({
