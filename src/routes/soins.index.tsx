@@ -101,7 +101,6 @@ function SoinsIndex() {
 
 function DomaineSection({ domaine: d }: { domaine: Domaine }) {
   const { t } = useI18n();
-  const [open, setOpen] = useState(false);
   return (
     <>
       <Reveal>
@@ -111,21 +110,21 @@ function DomaineSection({ domaine: d }: { domaine: Domaine }) {
             <h2 className="font-section text-3xl font-medium tracking-tight lg:text-4xl">
               {d.titre}
             </h2>
-            <button
-              type="button"
-              onClick={() => setOpen((v) => !v)}
-              aria-expanded={open}
-              aria-controls={`domaine-info-${d.slug}`}
+            <Link
+              to="/soins/$domaine"
+              params={{ domaine: d.slug }}
+              search={{ produit: undefined }}
+              aria-label={t(`En savoir plus sur ${d.titre}`, `Learn more about ${d.titre}`)}
               className="group inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted transition-all duration-300 hover:border-clay/50 hover:text-foreground"
             >
-              {open ? t("Réduire", "Collapse") : t("En savoir plus", "Learn more")}
+              {t("En savoir plus", "Learn more")}
               <span
                 aria-hidden
-                className={`font-mono text-clay transition-transform duration-500 ease-[var(--ease)] ${open ? "rotate-45" : ""}`}
+                className="font-mono text-clay transition-transform duration-500 ease-[var(--ease)] group-hover:translate-x-1"
               >
-                +
+                →
               </span>
-            </button>
+            </Link>
           </div>
           <Floating3D
             domaine={d.slug}
@@ -136,39 +135,6 @@ function DomaineSection({ domaine: d }: { domaine: Domaine }) {
           />
         </div>
       </Reveal>
-
-      <div
-        id={`domaine-info-${d.slug}`}
-        className={`grid transition-all duration-700 ease-[var(--ease)] ${
-          open ? "mt-10 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-        }`}
-      >
-        <div className="overflow-hidden">
-          <Reveal className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-5">
-              <img
-                src={d.image}
-                alt={t(`Spécialité MAAN ${d.titre} — ${d.tag}`, `MAAN specialty ${d.titre} — ${d.tag}`)}
-                loading="lazy"
-                width={1024}
-                height={768}
-                className="aspect-[4/3] w-full rounded-[20px] object-cover shadow-[0_40px_100px_-70px_var(--foreground)]"
-              />
-            </div>
-            <div className="lg:col-span-7">
-              <p className="max-w-[56ch] text-pretty text-muted">{d.chapo}</p>
-              <ul className="mt-6 space-y-2">
-                {d.indications.map((ind) => (
-                  <li key={ind} className="flex items-start gap-3 text-sm">
-                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-clay" />
-                    <span className="text-pretty">{ind}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-        </div>
-      </div>
 
       <ProduitCarousel produits={d.produits} label={d.titre} domaineSlug={d.slug} />
     </>
