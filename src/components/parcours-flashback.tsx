@@ -156,7 +156,7 @@ export function ParcoursFlashback() {
       weight: 1.1,
       step: 3,
       eyebrow: ["Pharmacie", "Pharmacy"],
-      title: ["Préparé et délivré par une pharmacie.", "Prepared and dispensed by a pharmacy."],
+      title: ["Préparé et expédié par une pharmacie.", "Prepared and shipped by a pharmacy."],
       body: [
         "Votre traitement est préparé après prescription, puis expédié discrètement.",
         "Your treatment is prepared after the prescription, then shipped discreetly.",
