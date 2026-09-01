@@ -197,7 +197,7 @@ export function HairHeroCampaign({ variant = "A" }: { variant?: CampaignVariant 
                   params={{ slug: "cheveux" }}
                   className="group inline-flex items-center gap-2 rounded-full bg-clay px-7 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep"
                 >
-                  {t("Découvrir les solutions", "Discover the options")}
+                  {t("Commencer la consultation", "Start consultation")}
                   <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </Link>
               </div>
