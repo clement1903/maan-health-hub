@@ -21,10 +21,7 @@ export function SiteFooter() {
           <div className="max-w-[36ch]">
             <span className="font-display text-2xl font-semibold tracking-tight">MAAN</span>
             <p className="mt-3 text-pretty text-sm text-muted">
-              {t(
-                "Des soins pensés pour les hommes. Questionnaire médical, validation de la prescription par un médecin et livraison discrète à domicile.",
-                "Care designed for men. Medical questionnaire, prescription reviewed by a doctor and discreet home delivery.",
-              )}
+              {t("Des soins pensés pour les hommes.", "Care designed for men.")}
             </p>
             <LanguageSwitcher className="mt-5" />
           </div>
