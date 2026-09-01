@@ -400,7 +400,16 @@ function DomainePage() {
         <section id="medicaments" className="scroll-mt-24 bg-cream">
 
 
-          <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
+          <div
+            className="mx-auto max-w-6xl px-6 py-16 lg:py-20"
+            onMouseMove={(e) => {
+              const r = e.currentTarget.getBoundingClientRect();
+              const px = (e.clientX - r.left) / r.width - 0.5;
+              const py = (e.clientY - r.top) / r.height - 0.5;
+              setCardTilt({ rx: -py * 22, ry: px * 30 });
+            }}
+            onMouseLeave={() => setCardTilt({ rx: 0, ry: 0 })}
+          >
             <Reveal>
               <h2 className="font-section text-3xl font-medium tracking-tight lg:text-4xl">
                 {t("Les médicaments", "The medications")}
@@ -446,13 +455,6 @@ function DomainePage() {
               <div
                 key={produit.id}
                 className="animate-[rise_0.5s_var(--ease)_both] rounded-[24px] border border-border bg-background p-8 lg:col-span-5 lg:p-10"
-                onMouseMove={(e) => {
-                  const r = e.currentTarget.getBoundingClientRect();
-                  const px = (e.clientX - r.left) / r.width - 0.5;
-                  const py = (e.clientY - r.top) / r.height - 0.5;
-                  setCardTilt({ rx: -py * 16, ry: px * 22 });
-                }}
-                onMouseLeave={() => setCardTilt({ rx: 0, ry: 0 })}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
