@@ -13,20 +13,31 @@ interface HighlightTextProps {
  */
 export function HighlightText({ text, keywords, className }: HighlightTextProps) {
   const [visible, setVisible] = useState<Set<string>>(new Set());
+  const visibleRef = useRef<Set<string>>(visible);
   const refs = useRef<Map<string, HTMLSpanElement>>(new Map());
   const orderRef = useRef<Map<string, number>>(new Map());
   const pendingRef = useRef<Set<string>>(new Set());
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
+    visibleRef.current = visible;
+  }, [visible]);
+
+  useEffect(() => {
     const revealNext = () => {
       const pending = Array.from(pendingRef.current);
-      if (pending.length === 0) return;
+      if (pending.length === 0) {
+        timerRef.current = null;
+        return;
+      }
 
       // On active les mots dans l'ordre d'apparition dans le texte.
       pending.sort((a, b) => (orderRef.current.get(a) ?? 0) - (orderRef.current.get(b) ?? 0));
       const next = pending[0];
-      if (!next) return;
+      if (!next) {
+        timerRef.current = null;
+        return;
+      }
       pendingRef.current.delete(next);
       setVisible((prev) => new Set([...prev, next]));
 
@@ -38,7 +49,12 @@ export function HighlightText({ text, keywords, className }: HighlightTextProps)
       (entries) => {
         entries.forEach((entry) => {
           const key = entry.target.getAttribute("data-keyword");
-          if (entry.isIntersecting && key && !visible.has(key) && !pendingRef.current.has(key)) {
+          if (
+            entry.isIntersecting &&
+            key &&
+            !visibleRef.current.has(key) &&
+            !pendingRef.current.has(key)
+          ) {
             pendingRef.current.add(key);
             if (!timerRef.current) {
               timerRef.current = setTimeout(revealNext, 120);
@@ -50,12 +66,21 @@ export function HighlightText({ text, keywords, className }: HighlightTextProps)
     );
 
     refs.current.forEach((el) => observer.observe(el));
+
+    // Si des mots sont déjà en attente au montage, on relance la chaîne.
+    if (pendingRef.current.size > 0 && !timerRef.current) {
+      timerRef.current = setTimeout(revealNext, 120);
+    }
+
+    return () => observer.disconnect();
+  }, [text, keywords]);
+
+  useEffect(() => {
     return () => {
-      observer.disconnect();
       if (timerRef.current) clearTimeout(timerRef.current);
       timerRef.current = null;
     };
-  }, [text, keywords, visible]);
+  }, []);
 
   if (!keywords.length) return <span className={className}>{text}</span>;
 
