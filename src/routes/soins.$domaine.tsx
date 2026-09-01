@@ -42,74 +42,9 @@ export const Route = createFileRoute("/soins/$domaine")({
         ],
       };
     }
-    const d = loaderData.domaine;
-    const p = loaderData.produit;
-    const title = p
-      ? `${p.nom} (${p.molecule}) — ${d.tag} | MAAN`
-      : `${d.titre} — ${d.tag} | MAAN`;
-    const description = p
-      ? `${p.nom} (${p.molecule}) : ${p.forme}. Prix et posologie, précautions et prix. Évaluation par un médecin — délivré uniquement sur ordonnance.`
-      : d.chapo;
-    const url = p
-      ? `/soins/${params.domaine}?produit=${encodeURIComponent(p.id)}`
-      : `/soins/${params.domaine}`;
-    const scripts: Array<{ type: string; children: string }> = [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: d.faq.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.r },
-          })),
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Nos soins", item: "/soins" },
-            { "@type": "ListItem", position: 2, name: d.tag, item: `/soins/${params.domaine}` },
-            ...(p
-              ? [{ "@type": "ListItem", position: 3, name: p.nom, item: url }]
-              : []),
-          ],
-        }),
-      },
-    ];
-    if (p) {
-      scripts.push({
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Product",
-          name: `${p.nom} (${p.molecule})`,
-          description,
-          category: d.titre,
-          ...(p.prix ? { offers: { "@type": "Offer", priceCurrency: "EUR", availability: "https://schema.org/PreOrder", description: `Prix : ${p.prix} — délivré uniquement sur ordonnance après évaluation médicale.` } } : {}),
-        }),
-      });
-    }
-    return {
-      meta: [
-        { title },
-        { name: "description", content: description },
-        { property: "og:type", content: p ? "product" : "article" },
-        { property: "og:title", content: title },
-        { property: "og:description", content: description },
-        { property: "og:url", content: url },
-        { name: "twitter:card", content: "summary" },
-        { name: "twitter:title", content: title },
-        { name: "twitter:description", content: description },
-      ],
-      links: [{ rel: "canonical", href: url }],
-      scripts,
-    };
+    return buildDomaineHead(params.domaine, loaderData.produit?.id ?? null);
   },
+
   notFoundComponent: DomaineIntrouvable,
   component: DomainePage,
 });
