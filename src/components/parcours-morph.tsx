@@ -315,15 +315,19 @@ function MorphObject({ p, g }: { p: number; g: Stage }) {
       {/* couche matière : papier crème → écran sombre → kraft → verre */}
       <div
         className="absolute inset-0 border border-border bg-cream"
-        style={{ borderRadius: g.r, boxShadow: "0 60px 120px -60px var(--foreground)" }}
+        style={{
+          borderRadius: g.r,
+          boxShadow: "0 60px 120px -60px var(--foreground)",
+          opacity: 1 - kraft,
+        }}
       />
       <div
         className="absolute inset-0 bg-[var(--foreground)]"
         style={{ borderRadius: g.r, opacity: clamp(shellDark + phoneShell * 0.96) }}
       />
       <div
-        className="absolute inset-0 overflow-hidden"
-        style={{ borderRadius: g.r, opacity: kraft }}
+        className="absolute inset-0"
+        style={{ opacity: kraft }}
       >
         <img
           src={colisKraft}
@@ -332,7 +336,7 @@ function MorphObject({ p, g }: { p: number; g: Stage }) {
           width={1024}
           height={1024}
           loading="lazy"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain"
           style={{
             transform: `scale(${1.12 + kraft * 0.06})`,
             filter: "drop-shadow(0 30px 40px oklch(0.35 0.04 60 / 0.25))",
