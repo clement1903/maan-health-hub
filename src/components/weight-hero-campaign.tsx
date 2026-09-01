@@ -34,7 +34,7 @@ export function WeightHeroCampaign() {
       {/* PHOTO full-bleed — occupe toute la place disponible */}
       <div className="absolute inset-0">
         <img
-          src={weightHeroMuseum}
+          src={lang === "en" ? weightHeroMuseumEn : weightHeroMuseum}
           alt={t(
             "Un jean plié exposé comme une œuvre d'art sur un socle de musée, avec une plaque gravée « Jean, 2019 — Dernière apparition connue : été 2022 ».",
             "A folded pair of jeans displayed like an artwork on a museum pedestal, with an engraved plaque reading 'Jeans, 2019 — Last seen: summer 2022'.",
