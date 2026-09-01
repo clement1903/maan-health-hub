@@ -12,7 +12,7 @@ export function SiteHeader() {
   const condensed = scrollY > 40;
 
   const nav = [
-    { to: "/parcours", label: t("Parcours", "How it works") },
+    { to: "/parcours", label: t("Comment ça marche ?", "How does it work?") },
     { to: "/conformite", label: t("Conformité", "Compliance") },
     { to: "/espace-patient", label: t("Espace patient", "Patient area") },
   ];
