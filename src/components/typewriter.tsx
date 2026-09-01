@@ -24,7 +24,7 @@ export function Typewriter({
   const [phase, setPhase] = useState<"typing" | "holding" | "erasing">("typing");
 
   useEffect(() => {
-    const word = words[index % words.length];
+    const word = words[index % words.length] ?? "";
     let timer: ReturnType<typeof setTimeout>;
 
     if (phase === "typing") {

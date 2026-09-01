@@ -4,7 +4,9 @@ import { Mic, Video, PhoneOff, Check, Bell } from "lucide-react";
 import medecinVisio from "@/assets/parcours-medecin-visio.jpg";
 import patientVisio from "@/assets/temoin-1.jpg";
 import { useI18n } from "@/lib/i18n";
+import { Typewriter } from "@/components/typewriter";
 import { cn } from "@/lib/utils";
+
 
 /* ------------------------------------------------------------------ */
 /* helpers                                                             */
@@ -118,7 +120,17 @@ export function ParcoursMorph() {
 
   const active = p < 0.44 ? 0 : p < 0.72 ? 1 : p < 0.9 ? 2 : 3;
 
+  const placeWords = [
+    t("la maison.", "home."),
+    t("la plage.", "the beach."),
+    t("le bureau.", "the office."),
+    t("le train.", "the train."),
+    t("l'étranger.", "abroad."),
+    t("partout.", "anywhere."),
+  ];
+
   const texts = [
+
     {
       k: "01",
       eyebrow: `01 — ${t("Questionnaire", "Questionnaire")}`,
@@ -174,9 +186,15 @@ export function ParcoursMorph() {
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
             {t("Le parcours", "How it works")}
           </p>
-          <h2 className="mt-2 max-w-[20ch] text-balance font-section text-2xl font-medium tracking-tight lg:text-3xl">
+          <h2 className="mt-2 max-w-[24ch] text-balance font-section text-2xl font-medium tracking-tight lg:text-3xl">
             {t("Quatre étapes. Sans déplacement.", "Four steps. Without leaving home.")}
+            <br />
+            <span className="text-muted">
+              {t("En ligne. Depuis ", "Online. From ")}
+              <Typewriter words={placeWords} className="text-clay" />
+            </span>
           </h2>
+
 
           {/* Navigation ultra-discrète */}
           <div className="mt-5 hidden items-end gap-8 sm:flex">
