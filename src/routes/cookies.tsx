@@ -119,16 +119,12 @@ function CookiesPage() {
               <h2 className="font-section text-2xl font-medium tracking-tight">
                 {t("Aucune publicité à partir de vos données de santé", "No advertising built on your health data")}
               </h2>
-              <p className="mt-3 text-pretty text-muted">
-                {t(
-                  "Les réponses à votre questionnaire, la nature de votre traitement et l'historique de vos commandes ne sont jamais transmis à des régies publicitaires, ni utilisés pour du ciblage. Ces données restent dans le circuit médical et pharmaceutique décrit sur la page",
-                  "Your questionnaire answers, the nature of your treatment, and your order history are never shared with advertising networks or used for targeting. This data stays within the medical and pharmaceutical process described on the",
-                )}{" "}
-                <Link to="/conformite" className="underline decoration-clay/50 underline-offset-4">
-                  {t("conformité et confidentialité", "compliance and privacy")}
-                </Link>
-                {t(" page.", " page.")}
-              </p>
+                <p className="mt-3 text-pretty text-muted">
+                  {t(
+                    "Les réponses à votre questionnaire, la nature de votre traitement et l'historique de vos commandes ne sont jamais transmis à des régies publicitaires, ni utilisés pour du ciblage. Ces données restent strictement dans le circuit médical et pharmaceutique de MAAN.",
+                    "Your questionnaire answers, the nature of your treatment, and your order history are never shared with advertising networks or used for targeting. This data stays strictly within MAAN's medical and pharmaceutical process.",
+                  )}
+                </p>
             </div>
             <div>
               <h2 className="font-section text-2xl font-medium tracking-tight">

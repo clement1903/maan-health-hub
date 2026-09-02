@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import { ShieldCheck } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -11,7 +10,6 @@ type Props = {
 
 /**
  * Mention légale médicale compacte.
- * Le texte complet figure sur /conformite.
  */
 export function MedicalDisclaimer({ variant = "produits", className }: Props) {
   const { t } = useI18n();
@@ -37,13 +35,6 @@ export function MedicalDisclaimer({ variant = "produits", className }: Props) {
             )}{" "}
         {t("En cas d’urgence, contactez le 15 ou le 112.", "In an emergency, call 15 or 112.")}
       </span>
-      <Link
-        to="/conformite"
-        hash="medical"
-        className="shrink-0 underline decoration-clay/40 decoration-2 underline-offset-4 transition hover:decoration-clay"
-      >
-        {t("Conformité et confidentialité", "Compliance and privacy")}
-      </Link>
     </aside>
   );
 }
