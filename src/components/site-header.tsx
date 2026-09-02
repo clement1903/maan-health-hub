@@ -13,7 +13,6 @@ export function SiteHeader() {
 
   const nav = [
     { to: "/parcours", label: t("Comment ça marche ?", "How does it work?") },
-    { to: "/espace-patient", label: t("Espace patient", "Patient area") },
   ];
 
   return (
