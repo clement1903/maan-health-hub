@@ -24,6 +24,9 @@
   --color-clay: var(--clay);
   --color-clay-deep: var(--clay-deep);
   --color-amber: var(--amber);
+  --color-espresso: var(--espresso);
+  --color-espresso-foreground: var(--espresso-foreground);
+  --color-espresso-muted: var(--espresso-muted);
   --color-border: var(--border);
   --color-card: var(--cream);
   --color-card-foreground: var(--foreground);
@@ -55,6 +58,9 @@
   --clay-deep: oklch(0.425 0.11 36);
   --amber: oklch(0.665 0.132 62);
   --border: oklch(0.245 0.025 60 / 0.1);
+  --espresso: oklch(0.21 0.028 50);
+  --espresso-foreground: oklch(0.955 0.018 85);
+  --espresso-muted: oklch(0.66 0.02 70);
 
   --ease: cubic-bezier(0.32, 0.72, 0, 1);
 }
