@@ -128,10 +128,7 @@ function AuthPage() {
     <div className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
       <SiteHeader />
       <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-6 py-16">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
-          {t("Espace patient", "Patient area")}
-        </p>
-        <h1 className="mt-3 font-display text-3xl font-medium tracking-tight">
+        <h1 className="font-display text-3xl font-medium tracking-tight">
           {mode === "signin" ? t("Se connecter", "Sign in") : t("Créer un compte", "Create an account")}
         </h1>
         <p className="mt-2 text-pretty text-sm text-muted">
