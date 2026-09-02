@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { z } from "zod";
 
 import { supabase } from "@/integrations/supabase/client";
@@ -210,13 +210,9 @@ function AuthPage() {
 
         <p className="mt-8 text-center text-xs text-muted">
           {t(
-            "En continuant, vous acceptez le traitement confidentiel de vos données de santé décrit dans la",
-            "By continuing, you accept the confidential handling of your health data described in the",
-          )}{" "}
-          <Link to="/conformite" className="underline decoration-clay/50 underline-offset-4">
-            {t("page conformité", "compliance page")}
-          </Link>
-          .
+            "En continuant, vous acceptez le traitement confidentiel de vos données de santé par MAAN.",
+            "By continuing, you accept the confidential handling of your health data by MAAN.",
+          )}
         </p>
       </main>
       <SiteFooter />

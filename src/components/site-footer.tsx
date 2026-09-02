@@ -32,7 +32,7 @@ export function SiteFooter() {
             </div>
             <LanguageSwitcher className="mt-5" />
           </div>
-          <div className="grid grid-cols-2 gap-8 font-mono text-[11px] uppercase tracking-[0.12em] text-muted sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-8 font-mono text-[11px] uppercase tracking-[0.12em] text-muted">
             <div className="space-y-3">
               <p className="text-foreground">{t("Soins", "Treatments")}</p>
               {soins.map((s) => (
@@ -60,26 +60,6 @@ export function SiteFooter() {
               </Link>
               <Link to="/auth" className="block transition-colors hover:text-clay">
                 {t("Se connecter", "Sign in")}
-              </Link>
-            </div>
-            <div className="space-y-3">
-              <p className="text-foreground">{t("Conformité", "Compliance")}</p>
-              <Link to="/conformite" className="block transition-colors hover:text-clay">
-                {t("Prescription", "Prescription")}
-              </Link>
-              <Link
-                to="/conformite"
-                hash="donnees"
-                className="block transition-colors hover:text-clay"
-              >
-                {t("Données de santé", "Health data")}
-              </Link>
-              <Link
-                to="/conformite"
-                hash="expedition"
-                className="block transition-colors hover:text-clay"
-              >
-                {t("Expédition", "Shipping")}
               </Link>
               <Link to="/cookies" className="block transition-colors hover:text-clay">
                 {t("Politique des cookies", "Cookie policy")}
