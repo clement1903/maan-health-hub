@@ -55,6 +55,9 @@ export function SiteFooter() {
               <Link to="/statistiques" className="block transition-colors hover:text-clay">
                 {t("Les chiffres", "The numbers")}
               </Link>
+              <Link to="/guides" className="block transition-colors hover:text-clay">
+                {t("Base de connaissances", "Knowledge base")}
+              </Link>
               <Link to="/espace-patient" className="block transition-colors hover:text-clay">
                 {t("Espace patient", "Patient area")}
               </Link>
