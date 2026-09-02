@@ -110,16 +110,28 @@ export function SiteFooter() {
               {t("Découvrir MAAN", "Discover MAAN")}
             </p>
             <Link
+              to="/a-propos"
+              className="block text-sm text-espresso-muted transition-colors hover:text-amber"
+            >
+              {t("À propos de MAAN", "About MAAN")}
+            </Link>
+            <Link
+              to="/equipe-medicale"
+              className="block text-sm text-espresso-muted transition-colors hover:text-amber"
+            >
+              {t("L'équipe médicale", "The medical team")}
+            </Link>
+            <Link
+              to="/temoignages"
+              className="block text-sm text-espresso-muted transition-colors hover:text-amber"
+            >
+              {t("Témoignages", "Testimonials")}
+            </Link>
+            <Link
               to="/parcours"
               className="block text-sm text-espresso-muted transition-colors hover:text-amber"
             >
               {t("Comment ça marche ?", "How it works")}
-            </Link>
-            <Link
-              to="/statistiques"
-              className="block text-sm text-espresso-muted transition-colors hover:text-amber"
-            >
-              {t("Les chiffres", "The numbers")}
             </Link>
             <Link
               to="/guides"
