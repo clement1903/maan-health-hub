@@ -225,7 +225,7 @@ function QuestionnaireStart() {
             </span>
             <span aria-hidden className="text-border">|</span>
             <span className="inline-flex items-center gap-1.5">
-              <Gift className="size-3" /> {t("Gratuit", "Free")}
+              <Gift className="size-3" /> {t("1 €", "1 €")}
             </span>
             <span aria-hidden className="text-border">|</span>
             <span className="inline-flex items-center gap-1.5">

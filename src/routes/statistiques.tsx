@@ -188,9 +188,9 @@ function StatistiquesPage() {
                   label: t("délai moyen de réponse d'un médecin sur MAAN", "average physician response time on MAAN"),
                 },
                 {
-                  value: 0,
+                  value: 1,
                   suffix: "€",
-                  label: t("la consultation est gratuite", "the consultation is free"),
+                  label: t("la consultation médicale en ligne", "the online medical consultation"),
                 },
               ].map((s, i) => (
                 <Reveal key={s.label} delay={i * 80} className="bg-background p-8">
@@ -265,7 +265,7 @@ function StatistiquesPage() {
                 to="/questionnaire"
                 className="mt-8 inline-flex items-center gap-2 rounded-full bg-clay px-7 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-clay-deep"
               >
-                {t("Démarrer ma consultation gratuite", "Start my free consultation")}
+                {t("Démarrer ma consultation à 1 €", "Start my consultation for 1 €")}
                 <span aria-hidden>→</span>
               </Link>
               <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.15em] text-muted">
