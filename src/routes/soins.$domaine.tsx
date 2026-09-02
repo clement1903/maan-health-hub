@@ -208,6 +208,9 @@ export function DomaineView({ slug, produitId }: { slug: string; produitId: stri
     const idx = domaine.produits.findIndex((p) => p.id === produitSearch);
     if (idx >= 0) setActiveProduit(idx);
   }, [produitSearch, domaine.slug]);
+  useEffect(() => {
+    setOpenFaq(null);
+  }, [domaine.slug]);
 
 
   return (
