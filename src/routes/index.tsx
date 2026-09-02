@@ -171,8 +171,8 @@ const buildFaq = (t: T) => [
       "What happens if the doctor declines to prescribe?",
     ),
     a: t(
-      "Vous recevez un motif écrit dans votre espace patient et des orientations adaptées. La consultation médicale est à 1 € : un refus est un acte médical, pas un échec de commande.",
-      "You receive a written reason in your patient area along with suitable guidance. The medical consultation is 1 €: a refusal is a medical decision, not a failed order.",
+      "Vous recevez un motif écrit dans votre espace patient et des orientations adaptées. La consultation médicale est sans frais : un refus est un acte médical, pas un échec de commande.",
+      "You receive a written reason in your patient area along with suitable guidance. The medical consultation is at no cost: a refusal is a medical decision, not a failed order.",
     ),
   },
   {
@@ -279,7 +279,7 @@ function Home() {
                     </svg>
                   </div>
                   <div className="flex min-w-0 flex-col">
-                    <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Consultation médicale à 1 €", "Medical consultation for €1")}</span>
+                    <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Consultation médicale sans frais", "Medical consultation at no cost")}</span>
                     <span className="text-[11px] text-muted">{t("Avec un médecin enregistré BIG", "With a BIG-registered doctor")}</span>
                   </div>
                 </div>
