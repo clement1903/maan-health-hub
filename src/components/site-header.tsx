@@ -109,6 +109,12 @@ export function SiteHeader() {
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
           <Link
+            to="/questionnaire"
+            className="rounded-full border border-foreground/25 px-5 py-2.5 text-sm font-medium transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+          >
+            {t("Commencer mon évaluation", "Start my assessment")}
+          </Link>
+          <Link
             to="/espace-patient"
             className="group relative overflow-hidden rounded-full bg-clay px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:bg-clay-deep"
           >
