@@ -163,26 +163,26 @@ function QuestionnaireStart() {
   const categories: Category[] = [
     {
       slug: "sexuel",
-      title: "Sexual Management",
+      title: t("Santé sexuelle", "Sexual health"),
       concepts: [t("Érection", "Erection"), t("Éjaculation", "Ejaculation")],
       Visual: SexualVisual,
     },
     {
       slug: "poids",
-      title: "Weight Management",
+      title: t("Gestion du poids", "Weight management"),
       concepts: [t("Poids", "Weight"), t("IMC", "BMI")],
       Visual: WeightVisual,
     },
     {
       slug: "cheveux",
-      title: "Hair Management",
+      title: t("Chute de cheveux", "Hair loss"),
       concepts: [t("Chute", "Loss"), t("Densité", "Density")],
       Visual: HairVisual,
     },
     {
       slug: "peau",
-      title: "Skin Management",
-      concepts: [t("Acné", "Acne"), t("Peau", "Skin")],
+      title: t("Peau", "Skin"),
+      concepts: [t("Acné", "Acne"), t("Imperfections", "Blemishes")],
       Visual: SkinVisual,
     },
   ];
