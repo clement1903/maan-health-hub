@@ -286,8 +286,8 @@ function Home() {
                     </svg>
                   </div>
                   <div className="flex min-w-0 flex-col">
-                    <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Consultation 100% gratuite", "100% free consultation")}</span>
-                    <span className="text-[11px] text-muted">{t("et sans engagement", "and no commitment")}</span>
+                  <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Consultation 100% gratuite", "100% free consultation")}</span>
+                    <span className="text-[11px] text-muted">{t("Paiement après prescription", "Payment after prescription")}</span>
                   </div>
                 </div>
 
