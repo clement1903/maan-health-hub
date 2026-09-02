@@ -279,7 +279,7 @@ function Home() {
                     </svg>
                   </div>
                   <div className="flex min-w-0 flex-col">
-                  <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Consultation à 1 €", "Consultation for 1 €")}</span>
+                  <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Consultation médicale à 1 €", "Medical consultation for 1 €")}</span>
                     <span className="text-[11px] text-muted">{t("Paiement après prescription", "Payment after prescription")}</span>
                   </div>
                 </div>
