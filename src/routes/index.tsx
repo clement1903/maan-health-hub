@@ -149,10 +149,10 @@ const buildSoins = (t: T): Soin[] => [
 
 const buildFaq = (t: T) => [
   {
-    q: t("Comment se déroule la consultation en ligne ?", "How does the online consultation work?"),
+    q: t("Comment se déroule la consultation médicale en ligne ?", "How does the online medical consultation work?"),
     a: t(
-      "Vous remplissez un questionnaire médical en ligne, puis un médecin agréé l'analyse à distance. S'il l'estime justifié, il délivre une ordonnance ; sinon il demande des précisions, refuse la demande ou vous oriente vers une consultation physique.",
-      "You complete a medical questionnaire online, then a licensed doctor reviews it remotely. If justified, they issue a prescription; otherwise they ask for details, decline the request or refer you to an in-person consultation.",
+      "Vous remplissez un questionnaire médical en ligne, puis un médecin agréé l'analyse à distance. S'il l'estime justifié, il délivre une ordonnance ; sinon il demande des précisions, refuse la demande ou vous oriente vers une consultation médicale en présentiel.",
+      "You complete a medical questionnaire online, then a licensed doctor reviews it remotely. If justified, they issue a prescription; otherwise they ask for details, decline the request or refer you to an in-person medical consultation.",
     ),
   },
   {
@@ -171,8 +171,8 @@ const buildFaq = (t: T) => [
       "What happens if the doctor declines to prescribe?",
     ),
     a: t(
-      "Vous recevez un motif écrit dans votre espace patient et des orientations adaptées. La consultation est à 1 € : un refus est un acte médical, pas un échec de commande.",
-      "You receive a written reason in your patient area along with suitable guidance. The consultation is 1 €: a refusal is a medical decision, not a failed order.",
+      "Vous recevez un motif écrit dans votre espace patient et des orientations adaptées. La consultation médicale est à 1 € : un refus est un acte médical, pas un échec de commande.",
+      "You receive a written reason in your patient area along with suitable guidance. The medical consultation is 1 €: a refusal is a medical decision, not a failed order.",
     ),
   },
   {
@@ -257,7 +257,7 @@ function Home() {
                     to="/questionnaire"
                     className="group inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep hover:shadow-[0_18px_40px_-18px_var(--clay)]"
                   >
-                    {t("Commencer une consultation", "Start a consultation")}
+                    {t("Commencer une consultation médicale", "Start a medical consultation")}
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>
@@ -478,7 +478,7 @@ function Home() {
                 {t("Prêt quand vous l'êtes", "Ready when you are")}
               </p>
               <h2 className="mt-3 max-w-[22ch] text-balance font-section text-4xl font-medium tracking-tight lg:text-5xl">
-                {t("Commencer votre consultation aujourd'hui.", "Start your consultation today.")}
+                {t("Commencer votre consultation médicale aujourd'hui.", "Start your medical consultation today.")}
               </h2>
             </div>
             <Link
