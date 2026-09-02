@@ -48,7 +48,7 @@ export function SiteHeader() {
             {t("Des soins pensés pour les hommes", "Care designed for men")}
           </span>
         </Link>
-        <nav className="hidden items-center gap-8 font-mono text-[11px] uppercase tracking-[0.15em] text-muted lg:flex">
+        <nav className="hidden items-center gap-8 whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.15em] text-muted lg:flex">
           <Link
             to="/"
             activeProps={{ className: "text-foreground" }}
@@ -108,13 +108,13 @@ export function SiteHeader() {
         <div className="flex items-center gap-3">
           <Link
             to="/espace-patient"
-            className="rounded-full border border-foreground/60 px-6 py-2.5 text-sm font-medium transition-colors hover:bg-foreground hover:text-background"
+            className="whitespace-nowrap rounded-full border border-foreground/60 px-6 py-2.5 text-sm font-medium transition-colors hover:bg-foreground hover:text-background"
           >
             {t("Se connecter", "Login")}
           </Link>
           <Link
             to="/questionnaire"
-            className="group relative overflow-hidden rounded-full bg-espresso px-6 py-2.5 text-sm font-medium text-espresso-foreground transition-colors hover:bg-clay hover:text-cream"
+            className="group relative overflow-hidden whitespace-nowrap rounded-full bg-espresso px-6 py-2.5 text-sm font-medium text-espresso-foreground transition-colors hover:bg-clay hover:text-cream"
           >
             <span className="relative z-10">{t("Commencer mon évaluation", "Start intake")}</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-cream/20 to-transparent transition-transform duration-700 ease-[var(--ease)] group-hover:translate-x-full" />
