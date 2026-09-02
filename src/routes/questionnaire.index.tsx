@@ -1,6 +1,6 @@
 import { useState, type ComponentType } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Clock, Gift, Lock, ShieldCheck } from "lucide-react";
+import { Check, Clock, Lock, ShieldCheck } from "lucide-react";
 
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -225,7 +225,7 @@ function QuestionnaireStart() {
             </span>
             <span aria-hidden className="text-border">|</span>
             <span className="inline-flex items-center gap-1.5">
-              <Gift className="size-3" /> {t("1 €", "1 €")}
+              <Check className="size-3" /> {t("Sans frais", "At no cost")}
             </span>
             <span aria-hidden className="text-border">|</span>
             <span className="inline-flex items-center gap-1.5">
