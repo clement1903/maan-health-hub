@@ -38,7 +38,7 @@ export function DoctorCard({ doctor }: { doctor: Doctor | null }) {
           <p className="text-sm text-muted">{tr(doctor.role, lang)}</p>
           {doctor.big ? (
             <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-clay">
-              {t("Certifié BIG", "BIG registered")} · {doctor.big}
+              {t("BIG enregistré", "BIG registered")} · {doctor.big}
             </p>
           ) : null}
         </div>

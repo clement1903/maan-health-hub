@@ -245,7 +245,7 @@ function MedecinCard({ medecin }: { medecin: Medecin }) {
           <span className="flex w-full flex-col justify-between gap-4 p-6 lg:p-8">
             <span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-cream/25 px-2.5 py-0.5 font-mono text-[10px] tracking-[0.08em] text-cream/80">
-                {t("Certifié BIG", "BIG certified")} · {medecin.big}
+                {t("BIG enregistré", "BIG registered")} · {medecin.big}
                 <Check
                   aria-hidden
                   strokeWidth={2}
@@ -339,8 +339,8 @@ export function MedecinsSection() {
           )}
         >
           {t(
-            "Les praticiens qui évaluent votre dossier sont des médecins certifiés BIG, vérifiables dans le registre officiel et tenus au secret médical.",
-            "The practitioners who review your file are BIG-certified doctors, verifiable in the official register and bound by medical confidentiality.",
+            "Les praticiens qui évaluent votre dossier sont des médecins enregistrés BIG, vérifiables dans le registre officiel et tenus au secret médical.",
+            "The practitioners who review your file are BIG-registered doctors, verifiable in the official register and bound by medical confidentiality.",
           )}
         </p>
 
