@@ -101,8 +101,8 @@ function TarifsProduit({ produit }: { produit: Produit }) {
           </p>
           <p className="mt-1 text-[11px] leading-relaxed text-muted">
             {t(
-              "Achat unique, sans engagement. Renouvellement uniquement après décision du médecin.",
-              "One-time purchase, no commitment. Renewal only after the doctor's decision.",
+              "Achat unique. Renouvellement uniquement après décision du médecin.",
+              "One-time purchase. Renewal only after the doctor's decision.",
             )}
           </p>
         </div>
