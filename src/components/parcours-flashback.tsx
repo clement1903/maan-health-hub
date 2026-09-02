@@ -93,9 +93,9 @@ export function ParcoursFlashback() {
 
   const delai: [string, string] =
     DELAI_MODE === "A"
-      ? ["48 h après la prescription.", "48 h after the prescription."]
+      ? ["48h00 après la consultation médicale en ligne.", "48 hours after the online medical consultation."]
       : DELAI_MODE === "B"
-        ? ["Généralement sous 48 h après la prescription.", "Usually within 48 h of the prescription."]
+        ? ["Généralement sous 48h00 après la consultation médicale en ligne.", "Usually within 48 hours of the online medical consultation."]
         : ["[Délai de livraison à confirmer]", "[Delivery time to be confirmed]"];
 
   const shots: Shot[] = [

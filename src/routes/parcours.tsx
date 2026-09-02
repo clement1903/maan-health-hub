@@ -63,7 +63,7 @@ export const Route = createFileRoute("/parcours")({
             {
               "@type": "HowToStep",
               name: "Livraison",
-              text: "Le traitement est expédié dans un colis neutre, généralement sous 48 h après la prescription.",
+              text: "Le traitement est expédié dans un colis neutre, généralement sous 48h00 après la consultation médicale en ligne.",
             },
           ],
         }),
@@ -122,8 +122,8 @@ function ParcoursPage() {
     {
       q: t("En combien de temps est-ce livré ?", "How long does delivery take?"),
       a: t(
-        "Généralement sous 48 h après la prescription, selon la disponibilité en pharmacie et le transporteur.",
-        "Usually within 48 h of the prescription, depending on pharmacy availability and the carrier.",
+        "Généralement sous 48h00 après la consultation médicale en ligne, selon la disponibilité en pharmacie et le transporteur.",
+        "Usually within 48 hours of the online medical consultation, depending on pharmacy availability and the carrier.",
       ),
     },
     {
