@@ -176,13 +176,6 @@ const buildFaq = (t: T) => [
     ),
   },
   {
-    q: t("L'ordonnance m'appartient-elle ?", "Does the prescription belong to me?"),
-    a: t(
-      "Oui. Vous recevez une ordonnance officielle, téléchargeable depuis votre espace patient, que vous pouvez présenter à votre pharmacie habituelle plutôt qu'à notre pharmacie partenaire.",
-      "Yes. You receive an official prescription, downloadable from your patient area, which you may take to your usual pharmacy instead of our partner pharmacy.",
-    ),
-  },
-  {
     q: t("Qui peut lire mes réponses de santé ?", "Who can read my health answers?"),
     a: t(
       "Uniquement le médecin en charge de votre dossier et, pour la préparation, le pharmacien concerné. Vos réponses sont couvertes par le secret médical.",
