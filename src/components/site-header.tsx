@@ -106,20 +106,20 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <LanguageSwitcher />
-          <Link
-            to="/questionnaire"
-            className="rounded-full border border-foreground/25 px-5 py-2.5 text-sm font-medium transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
-          >
-            {t("Commencer mon évaluation", "Start my assessment")}
-          </Link>
           <Link
             to="/espace-patient"
-            className="group relative overflow-hidden rounded-full bg-clay px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:bg-clay-deep"
+            className="rounded-full border border-foreground/60 px-6 py-2.5 text-sm font-medium transition-colors hover:bg-foreground hover:text-background"
           >
-            <span className="relative z-10">{t("Se connecter", "Sign in")}</span>
-            <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-cream/25 to-transparent transition-transform duration-700 ease-[var(--ease)] group-hover:translate-x-full" />
+            {t("Se connecter", "Login")}
           </Link>
+          <Link
+            to="/questionnaire"
+            className="group relative overflow-hidden rounded-full bg-espresso px-6 py-2.5 text-sm font-medium text-espresso-foreground transition-colors hover:bg-clay hover:text-cream"
+          >
+            <span className="relative z-10">{t("Commencer mon évaluation", "Start intake")}</span>
+            <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-cream/20 to-transparent transition-transform duration-700 ease-[var(--ease)] group-hover:translate-x-full" />
+          </Link>
+          <LanguageSwitcher />
         </div>
       </div>
     </header>

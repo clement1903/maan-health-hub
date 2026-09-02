@@ -23,9 +23,9 @@ function FlagEN({ className }: { className?: string }) {
   );
 }
 
-const langs: { code: Lang; label: string; Flag: typeof FlagFR }[] = [
-  { code: "fr", label: "Français", Flag: FlagFR },
-  { code: "en", label: "English", Flag: FlagEN },
+const langs: { code: Lang; short: string; label: string; Flag: typeof FlagFR }[] = [
+  { code: "fr", short: "FR", label: "Français", Flag: FlagFR },
+  { code: "en", short: "EN", label: "English", Flag: FlagEN },
 ];
 
 export function LanguageSwitcher({ className }: { className?: string }) {
@@ -33,11 +33,11 @@ export function LanguageSwitcher({ className }: { className?: string }) {
 
   return (
     <div
-      className={cn("flex items-center gap-1", className)}
+      className={cn("flex items-center gap-2", className)}
       role="group"
       aria-label={lang === "en" ? "Choose language" : "Choisir la langue"}
     >
-      {langs.map(({ code, label, Flag }) => (
+      {langs.map(({ code, short, label, Flag }) => (
         <button
           key={code}
           type="button"
@@ -45,13 +45,14 @@ export function LanguageSwitcher({ className }: { className?: string }) {
           aria-pressed={lang === code}
           title={label}
           className={cn(
-            "cursor-pointer rounded-[3px] p-[3px] transition-all duration-300 hover:opacity-100",
+            "flex cursor-pointer items-center gap-2 rounded-xl px-2.5 py-1.5 transition-all duration-300",
             lang === code
-              ? "opacity-100 ring-1 ring-clay/50"
-              : "opacity-40 hover:scale-105",
+              ? "border border-border bg-cream/60 shadow-sm"
+              : "border border-transparent opacity-50 hover:opacity-100",
           )}
         >
-          <Flag className="h-3 w-[18px] rounded-[2px] object-cover" />
+          <Flag className="h-5 w-5 rounded-full object-cover ring-1 ring-foreground/10" />
+          <span className="text-xs font-semibold tracking-wide">{short}</span>
           <span className="sr-only">{label}</span>
         </button>
       ))}
