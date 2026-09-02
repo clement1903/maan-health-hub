@@ -171,8 +171,8 @@ const buildFaq = (t: T) => [
       "What happens if the doctor declines to prescribe?",
     ),
     a: t(
-      "Vous recevez un motif écrit dans votre espace patient et des orientations adaptées. La consultation est gratuite et sans engagement : un refus est un acte médical, pas un échec de commande.",
-      "You receive a written reason in your patient area along with suitable guidance. The consultation is free and without commitment: a refusal is a medical decision, not a failed order.",
+      "Vous recevez un motif écrit dans votre espace patient et des orientations adaptées. La consultation est gratuite : un refus est un acte médical, pas un échec de commande.",
+      "You receive a written reason in your patient area along with suitable guidance. The consultation is free: a refusal is a medical decision, not a failed order.",
     ),
   },
   {
@@ -286,8 +286,8 @@ function Home() {
                     </svg>
                   </div>
                   <div className="flex min-w-0 flex-col">
-                    <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Consultation 100% gratuite", "100% free consultation")}</span>
-                    <span className="text-[11px] text-muted">{t("et sans engagement", "and no commitment")}</span>
+                  <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Consultation 100% gratuite", "100% free consultation")}</span>
+                    <span className="text-[11px] text-muted">{t("Paiement après prescription", "Payment after prescription")}</span>
                   </div>
                 </div>
 

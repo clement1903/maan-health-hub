@@ -101,8 +101,8 @@ function TarifsProduit({ produit }: { produit: Produit }) {
           </p>
           <p className="mt-1 text-[11px] leading-relaxed text-muted">
             {t(
-              "Achat unique, sans engagement. Renouvellement uniquement après décision du médecin.",
-              "One-time purchase, no commitment. Renewal only after the doctor's decision.",
+              "Achat unique. Renouvellement uniquement après décision du médecin.",
+              "One-time purchase. Renewal only after the doctor's decision.",
             )}
           </p>
         </div>
@@ -147,8 +147,8 @@ function TarifsProduit({ produit }: { produit: Produit }) {
           </div>
           <p className="mt-2 text-[11px] leading-relaxed text-muted">
             {t(
-              `Engagement de ${mois} mois, résiliable à l'échéance. Frais de consultation et de livraison détaillés lors de votre parcours.`,
-              `${mois}-month commitment, cancellable at the end of the term. Consultation and delivery fees detailed during your journey.`,
+              `Abonnement de ${mois} mois. Renouvellement uniquement après décision du médecin. Frais de consultation et de livraison détaillés lors de votre parcours.`,
+              `${mois}-month subscription. Renewal only after the doctor's decision. Consultation and delivery fees detailed during your journey.`,
             )}
           </p>
         </div>

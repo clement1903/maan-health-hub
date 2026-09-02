@@ -190,7 +190,7 @@ function StatistiquesPage() {
                 {
                   value: 0,
                   suffix: "€",
-                  label: t("la consultation est gratuite et sans engagement", "the consultation is free with no commitment"),
+                  label: t("la consultation est gratuite", "the consultation is free"),
                 },
               ].map((s, i) => (
                 <Reveal key={s.label} delay={i * 80} className="bg-background p-8">
