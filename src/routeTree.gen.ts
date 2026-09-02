@@ -17,6 +17,8 @@ import { Route as EspacePatientRouteImport } from './routes/espace-patient'
 import { Route as MonEspaceRouteImport } from './routes/mon-espace'
 import { Route as ParcoursRouteImport } from './routes/parcours'
 import { Route as StatistiquesRouteImport } from './routes/statistiques'
+import { Route as GuidesIndexRouteImport } from './routes/guides.index'
+import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 import { Route as MonEspaceIndexRouteImport } from './routes/mon-espace.index'
 import { Route as MonEspaceMessagesRouteImport } from './routes/mon-espace.messages'
 import { Route as MonEspaceProfilRouteImport } from './routes/mon-espace.profil'
@@ -66,6 +68,16 @@ const ParcoursRoute = ParcoursRouteImport.update({
 const StatistiquesRoute = StatistiquesRouteImport.update({
   id: '/statistiques',
   path: '/statistiques',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesIndexRoute = GuidesIndexRouteImport.update({
+  id: '/guides/',
+  path: '/guides/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesSlugRoute = GuidesSlugRouteImport.update({
+  id: '/guides/$slug',
+  path: '/guides/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MonEspaceIndexRoute = MonEspaceIndexRouteImport.update({
@@ -128,11 +140,13 @@ export interface FileRoutesByFullPath {
   '/mon-espace': typeof MonEspaceRouteWithChildren
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/mon-espace/messages': typeof MonEspaceMessagesRoute
   '/mon-espace/profil': typeof MonEspaceProfilRoute
   '/mon-espace/suivi': typeof MonEspaceSuiviRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
+  '/guides/': typeof GuidesIndexRoute
   '/mon-espace/': typeof MonEspaceIndexRoute
   '/questionnaire/': typeof QuestionnaireIndexRoute
   '/mon-espace/soins/$journeyId': typeof MonEspaceSoinsJourneyIdRoute
@@ -147,11 +161,13 @@ export interface FileRoutesByTo {
   '/espace-patient': typeof EspacePatientRoute
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/mon-espace/messages': typeof MonEspaceMessagesRoute
   '/mon-espace/profil': typeof MonEspaceProfilRoute
   '/mon-espace/suivi': typeof MonEspaceSuiviRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
+  '/guides': typeof GuidesIndexRoute
   '/mon-espace': typeof MonEspaceIndexRoute
   '/questionnaire': typeof QuestionnaireIndexRoute
   '/mon-espace/soins/$journeyId': typeof MonEspaceSoinsJourneyIdRoute
@@ -168,11 +184,13 @@ export interface FileRoutesById {
   '/mon-espace': typeof MonEspaceRouteWithChildren
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/mon-espace/messages': typeof MonEspaceMessagesRoute
   '/mon-espace/profil': typeof MonEspaceProfilRoute
   '/mon-espace/suivi': typeof MonEspaceSuiviRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
+  '/guides/': typeof GuidesIndexRoute
   '/mon-espace/': typeof MonEspaceIndexRoute
   '/questionnaire/': typeof QuestionnaireIndexRoute
   '/mon-espace/soins/$journeyId': typeof MonEspaceSoinsJourneyIdRoute
@@ -190,11 +208,13 @@ export interface FileRouteTypes {
     | '/mon-espace'
     | '/parcours'
     | '/statistiques'
+    | '/guides/$slug'
     | '/mon-espace/messages'
     | '/mon-espace/profil'
     | '/mon-espace/suivi'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
+    | '/guides/'
     | '/mon-espace/'
     | '/questionnaire/'
     | '/mon-espace/soins/$journeyId'
@@ -209,11 +229,13 @@ export interface FileRouteTypes {
     | '/espace-patient'
     | '/parcours'
     | '/statistiques'
+    | '/guides/$slug'
     | '/mon-espace/messages'
     | '/mon-espace/profil'
     | '/mon-espace/suivi'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
+    | '/guides'
     | '/mon-espace'
     | '/questionnaire'
     | '/mon-espace/soins/$journeyId'
@@ -229,11 +251,13 @@ export interface FileRouteTypes {
     | '/mon-espace'
     | '/parcours'
     | '/statistiques'
+    | '/guides/$slug'
     | '/mon-espace/messages'
     | '/mon-espace/profil'
     | '/mon-espace/suivi'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
+    | '/guides/'
     | '/mon-espace/'
     | '/questionnaire/'
     | '/mon-espace/soins/$journeyId'
@@ -250,8 +274,10 @@ export interface RootRouteChildren {
   MonEspaceRoute: typeof MonEspaceRouteWithChildren
   ParcoursRoute: typeof ParcoursRoute
   StatistiquesRoute: typeof StatistiquesRoute
+  GuidesSlugRoute: typeof GuidesSlugRoute
   QuestionnaireSlugRoute: typeof QuestionnaireSlugRoute
   SoinsDomaineRoute: typeof SoinsDomaineRoute
+  GuidesIndexRoute: typeof GuidesIndexRoute
   QuestionnaireIndexRoute: typeof QuestionnaireIndexRoute
   SoinsDomaineProduitRoute: typeof SoinsDomaineProduitRoute
 }
@@ -312,6 +338,20 @@ declare module '@tanstack/react-router' {
       path: '/statistiques'
       fullPath: '/statistiques'
       preLoaderRoute: typeof StatistiquesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/': {
+      id: '/guides/'
+      path: '/guides'
+      fullPath: '/guides/'
+      preLoaderRoute: typeof GuidesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/$slug': {
+      id: '/guides/$slug'
+      path: '/guides/$slug'
+      fullPath: '/guides/$slug'
+      preLoaderRoute: typeof GuidesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mon-espace/': {
@@ -418,8 +458,10 @@ const rootRouteChildren: RootRouteChildren = {
   MonEspaceRoute: MonEspaceRouteWithChildren,
   ParcoursRoute: ParcoursRoute,
   StatistiquesRoute: StatistiquesRoute,
+  GuidesSlugRoute: GuidesSlugRoute,
   QuestionnaireSlugRoute: QuestionnaireSlugRoute,
   SoinsDomaineRoute: SoinsDomaineRoute,
+  GuidesIndexRoute: GuidesIndexRoute,
   QuestionnaireIndexRoute: QuestionnaireIndexRoute,
   SoinsDomaineProduitRoute: SoinsDomaineProduitRoute,
 }
