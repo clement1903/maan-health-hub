@@ -265,7 +265,7 @@ function StatistiquesPage() {
                 to="/questionnaire"
                 className="mt-8 inline-flex items-center gap-2 rounded-full bg-clay px-7 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-clay-deep"
               >
-                {t("Démarrer ma consultation à 1 €", "Start my consultation for 1 €")}
+                {t("Démarrer ma consultation sans frais", "Start my consultation at no cost")}
                 <span aria-hidden>→</span>
               </Link>
               <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.15em] text-muted">
