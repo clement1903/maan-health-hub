@@ -18,6 +18,7 @@ import { Route as MonEspaceRouteImport } from './routes/mon-espace'
 import { Route as ParcoursRouteImport } from './routes/parcours'
 import { Route as StatistiquesRouteImport } from './routes/statistiques'
 import { Route as GuidesIndexRouteImport } from './routes/guides.index'
+import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 import { Route as MonEspaceIndexRouteImport } from './routes/mon-espace.index'
 import { Route as MonEspaceMessagesRouteImport } from './routes/mon-espace.messages'
 import { Route as MonEspaceProfilRouteImport } from './routes/mon-espace.profil'
@@ -72,6 +73,11 @@ const StatistiquesRoute = StatistiquesRouteImport.update({
 const GuidesIndexRoute = GuidesIndexRouteImport.update({
   id: '/guides/',
   path: '/guides/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesSlugRoute = GuidesSlugRouteImport.update({
+  id: '/guides/$slug',
+  path: '/guides/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MonEspaceIndexRoute = MonEspaceIndexRouteImport.update({
@@ -134,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/mon-espace': typeof MonEspaceRouteWithChildren
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/mon-espace/messages': typeof MonEspaceMessagesRoute
   '/mon-espace/profil': typeof MonEspaceProfilRoute
   '/mon-espace/suivi': typeof MonEspaceSuiviRoute
@@ -154,6 +161,7 @@ export interface FileRoutesByTo {
   '/espace-patient': typeof EspacePatientRoute
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/mon-espace/messages': typeof MonEspaceMessagesRoute
   '/mon-espace/profil': typeof MonEspaceProfilRoute
   '/mon-espace/suivi': typeof MonEspaceSuiviRoute
@@ -176,6 +184,7 @@ export interface FileRoutesById {
   '/mon-espace': typeof MonEspaceRouteWithChildren
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/mon-espace/messages': typeof MonEspaceMessagesRoute
   '/mon-espace/profil': typeof MonEspaceProfilRoute
   '/mon-espace/suivi': typeof MonEspaceSuiviRoute
@@ -199,6 +208,7 @@ export interface FileRouteTypes {
     | '/mon-espace'
     | '/parcours'
     | '/statistiques'
+    | '/guides/$slug'
     | '/mon-espace/messages'
     | '/mon-espace/profil'
     | '/mon-espace/suivi'
@@ -219,6 +229,7 @@ export interface FileRouteTypes {
     | '/espace-patient'
     | '/parcours'
     | '/statistiques'
+    | '/guides/$slug'
     | '/mon-espace/messages'
     | '/mon-espace/profil'
     | '/mon-espace/suivi'
@@ -240,6 +251,7 @@ export interface FileRouteTypes {
     | '/mon-espace'
     | '/parcours'
     | '/statistiques'
+    | '/guides/$slug'
     | '/mon-espace/messages'
     | '/mon-espace/profil'
     | '/mon-espace/suivi'
@@ -262,6 +274,7 @@ export interface RootRouteChildren {
   MonEspaceRoute: typeof MonEspaceRouteWithChildren
   ParcoursRoute: typeof ParcoursRoute
   StatistiquesRoute: typeof StatistiquesRoute
+  GuidesSlugRoute: typeof GuidesSlugRoute
   QuestionnaireSlugRoute: typeof QuestionnaireSlugRoute
   SoinsDomaineRoute: typeof SoinsDomaineRoute
   GuidesIndexRoute: typeof GuidesIndexRoute
@@ -332,6 +345,13 @@ declare module '@tanstack/react-router' {
       path: '/guides'
       fullPath: '/guides/'
       preLoaderRoute: typeof GuidesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/$slug': {
+      id: '/guides/$slug'
+      path: '/guides/$slug'
+      fullPath: '/guides/$slug'
+      preLoaderRoute: typeof GuidesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mon-espace/': {
@@ -438,6 +458,7 @@ const rootRouteChildren: RootRouteChildren = {
   MonEspaceRoute: MonEspaceRouteWithChildren,
   ParcoursRoute: ParcoursRoute,
   StatistiquesRoute: StatistiquesRoute,
+  GuidesSlugRoute: GuidesSlugRoute,
   QuestionnaireSlugRoute: QuestionnaireSlugRoute,
   SoinsDomaineRoute: SoinsDomaineRoute,
   GuidesIndexRoute: GuidesIndexRoute,
