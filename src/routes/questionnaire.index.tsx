@@ -93,7 +93,7 @@ function QuestionnaireStart() {
               <Clock className="size-3.5" /> {t("environ 3 minutes", "about 3 minutes")}
             </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2">
-              <ShieldCheck className="size-3.5" /> {t("gratuit et sans engagement", "free and with no commitment")}
+              <ShieldCheck className="size-3.5" /> {t("gratuit", "free")}
             </span>
           </div>
 
