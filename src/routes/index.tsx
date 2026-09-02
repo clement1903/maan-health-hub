@@ -206,7 +206,7 @@ const buildMarquee = (t: T) => [
   t("Ordonnance obligatoire", "Prescription required"),
   t("Colis neutre", "Neutral parcel"),
   t("Données chiffrées", "Encrypted data"),
-  t("Pharmacie certifiée", "Certified pharmacy"),
+  t("Pharmacie enregistrée", "Registered pharmacy"),
   t("Suivi personnalisé", "Personalised follow-up"),
 ];
 
@@ -361,7 +361,7 @@ function Home() {
                 <div className="w-1/2 px-5 text-center sm:w-auto sm:min-w-[150px]">
                   <p className="font-display text-2xl font-medium tracking-tight text-clay">BIG</p>
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                    {t("Médecins certifiés", "Certified doctors")}
+                    {t("Médecins enregistrés", "Registered doctors")}
                   </p>
                 </div>
               </div>
