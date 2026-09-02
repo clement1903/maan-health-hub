@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ComponentType } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Clock, Gift, Lock, ShieldCheck } from "lucide-react";
 
@@ -152,7 +152,7 @@ type Category = {
   slug: string;
   title: string;
   concepts: [string, string];
-  Visual: () => JSX.Element;
+  Visual: ComponentType;
 };
 
 function QuestionnaireStart() {
