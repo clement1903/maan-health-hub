@@ -10,13 +10,16 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AProposRouteImport } from './routes/a-propos'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as EquipeMedicaleRouteImport } from './routes/equipe-medicale'
 import { Route as EspacePatientRouteImport } from './routes/espace-patient'
 import { Route as MonEspaceRouteImport } from './routes/mon-espace'
 import { Route as ParcoursRouteImport } from './routes/parcours'
 import { Route as StatistiquesRouteImport } from './routes/statistiques'
+import { Route as TemoignagesRouteImport } from './routes/temoignages'
 import { Route as GuidesIndexRouteImport } from './routes/guides.index'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 import { Route as MonEspaceIndexRouteImport } from './routes/mon-espace.index'
@@ -35,6 +38,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AProposRoute = AProposRouteImport.update({
+  id: '/a-propos',
+  path: '/a-propos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -48,6 +56,11 @@ const AuthRoute = AuthRouteImport.update({
 const CookiesRoute = CookiesRouteImport.update({
   id: '/cookies',
   path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EquipeMedicaleRoute = EquipeMedicaleRouteImport.update({
+  id: '/equipe-medicale',
+  path: '/equipe-medicale',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EspacePatientRoute = EspacePatientRouteImport.update({
@@ -68,6 +81,11 @@ const ParcoursRoute = ParcoursRouteImport.update({
 const StatistiquesRoute = StatistiquesRouteImport.update({
   id: '/statistiques',
   path: '/statistiques',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TemoignagesRoute = TemoignagesRouteImport.update({
+  id: '/temoignages',
+  path: '/temoignages',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GuidesIndexRoute = GuidesIndexRouteImport.update({
@@ -133,13 +151,16 @@ const SoinsDomaineProduitRoute = SoinsDomaineProduitRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/cookies': typeof CookiesRoute
+  '/equipe-medicale': typeof EquipeMedicaleRoute
   '/espace-patient': typeof EspacePatientRoute
   '/mon-espace': typeof MonEspaceRouteWithChildren
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
+  '/temoignages': typeof TemoignagesRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/mon-espace/messages': typeof MonEspaceMessagesRoute
   '/mon-espace/profil': typeof MonEspaceProfilRoute
@@ -155,12 +176,15 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/cookies': typeof CookiesRoute
+  '/equipe-medicale': typeof EquipeMedicaleRoute
   '/espace-patient': typeof EspacePatientRoute
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
+  '/temoignages': typeof TemoignagesRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/mon-espace/messages': typeof MonEspaceMessagesRoute
   '/mon-espace/profil': typeof MonEspaceProfilRoute
@@ -177,13 +201,16 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/cookies': typeof CookiesRoute
+  '/equipe-medicale': typeof EquipeMedicaleRoute
   '/espace-patient': typeof EspacePatientRoute
   '/mon-espace': typeof MonEspaceRouteWithChildren
   '/parcours': typeof ParcoursRoute
   '/statistiques': typeof StatistiquesRoute
+  '/temoignages': typeof TemoignagesRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/mon-espace/messages': typeof MonEspaceMessagesRoute
   '/mon-espace/profil': typeof MonEspaceProfilRoute
@@ -201,13 +228,16 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/a-propos'
     | '/admin'
     | '/auth'
     | '/cookies'
+    | '/equipe-medicale'
     | '/espace-patient'
     | '/mon-espace'
     | '/parcours'
     | '/statistiques'
+    | '/temoignages'
     | '/guides/$slug'
     | '/mon-espace/messages'
     | '/mon-espace/profil'
@@ -223,12 +253,15 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/a-propos'
     | '/admin'
     | '/auth'
     | '/cookies'
+    | '/equipe-medicale'
     | '/espace-patient'
     | '/parcours'
     | '/statistiques'
+    | '/temoignages'
     | '/guides/$slug'
     | '/mon-espace/messages'
     | '/mon-espace/profil'
@@ -244,13 +277,16 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/a-propos'
     | '/admin'
     | '/auth'
     | '/cookies'
+    | '/equipe-medicale'
     | '/espace-patient'
     | '/mon-espace'
     | '/parcours'
     | '/statistiques'
+    | '/temoignages'
     | '/guides/$slug'
     | '/mon-espace/messages'
     | '/mon-espace/profil'
@@ -267,13 +303,16 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AProposRoute: typeof AProposRoute
   AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
   CookiesRoute: typeof CookiesRoute
+  EquipeMedicaleRoute: typeof EquipeMedicaleRoute
   EspacePatientRoute: typeof EspacePatientRoute
   MonEspaceRoute: typeof MonEspaceRouteWithChildren
   ParcoursRoute: typeof ParcoursRoute
   StatistiquesRoute: typeof StatistiquesRoute
+  TemoignagesRoute: typeof TemoignagesRoute
   GuidesSlugRoute: typeof GuidesSlugRoute
   QuestionnaireSlugRoute: typeof QuestionnaireSlugRoute
   SoinsDomaineRoute: typeof SoinsDomaineRoute
@@ -289,6 +328,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/a-propos': {
+      id: '/a-propos'
+      path: '/a-propos'
+      fullPath: '/a-propos'
+      preLoaderRoute: typeof AProposRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -310,6 +356,13 @@ declare module '@tanstack/react-router' {
       path: '/cookies'
       fullPath: '/cookies'
       preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/equipe-medicale': {
+      id: '/equipe-medicale'
+      path: '/equipe-medicale'
+      fullPath: '/equipe-medicale'
+      preLoaderRoute: typeof EquipeMedicaleRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/espace-patient': {
@@ -338,6 +391,13 @@ declare module '@tanstack/react-router' {
       path: '/statistiques'
       fullPath: '/statistiques'
       preLoaderRoute: typeof StatistiquesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/temoignages': {
+      id: '/temoignages'
+      path: '/temoignages'
+      fullPath: '/temoignages'
+      preLoaderRoute: typeof TemoignagesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/guides/': {
@@ -451,13 +511,16 @@ const MonEspaceRouteWithChildren = MonEspaceRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AProposRoute: AProposRoute,
   AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
   CookiesRoute: CookiesRoute,
+  EquipeMedicaleRoute: EquipeMedicaleRoute,
   EspacePatientRoute: EspacePatientRoute,
   MonEspaceRoute: MonEspaceRouteWithChildren,
   ParcoursRoute: ParcoursRoute,
   StatistiquesRoute: StatistiquesRoute,
+  TemoignagesRoute: TemoignagesRoute,
   GuidesSlugRoute: GuidesSlugRoute,
   QuestionnaireSlugRoute: QuestionnaireSlugRoute,
   SoinsDomaineRoute: SoinsDomaineRoute,
