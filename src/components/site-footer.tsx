@@ -223,12 +223,6 @@ export function SiteFooter() {
                 {t("Des soins pensés pour les hommes", "Care designed for men")}
               </span>
             </div>
-            <p className="mt-4 max-w-[60ch] text-[11px] leading-relaxed text-espresso-muted">
-              {t(
-                "Les traitements sont délivrés uniquement sur ordonnance établie par un médecin agréé après évaluation de votre questionnaire. La pharmacie partenaire prépare et expédie les médicaments. Ce site ne vend pas de médicament sans prescription.",
-                "Treatments are dispensed only with a prescription issued by a licensed doctor after reviewing your questionnaire. The partner pharmacy prepares and ships the medication. This site does not sell medication without a prescription.",
-              )}
-            </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-[10px] uppercase tracking-[0.14em] text-espresso-muted">
