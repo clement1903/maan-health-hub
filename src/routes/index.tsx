@@ -257,7 +257,7 @@ function Home() {
                     to="/questionnaire"
                     className="group inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep hover:shadow-[0_18px_40px_-18px_var(--clay)]"
                   >
-                    {t("Commencer une consultation", "Start a consultation")}
+                    {t("Commencer une consultation médicale", "Start a medical consultation")}
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>
@@ -478,7 +478,7 @@ function Home() {
                 {t("Prêt quand vous l'êtes", "Ready when you are")}
               </p>
               <h2 className="mt-3 max-w-[22ch] text-balance font-section text-4xl font-medium tracking-tight lg:text-5xl">
-                {t("Commencer votre consultation aujourd'hui.", "Start your consultation today.")}
+                {t("Commencer votre consultation médicale aujourd'hui.", "Start your medical consultation today.")}
               </h2>
             </div>
             <Link
