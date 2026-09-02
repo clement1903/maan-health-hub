@@ -281,7 +281,6 @@ function Home() {
                   <div className="flex min-w-0 flex-col">
                     <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Consultation médicale", "Medical consultation")}</span>
                     <span className="text-[13px] font-semibold leading-tight text-foreground">{t("sans aucun frais", "at no cost")}</span>
-                    <span className="text-[11px] text-muted">{t("Avec un médecin enregistré BIG", "With a BIG-registered doctor")}</span>
                   </div>
                 </div>
 
