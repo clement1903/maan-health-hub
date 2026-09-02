@@ -197,7 +197,7 @@ export function DomaineView({ slug, produitId }: { slug: string; produitId: stri
   const navigate = useNavigate();
   const domaine = getDomaine(slug, lang) ?? getDomaine(slug, "fr")!;
   const produitSearch = produitId ?? undefined;
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [productMotion, setProductMotion] = useState({ x: 0, y: 0, rx: 0, ry: 0 });
   const [activeProduit, setActiveProduit] = useState(() => {
     const idx = domaine.produits.findIndex((p) => p.id === produitSearch);
