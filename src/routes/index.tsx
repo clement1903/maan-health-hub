@@ -333,7 +333,7 @@ function Home() {
                     className="font-display text-2xl font-medium tracking-tight text-clay"
                   />
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                    {t("Dossiers accompagnés", "Cases supported")}
+                    {t("hommes ont choisi MAAN", "men have chosen MAAN")}
                   </p>
                 </div>
                 <span className="hidden h-10 w-[2px] shrink-0 bg-clay/50 sm:block" aria-hidden="true" />
