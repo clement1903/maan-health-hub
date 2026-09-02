@@ -17,6 +17,7 @@ import { Route as EspacePatientRouteImport } from './routes/espace-patient'
 import { Route as MonEspaceRouteImport } from './routes/mon-espace'
 import { Route as ParcoursRouteImport } from './routes/parcours'
 import { Route as StatistiquesRouteImport } from './routes/statistiques'
+import { Route as GuidesIndexRouteImport } from './routes/guides.index'
 import { Route as MonEspaceIndexRouteImport } from './routes/mon-espace.index'
 import { Route as MonEspaceMessagesRouteImport } from './routes/mon-espace.messages'
 import { Route as MonEspaceProfilRouteImport } from './routes/mon-espace.profil'
@@ -66,6 +67,11 @@ const ParcoursRoute = ParcoursRouteImport.update({
 const StatistiquesRoute = StatistiquesRouteImport.update({
   id: '/statistiques',
   path: '/statistiques',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesIndexRoute = GuidesIndexRouteImport.update({
+  id: '/guides/',
+  path: '/guides/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MonEspaceIndexRoute = MonEspaceIndexRouteImport.update({
@@ -133,6 +139,7 @@ export interface FileRoutesByFullPath {
   '/mon-espace/suivi': typeof MonEspaceSuiviRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
+  '/guides/': typeof GuidesIndexRoute
   '/mon-espace/': typeof MonEspaceIndexRoute
   '/questionnaire/': typeof QuestionnaireIndexRoute
   '/mon-espace/soins/$journeyId': typeof MonEspaceSoinsJourneyIdRoute
@@ -152,6 +159,7 @@ export interface FileRoutesByTo {
   '/mon-espace/suivi': typeof MonEspaceSuiviRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
+  '/guides': typeof GuidesIndexRoute
   '/mon-espace': typeof MonEspaceIndexRoute
   '/questionnaire': typeof QuestionnaireIndexRoute
   '/mon-espace/soins/$journeyId': typeof MonEspaceSoinsJourneyIdRoute
@@ -173,6 +181,7 @@ export interface FileRoutesById {
   '/mon-espace/suivi': typeof MonEspaceSuiviRoute
   '/questionnaire/$slug': typeof QuestionnaireSlugRoute
   '/soins/$domaine': typeof SoinsDomaineRoute
+  '/guides/': typeof GuidesIndexRoute
   '/mon-espace/': typeof MonEspaceIndexRoute
   '/questionnaire/': typeof QuestionnaireIndexRoute
   '/mon-espace/soins/$journeyId': typeof MonEspaceSoinsJourneyIdRoute
@@ -195,6 +204,7 @@ export interface FileRouteTypes {
     | '/mon-espace/suivi'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
+    | '/guides/'
     | '/mon-espace/'
     | '/questionnaire/'
     | '/mon-espace/soins/$journeyId'
@@ -214,6 +224,7 @@ export interface FileRouteTypes {
     | '/mon-espace/suivi'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
+    | '/guides'
     | '/mon-espace'
     | '/questionnaire'
     | '/mon-espace/soins/$journeyId'
@@ -234,6 +245,7 @@ export interface FileRouteTypes {
     | '/mon-espace/suivi'
     | '/questionnaire/$slug'
     | '/soins/$domaine'
+    | '/guides/'
     | '/mon-espace/'
     | '/questionnaire/'
     | '/mon-espace/soins/$journeyId'
@@ -252,6 +264,7 @@ export interface RootRouteChildren {
   StatistiquesRoute: typeof StatistiquesRoute
   QuestionnaireSlugRoute: typeof QuestionnaireSlugRoute
   SoinsDomaineRoute: typeof SoinsDomaineRoute
+  GuidesIndexRoute: typeof GuidesIndexRoute
   QuestionnaireIndexRoute: typeof QuestionnaireIndexRoute
   SoinsDomaineProduitRoute: typeof SoinsDomaineProduitRoute
 }
@@ -312,6 +325,13 @@ declare module '@tanstack/react-router' {
       path: '/statistiques'
       fullPath: '/statistiques'
       preLoaderRoute: typeof StatistiquesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/': {
+      id: '/guides/'
+      path: '/guides'
+      fullPath: '/guides/'
+      preLoaderRoute: typeof GuidesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mon-espace/': {
@@ -420,6 +440,7 @@ const rootRouteChildren: RootRouteChildren = {
   StatistiquesRoute: StatistiquesRoute,
   QuestionnaireSlugRoute: QuestionnaireSlugRoute,
   SoinsDomaineRoute: SoinsDomaineRoute,
+  GuidesIndexRoute: GuidesIndexRoute,
   QuestionnaireIndexRoute: QuestionnaireIndexRoute,
   SoinsDomaineProduitRoute: SoinsDomaineProduitRoute,
 }
