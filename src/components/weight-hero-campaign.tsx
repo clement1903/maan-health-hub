@@ -88,7 +88,7 @@ export function WeightHeroCampaign() {
                 params={{ slug: "poids" }}
                 className="group inline-flex items-center gap-2 rounded-full bg-clay px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.16em] text-cream shadow-[0_20px_40px_-18px_rgba(196,120,84,0.7)] transition-all duration-300 hover:brightness-110"
               >
-                {t("Commencer la consultation", "Start consultation")}
+                {t("Commencer la consultation médicale", "Start medical consultation")}
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </Link>
             </div>

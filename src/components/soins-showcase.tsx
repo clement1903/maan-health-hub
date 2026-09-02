@@ -89,7 +89,7 @@ export function SoinsShowcase({ soins }: { soins: Soin[] }) {
             params={{ slug: current.slug }}
             className="group mt-8 inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:bg-clay-deep hover:gap-3"
           >
-            {t("Commencer ma consultation", "Start my consultation")}
+            {t("Commencer ma consultation médicale", "Start my medical consultation")}
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </Link>
 
