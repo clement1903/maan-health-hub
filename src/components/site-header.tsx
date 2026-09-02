@@ -37,6 +37,9 @@ export function SiteHeader() {
             </span>
             <span className="absolute inset-x-0 bottom-1 z-0 h-2 origin-left rounded-sm bg-amber/35" />
           </span>
+          <span className="hidden whitespace-nowrap font-signature text-lg leading-none text-clay lg:inline-block">
+            {t("Des soins pensés pour les hommes", "Care designed for men")}
+          </span>
         </Link>
         <nav className="hidden items-center gap-8 whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.15em] text-muted lg:flex">
           <Link
