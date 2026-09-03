@@ -123,7 +123,7 @@ export function Temoignages() {
     data: temoignages[i % temoignages.length]!,
   }));
   const step = 360 / SLOTS;
-  const tilt = 26;
+  const tilt = 30;
 
   const current = temoignages[active % temoignages.length]!;
 
@@ -182,7 +182,7 @@ export function Temoignages() {
           <div
             ref={wrapRef}
             className="relative h-[480px] w-full cursor-grab active:cursor-grabbing sm:h-[560px] lg:h-[640px]"
-            style={{ perspective: "1600px" }}
+            style={{ perspective: "2600px" }}
             onPointerDown={onPointerDown}
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
