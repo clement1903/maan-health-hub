@@ -220,24 +220,26 @@ export function Temoignages() {
           </Reveal>
 
           {/* Carrousel 3D horizontal */}
-          <Reveal className="relative order-1 flex items-center justify-center lg:order-2">
+          <Reveal className="relative order-1 flex min-h-[420px] items-center justify-center lg:order-2 lg:min-h-0">
             <div
-              className="relative aspect-square w-full max-w-[560px] cursor-grab active:cursor-grabbing"
-              style={{ perspective: "1200px" }}
+              className="relative aspect-square w-full max-w-[520px] cursor-grab active:cursor-grabbing sm:max-w-[600px] lg:max-w-[680px]"
+              style={{ perspective: "1400px" }}
               onPointerDown={onPointerDown}
               onPointerMove={onPointerMove}
               onPointerUp={onPointerUp}
               onPointerLeave={onPointerUp}
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
             >
               {/* Sol / ombre */}
-              <div className="pointer-events-none absolute inset-[10%] rounded-full bg-foreground/[0.04] blur-3xl" />
+              <div className="pointer-events-none absolute inset-[12%] rounded-full bg-foreground/[0.05] blur-3xl" />
 
               {/* Anneau */}
               <div
                 ref={ringRef}
                 className={cn(
                   "absolute inset-0",
-                  reduced ? "" : "transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                  reduced || spin !== 0 ? "" : "transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]",
                 )}
                 style={{
                   transformStyle: "preserve-3d",
@@ -261,10 +263,10 @@ export function Temoignages() {
                       )}
                       className="absolute left-1/2 top-1/2 focus:outline-none"
                       style={{
-                        width: "160px",
-                        height: "200px",
-                        marginLeft: "-80px",
-                        marginTop: "-100px",
+                        width: "clamp(120px, 26%, 180px)",
+                        height: "clamp(150px, 32%, 225px)",
+                        marginLeft: "calc(clamp(120px, 26%, 180px) * -0.5)",
+                        marginTop: "calc(clamp(150px, 32%, 225px) * -0.5)",
                         transform: `rotateZ(${itemAngle}deg) translateY(-${radius}px) rotateX(-70deg)`,
                         transformStyle: "preserve-3d",
                       }}
@@ -274,7 +276,7 @@ export function Temoignages() {
                           "relative block h-full w-full overflow-hidden rounded-xl border bg-cream shadow-xl transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
                           isActive
                             ? "border-clay shadow-[0_30px_70px_-30px_var(--foreground)]"
-                            : "border-border opacity-80 hover:opacity-100",
+                            : "border-border opacity-75 hover:opacity-100",
                         )}
                       >
                         <img
@@ -302,7 +304,7 @@ export function Temoignages() {
             </div>
 
             {/* Flèches */}
-            <div className="absolute bottom-0 left-1/2 z-30 flex -translate-x-1/2 gap-3 lg:bottom-auto lg:left-auto lg:right-8 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:flex-col">
+            <div className="absolute bottom-0 left-1/2 z-30 flex -translate-x-1/2 gap-3 lg:bottom-auto lg:left-auto lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:flex-col">
               <button
                 type="button"
                 onClick={handlePrev}
