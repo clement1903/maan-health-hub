@@ -389,6 +389,29 @@ function Home() {
           </div>
         </section>
 
+        <Marquee items={marqueeItems} />
+
+        {/* SOINS */}
+        <section id="soins" className="scroll-mt-24 bg-cream">
+          <div className="mx-auto max-w-6xl px-6 py-16 lg:py-24">
+            <Reveal className="flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-clay">
+                  {t("Nos soins", "Our treatments")}
+                </p>
+                <h2 className="mt-3 text-balance font-section text-3xl font-medium tracking-tight lg:text-4xl">
+                  {t("Qu'est-ce qui vous préoccupe ?", "What is concerning you?")}
+                </h2>
+              </div>
+            </Reveal>
+            <Reveal delay={60}>
+              <div className="mt-10">
+                <Bento3D soins={soins} />
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
         {/* PARCOURS — métamorphose 3D pilotée par le scroll */}
         <ParcoursMorph />
 
