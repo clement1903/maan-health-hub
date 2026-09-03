@@ -77,7 +77,10 @@ export function Temoignages() {
   const [active, setActive] = useState(0);
   const [playing, setPlaying] = useState<string | null>(null);
   const [reduced, setReduced] = useState(false);
+  const [paused, setPaused] = useState(false);
   const [dragging, setDragging] = useState(false);
+  const [spin, setSpin] = useState(0);
+  const rafRef = useRef(0);
   const ringRef = useRef<HTMLDivElement>(null);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
 
@@ -89,16 +92,30 @@ export function Temoignages() {
     return () => m.removeEventListener("change", onChange);
   }, []);
 
+  useEffect(() => {
+    if (reduced || paused || dragging || playing) return;
+    let last = performance.now();
+    const loop = (now: number) => {
+      const dt = now - last;
+      last = now;
+      setSpin((s) => (s + dt * 0.0035) % 360);
+      rafRef.current = requestAnimationFrame(loop);
+    };
+    rafRef.current = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [reduced, paused, dragging, playing]);
+
   const count = temoignages.length;
   const step = 360 / count;
-  const radius = 280;
-  const ringAngle = -active * step;
+  const radius = 340;
+  const ringAngle = -active * step + spin;
 
   const current = temoignages[active] ?? temoignages[0]!;
 
   const goTo = (index: number) => {
     setPlaying(null);
     setActive((index + count) % count);
+    setSpin(0);
   };
 
   const handlePrev = () => goTo(active - 1);
