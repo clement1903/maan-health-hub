@@ -233,157 +233,82 @@ function Home() {
 
       <main>
         {/* HERO */}
-        <section className="relative overflow-hidden">
-          <div
-            className="pointer-events-none absolute -left-40 top-[-10rem] h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--amber)_28%,transparent),transparent_65%)] blur-2xl"
-            style={{ transform: `translateY(${scrollY * 0.12}px)` }}
-          />
-          <div
-            className="pointer-events-none absolute -right-32 top-40 h-[26rem] w-[26rem] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--clay)_20%,transparent),transparent_65%)] blur-2xl"
-            style={{ transform: `translateY(${scrollY * -0.08}px)` }}
-          />
-          <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 py-16 lg:grid-cols-12 lg:py-24">
-            <div className="lg:col-span-6">
-              <h1 className="animate-[rise_0.6s_var(--ease)_0.08s_both] text-balance font-display text-5xl font-medium leading-[1.03] tracking-tight lg:text-6xl">
-                {t("Consultez un médecin en ligne.", "Consult a doctor online.")}{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10">{t("Recevez votre traitement à domicile.", "Get your treatment delivered at home.")}</span>
-                  <span className="absolute inset-x-0 bottom-1 z-0 h-3 origin-left animate-[rise_0.8s_var(--ease)_0.5s_both] rounded-sm bg-amber/35" />
-                </span>
-              </h1>
-              <div className="mt-9 flex animate-[rise_0.6s_var(--ease)_0.24s_both] flex-wrap items-center gap-4">
-                <Magnetic>
-                  <Link
-                    to="/questionnaire"
-                    className="group inline-flex items-center gap-2 rounded-full bg-clay px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3 hover:bg-clay-deep hover:shadow-[0_18px_40px_-18px_var(--clay)]"
-                  >
-                    {t("Commencer une consultation médicale", "Start a medical consultation")}
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">
-                      →
-                    </span>
-                  </Link>
-                </Magnetic>
-                <a
-                  href="#parcours"
-                  className="font-medium text-foreground underline decoration-clay/40 decoration-2 underline-offset-[6px] transition-all hover:decoration-clay hover:underline-offset-8"
-                >
-                  {t("Voir le parcours", "See how it works")}
-                </a>
-              </div>
-              <div className="mt-6 grid animate-[rise_0.6s_var(--ease)_0.32s_both] grid-cols-1 gap-3 sm:grid-cols-2">
-                <div className="group flex items-center gap-3 rounded-2xl border border-border bg-cream/50 p-3 transition-all duration-300 hover:-translate-y-0.5 hover:bg-cream hover:shadow-sm">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream text-clay shadow-sm ring-1 ring-border transition-all duration-300 group-hover:bg-sand">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-                      <path d="m9 12 2 2 4-4" />
-                    </svg>
-                  </div>
-                  <div className="flex min-w-0 flex-col">
-                    <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Consultation médicale", "Medical consultation")}</span>
-                    <span className="text-[11px] text-muted">{t("sans aucun frais", "FREE of charge")}</span>
-                  </div>
-                </div>
-
-                <div className="group flex items-center gap-3 rounded-2xl border border-border bg-cream/50 p-3 transition-all duration-300 hover:-translate-y-0.5 hover:bg-cream hover:shadow-sm">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream text-clay shadow-sm ring-1 ring-border transition-all duration-300 group-hover:bg-sand">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-                      <path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.85.85 2.23.85 3.08 0L15 8" />
-                    </svg>
-                  </div>
-                  <div className="flex min-w-0 flex-col">
-                    <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Traitement et suivi médical", "Treatment and medical follow-up")}</span>
-                    <span className="text-[11px] text-muted">{t("personnalisés", "personalised")}</span>
-                  </div>
-                </div>
-
-                <div className="group flex items-center gap-3 rounded-2xl border border-border bg-cream/50 p-3 transition-all duration-300 hover:-translate-y-0.5 hover:bg-cream hover:shadow-sm">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream text-clay shadow-sm ring-1 ring-border transition-all duration-300 group-hover:bg-sand">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M10 17h4V5H2v12h3" />
-                      <path d="M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5v8h1" />
-                      <circle cx="7.5" cy="17.5" r="2.5" />
-                      <circle cx="17.5" cy="17.5" r="2.5" />
-                    </svg>
-                  </div>
-                  <div className="flex min-w-0 flex-col">
-                    <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Livraison", "Delivery")}</span>
-                    <span className="text-[11px] text-muted">{t("discrète", "discreet")}</span>
-                  </div>
-                </div>
-
-                <div className="group flex items-center gap-3 rounded-2xl border border-border bg-cream/50 p-3 transition-all duration-300 hover:-translate-y-0.5 hover:bg-cream hover:shadow-sm">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream text-clay shadow-sm ring-1 ring-border transition-all duration-300 group-hover:bg-sand">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                    </svg>
-                  </div>
-                  <div className="flex min-w-0 flex-col">
-                    <span className="text-[13px] font-semibold leading-tight text-foreground">{t("Données chiffrées", "Encrypted data")}</span>
-                    <span className="text-[11px] text-muted">{t("et confidentielles", "and confidential")}</span>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-10 flex flex-wrap items-center justify-center gap-y-6 sm:flex-nowrap sm:gap-0">
-                <div className="w-1/2 px-5 text-center sm:w-auto sm:min-w-[150px]">
-                  <CountUp
-                    to={dossiersAccompagnes}
-                    suffix="+"
-                    className="font-display text-2xl font-medium tracking-tight text-clay"
-                  />
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                    {t("hommes ont choisi MAAN", "men have chosen MAAN")}
-                  </p>
-                </div>
-                <span className="hidden h-10 w-[2px] shrink-0 bg-clay/50 sm:block" aria-hidden="true" />
-                <div className="w-1/2 px-5 text-center sm:w-auto sm:min-w-[150px]">
-                  <CountUp
-                    to={24}
-                    suffix="h"
-                    className="font-display text-2xl font-medium tracking-tight text-clay"
-                  />
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                    {t("Réponse médicale", "Medical answer")}
-                  </p>
-                </div>
-                <span className="hidden h-10 w-[2px] shrink-0 bg-clay/50 sm:block" aria-hidden="true" />
-                <div className="w-1/2 px-5 text-center sm:w-auto sm:min-w-[150px]">
-                  <CountUp
-                    to={4}
-                    className="font-display text-2xl font-medium tracking-tight text-clay"
-                  />
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                    {t("Spécialités", "Specialties")}
-                  </p>
-                </div>
-                <span className="hidden h-10 w-[2px] shrink-0 bg-clay/50 sm:block" aria-hidden="true" />
-                <div className="w-1/2 px-5 text-center sm:w-auto sm:min-w-[150px]">
-                  <p className="font-display text-2xl font-medium tracking-tight text-clay">BIG</p>
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                    {t("Médecins enregistrés", "Registered doctors")}
-                  </p>
-                </div>
-              </div>
+        <section className="relative overflow-hidden bg-sand">
+          <div className="relative mx-auto flex min-h-[90vh] max-w-[1440px] flex-col lg:flex-row">
+            {/* Image */}
+            <div className="relative h-[45vh] w-full overflow-hidden lg:h-auto lg:w-1/2">
+              <img
+                src={heroPoster}
+                alt={t(
+                  "Un homme ouvre son colis MAAN à domicile, en toute discrétion.",
+                  "A man opens his MAAN delivery at home, discreetly.",
+                )}
+                width={1200}
+                height={1500}
+                className="h-full w-full object-cover"
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-gradient-to-b from-sand via-transparent to-sand lg:bg-gradient-to-r lg:from-sand lg:via-[#00000000] lg:to-transparent"
+              />
             </div>
 
-            <div
-              className="animate-[rise_0.7s_var(--ease)_0.1s_both] lg:col-span-6"
-              style={{ transform: `translateY(${Math.min(scrollY, 400) * -0.05}px)` }}
-            >
-              <div className="relative">
-                <Tilt className="group relative">
-                  <video
-                    src={heroVideo.url}
-                    poster={heroPoster}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    aria-label="Un homme préoccupé trouve une solution avec MAAN : questionnaire, évaluation médicale, préparation en pharmacie et livraison discrète à domicile"
-                    className="aspect-[4/5] w-full rounded-[24px] object-cover shadow-[0_50px_120px_-60px_var(--foreground)] transition-transform duration-[900ms] ease-[var(--ease)] group-hover:scale-[1.015]"
-                  />
-                </Tilt>
+            {/* Texte */}
+            <div className="relative z-10 flex w-full flex-col justify-center px-6 py-14 lg:w-1/2 lg:px-16 xl:px-24">
+              <div className="max-w-xl animate-[rise_0.7s_var(--ease)_0.1s_both]">
+                <div className="mb-8 inline-flex flex-col">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-clay">
+                    {t("Soins pour les hommes", "Men's care")}
+                  </span>
+                  <span className="mt-2 h-px w-10 bg-clay" />
+                </div>
+                <h1 className="font-hero-serif text-4xl font-normal leading-[1.08] tracking-tight text-foreground md:text-6xl lg:text-7xl">
+                  {t("Consultez un médecin en ligne.", "Consult a doctor online.")}
+                </h1>
+                <p className="mt-6 max-w-sm font-hero-sans text-lg leading-relaxed text-muted">
+                  {t(
+                    "Recevez votre traitement à domicile, prescrit par un médecin enregistré BIG.",
+                    "Get your treatment delivered at home, prescribed by a BIG-registered doctor.",
+                  )}
+                </p>
+                <div className="mt-10 flex flex-wrap items-center gap-5">
+                  <Magnetic>
+                    <Link
+                      to="/questionnaire"
+                      className="group inline-flex items-center gap-3 bg-clay px-8 py-4 text-sm font-medium tracking-wide text-cream transition-all duration-500 hover:bg-clay-deep hover:shadow-[0_20px_50px_-20px_var(--clay)]"
+                    >
+                      {t("Commencer mon évaluation", "Start intake")}
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    </Link>
+                  </Magnetic>
+                  <a
+                    href="#parcours"
+                    className="group inline-flex items-center gap-2 border-b border-foreground/30 pb-1 text-sm font-medium text-foreground transition-all hover:border-foreground"
+                  >
+                    {t("Voir le parcours", "See how it works")}
+                    <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+                  </a>
+                </div>
+
+                <div className="mt-14 flex flex-wrap items-center gap-x-10 gap-y-4 border-t border-foreground/10 pt-8">
+                  <div>
+                    <CountUp
+                      to={dossiersAccompagnes}
+                      suffix="+"
+                      className="font-display text-2xl font-medium tracking-tight text-clay"
+                    />
+                    <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                      {t("hommes ont choisi MAAN", "men have chosen MAAN")}
+                    </p>
+                  </div>
+                  <span className="hidden h-8 w-px bg-foreground/15 sm:block" aria-hidden />
+                  <div>
+                    <CountUp to={24} suffix="h" className="font-display text-2xl font-medium tracking-tight text-clay" />
+                    <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                      {t("Réponse médicale", "Medical answer")}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
