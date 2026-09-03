@@ -110,7 +110,7 @@ export function Temoignages() {
     const el = wrapRef.current;
     if (!el) return;
     const update = () =>
-      setRadius(Math.max(200, Math.min(410, el.clientWidth * 0.4)));
+      setRadius(Math.max(210, Math.min(430, el.clientWidth * 0.42)));
     update();
     const ro = new ResizeObserver(update);
     ro.observe(el);
@@ -123,7 +123,7 @@ export function Temoignages() {
     data: temoignages[i % temoignages.length]!,
   }));
   const step = 360 / SLOTS;
-  const tilt = 58;
+  const tilt = 66;
 
   const current = temoignages[active % temoignages.length]!;
 
