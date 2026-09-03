@@ -188,30 +188,28 @@ export function Temoignages() {
             {temoignages.map((tm, i) => {
               const a = angle + i * step;
               return (
-                <button
+                <div
                   key={tm.id}
-                  type="button"
-                  onMouseEnter={() => {
-                    setActive(i);
-                    setPlaying(null);
-                  }}
-                  onFocus={() => setActive(i)}
-                  onClick={() => {
-                    setActive(i);
-                    setPlaying(null);
-                  }}
-                  aria-label={t(
-                    `Voir le témoignage de ${tm.prenom}`,
-                    `See ${tm.prenom}'s testimonial`,
-                  )}
-                  className="absolute left-1/2 top-1/2 z-10"
-                  style={{
-                    transform: `rotate(${a}deg) translateY(-50%) translateX(0) translate(0, calc(-1 * (min(50vw, 320px) - 8%)))`,
-                  }}
+                  className="pointer-events-none absolute inset-0 z-10"
+                  style={{ transform: `rotate(${a}deg)` }}
                 >
-                  <span
-                    className="block"
-                    style={{ transform: `rotate(${-a}deg)` }}
+                  <button
+                    type="button"
+                    onMouseEnter={() => {
+                      setActive(i);
+                      setPlaying(null);
+                    }}
+                    onFocus={() => setActive(i)}
+                    onClick={() => {
+                      setActive(i);
+                      setPlaying(null);
+                    }}
+                    aria-label={t(
+                      `Voir le témoignage de ${tm.prenom}`,
+                      `See ${tm.prenom}'s testimonial`,
+                    )}
+                    className="pointer-events-auto absolute left-1/2 top-0"
+                    style={{ transform: `translate(-50%, -50%) rotate(${-a}deg)` }}
                   >
                     <span
                       className={cn(
@@ -232,16 +230,17 @@ export function Temoignages() {
                     </span>
                     <span
                       className={cn(
-                        "mt-2 block text-center font-mono text-[9px] uppercase tracking-[0.14em] transition-colors",
+                        "mt-2 block whitespace-nowrap text-center font-mono text-[9px] uppercase tracking-[0.14em] transition-colors",
                         active === i ? "text-clay" : "text-muted",
                       )}
                     >
                       {tm.prenom}
                     </span>
-                  </span>
-                </button>
+                  </button>
+                </div>
               );
             })}
+
           </div>
         </Reveal>
 
