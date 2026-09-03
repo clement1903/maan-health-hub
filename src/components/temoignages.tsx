@@ -80,8 +80,9 @@ export function Temoignages() {
   const [paused, setPaused] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [spin, setSpin] = useState(0);
+  const [radius, setRadius] = useState(400);
   const rafRef = useRef(0);
-  const ringRef = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
@@ -105,28 +106,34 @@ export function Temoignages() {
     return () => cancelAnimationFrame(rafRef.current);
   }, [reduced, paused, dragging, playing]);
 
-  const SLOTS = 30;
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const update = () =>
+      setRadius(Math.max(210, Math.min(430, el.clientWidth * 0.42)));
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const SLOTS = 44;
   const slots = Array.from({ length: SLOTS }, (_, i) => ({
     slot: i,
     data: temoignages[i % temoignages.length]!,
   }));
-  const count = SLOTS;
-  const step = 360 / count;
-  const radius = 420;
-  const tilt = 80;
-  const ringAngle = -active * step + spin;
+  const step = 360 / SLOTS;
+  const tilt = 30;
 
   const current = temoignages[active % temoignages.length]!;
 
   const goTo = (index: number) => {
     setPlaying(null);
-    setActive((index + count) % count);
-    setSpin(0);
+    setActive(((index % temoignages.length) + temoignages.length) % temoignages.length);
   };
 
   const handlePrev = () => goTo(active - 1);
   const handleNext = () => goTo(active + 1);
-
 
   const onPointerDown = (e: React.PointerEvent) => {
     setDragging(false);
@@ -170,148 +177,153 @@ export function Temoignages() {
           </p>
         </Reveal>
 
-        <div className="relative mt-10 grid gap-8 lg:mt-16 lg:grid-cols-2 lg:items-center lg:min-h-[720px]">
-          {/* Carte active */}
-          <Reveal className="relative z-20 order-1">
-            <div className="mx-auto w-full max-w-md rounded-2xl border border-border bg-background p-6 shadow-[0_24px_60px_-40px_var(--foreground)] sm:p-8">
-              <div className="flex items-center gap-4">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-clay/10 font-mono text-[11px] font-semibold uppercase tracking-wider text-clay">
-                  0{active + 1}
-                </span>
-                <div>
-                  <p className="font-section text-base font-medium">
-                    {current.prenom}, {current.age}
-                  </p>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-                    {current.domaine}
-                  </p>
-                </div>
-              </div>
-
-              <blockquote className="mt-6 font-section text-lg leading-relaxed text-foreground md:text-xl">
-                « {current.texte} »
-              </blockquote>
-
-              {current.video ? (
-                <button
-                  type="button"
-                  onClick={() => setPlaying(current.video!)}
-                  className="mt-6 inline-flex items-center gap-2 rounded-full border border-clay px-4 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-clay transition-colors hover:bg-clay hover:text-cream"
-                >
-                  <Play className="size-3 fill-current" />
-                  {t("Témoignage vidéo", "Video testimonial")}
-                </button>
-              ) : null}
-
-              {/* Indicateurs */}
-              <div className="mt-8 flex items-center gap-2">
-                {temoignages.map((tm, i) => (
-                  <button
-                    key={tm.id}
-                    type="button"
-                    onClick={() => goTo(i)}
-                    aria-label={t(
-                      `Voir le témoignage de ${tm.prenom}`,
-                      `See ${tm.prenom}'s testimonial`,
-                    )}
-                    className={cn(
-                      "h-1.5 rounded-full transition-all duration-500",
-                      active % temoignages.length === i
-                        ? "w-8 bg-clay"
-                        : "w-1.5 bg-border hover:bg-clay/50",
-                    )}
-                  />
-                ))}
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Carrousel 3D horizontal */}
-          <Reveal className="relative order-2 flex min-h-[460px] items-center justify-center lg:min-h-0">
+        {/* Anneau 3D façon CLOU : cartes debout, tangentes au cercle */}
+        <Reveal className="relative mt-10 lg:mt-14">
+          <div
+            ref={wrapRef}
+            className="relative h-[480px] w-full cursor-grab active:cursor-grabbing sm:h-[560px] lg:h-[640px]"
+            style={{ perspective: "2600px" }}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerLeave={onPointerUp}
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
+            {/* Anneau */}
             <div
-              className="relative aspect-square w-full max-w-[560px] cursor-grab active:cursor-grabbing sm:max-w-[640px] lg:max-w-[820px] lg:translate-x-[14%]"
-              style={{ perspective: "1800px" }}
-              onPointerDown={onPointerDown}
-              onPointerMove={onPointerMove}
-              onPointerUp={onPointerUp}
-              onPointerLeave={onPointerUp}
-              onMouseEnter={() => setPaused(true)}
-              onMouseLeave={() => setPaused(false)}
+              className="absolute inset-0"
+              style={{
+                transformStyle: "preserve-3d",
+                transform: `rotateX(${tilt}deg) rotateY(${spin}deg)`,
+              }}
             >
-              {/* Sol / ombre */}
-              <div className="pointer-events-none absolute inset-[18%] rounded-full bg-foreground/[0.06] blur-3xl" />
-
-              {/* Anneau */}
-              <div
-                ref={ringRef}
-                className={cn(
-                  "absolute inset-0",
-                  reduced || spin !== 0 ? "" : "transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]",
-                )}
-                style={{
-                  transformStyle: "preserve-3d",
-                  transform: `rotateZ(-16deg) rotateX(${tilt}deg) rotateZ(${ringAngle}deg)`,
-                }}
-              >
-                {slots.map(({ slot, data }) => {
-                  const itemAngle = slot * step;
-                  const isActive = active === slot;
-                  return (
-                    <button
-                      key={slot}
-                      type="button"
-                      onClick={() => {
-                        if (dragging) return;
-                        goTo(slot);
-                      }}
-                      aria-label={t(
-                        `Voir le témoignage de ${data.prenom}`,
-                        `See ${data.prenom}'s testimonial`,
+              {slots.map(({ slot, data }) => {
+                const isActiveData =
+                  temoignages[active % temoignages.length]!.id === data.id;
+                return (
+                  <button
+                    key={slot}
+                    type="button"
+                    onClick={() => {
+                      if (dragging) return;
+                      goTo(temoignages.findIndex((tm) => tm.id === data.id));
+                    }}
+                    aria-label={t(
+                      `Voir le témoignage de ${data.prenom}`,
+                      `See ${data.prenom}'s testimonial`,
+                    )}
+                    className="absolute left-1/2 top-1/2 focus:outline-none"
+                    style={{
+                      width: "clamp(96px, 12vw, 136px)",
+                      height: "clamp(64px, 8vw, 92px)",
+                      marginLeft: "calc(clamp(96px, 12vw, 136px) * -0.5)",
+                      marginTop: "calc(clamp(64px, 8vw, 92px) * -0.5)",
+                      transform: `rotateY(${slot * step}deg) translateZ(${radius}px) rotateY(90deg)`,
+                      transformStyle: "preserve-3d",
+                    }}
+                  >
+                    {/* Face avant */}
+                    <span
+                      className={cn(
+                        "absolute inset-0 block overflow-hidden rounded-md border bg-cream shadow-[0_14px_30px_-18px_var(--foreground)] transition-opacity duration-500",
+                        isActiveData ? "border-clay" : "border-border/70",
                       )}
-                      className="absolute left-1/2 top-1/2 focus:outline-none"
+                      style={{ backfaceVisibility: "hidden" }}
+                    >
+                      <img
+                        src={data.photo}
+                        alt=""
+                        loading="lazy"
+                        width={400}
+                        height={500}
+                        draggable={false}
+                        className="h-full w-full object-cover object-top"
+                      />
+                    </span>
+                    {/* Face arrière (image à l'endroit vue de l'autre côté) */}
+                    <span
+                      className={cn(
+                        "absolute inset-0 block overflow-hidden rounded-md border bg-cream shadow-[0_14px_30px_-18px_var(--foreground)] transition-opacity duration-500",
+                        isActiveData ? "border-clay" : "border-border/70",
+                      )}
                       style={{
-                        width: "clamp(100px, 21%, 158px)",
-                        height: "clamp(126px, 27%, 198px)",
-                        marginLeft: "calc(clamp(100px, 21%, 158px) * -0.5)",
-                        marginTop: "calc(clamp(126px, 27%, 198px) * -0.5)",
-                        transform: `rotateZ(${itemAngle}deg) translateY(-${radius}px) rotateX(-${tilt}deg)`,
-                        transformStyle: "preserve-3d",
+                        backfaceVisibility: "hidden",
+                        transform: "rotateY(180deg)",
                       }}
                     >
-                      <span
-                        className={cn(
-                          "relative block h-full w-full overflow-hidden rounded-lg border bg-cream shadow-[0_18px_40px_-20px_var(--foreground)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
-                          isActive
-                            ? "border-clay shadow-[0_30px_70px_-30px_var(--foreground)]"
-                            : "border-border opacity-75 hover:opacity-100",
-                        )}
-                      >
-                        <img
-                          src={data.photo}
-                          alt={t(
-                            `Portrait de ${data.prenom}`,
-                            `Portrait of ${data.prenom}`,
-                          )}
-                          loading="lazy"
-                          width={400}
-                          height={500}
-                          draggable={false}
-                          className="h-full w-full object-cover object-top"
-                        />
-                        {isActive ? (
-                          <span className="absolute bottom-3 left-3 rounded-full bg-cream/95 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-clay">
-                            {data.prenom}
-                          </span>
-                        ) : null}
-                      </span>
-                    </button>
-                  );
-                })}
+                      <img
+                        src={data.photo}
+                        alt=""
+                        loading="lazy"
+                        width={400}
+                        height={500}
+                        draggable={false}
+                        className="h-full w-full object-cover object-top"
+                      />
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Témoignage actif au centre de l'anneau */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 z-20 w-full max-w-sm -translate-x-1/2 -translate-y-1/2 px-4">
+              <div className="pointer-events-auto rounded-2xl border border-border bg-background/95 p-6 shadow-[0_24px_60px_-40px_var(--foreground)] backdrop-blur-sm sm:p-7">
+                <div className="flex items-center gap-4">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-clay/10 font-mono text-[11px] font-semibold uppercase tracking-wider text-clay">
+                    0{active + 1}
+                  </span>
+                  <div>
+                    <p className="font-section text-base font-medium">
+                      {current.prenom}, {current.age}
+                    </p>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+                      {current.domaine}
+                    </p>
+                  </div>
+                </div>
+
+                <blockquote className="mt-5 font-section text-base leading-relaxed text-foreground md:text-lg">
+                  « {current.texte} »
+                </blockquote>
+
+                {current.video ? (
+                  <button
+                    type="button"
+                    onClick={() => setPlaying(current.video!)}
+                    className="mt-5 inline-flex items-center gap-2 rounded-full border border-clay px-4 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-clay transition-colors hover:bg-clay hover:text-cream"
+                  >
+                    <Play className="size-3 fill-current" />
+                    {t("Témoignage vidéo", "Video testimonial")}
+                  </button>
+                ) : null}
+
+                {/* Indicateurs */}
+                <div className="mt-6 flex items-center gap-2">
+                  {temoignages.map((tm, i) => (
+                    <button
+                      key={tm.id}
+                      type="button"
+                      onClick={() => goTo(i)}
+                      aria-label={t(
+                        `Voir le témoignage de ${tm.prenom}`,
+                        `See ${tm.prenom}'s testimonial`,
+                      )}
+                      className={cn(
+                        "h-1.5 rounded-full transition-all duration-500",
+                        active % temoignages.length === i
+                          ? "w-8 bg-clay"
+                          : "w-1.5 bg-border hover:bg-clay/50",
+                      )}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
 
             {/* Flèches */}
-            <div className="absolute bottom-0 left-1/2 z-30 flex -translate-x-1/2 gap-3 lg:bottom-auto lg:left-auto lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:flex-col">
+            <div className="absolute bottom-2 right-2 z-30 flex gap-3 lg:bottom-6 lg:right-6">
               <button
                 type="button"
                 onClick={handlePrev}
@@ -329,8 +341,8 @@ export function Temoignages() {
                 <ChevronRight className="size-5" />
               </button>
             </div>
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
       </div>
 
       {/* Lecteur vidéo plein écran léger */}
