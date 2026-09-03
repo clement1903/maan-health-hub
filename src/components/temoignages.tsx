@@ -112,7 +112,7 @@ export function Temoignages() {
   }));
   const count = SLOTS;
   const step = 360 / count;
-  const radius = 360;
+  const radius = 420;
   const tilt = 80;
   const ringAngle = -active * step + spin;
 
@@ -270,10 +270,10 @@ export function Temoignages() {
                       )}
                       className="absolute left-1/2 top-1/2 focus:outline-none"
                       style={{
-                        width: "clamp(120px, 25%, 186px)",
-                        height: "clamp(150px, 31%, 232px)",
-                        marginLeft: "calc(clamp(120px, 25%, 186px) * -0.5)",
-                        marginTop: "calc(clamp(150px, 31%, 232px) * -0.5)",
+                        width: "clamp(100px, 21%, 158px)",
+                        height: "clamp(126px, 27%, 198px)",
+                        marginLeft: "calc(clamp(100px, 21%, 158px) * -0.5)",
+                        marginTop: "calc(clamp(126px, 27%, 198px) * -0.5)",
                         transform: `rotateZ(${itemAngle}deg) translateY(-${radius}px) rotateX(-${tilt}deg)`,
                         transformStyle: "preserve-3d",
                       }}
