@@ -123,7 +123,7 @@ export function Temoignages() {
     data: temoignages[i % temoignages.length]!,
   }));
   const step = 360 / SLOTS;
-  const tilt = 34;
+  const tilt = 26;
 
   const current = temoignages[active % temoignages.length]!;
 
