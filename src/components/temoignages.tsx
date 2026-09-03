@@ -113,7 +113,7 @@ export function Temoignages() {
   const count = SLOTS;
   const step = 360 / count;
   const radius = 430;
-  const tilt = 64;
+  const tilt = 72;
   const ringAngle = -active * step + spin;
 
   const current = temoignages[active % temoignages.length]!;
