@@ -98,22 +98,22 @@ export function Temoignages() {
     const loop = (now: number) => {
       const dt = now - last;
       last = now;
-      setSpin((s) => (s + dt * 0.0035) % 360);
+      setSpin((s) => (s + dt * 0.0028) % 360);
       rafRef.current = requestAnimationFrame(loop);
     };
     rafRef.current = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(rafRef.current);
   }, [reduced, paused, dragging, playing]);
 
-  const SLOTS = 24;
+  const SLOTS = 30;
   const slots = Array.from({ length: SLOTS }, (_, i) => ({
     slot: i,
     data: temoignages[i % temoignages.length]!,
   }));
   const count = SLOTS;
   const step = 360 / count;
-  const radius = 430;
-  const tilt = 72;
+  const radius = 420;
+  const tilt = 80;
   const ringAngle = -active * step + spin;
 
   const current = temoignages[active % temoignages.length]!;
@@ -229,7 +229,7 @@ export function Temoignages() {
           {/* Carrousel 3D horizontal */}
           <Reveal className="relative order-2 flex min-h-[460px] items-center justify-center lg:min-h-0">
             <div
-              className="relative aspect-square w-full max-w-[560px] cursor-grab active:cursor-grabbing sm:max-w-[640px] lg:max-w-[760px]"
+              className="relative aspect-square w-full max-w-[560px] cursor-grab active:cursor-grabbing sm:max-w-[640px] lg:max-w-[820px] lg:translate-x-[14%]"
               style={{ perspective: "1800px" }}
               onPointerDown={onPointerDown}
               onPointerMove={onPointerMove}
@@ -250,7 +250,7 @@ export function Temoignages() {
                 )}
                 style={{
                   transformStyle: "preserve-3d",
-                  transform: `rotateZ(-12deg) rotateX(${tilt}deg) rotateZ(${ringAngle}deg)`,
+                  transform: `rotateZ(-16deg) rotateX(${tilt}deg) rotateZ(${ringAngle}deg)`,
                 }}
               >
                 {slots.map(({ slot, data }) => {
@@ -270,10 +270,10 @@ export function Temoignages() {
                       )}
                       className="absolute left-1/2 top-1/2 focus:outline-none"
                       style={{
-                        width: "clamp(104px, 22%, 150px)",
-                        height: "clamp(130px, 28%, 188px)",
-                        marginLeft: "calc(clamp(104px, 22%, 150px) * -0.5)",
-                        marginTop: "calc(clamp(130px, 28%, 188px) * -0.5)",
+                        width: "clamp(100px, 21%, 158px)",
+                        height: "clamp(126px, 27%, 198px)",
+                        marginLeft: "calc(clamp(100px, 21%, 158px) * -0.5)",
+                        marginTop: "calc(clamp(126px, 27%, 198px) * -0.5)",
                         transform: `rotateZ(${itemAngle}deg) translateY(-${radius}px) rotateX(-${tilt}deg)`,
                         transformStyle: "preserve-3d",
                       }}
