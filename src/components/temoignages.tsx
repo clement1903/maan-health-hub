@@ -227,10 +227,10 @@ export function Temoignages() {
           </Reveal>
 
           {/* Carrousel 3D horizontal */}
-          <Reveal className="relative order-2 flex min-h-[420px] items-center justify-center lg:min-h-0">
+          <Reveal className="relative order-2 flex min-h-[460px] items-center justify-center lg:min-h-0">
             <div
-              className="relative aspect-square w-full max-w-[520px] cursor-grab active:cursor-grabbing sm:max-w-[600px] lg:max-w-[680px]"
-              style={{ perspective: "1400px" }}
+              className="relative aspect-square w-full max-w-[560px] cursor-grab active:cursor-grabbing sm:max-w-[640px] lg:max-w-[760px]"
+              style={{ perspective: "1800px" }}
               onPointerDown={onPointerDown}
               onPointerMove={onPointerMove}
               onPointerUp={onPointerUp}
@@ -239,7 +239,7 @@ export function Temoignages() {
               onMouseLeave={() => setPaused(false)}
             >
               {/* Sol / ombre */}
-              <div className="pointer-events-none absolute inset-[12%] rounded-full bg-foreground/[0.05] blur-3xl" />
+              <div className="pointer-events-none absolute inset-[18%] rounded-full bg-foreground/[0.06] blur-3xl" />
 
               {/* Anneau */}
               <div
@@ -250,47 +250,47 @@ export function Temoignages() {
                 )}
                 style={{
                   transformStyle: "preserve-3d",
-                  transform: `rotateX(70deg) rotateZ(${ringAngle}deg)`,
+                  transform: `rotateZ(-12deg) rotateX(${tilt}deg) rotateZ(${ringAngle}deg)`,
                 }}
               >
-                {temoignages.map((tm, i) => {
-                  const itemAngle = i * step;
-                  const isActive = active === i;
+                {slots.map(({ slot, data }) => {
+                  const itemAngle = slot * step;
+                  const isActive = active === slot;
                   return (
                     <button
-                      key={tm.id}
+                      key={slot}
                       type="button"
                       onClick={() => {
                         if (dragging) return;
-                        goTo(i);
+                        goTo(slot);
                       }}
                       aria-label={t(
-                        `Voir le témoignage de ${tm.prenom}`,
-                        `See ${tm.prenom}'s testimonial`,
+                        `Voir le témoignage de ${data.prenom}`,
+                        `See ${data.prenom}'s testimonial`,
                       )}
                       className="absolute left-1/2 top-1/2 focus:outline-none"
                       style={{
-                        width: "clamp(120px, 26%, 180px)",
-                        height: "clamp(150px, 32%, 225px)",
-                        marginLeft: "calc(clamp(120px, 26%, 180px) * -0.5)",
-                        marginTop: "calc(clamp(150px, 32%, 225px) * -0.5)",
-                        transform: `rotateZ(${itemAngle}deg) translateY(-${radius}px) rotateX(-70deg)`,
+                        width: "clamp(104px, 22%, 150px)",
+                        height: "clamp(130px, 28%, 188px)",
+                        marginLeft: "calc(clamp(104px, 22%, 150px) * -0.5)",
+                        marginTop: "calc(clamp(130px, 28%, 188px) * -0.5)",
+                        transform: `rotateZ(${itemAngle}deg) translateY(-${radius}px) rotateX(-${tilt}deg)`,
                         transformStyle: "preserve-3d",
                       }}
                     >
                       <span
                         className={cn(
-                          "relative block h-full w-full overflow-hidden rounded-xl border bg-cream shadow-xl transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                          "relative block h-full w-full overflow-hidden rounded-lg border bg-cream shadow-[0_18px_40px_-20px_var(--foreground)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
                           isActive
                             ? "border-clay shadow-[0_30px_70px_-30px_var(--foreground)]"
                             : "border-border opacity-75 hover:opacity-100",
                         )}
                       >
                         <img
-                          src={tm.photo}
+                          src={data.photo}
                           alt={t(
-                            `Portrait de ${tm.prenom}`,
-                            `Portrait of ${tm.prenom}`,
+                            `Portrait de ${data.prenom}`,
+                            `Portrait of ${data.prenom}`,
                           )}
                           loading="lazy"
                           width={400}
@@ -300,7 +300,7 @@ export function Temoignages() {
                         />
                         {isActive ? (
                           <span className="absolute bottom-3 left-3 rounded-full bg-cream/95 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-clay">
-                            {tm.prenom}
+                            {data.prenom}
                           </span>
                         ) : null}
                       </span>
