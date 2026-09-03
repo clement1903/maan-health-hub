@@ -216,7 +216,7 @@ export function Temoignages() {
                     )}
                     className={cn(
                       "h-1.5 rounded-full transition-all duration-500",
-                      active === i
+                      active % temoignages.length === i
                         ? "w-8 bg-clay"
                         : "w-1.5 bg-border hover:bg-clay/50",
                     )}
