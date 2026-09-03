@@ -220,7 +220,7 @@ export function Temoignages() {
           </Reveal>
 
           {/* Carrousel 3D horizontal */}
-          <Reveal className="relative order-1 flex min-h-[420px] items-center justify-center lg:order-2 lg:min-h-0">
+          <Reveal className="relative order-2 flex min-h-[420px] items-center justify-center lg:min-h-0">
             <div
               className="relative aspect-square w-full max-w-[520px] cursor-grab active:cursor-grabbing sm:max-w-[600px] lg:max-w-[680px]"
               style={{ perspective: "1400px" }}
