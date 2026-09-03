@@ -105,12 +105,18 @@ export function Temoignages() {
     return () => cancelAnimationFrame(rafRef.current);
   }, [reduced, paused, dragging, playing]);
 
-  const count = temoignages.length;
+  const SLOTS = 24;
+  const slots = Array.from({ length: SLOTS }, (_, i) => ({
+    slot: i,
+    data: temoignages[i % temoignages.length]!,
+  }));
+  const count = SLOTS;
   const step = 360 / count;
-  const radius = 340;
+  const radius = 430;
+  const tilt = 64;
   const ringAngle = -active * step + spin;
 
-  const current = temoignages[active] ?? temoignages[0]!;
+  const current = temoignages[active % temoignages.length]!;
 
   const goTo = (index: number) => {
     setPlaying(null);
@@ -120,6 +126,7 @@ export function Temoignages() {
 
   const handlePrev = () => goTo(active - 1);
   const handleNext = () => goTo(active + 1);
+
 
   const onPointerDown = (e: React.PointerEvent) => {
     setDragging(false);
