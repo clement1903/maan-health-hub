@@ -102,7 +102,7 @@ export function Temoignages() {
     return () => cancelAnimationFrame(rafRef.current);
   }, [reduced, paused, playing]);
 
-  const current = temoignages[active];
+  const current = temoignages[active] ?? temoignages[0]!;
   const step = 360 / temoignages.length;
 
   return (
