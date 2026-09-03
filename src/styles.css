@@ -14,6 +14,8 @@
   --font-mono: var(--font-mono-family);
   --font-section: var(--font-section-family);
   --font-signature: var(--font-signature-family);
+  --font-hero-serif: var(--font-hero-serif-family);
+  --font-hero-sans: var(--font-hero-sans-family);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -48,6 +50,8 @@
   --font-mono-family: "JetBrains Mono", ui-monospace, monospace;
   --font-section-family: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
   --font-signature-family: "Caveat", "Segoe Script", cursive;
+  --font-hero-serif-family: "Libre Baskerville", Georgia, serif;
+  --font-hero-sans-family: "IBM Plex Sans", "Inter", system-ui, sans-serif;
 
   --background: oklch(0.965 0.021 85);
   --sand: oklch(0.905 0.028 82);
