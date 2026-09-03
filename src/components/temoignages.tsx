@@ -163,9 +163,9 @@ export function Temoignages() {
           </p>
         </Reveal>
 
-        <div className="relative mt-10 grid min-h-[720px] gap-8 lg:mt-16 lg:grid-cols-2 lg:items-center">
+        <div className="relative mt-10 grid gap-8 lg:mt-16 lg:grid-cols-2 lg:items-center lg:min-h-[720px]">
           {/* Carte active */}
-          <Reveal className="relative z-20 order-2 lg:order-1">
+          <Reveal className="relative z-20 order-1">
             <div className="mx-auto w-full max-w-md rounded-2xl border border-border bg-background p-6 shadow-[0_24px_60px_-40px_var(--foreground)] sm:p-8">
               <div className="flex items-center gap-4">
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-clay/10 font-mono text-[11px] font-semibold uppercase tracking-wider text-clay">
