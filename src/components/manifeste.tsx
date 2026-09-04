@@ -119,7 +119,7 @@ export function Manifeste() {
 
         {/* annotation manuscrite */}
         <p
-          className="mt-10 font-hand text-2xl text-amber/90 transition-opacity duration-1000"
+          className="mt-10 font-signature text-2xl text-amber/90 transition-opacity duration-1000"
           style={{ opacity: Math.max(0, progress * 3 - 2.4) }}
         >
           {t("— Simple et confidentiel, promis.", "— Simple and confidential, promise.")}
