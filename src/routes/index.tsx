@@ -19,7 +19,7 @@ import { Bento3D } from "@/components/bento-3d";
 
 
 import { ParcoursMorph } from "@/components/parcours-morph";
-import { Manifeste } from "@/components/manifeste";
+
 import { MedecinsSection } from "@/components/medecins-section";
 import { Temoignages } from "@/components/temoignages";
 import { MotFondateur } from "@/components/mot-fondateur";
@@ -392,9 +392,6 @@ function Home() {
         </section>
 
         <Marquee items={marqueeItems} />
-
-        {/* MANIFESTE — storytelling de marque */}
-        <Manifeste />
 
         {/* SOINS */}
         <section id="soins" className="scroll-mt-24 bg-cream">
