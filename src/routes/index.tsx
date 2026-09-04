@@ -16,7 +16,6 @@ import { Marquee } from "@/components/marquee";
 import { CountUp } from "@/components/count-up";
 import type { Soin } from "@/components/soins-showcase";
 import { Bento3D } from "@/components/bento-3d";
-import { Manifeste } from "@/components/manifeste";
 
 import { ParcoursMorph } from "@/components/parcours-morph";
 
@@ -392,9 +391,6 @@ function Home() {
         </section>
 
         <Marquee items={marqueeItems} />
-
-        {/* MANIFESTE */}
-        <Manifeste />
 
         {/* SOINS */}
         <section id="soins" className="scroll-mt-24 bg-cream">
