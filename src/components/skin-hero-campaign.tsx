@@ -125,7 +125,7 @@ export function SkinHeroCampaign() {
 
           {/* iPhone flottant glassmorphic */}
           <div
-            className="absolute left-1/2 top-[72%] w-[150px] -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 ease-out will-change-transform sm:w-[170px] md:w-[190px] lg:w-[210px]"
+            className="absolute left-1/2 top-[76%] w-[150px] -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 ease-out will-change-transform sm:w-[170px] md:w-[190px] lg:w-[210px]"
             style={{ transform: `translate(calc(-50% + ${nx * -10}px), -50%) rotate(${nx * -1}deg)` }}
           >
             <div className="relative aspect-[9/19.5] w-full rounded-[2.8rem] border border-cream/20 bg-[#0f0f0f]/80 p-2.5 shadow-[0_0_100px_rgba(0,0,0,0.7)] backdrop-blur-2xl">
