@@ -25,10 +25,16 @@ export function Manifeste() {
           </p>
         </Reveal>
 
+        <Reveal delay={80}>
+          <h2 className="mt-5 max-w-[18ch] text-balance font-display text-5xl font-medium leading-[0.95] tracking-tight text-cream sm:text-6xl lg:text-7xl">
+            {t("RIEN À SIGNALER.", "NOTHING TO REPORT.")}
+          </h2>
+        </Reveal>
+
         <div className="mt-8 space-y-4 lg:mt-12 lg:space-y-6">
           {lines.map((line, i) => (
             <Reveal key={line} delay={120 * (i + 1)}>
-              <p className="max-w-[22ch] text-balance font-display text-3xl font-medium leading-[1.1] tracking-tight text-cream sm:text-4xl lg:text-5xl">
+              <p className="max-w-[26ch] text-balance font-display text-2xl font-medium leading-[1.15] tracking-tight text-cream/90 sm:text-3xl lg:text-4xl">
                 {line}
               </p>
             </Reveal>
