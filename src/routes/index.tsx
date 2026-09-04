@@ -393,6 +393,9 @@ function Home() {
 
         <Marquee items={marqueeItems} />
 
+        {/* MANIFESTE — storytelling de marque */}
+        <Manifeste />
+
         {/* SOINS */}
         <section id="soins" className="scroll-mt-24 bg-cream">
           <div className="mx-auto max-w-6xl px-6 py-16 lg:py-24">
