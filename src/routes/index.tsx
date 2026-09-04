@@ -245,11 +245,12 @@ function Home() {
           />
           <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 py-16 lg:grid-cols-12 lg:py-24">
             <div className="lg:col-span-6">
-              <h1 className="animate-[rise_0.6s_var(--ease)_0.08s_both] text-balance font-display text-5xl font-medium leading-[1.03] tracking-tight lg:text-6xl">
-                {t("Consultez un médecin en ligne.", "Consult a doctor online.")}{" "}
+              <h1 className="animate-[rise_0.6s_var(--ease)_0.08s_both] text-balance font-display text-5xl font-medium leading-[1.0] tracking-tight sm:text-6xl lg:text-7xl">
+                {t("Consultez un médecin", "Consult a doctor")}{" "}
+                <em className="italic text-clay">{t("en ligne.", "online.")}</em>{" "}
                 <span className="relative inline-block">
                   <span className="relative z-10">{t("Recevez votre traitement à domicile.", "Get your treatment delivered at home.")}</span>
-                  <span className="absolute inset-x-0 bottom-1 z-0 h-3 origin-left animate-[rise_0.8s_var(--ease)_0.5s_both] rounded-sm bg-amber/35" />
+                  <span className="absolute inset-x-0 bottom-1 z-0 h-3 origin-left animate-[rise_0.8s_var(--ease)_0.5s_both] rounded-sm bg-amber/35 lg:h-4" />
                 </span>
               </h1>
               <div className="mt-9 flex animate-[rise_0.6s_var(--ease)_0.24s_both] flex-wrap items-center gap-4">
