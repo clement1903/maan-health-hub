@@ -38,16 +38,8 @@ export function Manifeste() {
 
   const lines = [
     {
-      text: t("Les hommes n'en parlent pas.", "Men don't talk about it."),
+      text: t("RIEN À SIGNALER.", "NOTHING TO REPORT."),
       accent: false,
-    },
-    {
-      text: t("Trop compliqué. Trop gênant. Trop tard.", "Too complicated. Too awkward. Too late."),
-      accent: false,
-    },
-    {
-      text: t("Nous, on en parle.", "We do."),
-      accent: true,
     },
   ];
 
