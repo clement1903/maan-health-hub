@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
-import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
 
 import temoin1 from "@/assets/temoin-1.jpg";
@@ -29,8 +28,8 @@ const buildTemoignages = (t: (fr: string, en: string) => string): Temoignage[] =
     age: t("38 ans", "38 years old"),
     domaine: "Sexual Management",
     texte: t(
-      "Je repoussais ce rendez-vous depuis deux ans. Le questionnaire m'a permis de tout dire sans avoir à le formuler à voix haute. Le médecin a demandé des précisions avant de prescrire.",
-      "I had been putting off this appointment for two years. The questionnaire let me say everything without having to voice it out loud. The doctor asked for details before prescribing.",
+      "Je repoussais ce rendez-vous depuis deux ans. Le questionnaire m'a permis de tout dire sans avoir à le formuler à voix haute.",
+      "I had been putting off this appointment for two years. The questionnaire let me say everything without having to voice it out loud.",
     ),
     photo: temoin1,
     video: video1.url,
@@ -41,8 +40,8 @@ const buildTemoignages = (t: (fr: string, en: string) => string): Temoignage[] =
     age: t("45 ans", "45 years old"),
     domaine: "Weight Management",
     texte: t(
-      "On m'a expliqué qu'un traitement ne remplace pas le suivi. J'ai eu un plan clair, un point mensuel, et un refus sur un dosage que je demandais. Ça m'a rassuré, honnêtement.",
-      "I was told that a treatment doesn't replace follow-up. I got a clear plan, a monthly check-in, and a refusal on a dosage I had asked for. Honestly, that reassured me.",
+      "Un plan clair, un point mensuel, et un refus sur un dosage que je demandais. Ça m'a rassuré, honnêtement.",
+      "A clear plan, a monthly check-in, and a refusal on a dosage I had asked for. Honestly, that reassured me.",
     ),
     photo: temoin2,
     video: video2.url,
@@ -53,8 +52,8 @@ const buildTemoignages = (t: (fr: string, en: string) => string): Temoignage[] =
     age: t("31 ans", "31 years old"),
     domaine: "Hair Management",
     texte: t(
-      "Le colis est arrivé sans aucune mention. Personne au bureau n'a pu deviner ce qu'il contenait. Le suivi photo tous les trois mois me tient dans la durée.",
-      "The package arrived with no markings at all. No one at the office could guess what was inside. The photo follow-up every three months keeps me on track.",
+      "Le colis est arrivé sans aucune mention. Le suivi photo tous les trois mois me tient dans la durée.",
+      "The package arrived with no markings at all. The photo follow-up every three months keeps me on track.",
     ),
     photo: temoin3,
   },
@@ -64,8 +63,8 @@ const buildTemoignages = (t: (fr: string, en: string) => string): Temoignage[] =
     age: t("52 ans", "52 years old"),
     domaine: "Skin Management",
     texte: t(
-      "J'apprécie que tout soit écrit : l'ordonnance, la posologie, les précautions. Je l'ai montrée à mon médecin traitant, qui a validé sans réserve.",
-      "I appreciate that everything is written down: the prescription, the dosage, the precautions. I showed it to my regular doctor, who approved it without reservation.",
+      "J'apprécie que tout soit écrit : l'ordonnance, la posologie, les précautions. Mon médecin traitant a validé sans réserve.",
+      "I appreciate that everything is written down: the prescription, the dosage, the precautions. My own doctor approved without reservation.",
     ),
     photo: temoin4,
   },
@@ -74,16 +73,23 @@ const buildTemoignages = (t: (fr: string, en: string) => string): Temoignage[] =
 export function Temoignages() {
   const { t } = useI18n();
   const temoignages = buildTemoignages(t);
-  const [active, setActive] = useState(0);
+
   const [playing, setPlaying] = useState<string | null>(null);
   const [reduced, setReduced] = useState(false);
-  const [paused, setPaused] = useState(false);
-  const [dragging, setDragging] = useState(false);
   const [spin, setSpin] = useState(0);
-  const [radius, setRadius] = useState(400);
-  const rafRef = useRef(0);
+  const [radius, setRadius] = useState(520);
+  const [cardW, setCardW] = useState(260);
+
   const wrapRef = useRef<HTMLDivElement>(null);
-  const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const rafRef = useRef(0);
+  const spinRef = useRef(0);
+  const velRef = useRef(0);
+  const dragRef = useRef<{ x: number; moved: boolean } | null>(null);
+  const hoverRef = useRef(false);
+
+  // 12 cartes réparties sur l'anneau (les 4 témoignages, répétés)
+  const SLOTS = 12;
+  const step = 360 / SLOTS;
 
   useEffect(() => {
     const m = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -94,68 +100,72 @@ export function Temoignages() {
   }, []);
 
   useEffect(() => {
-    if (reduced || paused || dragging || playing) return;
-    let last = performance.now();
-    const loop = (now: number) => {
-      const dt = now - last;
-      last = now;
-      setSpin((s) => (s + dt * 0.0028) % 360);
-      rafRef.current = requestAnimationFrame(loop);
-    };
-    rafRef.current = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [reduced, paused, dragging, playing]);
-
-  useEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
-    const update = () =>
-      setRadius(Math.max(210, Math.min(430, el.clientWidth * 0.42)));
+    const update = () => {
+      const w = Math.max(180, Math.min(300, el.clientWidth * 0.24));
+      setCardW(w);
+      // rayon d'un cylindre régulier : gaps constants entre cartes
+      const r = (w * 1.32) / (2 * Math.tan(Math.PI / SLOTS));
+      setRadius(r);
+    };
     update();
     const ro = new ResizeObserver(update);
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
 
-  const SLOTS = 44;
-  const slots = Array.from({ length: SLOTS }, (_, i) => ({
-    slot: i,
-    data: temoignages[i % temoignages.length]!,
-  }));
-  const step = 360 / SLOTS;
-  const tilt = 30;
+  // Boucle : rotation lente + inertie du drag
+  useEffect(() => {
+    if (reduced) return;
+    let last = performance.now();
+    const loop = (now: number) => {
+      const dt = Math.min(48, now - last);
+      last = now;
+      if (!dragRef.current) {
+        velRef.current *= 0.94;
+        if (Math.abs(velRef.current) < 0.002) velRef.current = 0;
+        const idle = hoverRef.current || playing ? 0 : dt * 0.0055;
+        spinRef.current = (spinRef.current + velRef.current * dt + idle) % 360;
+        setSpin(spinRef.current);
+      }
+      rafRef.current = requestAnimationFrame(loop);
+    };
+    rafRef.current = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [reduced, playing]);
 
-  const current = temoignages[active % temoignages.length]!;
-
-  const goTo = (index: number) => {
-    setPlaying(null);
-    setActive(((index % temoignages.length) + temoignages.length) % temoignages.length);
-  };
-
-  const handlePrev = () => goTo(active - 1);
-  const handleNext = () => goTo(active + 1);
+  const rotateBy = useCallback((delta: number) => {
+    spinRef.current = (spinRef.current + delta) % 360;
+    velRef.current = 0;
+    setSpin(spinRef.current);
+  }, []);
 
   const onPointerDown = (e: React.PointerEvent) => {
-    setDragging(false);
-    touchStart.current = { x: e.clientX, y: e.clientY };
+    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
+    dragRef.current = { x: e.clientX, moved: false };
+    velRef.current = 0;
   };
 
   const onPointerMove = (e: React.PointerEvent) => {
-    if (!touchStart.current) return;
-    const dx = e.clientX - touchStart.current.x;
-    if (Math.abs(dx) > 6) setDragging(true);
+    const d = dragRef.current;
+    if (!d) return;
+    const dx = e.clientX - d.x;
+    if (Math.abs(dx) > 2) {
+      d.moved = true;
+      d.x = e.clientX;
+      const delta = dx * 0.22;
+      spinRef.current = (spinRef.current + delta) % 360;
+      velRef.current = delta / 16;
+      setSpin(spinRef.current);
+    }
   };
 
-  const onPointerUp = (e: React.PointerEvent) => {
-    if (!touchStart.current) return;
-    const dx = e.clientX - touchStart.current.x;
-    touchStart.current = null;
-    if (dragging && Math.abs(dx) > 24) {
-      if (dx > 0) handlePrev();
-      else handleNext();
-    }
-    setDragging(false);
+  const endDrag = () => {
+    dragRef.current = null;
   };
+
+  const cardH = cardW * 1.28;
 
   return (
     <section id="temoignages" className="scroll-mt-24 overflow-hidden bg-sand">
@@ -171,162 +181,94 @@ export function Temoignages() {
           </div>
           <p className="max-w-[34ch] font-mono text-[10px] uppercase leading-relaxed tracking-[0.16em] text-muted">
             {t(
-              "Faites tourner la roue · sélectionnez un parcours",
-              "Spin the wheel · select a journey",
+              "Faites glisser pour faire tourner le cylindre",
+              "Drag to spin the cylinder",
             )}
           </p>
         </Reveal>
 
-        {/* Anneau 3D façon CLOU : cartes debout, tangentes au cercle */}
         <Reveal className="relative mt-10 lg:mt-14">
           <div
             ref={wrapRef}
-            className="relative h-[480px] w-full cursor-grab active:cursor-grabbing sm:h-[560px] lg:h-[640px]"
-            style={{ perspective: "2600px" }}
+            className="relative h-[420px] w-full touch-pan-y select-none overflow-hidden cursor-grab active:cursor-grabbing sm:h-[520px] lg:h-[600px]"
+            style={{ perspective: "1600px", perspectiveOrigin: "50% 50%" }}
             onPointerDown={onPointerDown}
             onPointerMove={onPointerMove}
-            onPointerUp={onPointerUp}
-            onPointerLeave={onPointerUp}
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
+            onPointerUp={endDrag}
+            onPointerCancel={endDrag}
+            onPointerLeave={() => {
+              endDrag();
+              hoverRef.current = false;
+            }}
+            onMouseEnter={() => {
+              hoverRef.current = true;
+            }}
           >
-            {/* Anneau */}
             <div
-              className="absolute inset-0"
+              className="absolute left-1/2 top-1/2"
               style={{
+                width: 0,
+                height: 0,
                 transformStyle: "preserve-3d",
-                transform: `rotateX(${tilt}deg) rotateY(${spin}deg)`,
+                transform: `translateZ(-${radius}px) rotateX(-7deg) rotateY(${spin}deg)`,
               }}
             >
-              {slots.map(({ slot, data }) => {
-                const isActiveData =
-                  temoignages[active % temoignages.length]!.id === data.id;
+              {Array.from({ length: SLOTS }, (_, i) => {
+                const data = temoignages[i % temoignages.length]!;
                 return (
-                  <button
-                    key={slot}
-                    type="button"
-                    onClick={() => {
-                      if (dragging) return;
-                      goTo(temoignages.findIndex((tm) => tm.id === data.id));
-                    }}
-                    aria-label={t(
-                      `Voir le témoignage de ${data.prenom}`,
-                      `See ${data.prenom}'s testimonial`,
-                    )}
-                    className="absolute left-1/2 top-1/2 focus:outline-none"
+                  <article
+                    key={i}
+                    className="absolute rounded-xl border border-border/70 bg-cream/95 p-4 shadow-[0_24px_60px_-40px_var(--foreground)]"
                     style={{
-                      width: "clamp(96px, 12vw, 136px)",
-                      height: "clamp(64px, 8vw, 92px)",
-                      marginLeft: "calc(clamp(96px, 12vw, 136px) * -0.5)",
-                      marginTop: "calc(clamp(64px, 8vw, 92px) * -0.5)",
-                      transform: `rotateY(${slot * step}deg) translateZ(${radius}px) rotateY(90deg)`,
-                      transformStyle: "preserve-3d",
+                      width: cardW,
+                      height: cardH,
+                      left: -cardW / 2,
+                      top: -cardH / 2,
+                      transform: `rotateY(${i * step}deg) translateZ(${radius}px)`,
+                      backfaceVisibility: "visible",
                     }}
                   >
-                    {/* Face avant */}
-                    <span
-                      className={cn(
-                        "absolute inset-0 block overflow-hidden rounded-md border bg-cream shadow-[0_14px_30px_-18px_var(--foreground)] transition-opacity duration-500",
-                        isActiveData ? "border-clay" : "border-border/70",
-                      )}
-                      style={{ backfaceVisibility: "hidden" }}
-                    >
-                      <img
-                        src={data.photo}
-                        alt=""
-                        loading="lazy"
-                        width={400}
-                        height={500}
-                        draggable={false}
-                        className="h-full w-full object-cover object-top"
-                      />
-                    </span>
-                    {/* Face arrière (image à l'endroit vue de l'autre côté) */}
-                    <span
-                      className={cn(
-                        "absolute inset-0 block overflow-hidden rounded-md border bg-cream shadow-[0_14px_30px_-18px_var(--foreground)] transition-opacity duration-500",
-                        isActiveData ? "border-clay" : "border-border/70",
-                      )}
-                      style={{
-                        backfaceVisibility: "hidden",
-                        transform: "rotateY(180deg)",
-                      }}
-                    >
-                      <img
-                        src={data.photo}
-                        alt=""
-                        loading="lazy"
-                        width={400}
-                        height={500}
-                        draggable={false}
-                        className="h-full w-full object-cover object-top"
-                      />
-                    </span>
-                  </button>
+                    <img
+                      src={data.photo}
+                      alt=""
+                      loading="lazy"
+                      draggable={false}
+                      className="h-[46%] w-full rounded-lg object-cover object-top"
+                    />
+                    <p className="mt-3 font-mono text-[9px] uppercase tracking-[0.16em] text-clay">
+                      {data.domaine}
+                    </p>
+                    <p className="mt-1 font-section text-sm font-medium">
+                      {data.prenom}, {data.age}
+                    </p>
+                    <p className="mt-2 line-clamp-4 font-section text-[12px] leading-relaxed text-muted">
+                      « {data.texte} »
+                    </p>
+                    {data.video ? (
+                      <button
+                        type="button"
+                        onPointerUp={(e) => e.stopPropagation()}
+                        onClick={() => {
+                          if (dragRef.current?.moved) return;
+                          setPlaying(data.video!);
+                        }}
+                        className="mt-3 inline-flex items-center gap-2 rounded-full border border-clay px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.14em] text-clay transition-colors hover:bg-clay hover:text-cream"
+                      >
+                        <Play className="size-2.5 fill-current" />
+                        {t("Vidéo", "Video")}
+                      </button>
+                    ) : null}
+                  </article>
                 );
               })}
-            </div>
-
-            {/* Témoignage actif au centre de l'anneau */}
-            <div className="pointer-events-none absolute left-1/2 top-1/2 z-20 w-full max-w-sm -translate-x-1/2 -translate-y-1/2 px-4">
-              <div className="pointer-events-auto rounded-2xl border border-border bg-background/95 p-6 shadow-[0_24px_60px_-40px_var(--foreground)] backdrop-blur-sm sm:p-7">
-                <div className="flex items-center gap-4">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-clay/10 font-mono text-[11px] font-semibold uppercase tracking-wider text-clay">
-                    0{active + 1}
-                  </span>
-                  <div>
-                    <p className="font-section text-base font-medium">
-                      {current.prenom}, {current.age}
-                    </p>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-                      {current.domaine}
-                    </p>
-                  </div>
-                </div>
-
-                <blockquote className="mt-5 font-section text-base leading-relaxed text-foreground md:text-lg">
-                  « {current.texte} »
-                </blockquote>
-
-                {current.video ? (
-                  <button
-                    type="button"
-                    onClick={() => setPlaying(current.video!)}
-                    className="mt-5 inline-flex items-center gap-2 rounded-full border border-clay px-4 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-clay transition-colors hover:bg-clay hover:text-cream"
-                  >
-                    <Play className="size-3 fill-current" />
-                    {t("Témoignage vidéo", "Video testimonial")}
-                  </button>
-                ) : null}
-
-                {/* Indicateurs */}
-                <div className="mt-6 flex items-center gap-2">
-                  {temoignages.map((tm, i) => (
-                    <button
-                      key={tm.id}
-                      type="button"
-                      onClick={() => goTo(i)}
-                      aria-label={t(
-                        `Voir le témoignage de ${tm.prenom}`,
-                        `See ${tm.prenom}'s testimonial`,
-                      )}
-                      className={cn(
-                        "h-1.5 rounded-full transition-all duration-500",
-                        active % temoignages.length === i
-                          ? "w-8 bg-clay"
-                          : "w-1.5 bg-border hover:bg-clay/50",
-                      )}
-                    />
-                  ))}
-                </div>
-              </div>
             </div>
 
             {/* Flèches */}
             <div className="absolute bottom-2 right-2 z-30 flex gap-3 lg:bottom-6 lg:right-6">
               <button
                 type="button"
-                onClick={handlePrev}
+                onPointerDown={(e) => e.stopPropagation()}
+                onClick={() => rotateBy(step)}
                 aria-label={t("Précédent", "Previous")}
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground shadow-sm transition-colors hover:border-clay hover:text-clay"
               >
@@ -334,7 +276,8 @@ export function Temoignages() {
               </button>
               <button
                 type="button"
-                onClick={handleNext}
+                onPointerDown={(e) => e.stopPropagation()}
+                onClick={() => rotateBy(-step)}
                 aria-label={t("Suivant", "Next")}
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground shadow-sm transition-colors hover:border-clay hover:text-clay"
               >
@@ -345,7 +288,6 @@ export function Temoignages() {
         </Reveal>
       </div>
 
-      {/* Lecteur vidéo plein écran léger */}
       {playing ? (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/90 p-4 backdrop-blur-sm"
