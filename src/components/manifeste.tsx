@@ -38,16 +38,8 @@ export function Manifeste() {
 
   const lines = [
     {
-      text: t("Les hommes n'en parlent pas.", "Men don't talk about it."),
+      text: t("RIEN À SIGNALER.", "NOTHING TO REPORT."),
       accent: false,
-    },
-    {
-      text: t("Trop compliqué. Trop gênant. Trop tard.", "Too complicated. Too awkward. Too late."),
-      accent: false,
-    },
-    {
-      text: t("Nous, on en parle.", "We do."),
-      accent: true,
     },
   ];
 
@@ -95,11 +87,18 @@ export function Manifeste() {
           })}
         </h2>
 
+        <p
+          className="mt-6 font-signature text-xl text-amber/90 transition-opacity duration-1000 sm:text-2xl"
+          style={{ opacity: Math.max(0, progress * 3 - 0.8) }}
+        >
+          {t("— La réponse préférée des hommes depuis toujours.", "— Men's favorite answer since forever.")}
+        </p>
+
         <div
           className="mt-12 flex flex-wrap items-center gap-6 transition-all duration-700"
           style={{
-            opacity: Math.max(0, progress * 3 - 2.2),
-            transform: `translateY(${Math.max(0, (1 - (progress * 3 - 2.2)) * 20)}px)`,
+            opacity: Math.max(0, progress * 3 - 1.6),
+            transform: `translateY(${Math.max(0, (1 - (progress * 3 - 1.6)) * 20)}px)`,
           }}
         >
           <p className="max-w-[46ch] text-sm leading-relaxed text-cream/70">
@@ -116,14 +115,6 @@ export function Manifeste() {
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </Link>
         </div>
-
-        {/* annotation manuscrite */}
-        <p
-          className="mt-10 font-signature text-2xl text-amber/90 transition-opacity duration-1000"
-          style={{ opacity: Math.max(0, progress * 3 - 2.4) }}
-        >
-          {t("— Simple et confidentiel, promis.", "— Simple and confidential, promise.")}
-        </p>
       </div>
     </section>
   );
