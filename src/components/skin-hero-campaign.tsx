@@ -77,7 +77,7 @@ export function SkinHeroCampaign() {
       </div>
 
       {/* SCÈNE — portrait + iPhone */}
-      <div className="relative z-10 mx-auto mt-4 w-full max-w-[560px] flex-1 px-6 md:-mt-2">
+      <div className="relative z-10 mx-auto mt-8 w-full max-w-[560px] flex-1 px-6 md:mt-6">
         <div
           className="relative mx-auto aspect-[896/1152] w-full max-w-[460px]"
           style={{ perspective: "900px" }}
