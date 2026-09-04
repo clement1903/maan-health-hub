@@ -137,23 +137,23 @@ export function SkinHeroCampaign() {
                 />
 
                 {/* Contenu écran */}
-                <div className="flex h-full flex-col px-7 pb-6 pt-12">
+                <div className="flex h-full flex-col px-4 pb-4 pt-8">
                   {/* Header */}
                   <div className="flex items-start justify-between">
                     <div>
-                      <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-cream/40">
+                      <p className="font-mono text-[7px] uppercase tracking-[0.2em] text-cream/40">
                         {t("Analyse en cours", "Live Scan")}
                       </p>
-                      <p className="mt-1 font-display text-xl italic text-cream">
+                      <p className="mt-0.5 font-display text-sm italic text-cream">
                         {t("Optimisation", "Optimizing")}
                       </p>
                     </div>
-                    <span className="mt-1.5 h-2 w-2 rounded-full bg-clay shadow-[0_0_10px_rgba(196,98,45,0.8)] animate-pulse" />
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-clay shadow-[0_0_8px_rgba(196,98,45,0.8)] animate-pulse" />
                   </div>
 
                   {/* Cercle score */}
-                  <div className="mt-8 flex flex-1 flex-col items-center justify-center">
-                    <div className="relative aspect-square w-36 md:w-40">
+                  <div className="mt-4 flex flex-1 flex-col items-center justify-center">
+                    <div className="relative aspect-square w-20 sm:w-22 md:w-24">
                       <div
                         aria-hidden
                         className="absolute inset-0 rounded-full border border-cream/10"
@@ -164,8 +164,8 @@ export function SkinHeroCampaign() {
                         style={{ animation: "skin-spin 8s linear infinite" }}
                       />
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <span className="font-display text-5xl font-light text-cream md:text-6xl">88</span>
-                        <span className="mt-1 font-mono text-[9px] uppercase tracking-[0.2em] text-cream/40">
+                        <span className="font-display text-3xl font-light text-cream md:text-4xl">88</span>
+                        <span className="mt-0.5 font-mono text-[7px] uppercase tracking-[0.15em] text-cream/40">
                           {t("Hydratation", "Hydration")}
                         </span>
                       </div>
@@ -173,15 +173,15 @@ export function SkinHeroCampaign() {
                   </div>
 
                   {/* Métriques */}
-                  <div className="space-y-5">
+                  <div className="space-y-3">
                     {[
                       { label: t("Hydratation", "Hydration"), value: "88%", width: "88%" },
                       { label: "Texture", value: t("Uniforme", "Uniform"), width: "80%" },
                       { label: t("Rougeurs", "Redness"), value: t("Minimes", "Minimal"), width: "32%" },
                     ].map((metric) => (
-                      <div key={metric.label} className="space-y-2">
-                        <div className="flex justify-between text-[10px] text-cream/60">
-                          <span className="font-mono uppercase tracking-[0.15em]">{metric.label}</span>
+                      <div key={metric.label} className="space-y-1">
+                        <div className="flex justify-between text-[8px] text-cream/60">
+                          <span className="font-mono uppercase tracking-[0.12em]">{metric.label}</span>
                           <span>{metric.value}</span>
                         </div>
                         <div className="h-[2px] w-full overflow-hidden rounded-full bg-cream/10">
@@ -197,7 +197,7 @@ export function SkinHeroCampaign() {
                   {/* CTA interne */}
                   <button
                     type="button"
-                    className="mt-6 w-full rounded-xl bg-cream py-3.5 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-espresso transition-colors hover:bg-clay hover:text-cream"
+                    className="mt-4 w-full rounded-lg bg-cream py-2 text-center text-[8px] font-bold uppercase tracking-[0.15em] text-espresso transition-colors hover:bg-clay hover:text-cream"
                   >
                     {t("Voir le rapport", "View Report")}
                   </button>
