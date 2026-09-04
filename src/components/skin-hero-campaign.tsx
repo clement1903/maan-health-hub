@@ -87,7 +87,7 @@ export function SkinHeroCampaign() {
         </div>
 
         {/* Scène visuelle — portrait + iPhone */}
-        <div className="group relative mt-16 w-full max-w-3xl md:mt-20 lg:max-w-4xl">
+        <div className="group relative mt-20 w-full max-w-2xl sm:max-w-3xl md:mt-28 lg:max-w-4xl">
           {/* Portrait avec grille technique */}
           <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[2rem] border border-cream/10">
             <img
