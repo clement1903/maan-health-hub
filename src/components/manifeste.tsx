@@ -16,6 +16,12 @@ export function Manifeste() {
             {t("RIEN À SIGNALER.", "NOTHING TO REPORT.")}
           </h2>
         </Reveal>
+
+        <Reveal delay={120}>
+          <p className="mt-5 max-w-[34ch] text-balance font-display text-xl font-medium leading-[1.15] tracking-tight text-cream/80 sm:text-2xl lg:text-3xl">
+            {t("La réponse préférée des hommes.", "The answer men prefer.")}
+          </p>
+        </Reveal>
       </div>
     </section>
   );
