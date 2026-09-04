@@ -100,7 +100,7 @@ export function SkinHeroCampaign() {
 
           {/* IPHONE — superposé sur le visage */}
           <div
-            className="absolute left-1/2 top-[16%] w-[52%] -translate-x-1/2 transition-transform duration-300 ease-out will-change-transform"
+            className="absolute left-1/2 top-[16%] w-[52%] transition-transform duration-300 ease-out will-change-transform"
             style={{ transform: `translateX(calc(-50% + ${nx * -10}px))` }}
           >
             <div className="relative aspect-[9/19] w-full rounded-[2.6rem] border-[6px] border-[#1c1a18] bg-black shadow-[0_30px_80px_-20px_rgba(28,26,24,0.5)]">
