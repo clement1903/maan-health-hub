@@ -36,7 +36,7 @@ export function SkinHeroCampaign() {
       ref={sectionRef}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-cream text-ink"
+      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-cream text-espresso"
     >
       <style>{`
         @keyframes skin-scan {
@@ -57,7 +57,7 @@ export function SkinHeroCampaign() {
 
       {/* TITRE — haut, centré, façon Lovi */}
       <div className="relative z-20 mx-auto max-w-4xl px-6 pt-28 text-center md:pt-32">
-        <p className="mx-auto inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white/60 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-ink/70">
+        <p className="mx-auto inline-flex items-center gap-2 rounded-full border border-espresso/15 bg-white/60 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-espresso/70">
           <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-clay" />
           MAAN · Skin Management
         </p>
@@ -68,7 +68,7 @@ export function SkinHeroCampaign() {
             {t("Sans quitter la maison.", "Without leaving home.")}
           </em>
         </h1>
-        <p className="mx-auto mt-5 max-w-xl text-base text-ink/60 md:text-lg">
+        <p className="mx-auto mt-5 max-w-xl text-base text-espresso/60 md:text-lg">
           {t(
             "Un médecin enregistré étudie votre peau en ligne et vous prescrit le traitement adapté.",
             "A registered doctor reviews your skin online and prescribes the right treatment.",
@@ -176,12 +176,12 @@ export function SkinHeroCampaign() {
         <Link
           to="/questionnaire/$slug"
           params={{ slug: "peau" }}
-          className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-clay"
+          className="inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-clay"
         >
           {t("Commencer la consultation médicale", "Start medical consultation")}
           <span aria-hidden>→</span>
         </Link>
-        <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-ink/50">
+        <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-espresso/50">
           {t("Consultation médicale · sans aucun frais", "Medical consultation · FREE of charge")}
         </p>
       </div>
