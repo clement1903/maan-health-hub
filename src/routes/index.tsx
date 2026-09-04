@@ -16,7 +16,7 @@ import { Marquee } from "@/components/marquee";
 import { CountUp } from "@/components/count-up";
 import type { Soin } from "@/components/soins-showcase";
 import { Bento3D } from "@/components/bento-3d";
-
+import { Manifeste } from "@/components/manifeste";
 
 import { ParcoursMorph } from "@/components/parcours-morph";
 
