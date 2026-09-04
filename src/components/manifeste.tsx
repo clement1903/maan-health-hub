@@ -87,11 +87,18 @@ export function Manifeste() {
           })}
         </h2>
 
+        <p
+          className="mt-6 font-signature text-xl text-amber/90 transition-opacity duration-1000 sm:text-2xl"
+          style={{ opacity: Math.max(0, progress * 3 - 0.8) }}
+        >
+          {t("— La réponse préférée des hommes depuis toujours.", "— Men's favorite answer since forever.")}
+        </p>
+
         <div
           className="mt-12 flex flex-wrap items-center gap-6 transition-all duration-700"
           style={{
-            opacity: Math.max(0, progress * 3 - 2.2),
-            transform: `translateY(${Math.max(0, (1 - (progress * 3 - 2.2)) * 20)}px)`,
+            opacity: Math.max(0, progress * 3 - 1.6),
+            transform: `translateY(${Math.max(0, (1 - (progress * 3 - 1.6)) * 20)}px)`,
           }}
         >
           <p className="max-w-[46ch] text-sm leading-relaxed text-cream/70">
@@ -108,14 +115,6 @@ export function Manifeste() {
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </Link>
         </div>
-
-        {/* annotation manuscrite */}
-        <p
-          className="mt-8 font-signature text-2xl text-amber/90 transition-opacity duration-1000"
-          style={{ opacity: Math.max(0, progress * 3 - 1.2) }}
-        >
-          {t("— La réponse préférée des hommes depuis toujours.", "— Men's favorite answer since forever.")}
-        </p>
       </div>
     </section>
   );
